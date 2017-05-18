@@ -28,4 +28,20 @@ $path: "/public/images/";
   }
 }
 
+.secondary-button {
+  background-color: $border-colour
+}
+
+.form-control-select {
+    font-family: "nta",Arial,sans-serif;
+    font-size: 19px;
+    line-height: 1.31579;
+    font-weight: 400;
+    text-transform: none;
+    background-color: #fff;
+    border: 2px solid #0b0c0c;
+    padding: 5px 4px 4px;
+    box-sizing: border-box;
+}
+
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you

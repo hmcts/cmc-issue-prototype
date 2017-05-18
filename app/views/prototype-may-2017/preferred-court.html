@@ -1,0 +1,18 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Choose a preferred court</h1>
+<form action="preferred-court" method="post">
+  <fieldset>
+    <legend class="visually-hidden">Choose a preferred court</legend>
+
+    <div class="form-group">
+      <label for="preferred-court" class="form-label">Select which court you wish this claim to be heard at</label>
+      <input id="preferred-court" type="text" class="form-control">
+    </div>
+
+    <p><a href="https://courttribunalfinder.service.gov.uk/search/postcode" target="_blank">Find your nearest Country Court</a></p>
+
+  </fieldset>
+</form>
+
+<a class="button" href="claim-details-summary" role="button">Save and Continue</a> {% endblock %}

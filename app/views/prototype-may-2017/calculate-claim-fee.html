@@ -1,0 +1,77 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Calculate claim fee</h1>
+<form action="calculate-claim" class="form-group" method="post">
+  <fieldset>
+    <legend class="visually-hidden">Calculate claim fee</legend>
+
+    <div class="multiple-choice" data-target="specified">
+      <input id="interest-type-specified" name="interest-type" type="radio">
+      <label for="interest-type-specified">Claim amount (specified)</label>
+    </div>
+
+    <div class="multiple-choice" data-target="unspecified">
+      <input id="interest-type-unspecified" name="interest-type" type="radio">
+      <label for="interest-type-unspecified">Claim amount (unspecified)</label>
+    </div>
+
+    <div id="specified" name="specified" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <div class="form-group">
+        <label for="claim-amount-specified" class="form-label">Claim amount (specified)</label>
+        <input id="claim-amount-specified" type="text" class="form-control">
+      </div>
+
+      <fieldset class="form-group">
+        <legend class="form-group-related bold">Add interest to claim</legend>
+        <div class="multiple-choice">
+          <input id="claim-interest" name="claim-interest" type="radio">
+          <label for="claim-interest">Not claiming interest</label>
+        </div>
+        <div class="multiple-choice" data-target="interest-amount">
+          <input id="not-claiming-interest" name="not-claiming-interest" type="radio">
+          <label for="not-claiming-interest">Claiming interest</label>
+        </div>
+        <div id="interest-amount" name="interest-amount" class="panel panel-border-none js-hidden" aria-hidden="true">
+          <label class="form-label" for="business-name-input">Amount of interest claimed</label>
+          <input class="form-control" type="text" id="amount" name="amount">
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <legend class="form-group-related bold">Will you also claim interest from date of submission?</legend>
+        <div class="multiple-choice">
+          <input id="interest-from-submission-yes" name="interest-from-submission" type="radio" value="Yes">
+          <label for="interest-from-submission">Yes</label>
+        </div>
+        <div class="multiple-choice" data-target="total">
+          <input id="interest-from-submission-no" name="interest-from-submission" type="radio" value="No">
+          <label for="interest-from-submission">No</label>
+        </div>
+      </fieldset>
+      <div id="total" name="total" class="panel panel-border-none js-hidden" aria-hidden="true">
+        <p class="bold">Total of claim plus interest</p>
+        <p class="bold">£5040.00</p>
+      </div>
+    </div>
+
+    <div id="unspecified" name="unspecified" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <label for="claim-type" class="form-label">Claim amount (unspecified)</label>
+      <select class="form-control-select" name="claim-amount-unspecified" id="claim-amount-unspecified">
+        <option>-- Please make a selection --</option>
+        <option value="1">More than £300, up to £500</option>
+        <option value="2">More than £500, up to £1,000</option>
+        <option value="3">More than £1,000, up to £1,500</option>
+        <option value="4">More than £1,500, up to £3,000</option>
+        <option value="5">More than £3,000, up to £5,000</option>
+        <option value="6">More than £5,000, up to £10,000</option>
+        <option value="7">More than £10,000, up to £15,000</option>
+        <option value="8">More than £15,000, up to £50,000</option>
+        <option value="9">More than £50,000, up to £100,000</option>
+        <option value="10">More than £100,000, up to £150,000</option>
+        <option value="11">More than £150,000, up to £200,000</option>
+        <option value="11">More than £200,000</option>
+      </select>
+    </div>
+  </fieldset>
+</form>
+
+<a class="button" href="fee-summary" role="button">Calculate fee</a> {% endblock %}
