@@ -8,4 +8,12 @@ router.get('/', function (req, res) {
 
 // add your routes here
 
+router.post('*/choose-how-to-pay', function (req, res) {
+  if (req.body.paymentType === 'card') {
+    res.redirect('pay-by-card')
+  } else {
+    res.redirect('pay-by-account')
+  }
+})
+
 module.exports = router

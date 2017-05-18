@@ -1,0 +1,63 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Check the claim details</h1>
+
+<p>This is the information you just provided. Please check it before you continue.</p>
+
+<div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Your name</div>
+    <div class="column-third">Mr Gerald Normanton</div>
+    <div class="column-third"><a href="#">Change</a></div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Company name</div>
+    <div class="column-third">Darfts, Bill and partners</div>
+    <div class="column-third"><a href="#">Change</a></div>
+  </div>
+</div>
+<div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Claimant's name</div>
+    <div class="column-third">Mr Peter Smith</div>
+    <div class="column-third"><a href="claimant-details">Change</a></div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Defendant's name</div>
+    <div class="column-third">Mr Frank Lee</div>
+    <div class="column-third"><a href="defendant-details">Change</a></div>
+  </div>
+</div>
+<div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Claim summary</div>
+    <div class="column-third">Mr Smith claims the defendant, Frank Lee, damaged his ceiling while doing work on an adjacent house. He's seeking money to fund the repairs, plus interest.</div>
+    <div class="column-third"><a href="describe-the-claim">Change</a></div>
+  </div>
+</div>
+<div class="form-group">
+  <div class="task-list-item">
+    <div class="column-third form-hint">Claim amount</div>
+    <div class="column-third">£4,500</div>
+    <div class="column-third"><a href="calculate-claim-fee">Change</a></div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Interest</div>
+    <div class="column-third">£540</div>
+    <div class="column-third"><a href="calculate-claim-fee">Change</a></div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-third form-hint">Legal Representative's costs</div>
+    <div class="column-third">£22</div>
+    <div class="column-third"></div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-third form-hint bold">Claim fee</div>
+    <div class="column-third bold">£410</div>
+    <div class="column-third"></div>
+  </div>
+</div>
+
+<p>
+  <a class="button" href="statement-of-truth" role="button">Save and Continue</a>
+</p>{% endblock %}
