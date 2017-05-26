@@ -1,0 +1,27 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Claimants Date of birth</h1>
+<p>We use this to make sure legal proceedings are issued against the right person. For example, if there are 2 people at the same address with the same name.</p>
+<p class="form-hint">For example, 31 3 1980</p>
+
+<div class="form-date form-group">
+    <div class="form-group form-group-day">
+        <label for="dob-day">Day</label>
+        <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
+    </div>
+
+    <div class="form-group form-group-month">
+        <label for="dob-month">Month</label>
+        <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+    </div>
+
+    <div class="form-group form-group-year">
+        <label for="dob-year">Year</label>
+        <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
+    </div>
+</div>
+
+
+<a class="button" href="claimant-address" role="button">Save and continue</a>
+
+{% endblock %}
