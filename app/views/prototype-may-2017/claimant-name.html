@@ -1,0 +1,22 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Claimants full name</h1>
+<p>Enter all their names in full - don't use initials.</p>
+
+<div class="form-group">
+    <label class="form-label" for="claimant_first_name">First name</label>
+    <input type="text" class="form-control" id="claimant_first_name" name="claimant-first-name" value="">
+</div>
+<div class="form-group">
+    <label class="form-label" for="claimant_middle_name">Middle names (if any)</label>
+    <input type="text" class="form-control" id="claimant_middle_name" name="claimant-middle-name" value="">
+</div>
+<div class="form-group">
+    <label class="form-label" for="claimant_last_name">Last name</label>
+    <input type="text" class="form-control" id="claimant_last_name" name="claimant-last-name" value="">
+</div>
+
+
+<a class="button" href="date-of-birth" role="button">Save and continue</a>
+
+{% endblock %}

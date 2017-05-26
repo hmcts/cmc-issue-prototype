@@ -1,0 +1,48 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Total amount you're claiming</h1>
+
+<table class="table-form form-group">
+    <caption class="visuallyhidden"></caption>
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th class="numeric last" scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th scope="col"></th>
+        <td class="numeric last"><span class="bold-medium">£1583.00</span></td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+        <th scope="row">Claim amount</th>
+        <td class="numeric last">
+            <label class="visuallyhidden" for="amount">Claim amount</label>
+            <span class="font-small">£1500.00</span>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">Interest</th>
+        <td class="numeric last">
+            <label class="visuallyhidden" for="amount">Interest</label>
+            <span class="font-small">£13.00</span>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">Claim fee</th>
+        <td class="numeric last">
+            <label class="visuallyhidden" for="amount">Claim fee</label>
+            <span class="font-small">£70.00</span>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+<a class="button" href="task-list" role="button">Save and continue</a>
+
+{% endblock %}
