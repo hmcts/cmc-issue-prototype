@@ -1,66 +1,22 @@
 {% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">Interest</h1>
-<p>You can also claim interest on the money you’re owed. The court will decide if you’re entitled to it.</p>
-<p>Unless you know that a different rate applies, you can claim 8%.</p>
+<h1 class="heading-large">Do you want to claim interest</h1>
 
-<form method="post" id="form" class="form">
-
-<fieldset class="form-group">
-    <legend class="visuallyhidden">
-        Interest
-    </legend>
-
-    <fieldset></fieldset>
-    <p class="bold-medium">What rate of interest are you claiming?</p>
-
+<div class="form-group">
     <div class="multiple-choice">
-        <input id="radio-1" type="radio" name="interestRate" value="8 percent">
-        <label for="radio-1">8% (the standard amount)
-        </label>
+        <input id="radio-1" type="radio" name="interestRate" value="Yes">
+        <label for="radio-1">Yes</label>
     </div>
 
     <div class="multiple-choice" data-target="different">
-        <input id="radio-2" name="interestRate" type="radio" value="Different rate" aria-controls="different" aria-expanded="false">
-        <label for="radio-2">a different rate</label>
+        <input id="radio-2" name="interestRate" type="radio" value="No">
+        <label for="radio-2">No</label>
     </div>
-    <div class="panel panel-border-narrow js-hidden form-group" id="different" aria-hidden="true">
-        <div class="form-group">
-            <label class="form-label" for="rate">Rate you're claiming</label>
-            <input class="form-control form-control-1-8" name="rate" type="text" id="rate" value="">%
-        </div>
-         <div class="form-group-related">
-             <label class="form-label" for="rate">Why you’re entitled to this rate</label>
-             <input class="form-control" name="rate-why" type="text" id="rate-why" value="">
-         </div>
+</div>
 
-    </div>
-
-    <div class="multiple-choice">
-        <input id="radio-3" type="radio" name="interestRate" value="No interest">
-        <label for="radio-3">I don't want to claim interest
-        </label>
-    </div>
-
-</fieldset>
-<details role="group" class="form-group">
-
-    <summary role="button" aria-controls="details-content-0" aria-expanded="false">
-        <span class="summary">Help with interest rate</span>
-    </summary>
-
-    <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
-        <p>As standard you can claim 8% interest on money owed to you. You might be able to claim a different rate - for example, if a loan has not been repaid, or if you had a contract which entitles you to a particular rate.</p>
-
-        <p>The court will decide if you're entitled to some or all of the interest claimed. You might be asked to give reasons for why you should get interest.</p>
-    </div>
-
-</details>
-
-    <input class="button" type="submit" value="Save and continue"></input>
-
-</form>
-
+<div class="form-group">
+    <a class="button" href="task-list" role="button">Save and continue</a>
+</div>
 
 
 
