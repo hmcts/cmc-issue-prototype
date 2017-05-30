@@ -1,0 +1,50 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Representatives details</h1>
+<p>Please enter your details below</p>
+
+<div class="form-group">
+    <label class="form-label" for="claimant_first_name">First name</label>
+    <span class="form-hint">The person who is representing the claimant</span>
+    <input type="text" class="form-control form-group-compound" id="claimant_first_name" name="claimant-first-name" value="">
+    <label class="form-label" for="claimant_last_name">Last name</label>
+    <input type="text" class="form-control" id="claimant_last_name" name="claimant-last-name" value="">
+</div>
+
+
+
+<div class="form-group">
+    <label class="form-label" for="company_name">Company name</label>
+    <input type="text" class="form-control" id="company_name" name="company-name" value="">
+</div>
+
+<div id="addressManualWrapper">
+    <div id="address-details" class="address-manual-input disabled">
+        <div class="form-group-compound address-item form-group"><a name="address_addressline1"></a><label class="form-label" for="Address_AddressLine1">Address line 1</label><input autocorrect="off" class="form-control" data-val="true" data-val-length="First line of address must not be more than {0} characters" data-val-length-max="50" data-val-regex="First line of address contains some invalid characters" data-val-regex-pattern="^[a-zA-Z0-9\u0080-\uFFA7?$@#()&quot;'!,+\-=_:;.&amp;€£*%\s\/\[\]]+$" data-val-required="Enter your first line of address" id="Address_AddressLine1" name="Address.AddressLine1" type="text" value=""><span class="field-validation-valid" data-valmsg-for="Address.AddressLine1" data-valmsg-replace="true" aria-live="polite"></span></div>
+
+        <div class="form-group-compound address-item form-group"><a name="address_addressline2"></a><label class="form-label" for="Address_AddressLine2">Address line 2
+            (optional)</label><input autocorrect="off" class="form-control" data-val="true" data-val-length="Second line of address must not be more than {0} characters" data-val-length-max="50" data-val-regex="Second line of address contains some invalid characters" data-val-regex-pattern="^[a-zA-Z0-9\u0080-\uFFA7?$@#()&quot;'!,+\-=_:;.&amp;€£*%\s\/\[\]]+$" id="Address_AddressLine2" name="Address.AddressLine2" type="text" value=""><span class="field-validation-valid" data-valmsg-for="Address.AddressLine2" data-valmsg-replace="true" aria-live="polite"></span></div>
+
+        <div class="form-group-compound address-item form-group"><a name="address_addressline3"></a><label class="form-label" for="Address_AddressLine3">Town or city
+        </label><input autocorrect="off" class="form-control" data-val="true" data-val-length="Third line of address must not be more than {0} characters" data-val-length-max="50" data-val-regex="Third line of address contains some invalid characters" data-val-regex-pattern="^[a-zA-Z0-9\u0080-\uFFA7?$@#()&quot;'!,+\-=_:;.&amp;€£*%\s\/\[\]]+$" id="Address_AddressLine3" name="Address.AddressLine3" type="text" value=""><span class="field-validation-valid" data-valmsg-for="Address.AddressLine3" data-valmsg-replace="true" aria-live="polite"></span></div>
+
+
+        <div class="address-item form-group">
+            <a name="address_postcode"></a>
+            <label class="form-label" for="Address_Postcode">Postcode</label>
+            <input autocapitalize="characters" autocorrect="off" class="form-control form-control-1-8" data-val="true" data-val-length="Postcode must not be more than 8 characters" data-val-length-max="8" data-val-regex="'Postcode'  is not a valid format" data-val-regex-pattern="^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$" data-val-required="Enter your postcode" id="Address_Postcode" name="Address.Postcode" type="text" value="">
+            <span class="field-validation-valid" data-valmsg-for="Address.Postcode" data-valmsg-replace="true" aria-live="polite">
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="dx_number">DX number (Optional)</label>
+    <input type="text" class="form-control" id="dx_number" name="dx-number" value="">
+</div>
+
+<a class="button" href="representative-contact" role="button">Save and continue</a>
+
+{% endblock %}
