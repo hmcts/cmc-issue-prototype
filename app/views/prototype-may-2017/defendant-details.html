@@ -1,0 +1,80 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Enter defendant details</h1>
+<form action="defendant-details" method="post">
+  <fieldset>
+    <legend class="visually-hidden">Enter defendant details</legend>
+
+    <div class="form-group">
+      <label class="form-label" for="claimant_first_name">Title</label>
+      <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant-title" value="">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="claimant_first_name">Full name</label>
+      <textarea type="text" class="form-control" id="claimant_first_name" name="claimant-first-name" value=""></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="address-1" class="form-label">Address 1</label>
+      <input id="address-1" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="address-2" class="form-label">Address 2</label>
+      <input id="address-2" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="town" class="form-label">Town/City</label>
+      <input id="town" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="post-code" class="form-label">Postcode</label>
+      <input id="post-code" type="text" class="form-control">
+    </div>
+
+    <p class="bold-medium">Enter address for service:</p>
+
+    <div class="multiple-choice">
+      <input id="company" name="serviceAddress" type="radio" value="company">
+      <label for="company">Same as above</label>
+    </div>
+
+    <div class="multiple-choice" data-target="service-address">
+      <input id="individual" name="serviceAddress" type="radio" value="individual">
+      <label for="individual">Enter solicitors address</label>
+    </div>
+
+    <div id="service-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <div class="form-group">
+        <label class="form-label" for="business-name-input">Name of solicitors</label>
+        <input class="form-control" type="text" id="business-name-input" name="business-name-input">
+      </div>
+
+      <div class="form-group">
+        <label for="address-1" class="form-label">Address 1</label>
+        <input id="address-1" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="address-2" class="form-label">Address 2</label>
+        <input id="address-2" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="town" class="form-label">Town/City</label>
+        <input id="town" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="post-code" class="form-label">Postcode</label>
+        <input id="post-code" type="text" class="form-control">
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<p><a class="button secondary-button" href="#" role="button">Add another defendant</a></p>
+
+<a class="button" href="task-list" role="button">Save and Continue</a> {% endblock %}
