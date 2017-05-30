@@ -1,0 +1,23 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Has (COMPANY NAME) appointed a solicitor?</h1>
+<form action="defendant-details" method="post">
+    <fieldset>
+        <legend class="visually-hidden">Enter company details</legend>
+
+        <div class="form-group">
+            <div class="multiple-choice">
+                <input id="company" name="solicitorInstructed" type="radio" value="Yes">
+                <label for="company">Yes</label>
+            </div>
+
+            <div class="multiple-choice">
+                <input id="individual" name="solicitorInstructed" type="radio" value="No">
+                <label for="individual">No</label>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+<a class="button" href="describe-the-claim" role="button">Save and Continue</a> {% endblock %}
