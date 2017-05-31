@@ -1,17 +1,17 @@
 {% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">Enter defendant company details</h1>
+<h1 class="heading-large">Enter defendant details</h1>
 <form action="defendant-details" method="post">
   <fieldset>
-    <legend class="visually-hidden">Enter company details</legend>
+    <legend class="visually-hidden">Enter defendant details</legend>
 
     <div id="business-name" class="form-group">
-      <label class="form-label" for="business-name-input">Name of company</label>
+      <label class="form-label" for="business-name-input">Company name</label>
       <input class="form-control" type="text" id="business-name-input" name="business-name-input">
     </div>
 
     <div id="business-name" class="form-group">
-      <label class="form-label" for="company-number-input">Company number</label>
+      <label class="form-label" for="company-number-input">Companies House number</label>
       <input class="form-control" type="text" id="company-number-input" name="business-name-input">
     </div>
 
@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group">
-      <label for="town" class="form-label">Town/City</label>
+      <label for="town" class="form-label">Town/city</label>
       <input id="town" type="text" class="form-control">
     </div>
 
@@ -35,21 +35,21 @@
       <input id="post-code" type="text" class="form-control">
     </div>
 
-    <p class="bold-medium">Enter address for service:</p>
+    <p class="bold-medium">Choose address for service:</p>
 
     <div class="multiple-choice">
       <input id="company" name="serviceAddress" type="radio" value="company">
-      <label for="company">Same as above</label>
+      <label for="company">Use defendant's address</label>
     </div>
 
     <div class="multiple-choice" data-target="service-address">
       <input id="individual" name="serviceAddress" type="radio" value="individual">
-      <label for="individual">Enter solicitors address</label>
+      <label for="individual">Use solicitor's address</label>
     </div>
 
     <div id="service-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
       <div class="form-group">
-        <label class="form-label" for="business-name-input">Name of solicitors</label>
+        <label class="form-label" for="business-name-input">Firm name</label>
         <input class="form-control" type="text" id="business-name-input" name="business-name-input">
       </div>
 
@@ -64,7 +64,7 @@
       </div>
 
       <div class="form-group">
-        <label for="town" class="form-label">Town/City</label>
+        <label for="town" class="form-label">Town/city</label>
         <input id="town" type="text" class="form-control">
       </div>
 
