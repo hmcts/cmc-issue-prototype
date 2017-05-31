@@ -1,0 +1,47 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Enter claimant company details</h1>
+<form action="defendant-details" method="post">
+  <fieldset>
+    <legend class="visually-hidden">Enter defendant details</legend>
+
+    <div id="business-name" class="form-group">
+      <label class="form-label" for="business-name-input">Company name</label>
+      <input class="form-control" type="text" id="business-name-input" name="business-name-input">
+    </div>
+
+    <div id="business-name" class="form-group">
+      <label class="form-label" for="company-number-input">Companies House number</label>
+      <input class="form-control" type="text" id="company-number-input" name="business-name-input">
+    </div>
+
+    <div class="form-group">
+      <label for="address-1" class="form-label">Address 1</label>
+      <input id="address-1" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="address-2" class="form-label">Address 2</label>
+      <input id="address-2" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="town" class="form-label">Town/City</label>
+      <input id="town" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="post-code" class="form-label">Postcode</label>
+      <input id="post-code" type="text" class="form-control">
+    </div>
+
+  </fieldset>
+</form>
+
+<div class="form-group"></div>
+
+<div class="form-group">
+  <a class="button" href="defendant-type" role="button">Save and Continue</a>
+</div>
+
+{% endblock %}

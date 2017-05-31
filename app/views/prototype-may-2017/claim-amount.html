@@ -31,10 +31,15 @@
         Is it a personal injury claim?
     </p>
 
+    <div class="multiple-choice">
+      <input id="individual" name="personalInjury" type="radio" value="individual">
+      <label for="individual">No</label>
+    </div>
     <div class="multiple-choice" data-target="personal-injury-yes">
         <input id="individual" name="personalInjury" type="radio" value="individual">
         <label for="individual">Yes</label>
     </div>
+
 
     <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
 
@@ -51,10 +56,7 @@
 
     </div>
 
-    <div class="multiple-choice">
-        <input id="individual" name="personalInjury" type="radio" value="individual">
-        <label for="individual">No</label>
-    </div>
+
 </div>
 
 <a class="button" href="claim-interest" role="button">Save and continue</a>
