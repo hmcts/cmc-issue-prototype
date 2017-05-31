@@ -1,18 +1,18 @@
 {% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">Claim amount</h1>
+<h1 class="heading-large">Claim value</h1>
 
-<p class="bold-medium">What is the value of your unspecified claim:</p>
+<p class="bold-medium">What's the value of the claim?</p>
 
 <div class="form-group">
     <div class="multiple-choice">
         <input id="company" name="claimValue" type="radio" value="company">
-        <label for="company">Not more than £10,000</label>
+        <label for="company">£10,000 or less</label>
     </div>
 
     <div class="multiple-choice">
         <input id="company" name="claimValue" type="radio" value="company">
-        <label for="company">More than £10,000 but not more than £25,000</label>
+        <label for="company">£10,001 to £25,000</label>
     </div>
 
     <div class="multiple-choice">
@@ -22,7 +22,7 @@
 
     <div class="multiple-choice">
         <input id="company" name="claimValue" type="radio" value="company">
-        <label for="company">Cannot state the amount at this time</label>
+        <label for="company">I can't state the amount</label>
     </div>
 </div>
 
@@ -31,30 +31,32 @@
         Is it a personal injury claim?
     </p>
 
+    <div class="multiple-choice">
+      <input id="individual" name="personalInjury" type="radio" value="individual">
+      <label for="individual">No</label>
+    </div>
     <div class="multiple-choice" data-target="personal-injury-yes">
         <input id="individual" name="personalInjury" type="radio" value="individual">
         <label for="individual">Yes</label>
     </div>
 
+
     <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
 
-        <p>What amount the claimant expects to recover as general damages for pain, suffering and amenity.</p>
+        <p>How much is the claimant seeking for pain, suffering and amenity?</p>
         <div class="multiple-choice">
             <input id="company" name="painValue" type="radio" value="company">
-            <label for="company">not more than £1,000</label>
+            <label for="company">£1,000 or less</label>
         </div>
 
         <div class="multiple-choice">
             <input id="company" name="painValue" type="radio" value="company">
-            <label for="company">more than £1,000</label>
+            <label for="company">More than £1,000</label>
         </div>
 
     </div>
 
-    <div class="multiple-choice">
-        <input id="individual" name="personalInjury" type="radio" value="individual">
-        <label for="individual">No</label>
-    </div>
+
 </div>
 
 <a class="button" href="claim-interest" role="button">Save and continue</a>

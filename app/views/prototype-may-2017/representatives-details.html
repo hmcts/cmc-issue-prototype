@@ -1,17 +1,17 @@
 {% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">Representatives details</h1>
-<p>Please enter your details below</p>
+<h1 class="heading-large">Your details</h1>
+
 
 <div class="form-group">
-    <label class="form-label" for="claimant_first_name">First name</label>
-    <span class="form-hint">The person who is representing the claimant</span>
-    <input type="text" class="form-control form-group-compound" id="claimant_first_name" name="claimant-first-name" value="">
-    <label class="form-label" for="claimant_last_name">Last name</label>
-    <input type="text" class="form-control" id="claimant_last_name" name="claimant-last-name" value="">
+  <label class="form-label" for="claimant_first_name">Title</label>
+  <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant-title" value="">
 </div>
 
-
+<div class="form-group">
+  <label class="form-label" for="claimant_first_name">Full name</label>
+  <textarea type="text" class="form-control" id="claimant_first_name" name="claimant-first-name" value=""></textarea>
+</div>
 
 <div class="form-group">
     <label class="form-label" for="company_name">Company name</label>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="form-group">
-    <label class="form-label" for="dx_number">DX number (Optional)</label>
+    <label class="form-label" for="dx_number">DX number (optional)</label>
     <input type="text" class="form-control" id="dx_number" name="dx-number" value="">
 </div>
 
