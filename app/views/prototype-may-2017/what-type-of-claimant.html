@@ -1,7 +1,7 @@
 {% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">What type of claimant</h1>
-<form action="choose-how-to-pay" id="form" method="post" class="form-group">
+<form action="what-type-of-claimant" id="form" method="post" class="form-group">
     <fieldset class="form-group">
         <legend class="visually-hidden">What type of claimant</legend>
 
@@ -18,7 +18,7 @@
     </fieldset>
 
     <div class="form-group">
-        <a href="claimant-name" class="button" role="button">Save and continue</a>
+      <input type="submit" class="button" value="Save and continue">
     </div>
 </form>
 {% endblock %}

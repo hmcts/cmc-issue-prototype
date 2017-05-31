@@ -1,24 +1,24 @@
 {% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">Who is issuing the claim</h1>
-<form action="choose-how-to-pay" id="form" method="post" class="form-group">
+<form action="representation" id="form" method="post" class="form-group">
     <fieldset class="form-group">
         <legend class="visually-hidden">Who is issuing the claim</legend>
 
         <div class="multiple-choice">
-            <input id="represent" name="claimantType" type="radio" value="represent">
+            <input id="represent" name="representativeType" type="radio" value="represent">
             <label for="represent">I am legally representing the claimant</label>
         </div>
 
         <div class="multiple-choice">
-            <input id="individual" name="claimantType" type="radio" value="individual">
+            <input id="individual" name="representativeType" type="radio" value="individual">
             <label for="individual">I am an individual claiming on my own behalf</label>
         </div>
 
     </fieldset>
 
     <div class="form-group">
-        <a href="representatives-details" class="button" role="button">Save and continue</a>
+      <input type="submit" class="button" value="Save and continue">
     </div>
 </form>
 {% endblock %}

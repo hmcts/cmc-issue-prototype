@@ -223,6 +223,10 @@ if (typeof (routes) !== 'function') {
   app.use('/', routes)
 }
 
+//custom routes
+require('./app/views/prototype-may-2017/routes/routes.js')(app);
+
+
 // Returns a url to the zip of the latest release on github
 app.get('/prototype-admin/download-latest', function (req, res) {
   var url = utils.getLatestRelease()
