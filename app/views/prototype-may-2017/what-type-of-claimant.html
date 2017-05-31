@@ -1,18 +1,18 @@
 {% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">What type of claimant</h1>
+<h1 class="heading-large">Who are you representing?</h1>
 <form action="what-type-of-claimant" id="form" method="post" class="form-group">
     <fieldset class="form-group">
         <legend class="visually-hidden">What type of claimant</legend>
 
         <div class="multiple-choice">
             <input id="company" name="claimantType" type="radio" value="company">
-            <label for="company">Company</label>
+            <label for="company">A company</label>
         </div>
 
         <div class="multiple-choice">
             <input id="individual" name="claimantType" type="radio" value="individual">
-            <label for="individual">Individual</label>
+            <label for="individual">An individual</label>
         </div>
 
     </fieldset>
