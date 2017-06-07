@@ -1,0 +1,18 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Claimant's name</h1>
+
+
+<div class="form-group">
+    <label class="form-label" for="claimant_first_name">Title</label>
+    <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant-title" value="">
+</div>
+<div class="form-group">
+    <label class="form-label" for="claimant_first_name">Full name</label>
+    <textarea type="text" class="form-control" id="claimant_first_name" name="claimant-first-name" value=""></textarea>
+</div>
+
+
+<a class="button" href="claimant-address" role="button">Save and continue</a>
+
+{% endblock %}

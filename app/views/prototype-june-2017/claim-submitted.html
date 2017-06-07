@@ -1,0 +1,41 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">Your claim has been issued</h1>
+  <p>Claim number: D99YJ987</p>
+</div>
+
+
+
+<div class="form-group">
+  <div class="task-list-item form-group">
+    <div class="column-half bold">Total Paid</div>
+    <div class="column-half bold numeric">£410</div>
+  </div>
+
+  <p>Follow these steps to serve:</p>
+  <ol class="list-number form-group">
+    <li>Download the sealed claim form and response pack.</li>
+    <li>Send these to the address of service.</li>
+  </ol>
+
+  <div class="form-group">
+    <div class="column-half">
+      <p>Sealed claim form</p>
+      <div class="form-group">
+        <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
+      </div>
+      <a class="button button-secondary" href="/" role="button">Download</a>
+    </div>
+    <div class="column-half">
+      <p>Response Pack</p>
+      <div class="form-group">
+        <img class="form-label" src="/public/images/response-pack.png" alt="response pack">
+      </div>
+      <a class="button button-secondary" href="/" role="button">Download</a>
+    </div>
+  </div>
+</div>
+
+
+<a class="button" href="start" role="button">Submit another claim</a> {% endblock %}

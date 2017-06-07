@@ -1,0 +1,16 @@
+{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Your reference for this claim</h1>
+<form action="defendant-details" method="post">
+  <fieldset>
+    <legend class="visually-hidden">Your reference for this claim</legend>
+
+    <div class="form-group">
+      <label for="reference" class="form-label"><span class="form-hint">Optional</span></label>
+      <input id="reference" type="text" class="form-control">
+    </div>
+
+  </fieldset>
+</form>
+
+<a class="button" href="claimant-company-details" role="button">Save and Continue</a> {% endblock %}
