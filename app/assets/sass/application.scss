@@ -59,4 +59,14 @@ $path: "/public/images/";
   padding-top: 10px;
 }
 
-// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.no-padding {
+  padding: 0;
+}
+
+[type="text"].pound {
+  background-image: url(/public/images/poundbg.png);
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 40px
+}
+
