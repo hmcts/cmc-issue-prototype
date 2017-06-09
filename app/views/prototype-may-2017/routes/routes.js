@@ -38,13 +38,24 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/choose-how-to-pay', function (req, res) {
+    app.post('*/prototype-may-2017/choose-how-to-pay', function (req, res) {
         if (req.body.paymentType == 'card') {
             res.redirect('pay-by-card')
         } else {
             res.redirect('pay-by-account')
         }
     });
+
+    app.post('*/prototype-may-2017/claim-interest', function (req, res) {
+        if (!req.body.interestRate) {
+            res.render('prototype-june-2017/claim-interest')
+        }
+        else if (req.body.interestRate == 'No interest') {
+            res.redirect('claim-total')
+        } else {
+            res.redirect('claim-interest-date')
+        }
+    })
 
 
 }

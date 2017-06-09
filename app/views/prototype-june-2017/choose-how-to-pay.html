@@ -6,12 +6,12 @@
     <legend class="visually-hidden">Choose how to pay</legend>
 
     <div class="multiple-choice">
-      <input id="card" name="paymentType" type="radio" value="card">
+      <input id="card" name="paymentType" type="radio" value="card" {{ checked('paymentType','card') }}>
       <label for="card">Credit card</label>
     </div>
 
     <div class="multiple-choice">
-      <input id="account" name="paymentType" type="radio" value="account">
+      <input id="account" name="paymentType" type="radio" value="account" {{ checked('paymentType','account') }}>
       <label for="account">Fee Account</label>
     </div>
 

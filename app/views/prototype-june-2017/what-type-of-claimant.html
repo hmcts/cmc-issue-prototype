@@ -6,15 +6,14 @@
         <legend class="visually-hidden">What type of claimant</legend>
 
         <div class="multiple-choice">
-            <input id="company" name="claimantType" type="radio" value="company">
+            <input id="company" name="claimantType" type="radio" value="company" {{ checked('claimantType','company') }}>
             <label for="company">A company</label>
         </div>
 
         <div class="multiple-choice">
-            <input id="individual" name="claimantType" type="radio" value="individual">
+            <input id="individual" name="claimantType" type="radio" value="individual" {{ checked('claimantType','individual') }}>
             <label for="individual">An individual</label>
         </div>
-
     </fieldset>
 
     <div class="form-group">

@@ -10,7 +10,10 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-june-2017/what-type-of-claimant', function(req, res){
-        if (req.body.claimantType.toString() === 'company') {
+        if (!req.body.claimantType) {
+            res.render('prototype-june-2017/what-type-of-claimant')
+        }
+        else if (req.body.claimantType.toString() === 'company') {
             res.redirect('claimant-company-reference')
         }
         else {
@@ -19,8 +22,10 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-june-2017/defendant-type', function(req, res){
-
-        if (req.body.defendantType.toString() === 'company') {
+        if (!req.body.defendantType) {
+            res.render('prototype-june-2017/defendant-type')
+        }
+        else if (req.body.defendantType.toString() === 'company') {
             res.redirect('defendant-company-details')
         }
         else {
@@ -29,12 +34,36 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-june-2017/type-of-claim', function(req, res){
-
-        if (req.body.typeOfClaim.toString() === 'specified') {
+        if (!req.body.typeOfClaim) {
+            res.render('prototype-june-2017/type-of-claim')
+        }
+        else if (req.body.typeOfClaim.toString() === 'specified') {
             res.redirect('not-supported')
         }
         else {
             res.redirect('claim-amount')
+        }
+    });
+
+    app.post('*/prototype-june-2017/claim-interest', function (req, res) {
+        if (!req.body.interestRate) {
+            res.render('prototype-june-2017/claim-interest')
+        }
+        else if (req.body.interestRate == 'No interest') {
+            res.redirect('claim-total')
+        } else {
+            res.redirect('claim-interest-date')
+        }
+    })
+
+    app.post('*/prototype-june-2017/choose-how-to-pay', function (req, res) {
+        if (!req.body.paymentType) {
+            res.render('prototype-june-2017/choose-how-to-pay')
+        }
+        else if (req.body.paymentType == 'card') {
+            res.redirect('pay-by-card')
+        } else {
+            res.redirect('pay-by-account')
         }
     });
 

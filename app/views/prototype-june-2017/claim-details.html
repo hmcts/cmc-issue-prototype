@@ -2,13 +2,15 @@
 
 <h1 class="heading-large">Summarise the claim</h1>
 <p class="form-hint">Explain the basics of the case for the defendant and the court. You don't need to include particulars of claim here.</p>
-<div class="form-group">
-    <textarea class="form-control form-control-3-4 form-control-large" id="claim-details-1" rows="3" name="claim-details1" type="text" style="width: 100%" value=""></textarea>
-</div>
 
+<form action="type-of-claim" method="post">
+  <div class="form-group">
+    <textarea class="form-control form-control-3-4 form-control-large" id="claim_details" rows="3" name="claim_details" type="text" style="width: 100%" value="{{ data['claim_details'] }}"></textarea>
+  </div>
 
-
-
-<a class="button" href="claim-details-summary" role="button">Save and continue</a>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
 
 {% endblock %}

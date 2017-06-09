@@ -6,12 +6,12 @@
         <legend class="visually-hidden">Who are you issuing against?</legend>
 
         <div class="multiple-choice">
-            <input id="company" name="defendantType" type="radio" value="company">
+            <input id="company" name="defendantType" type="radio" value="company" {{ checked('defendantType','company') }}>
             <label for="company">A company</label>
         </div>
 
         <div class="multiple-choice">
-            <input id="individual" name="defendantType" type="radio" value="individual">
+            <input id="individual" name="defendantType" type="radio" value="individual" {{ checked('defendantType','individual') }}>
             <label for="individual">An individual</label>
         </div>
 
