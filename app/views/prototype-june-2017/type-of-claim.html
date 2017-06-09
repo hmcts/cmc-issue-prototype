@@ -6,12 +6,12 @@
     <legend class="visually-hidden">Type of claim</legend>
 
     <div class="multiple-choice">
-      <input id="company" name="typeOfClaim" type="radio" value="specified">
+      <input id="company" name="typeOfClaim" type="radio" value="specified" {{ checked('typeOfClaim','specified') }}>
       <label for="company">Specified</label>
     </div>
 
     <div class="multiple-choice">
-      <input id="individual" name="typeOfClaim" type="radio" value="unspecified">
+      <input id="individual" name="typeOfClaim" type="radio" value="unspecified" {{ checked('typeOfClaim','unspecified') }}>
       <label for="individual">Unspecified</label>
     </div>
 

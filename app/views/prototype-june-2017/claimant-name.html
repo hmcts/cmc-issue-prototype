@@ -2,17 +2,22 @@
 
 <h1 class="heading-large">Claimant's name</h1>
 
+<form action="claimant-address" method="post">
+  <fieldset>
+    <div class="form-group">
+      <label class="form-label" for="claimant_title">Title</label>
+      <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant_title" value="{{ data['claimant_title'] }}">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="claimant_name">Full name</label>
+      <textarea type="text" class="form-control" id="claimant_name" name="claimant_name" value="{{ data['claimant_name'] }}"></textarea>
+    </div>
+  </fieldset>
 
-<div class="form-group">
-    <label class="form-label" for="claimant_first_name">Title</label>
-    <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant-title" value="">
-</div>
-<div class="form-group">
-    <label class="form-label" for="claimant_first_name">Full name</label>
-    <textarea type="text" class="form-control" id="claimant_first_name" name="claimant-first-name" value=""></textarea>
-</div>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
 
-
-<a class="button" href="claimant-address" role="button">Save and continue</a>
 
 {% endblock %}

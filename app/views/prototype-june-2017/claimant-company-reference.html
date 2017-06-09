@@ -1,16 +1,19 @@
 {% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">Your reference for this claim</h1>
-<form action="defendant-details" method="post">
+<form action="claimant-company-details" method="post">
   <fieldset>
     <legend class="visually-hidden">Your reference for this claim</legend>
 
     <div class="form-group">
-      <label for="reference" class="form-label"><span class="form-hint">Optional</span></label>
-      <input id="reference" type="text" class="form-control">
+      <label for="claimant_company_reference" class="form-label"><span class="form-hint">Optional</span></label>
+      <input id="claimant_company_reference" name="claimant_company_reference" type="text" class="form-control" value="{{ data['claimant_company_reference'] }}">
     </div>
-
   </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
 </form>
 
-<a class="button" href="claimant-company-details" role="button">Save and Continue</a> {% endblock %}
+{% endblock %}

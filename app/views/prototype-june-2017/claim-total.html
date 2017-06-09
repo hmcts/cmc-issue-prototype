@@ -2,122 +2,116 @@
 
 <h1 class="heading-large">Calculating your fee</h1>
 
-<table class="table-form form-group">
-    <caption class="visuallyhidden"></caption>
+<form action="claim-details-summary" id="form" method="post" class="form-group">
+  <table class="table-form form-group">
     <thead>
     <tr>
-        <th class="font-small"  scope="col"></th>
-        <th class="numeric last" scope="col">Amount</th>
+      <th class="font-small"  scope="col"></th>
+      <th class="numeric last" scope="col">Amount</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th class="font-small"  scope="row">Claim value</th>
-        <td class="numeric last">
-            <label class="visuallyhidden" for="amount">Claim value</label>
-            <span class="font-small">£10,000 to £50,000</span>
-        </td>
+      <th class="font-small"  scope="row">Claim value</th>
+      <td class="numeric last">
+        <span class="font-small">£10,000 to £50,000</span>
+      </td>
     </tr>
     <tr>
       <th class="font-small" scope="row">Amount claimed for additional pain</th>
       <td class="numeric last">
-        <label class="visuallyhidden" for="amount">Amount claimed for additional pain</label>
         <span class="font-small">More than £1000</span>
       </td>
     </tr>
     <tr>
-        <th class="font-small"  scope="row">Interest</th>
-        <td class="numeric last">
-            <label class="visuallyhidden" for="amount">Interest</label>
-            <span class="font-small">Yes</span>
-        </td>
+      <th class="font-small"  scope="row">Interest</th>
+      <td class="numeric last">
+        <span class="font-small">Yes</span>
+      </td>
     </tr>
 
     <tr>
-        <th class="bold-medium" scope="row">Issue fee</th>
-        <td class="numeric last">
-            <label class="visuallyhidden" for="amount">Issue fee</label>
-            <span class="bold-medium">£410</span>
-        </td>
-
+      <th class="bold-medium" scope="row">Issue fee</th>
+      <td class="numeric last">
+        <span class="bold-medium">£410</span>
+      </td>
     </tr>
     </tbody>
-</table>
+  </table>
+  <details class="form-group">
+    <summary role="button">
+      <span class="summary" data-target="feeTable">How is this fee calculated?</span>
+    </summary>
+    <div id="feeTable" class="panel panel-border-narrow jshidden" aria-hidden="true">
+      <table>
+        <thead>
+        <tr>
+          <td class="bold">Claim amount</td>
+          <td class="bold">Paper form fee</td>
+          <td class="bold">Online claim fee</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Up to £300</td>
+          <td>£35</td>
+          <td>£25</td>
+        </tr>
+        <tr>
+          <td>£300.01 to £500</td>
+          <td>£50</td>
+          <td>£35</td>
+        </tr>
+        <tr>
+          <td>£500.01 to £1,000</td>
+          <td>£70</td>
+          <td>£60</td>
+        </tr>
+        <tr>
+          <td>£1,000.01 to £1,500</td>
+          <td>£80</td>
+          <td>£70</td>
+        </tr>
+        <tr>
+          <td>£1,500.01 to £3,000</td>
+          <td>£115</td>
+          <td>£105</td>
+        </tr>
+        <tr>
+          <td>£3,000.01 to £5,000</td>
+          <td>£205</td>
+          <td>£185</td>
+        </tr>
+        <tr>
+          <td>£5,000.01 to £10,000</td>
+          <td>£455</td>
+          <td>£410</td>
+        </tr>
+        <tr>
+          <td>£10,000.01 to £100,000</td>
+          <td>5% of the claim</td>
+          <td>4.5% of the claim</td>
+        </tr>
+        <tr>
+          <td>£100,000.01 to £200,000</td>
+          <td>5% of the claim</td>
+          <td>You can't make a claim online</td>
+        </tr>
+        <tr>
+          <td>More than £200,00</td>
+          <td>£10,000</td>
+          <td>You can't make a claim online</td>
+        </tr>
+        </tbody>
+      </table>
 
-
-<details class="form-group">
-  <summary role="button">
-    <span class="summary" data-target="feeTable">How is this fee calculated?</span>
-  </summary>
-  <div id="feeTable" class="panel panel-border-narrow jshidden" aria-hidden="true">
-    <table>
-      <thead>
-      <tr>
-        <td class="bold">Claim amount</td>
-        <td class="bold">Paper form fee</td>
-        <td class="bold">Online claim fee</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Up to £300</td>
-        <td>£35</td>
-        <td>£25</td>
-      </tr>
-      <tr>
-        <td>£300.01 to £500</td>
-        <td>£50</td>
-        <td>£35</td>
-      </tr>
-      <tr>
-        <td>£500.01 to £1,000</td>
-        <td>£70</td>
-        <td>£60</td>
-      </tr>
-      <tr>
-        <td>£1,000.01 to £1,500</td>
-        <td>£80</td>
-        <td>£70</td>
-      </tr>
-      <tr>
-        <td>£1,500.01 to £3,000</td>
-        <td>£115</td>
-        <td>£105</td>
-      </tr>
-      <tr>
-        <td>£3,000.01 to £5,000</td>
-        <td>£205</td>
-        <td>£185</td>
-      </tr>
-      <tr>
-        <td>£5,000.01 to £10,000</td>
-        <td>£455</td>
-        <td>£410</td>
-      </tr>
-      <tr>
-        <td>£10,000.01 to £100,000</td>
-        <td>5% of the claim</td>
-        <td>4.5% of the claim</td>
-      </tr>
-      <tr>
-        <td>£100,000.01 to £200,000</td>
-        <td>5% of the claim</td>
-        <td>You can't make a claim online</td>
-      </tr>
-      <tr>
-        <td>More than £200,00</td>
-        <td>£10,000</td>
-        <td>You can't make a claim online</td>
-      </tr>
-      </tbody>
-    </table>
-
-    <p>To calculate 5% of the value of the claim, take the amount you're claiming and multiply by 0.5. If necessary, round down the result to the nearst 1p.</p>
-    <p>The fee will be calculated for you if you make your claim online.</p>
+      <p>To calculate 5% of the value of the claim, take the amount you're claiming and multiply by 0.5. If necessary, round down the result to the nearst 1p.</p>
+      <p>The fee will be calculated for you if you make your claim online.</p>
+    </div>
+  </details>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
   </div>
-</details>
-
-
-<a class="button" href="claim-details" role="button">Save and continue</a>
+</form>
 
 {% endblock %}
