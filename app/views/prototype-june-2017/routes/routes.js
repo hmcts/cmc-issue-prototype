@@ -10,14 +10,15 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-june-2017/what-type-of-claimant', function(req, res){
+      console.log(req.body)
         if (!req.body.claimantType) {
             res.render('prototype-june-2017/what-type-of-claimant')
         }
-        else if (req.body.claimantType.toString() === 'company') {
-            res.redirect('claimant-company-reference')
+        else if (req.body.claimantType === 'company') {
+            res.redirect('claimant-company-details')
         }
         else {
-            res.redirect('claimant-individual-reference')
+            res.redirect('claimant-name')
         }
     });
 
