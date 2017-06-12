@@ -1,0 +1,113 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Statement of value</h1>
+
+<p class="bold-medium">How much do you expect to recover?</p>
+
+<div class="form-group">
+    <div class="multiple-choice">
+        <input id="company" name="claimValue" type="radio" value="company">
+        <label for="company">£10,000 or less</label>
+    </div>
+
+    <div class="multiple-choice">
+        <input id="company" name="claimValue" type="radio" value="company">
+        <label for="company">£10,001 to £25,000</label>
+    </div>
+
+    <div class="multiple-choice">
+        <input id="company" name="claimValue" type="radio" value="company">
+        <label for="company">More than £25,000</label>
+    </div>
+
+    <div class="multiple-choice">
+        <input id="company" name="claimValue" type="radio" value="company">
+        <label for="company">I can't say</label>
+    </div>
+</div>
+
+<div class="form-group">
+    <p class="bold-medium">
+        Is it a personal injury claim?
+    </p>
+
+    <div class="multiple-choice">
+      <input id="individual" name="personalInjury" type="radio" value="individual">
+      <label for="individual">No</label>
+    </div>
+    <div class="multiple-choice" data-target="personal-injury-yes">
+        <input id="individual" name="personalInjury" type="radio" value="individual">
+        <label for="individual">Yes</label>
+    </div>
+
+
+    <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+
+        <p>How much is the claimant expect to recover as general damages for pain, suffering and amenity?</p>
+        <div class="multiple-choice">
+            <input id="company" name="painValue" type="radio" value="company">
+            <label for="company">£1,000 or less</label>
+        </div>
+
+        <div class="multiple-choice">
+            <input id="company" name="painValue" type="radio" value="company">
+            <label for="company">More than £1,000</label>
+        </div>
+
+    </div>
+</div>
+<div class="form-group">
+        <p class="bold-medium">
+            Is it a claim for housing disrepair?
+        </p>
+
+        <div class="multiple-choice">
+          <input id="individual" name="housingRepair" type="radio" value="individual">
+          <label for="individual">No</label>
+        </div>
+        <div class="multiple-choice" data-target="housing-repair-yes">
+            <input id="individual" name="housingRepair" type="radio" value="individual">
+            <label for="individual">Yes</label>
+        </div>
+
+
+        <div id="housing-repair-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+<div>
+            <p>How much is the claimant expect to recover as general damages for the cost of repairs or other work?</p>
+            </div> 
+            <div class="multiple-choice">
+                <input id="company" name="painValue" type="radio" value="company">
+                <label for="company">£1,000 or less</label>
+            </div>
+
+            <div class="multiple-choice">
+                <input id="company" name="painValue" type="radio" value="company">
+                <label for="company">More than £1,000</label>
+            </div>
+
+<div>
+            <p>If there is any other claim for damages, what is it worth?</p>
+            </div>
+            <div class="multiple-choice">
+                <input id="company" name="painValue" type="radio" value="company">
+                <label for="company">there is no other claim for damages</label>
+            </div>
+
+            <div class="multiple-choice">
+                <input id="company" name="painValue" type="radio" value="company">
+                <label for="company">£1,000 or less</label>
+            </div>
+
+            <div class="multiple-choice">
+                <input id="company" name="painValue" type="radio" value="company">
+                <label for="company">More than £1,000</label>
+            </div>
+
+        </div>
+
+
+</div>
+
+<a class="button" href="claim-details-summary" role="button">Save and continue</a>
+
+{% endblock %}
