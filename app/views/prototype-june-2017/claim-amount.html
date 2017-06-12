@@ -1,59 +1,29 @@
 {% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">Claim value</h1>
+<h1 class="heading-large">Calculate the claim fee</h1>
 
-<p class="bold-medium">What's the value of the claim?</p>
-<form action="claim-interest" method="post">
+<p class="bold-small">Enter the two values you expect the claim to fall between</p>
+<form action="claim-total" method="post">
   <div class="form-group">
-    <div class="multiple-choice">
-      <input id="company" name="claimValue" type="radio" value="10000" {{ checked('claimValue','10000') }}>
-      <label for="company">£10,000 or less</label>
+    <div class="column-one-half no-padding">
+      <span class="form-block">Lower value</span>
+      <input type="text" class="form-control form-control-3-4 pound" name="lowerValue" id="lowerValue" value="{{ data['lowerValue'] }}">
     </div>
-
-    <div class="multiple-choice">
-      <input id="company" name="claimValue" type="radio" value="25000" {{ checked('claimValue','25000') }}>
-      <label for="company">£10,001 to £25,000</label>
-    </div>
-
-    <div class="multiple-choice">
-      <input id="company" name="claimValue" type="radio" value="more" {{ checked('claimValue','more') }}>
-      <label for="company">More than £25,000</label>
-    </div>
-
-    <div class="multiple-choice">
-      <input id="company" name="claimValue" type="radio" value="cannot" {{ checked('claimValue','cannot') }}>
-      <label for="company">I can't state the amount</label>
+    <div class="column-one-half no-padding">
+      <span class="form-block">Higher value</span>
+      <input type="text" class="form-control form-control-3-4 pound" name="higherValue" id="higherValue" value="{{ data['higherValue'] }}">
     </div>
   </div>
 
   <div class="form-group">
-    <p class="bold-medium">Is it a personal injury claim?</p>
-
     <div class="multiple-choice">
-      <input id="personal_injury_no" name="personalInjury" type="radio" value="no" {{ checked('personalInjury','no') }}>
-      <label for="personal_injury_no">No</label>
-    </div>
-    <div class="multiple-choice" data-target="personal-injury-yes">
-      <input id="personal_injury_yes" name="personalInjury" type="radio" value="yes" {{ checked('personalInjury','yes') }}>
-      <label for="personal_injury_yes">Yes</label>
-    </div>
-
-    <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
-      <p>How much is the claimant seeking for pain, suffering and amenity?</p>
-
-      <div class="multiple-choice">
-        <input id="pain_value_less" name="painValue" type="radio" value="less" {{ checked('painValue','less') }}>
-        <label for="pain_value_less">£1,000 or less</label>
-      </div>
-
-      <div class="multiple-choice">
-        <input id="pain_value_more" name="painValue" type="radio" value="more" {{ checked('painValue','more') }}>
-        <label for="pain_value_more">More than £1,000</label>
-      </div>
+      <input id="card" name="claim_amount_checkbox" type="checkbox" value="cannot" {{ checked('claim_amount_checkbox','cannot') }}>
+      <label for="card">I can't state the value of the claim</label>
     </div>
   </div>
+
   <div class="form-group">
-    <input type="submit" class="button" value="Save and continue">
+    <input type="submit" class="button" value="Calculate fee">
   </div>
 </form>
 

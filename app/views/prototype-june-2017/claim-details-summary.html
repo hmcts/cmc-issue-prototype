@@ -8,12 +8,18 @@
   <div>
     <div class="task-list-item">
       <div class="column-third form-hint">Your name</div>
-      <div class="column-third">Mr Gerald Normanton</div>
+      <div class="column-third">{% if data['rep_name'] %} {{ data['rep_name'] }} {% else %} Joe Bloggs {% endif %}</div>
       <div class="column-third"><a class="right" href="representatives-details">Change</a></div>
     </div>
     <div class="task-list-item">
       <div class="column-third form-hint">Your company details</div>
-      <div class="column-third">Drafts, Bills and partners, 123 Fake Street, PW15EW</div>
+      <div class="column-third">
+        {% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% else %} Drafts, Bills and Partners{% endif %},
+        {% if data['rep_AddressLine1'] %} {{ data['rep_AddressLine1'] }} {% else %} 123 Fake Street{% endif %},
+        {% if data['rep_AddressLine2'] %} {{ data['rep_AddressLine2'] }}, {% else %}  {% endif %}
+        {% if data['rep_city'] %} {{ data['rep_city'] }} {% else %} London{% endif %},
+        {% if data['rep_Postcode'] %} {{ data['rep_Postcode'] }} {% else %} PW15EW {% endif %}
+      </div>
     </div>
   </div>
   <div>
@@ -85,9 +91,13 @@
 {% endblock %}
 
 {% block side_content %}
-<a href="/public/documents/N1-form-draft.pdf" role="button">
-  <span class="form-group-related">Preview N1 form</span>
-  <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
-</a>
+<div class="column-third">
+  <div class="heading-large heading-bar"></div>
+  <a target="_blank" href="/public/documents/N1-form-draft.pdf" role="button">
+    <p>Preview N1 form</p>
+    <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
+  </a>
+</div>
+
 
 {% endblock %}

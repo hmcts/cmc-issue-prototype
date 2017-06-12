@@ -67,4 +67,41 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-june-2017/claim-total', function (req, res) {
+        var amount = 10000
+        if (req.body.higherValue) {
+            var higherValue = parseFloat(req.body.higherValue)
+            switch(true) {
+                case (higherValue <= 300):
+                    amount = 25
+                    break;
+                case (higherValue <= 500):
+                    amount = 35
+                    break;
+                case (higherValue <= 1000):
+                    amount = 60
+                    break;
+                case (higherValue <= 1500):
+                    amount = 70
+                    break;
+                case (higherValue <= 3000):
+                    amount = 105
+                    break;
+                case (higherValue <= 5000):
+                    amount = 185
+                    break;
+                case (higherValue <= 10000):
+                    amount = 410
+                    break;
+                case (higherValue > 10000):
+                    amount = higherValue * .045
+                    break;
+                default:
+                    amount = 410
+            }
+        }
+
+        res.render('prototype-june-2017/claim-total', { amount: amount})
+    });
+
 }
