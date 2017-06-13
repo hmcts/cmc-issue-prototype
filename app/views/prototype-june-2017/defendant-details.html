@@ -34,46 +34,75 @@
       <input id="post-code" type="text" class="form-control">
     </div>
 
-    <p class="bold-medium">Choose the service address</p>
+    <!-- Representation section    -->
+        <p class="bold-medium">Is this defendant represented?</p>
 
-    <div class="multiple-choice">
-      <input id="company" name="serviceAddress" type="radio" value="company">
-      <label for="company">Serve to defendant's address</label>
-    </div>
+    <!-- No option    -->
+        <div class="multiple-choice" data-target="other-address">
+          <input id="company" name="serviceAddress" type="radio" value="company" {{ checked('serviceAddress','company') }}>
+          <label for="company">No</label>
+        </div>
 
-    <div class="multiple-choice" data-target="service-address">
-      <input id="individual" name="serviceAddress" type="radio" value="individual">
-      <label for="individual">Serve to solicitor's address</label>
-    </div>
+        <div id="other-address" class="panel panel-border-narrow js-hidden" aria-hidden="false">
 
-    <div id="service-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
-      <div class="form-group">
-        <label class="form-label" for="business-name-input">Name of solicitor firm</label>
-        <input class="form-control" type="text" id="business-name-input" name="business-name-input">
-      </div>
+          <div class="form-group">
+            <p>If this defendant is using a different address for service, please add it here</p>
+            <label for="defendant_company_service_address1" class="form-label">Address 1</label>
+            <input  type="text" class="form-control" id="defendant_company_service_address1" name="defendant_company_service_address1" value="{{ data['defendant_company_service_address1'] }}">
+          </div>
 
-      <div class="form-group">
-        <label for="address-1" class="form-label">Address 1</label>
-        <input id="address-1" type="text" class="form-control">
-      </div>
+          <div class="form-group">
+            <label for="defendant_company_service_address2" class="form-label">Address 2</label>
+            <input  type="text" class="form-control" id="defendant_company_service_address2" name="defendant_company_service_address2" value="{{ data['defendant_company_service_address2'] }}">
+          </div>
 
-      <div class="form-group">
-        <label for="address-2" class="form-label">Address 2</label>
-        <input id="address-2" type="text" class="form-control">
-      </div>
+          <div class="form-group">
+            <label for="defendant_company_service_city" class="form-label">Town or city</label>
+            <input  type="text" class="form-control" id="defendant_company_service_city" name="defendant_company_service_city" value="{{ data['defendant_company_service_city'] }}">
+          </div>
 
-      <div class="form-group">
-        <label for="town" class="form-label">Town/City</label>
-        <input id="town" type="text" class="form-control">
-      </div>
+          <div class="form-group">
+            <label for="defendant_company_service_postcode" class="form-label">Postcode</label>
+            <input  type="text" class="form-control" id="defendant_company_service_postcode" name="defendant_company_service_postcode" value="{{ data['defendant_company_service_postcode'] }}">
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label for="post-code" class="form-label">Postcode</label>
-        <input id="post-code" type="text" class="form-control">
-      </div>
-    </div>
+    <!-- Yes option    -->
+        <div class="multiple-choice" data-target="service-address">
+          <input id="individual" name="serviceAddress" type="radio" value="individual" {{ checked('serviceAddress','individual') }}>
+          <label for="individual">Yes</label>
+        </div>
+
+        <div id="service-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+          <div class="form-group">
+            <label class="form-label" for="defendant_company_service_name">Firm name</label>
+            <input class="form-control" type="text" id="defendant_company_service_name" name="defendant_company_service_name" value="{{ data['defendant_company_service_name'] }}">
+          </div>
+
+          <div class="form-group">
+            <label for="defendant_company_service_address1" class="form-label">Address 1</label>
+            <input  type="text" class="form-control" id="defendant_company_service_address1" name="defendant_company_service_address1" value="{{ data['defendant_company_service_address1'] }}">
+          </div>
+
+          <div class="form-group">
+            <label for="defendant_company_service_address2" class="form-label">Address 2</label>
+            <input  type="text" class="form-control" id="defendant_company_service_address2" name="defendant_company_service_address2" value="{{ data['defendant_company_service_address2'] }}">
+          </div>
+
+          <div class="form-group">
+            <label for="defendant_company_service_city" class="form-label">Town or city</label>
+            <input  type="text" class="form-control" id="defendant_company_service_city" name="defendant_company_service_city" value="{{ data['defendant_company_service_city'] }}">
+          </div>
+
+          <div class="form-group">
+            <label for="defendant_company_service_postcode" class="form-label">Postcode</label>
+            <input  type="text" class="form-control" id="defendant_company_service_postcode" name="defendant_company_service_postcode" value="{{ data['defendant_company_service_postcode'] }}">
+          </div>
+        </div>
+
   </fieldset>
 </form>
+<br>
 
 <p><a class="button secondary-button" href="defendant-type" role="button">Add another defendant</a></p>
 
