@@ -1,0 +1,32 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<a href="claim-details" class="link-back">Back</a>
+
+<h1 class="heading-large">Calculate the claim fee</h1>
+
+<p class="bold-small">Enter the two values you expect the claim to fall between</p>
+<form action="claim-total" method="post">
+  <div class="form-group">
+    <div class="column-one-half no-padding">
+      <span class="form-block">Lower value</span>
+      <input type="text" class="form-control form-control-3-4 pound" name="lowerValue" id="lowerValue" value="{{ data['lowerValue'] }}">
+    </div>
+    <div class="column-one-half no-padding">
+      <span class="form-block">Higher value</span>
+      <input type="text" class="form-control form-control-3-4 pound" name="higherValue" id="higherValue" value="{{ data['higherValue'] }}">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="multiple-choice">
+      <input id="card" name="claim_amount_checkbox" type="checkbox" value="cannot" {{ checked('claim_amount_checkbox','cannot') }}>
+      <label for="card">I can't state the value of the claim</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Calculate fee">
+  </div>
+</form>
+
+
+{% endblock %}

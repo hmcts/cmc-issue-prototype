@@ -226,6 +226,7 @@ if (typeof (routes) !== 'function') {
 //custom routes
 require('./app/views/prototype-may-2017/routes/routes.js')(app);
 require('./app/views/prototype-june-2017/routes/routes.js')(app);
+require('./app/views/prototype-june2-2017/routes/routes.js')(app);
 
 
 // Returns a url to the zip of the latest release on github
