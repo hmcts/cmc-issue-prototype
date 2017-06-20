@@ -10,7 +10,6 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-june-2017/what-type-of-claimant', function(req, res){
-      console.log(req.body)
         if (!req.body.claimantType) {
             res.render('prototype-june-2017/what-type-of-claimant')
         }
