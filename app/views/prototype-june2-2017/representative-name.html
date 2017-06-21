@@ -1,0 +1,30 @@
+{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<a href="start" class="link-back">Back</a>
+<h1 class="heading-large">Register your company account</h1>
+<p>
+  When you register with this service, these details will be used to save your N1s and to auto fill parts of the each claim you issue.
+</p>
+
+<div class="form-group">
+  <label class="form-label" for="rep_company_name">Company name</label>
+  <input type="text" class="form-control" id="rep_company_name" name="rep_company_name" value="{{ data['rep_company_name'] }}">
+</div>
+
+<form action="representative-address" method="post">
+  <div class="form-group">
+    <label class="form-label" for="rep_title">Title</label>
+    <input type="text" class="form-control form-control-1-4" id="rep_title" name="rep_title" value="{{ data['rep_title'] }}">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="rep_name">Full name</label>
+    <span class="form-hint">You can add each client's representative when filling out the form</span>
+    <textarea type="text" class="form-control" id="rep_name" name="rep_name">{{ data['rep_name'] }}</textarea>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

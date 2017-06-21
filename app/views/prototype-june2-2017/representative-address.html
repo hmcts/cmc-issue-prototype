@@ -1,22 +1,8 @@
 {% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
-<a href="start" class="link-back">Back</a>
-<h1 class="heading-large">Your details</h1>
+<a href="representative-name" class="link-back">Back</a>
+<h1 class="heading-large">Company address</h1>
 
 <form action="representative-contact" method="post">
-  <div class="form-group">
-    <label class="form-label" for="rep_title">Title</label>
-    <input type="text" class="form-control form-control-1-4" id="rep_title" name="rep_title" value="{{ data['rep_title'] }}">
-  </div>
-
-  <div class="form-group">
-    <label class="form-label" for="rep_name">Full name</label>
-    <textarea type="text" class="form-control" id="rep_name" name="rep_name">{{ data['rep_name'] }}</textarea>
-  </div>
-
-  <div class="form-group">
-    <label class="form-label" for="rep_company_name">Company name</label>
-    <input type="text" class="form-control" id="rep_company_name" name="rep_company_name" value="{{ data['rep_company_name'] }}">
-  </div>
 
   <div class="form-group-compound">
     <label class="form-label" for="rep_AddressLine1">Address line 1</label>
@@ -38,10 +24,6 @@
     <input class="form-control form-control-1-4" id="rep_Postcode" name="rep_Postcode" type="text" value="{{ data['rep_Postcode'] }}">
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="rep_dx_number">DX address (optional)</label>
-    <input type="text" class="form-control" id="rep_dx_number" name="rep_dx_number" value="{{ data['rep_dx_number'] }}">
-  </div>
 
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">
