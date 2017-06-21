@@ -2,24 +2,7 @@
 <a href="claim-details-summary" class="link-back">Back</a>
 
 <h1 class="heading-large">Statement of truth</h1>
-<!-- <p>I believe that the information I've provided in this claim form is true.</p> -->
 
-<p></p>
-<!-- <div class="notice">
-  <i class="icon icon-important">
-    <span class="visually-hidden">Warning</span>
-  </i>
-  <strong class="bold-small">
-    It's agains the law to tell fibs on this form.
-  </strong>
-</div> -->
-
-<br>
-
-<!-- <div class="multiple-choice" style="padding-bottom: 22px;">
-  <input id="checkbox-sign" name="confirm-truth-and-sign" type="checkbox" value="true">
-  <label for="checkbox-sign">I believe that the information I've provided in this claim form is true. <p>I am authorised by the claimant to sign this statement.</p></label>
-</div> -->
 <script type='text/javascript'>
     function checkDisabled(){
         if (document.getElementById('HasAcceptedTermsAndConditions').checked == true) {
@@ -30,23 +13,14 @@
     }
 </script>
 <div class="form-group">
-    <a name="hasacceptedtermsandconditions"></a>
-
-    <div class="multiple-choice text">
-      <input class="" id="HasAcceptedTermsAndConditions" type="checkbox" onclick="checkDisabled()" value="true">
-      <label for="HasAcceptedTermsAndConditions"> I believe that the information I've provided in this claim form is true. <p>I am authorised by the claimant to sign this statement.</label>
-    </div>
-
-    <span class="field-validation-valid" data-valmsg-for="HasAcceptedTermsAndConditions" data-valmsg-replace="true" aria-live="polite"></span></div>
+  <div class="multiple-choice text">
+    <input class="" id="HasAcceptedTermsAndConditions" type="checkbox" onclick="checkDisabled()" value="true">
+    <label for="HasAcceptedTermsAndConditions"> I believe that the information I've provided in this claim form is true. <p>I am authorised by the claimant to sign this statement.</label>
+  </div>
+</div>
 
 <form method="post" action="choose-how-to-pay" class="form">
-  <button id="submit" class="button" disabled>
-    Submit and continue to payment</button>
-  </form>
-
-
-
-
-<!-- <a class="button" href="choose-how-to-pay.html" role="button" disabled="">Submit and continue to payment</a> -->
+  <input type="submit" id="submit" class="button" value="Submit and continue to payment" disabled></input>
+</form>
 
 {% endblock %}

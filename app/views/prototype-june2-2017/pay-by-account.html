@@ -2,15 +2,20 @@
 
 <h1 class="heading-large">Pay by Fee Account</h1>
 
-<div class="form-group">
-  <div class="task-list-item">
-    <div class="column-half form-hint">Fee Account number</div>
-    <div class="column-half numeric">1234567890</div>
+<form action="claim-submitted" method="post">
+  <div class="form-group">
+    <div class="task-list-item form-group">
+      <div class="column-half bold">Total cost</div>
+      <div class="column-half bold numeric">£410</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="fee_account">Fee Account number</label>
+      <input type="text" class="form-control" id="fee_account" name="fee_account" value="{{ data['fee_account'] }}">
+    </div>
   </div>
-  <div class="task-list-item">
-    <div class="column-half bold">Total cost</div>
-    <div class="column-half bold numeric">£410</div>
-  </div>
-</div>
 
-<a class="button" href="claim-submitted" role="button">Save and Continue</a> {% endblock %}
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

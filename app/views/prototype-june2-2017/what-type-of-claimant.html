@@ -1,5 +1,5 @@
 {% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-
+<a href="claimant-individual-reference" class="link-back">Back</a>
 <h1 class="heading-large">Who is the first claimant?</h1>
 <form action="what-type-of-claimant" id="form" method="post" class="form-group">
     <fieldset class="form-group">
@@ -10,7 +10,7 @@
             <label for="company">A company</label>
         </div>
 
-      <div class="multiple-choice">
+        <div class="multiple-choice">
             <input id="individual" name="claimantType" type="radio" value="individual" {{ checked('claimantType','individual') }}>
             <label for="individual">An individual</label>
         </div>

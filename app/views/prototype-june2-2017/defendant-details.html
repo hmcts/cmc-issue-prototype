@@ -9,37 +9,37 @@ function goBack() {
 
 
 <h1 class="heading-large">Enter defendant details</h1>
-<form action="defendant-details" method="post">
+<form action="claim-details" method="post">
   <fieldset>
     <legend class="visually-hidden">Enter defendant details</legend>
 
     <div class="form-group">
-      <label class="form-label" for="claimant_first_name">Title</label>
-      <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant-title" value="">
+      <label class="form-label" for="defendant_title">Title</label>
+      <input type="text" class="form-control form-control-1-4" id="defendant_title" name="defendant_title" value="{{ data['defendant_title'] }}">
     </div>
     <div class="form-group">
-      <label class="form-label" for="claimant_first_name">Full name</label>
-      <textarea type="text" class="form-control" id="claimant_first_name" name="claimant-first-name" value=""></textarea>
-    </div>
-
-    <div class="form-group">
-      <label for="address-1" class="form-label">Address 1</label>
-      <input id="address-1" type="text" class="form-control">
+      <label class="form-label" for="defendant_name">Full name</label>
+      <textarea type="text" class="form-control" id="defendant_name" name="defendant_name">{{ data['defendant_name'] }}</textarea>
     </div>
 
     <div class="form-group">
-      <label for="address-2" class="form-label">Address 2</label>
-      <input id="address-2" type="text" class="form-control">
+      <label for="defendant_address1" class="form-label">Address 1</label>
+      <input id="defendant_address1" name="defendant_address1" type="text" class="form-control" value="{{ data['defendant_address1'] }}">
     </div>
 
     <div class="form-group">
-      <label for="town" class="form-label">Town/City</label>
-      <input id="town" type="text" class="form-control">
+      <label for="defendant_address2" class="form-label">Address 2</label>
+      <input id="defendant_address2" name="defendant_address2" type="text" class="form-control" value="{{ data['defendant_address2'] }}">
     </div>
 
     <div class="form-group">
-      <label for="post-code" class="form-label">Postcode</label>
-      <input id="post-code" type="text" class="form-control">
+      <label for="defendant_town" class="form-label">Town/City</label>
+      <input id="defendant_town" name="defendant_town" type="text" class="form-control" value="{{ data['defendant_town'] }}">
+    </div>
+
+    <div class="form-group">
+      <label for="defendant_postcode" class="form-label">Postcode</label>
+      <input id="defendant_postcode" name="defendant_postcode" type="text" class="form-control" value="{{ data['defendant_postcode'] }}">
     </div>
 
     <!-- Representation section    -->
@@ -55,23 +55,23 @@ function goBack() {
 
           <div class="form-group">
             <p>If this defendant is using a different address for service, please add it here</p>
-            <label for="defendant_company_service_address1" class="form-label">Address 1</label>
-            <input  type="text" class="form-control" id="defendant_company_service_address1" name="defendant_company_service_address1" value="{{ data['defendant_company_service_address1'] }}">
+            <label for="defendant_service_address1" class="form-label">Address 1</label>
+            <input  type="text" class="form-control" id="defendant_service_address1" name="defendant_service_address1" value="{{ data['defendant_service_address1'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_address2" class="form-label">Address 2</label>
-            <input  type="text" class="form-control" id="defendant_company_service_address2" name="defendant_company_service_address2" value="{{ data['defendant_company_service_address2'] }}">
+            <label for="defendant_service_address2" class="form-label">Address 2</label>
+            <input  type="text" class="form-control" id="defendant_service_address2" name="defendant_service_address2" value="{{ data['defendant_service_address2'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_city" class="form-label">Town or city</label>
-            <input  type="text" class="form-control" id="defendant_company_service_city" name="defendant_company_service_city" value="{{ data['defendant_company_service_city'] }}">
+            <label for="defendant_service_city" class="form-label">Town or city</label>
+            <input  type="text" class="form-control" id="defendant_service_city" name="defendant_service_city" value="{{ data['defendant_service_city'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_postcode" class="form-label">Postcode</label>
-            <input  type="text" class="form-control" id="defendant_company_service_postcode" name="defendant_company_service_postcode" value="{{ data['defendant_company_service_postcode'] }}">
+            <label for="defendant_service_postcode" class="form-label">Postcode</label>
+            <input  type="text" class="form-control" id="defendant_service_postcode" name="defendant_service_postcode" value="{{ data['defendant_service_postcode'] }}">
           </div>
         </div>
 
@@ -83,35 +83,38 @@ function goBack() {
 
         <div id="service-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
           <div class="form-group">
-            <label class="form-label" for="defendant_company_service_name">Firm name</label>
-            <input class="form-control" type="text" id="defendant_company_service_name" name="defendant_company_service_name" value="{{ data['defendant_company_service_name'] }}">
+            <label class="form-label" for="defendant_rep_name">Firm name</label>
+            <input class="form-control" type="text" id="defendant_rep_name" name="defendant_rep_name" value="{{ data['defendant_rep_name'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_address1" class="form-label">Address 1</label>
-            <input  type="text" class="form-control" id="defendant_company_service_address1" name="defendant_company_service_address1" value="{{ data['defendant_company_service_address1'] }}">
+            <label for="defendant_rep_address1" class="form-label">Address 1</label>
+            <input  type="text" class="form-control" id="defendant_rep_address1" name="defendant_rep_address1" value="{{ data['defendant_rep_address1'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_address2" class="form-label">Address 2</label>
-            <input  type="text" class="form-control" id="defendant_company_service_address2" name="defendant_company_service_address2" value="{{ data['defendant_company_service_address2'] }}">
+            <label for="defendant_rep_address2" class="form-label">Address 2</label>
+            <input  type="text" class="form-control" id="defendant_rep_address2" name="defendant_rep_address2" value="{{ data['defendant_rep_address2'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_city" class="form-label">Town or city</label>
-            <input  type="text" class="form-control" id="defendant_company_service_city" name="defendant_company_service_city" value="{{ data['defendant_company_service_city'] }}">
+            <label for="defendant_rep_city" class="form-label">Town or city</label>
+            <input  type="text" class="form-control" id="defendant_rep_city" name="defendant_rep_city" value="{{ data['defendant_rep_city'] }}">
           </div>
 
           <div class="form-group">
-            <label for="defendant_company_service_postcode" class="form-label">Postcode</label>
-            <input  type="text" class="form-control" id="defendant_company_service_postcode" name="defendant_company_service_postcode" value="{{ data['defendant_company_service_postcode'] }}">
+            <label for="defendant_rep_postcode" class="form-label">Postcode</label>
+            <input  type="text" class="form-control" id="defendant_rep_postcode" name="defendant_rep_postcode" value="{{ data['defendant_rep_postcode'] }}">
           </div>
         </div>
 
   </fieldset>
+
+  <p><a class="button secondary-button" href="defendant-type" role="button">Add another defendant</a></p>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
 </form>
-<br>
 
-<p><a class="button secondary-button" href="defendant-type" role="button">Add another defendant</a></p>
-
-<a class="button" href="claim-details" role="button">Save and Continue</a> {% endblock %}
+ {% endblock %}

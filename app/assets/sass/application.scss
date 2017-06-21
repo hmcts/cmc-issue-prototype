@@ -32,6 +32,7 @@ $path: "/public/images/";
 
 .form-control-large {
   height: 15em;
+  width: 100%;
 }
 
 .form-control-select {
@@ -70,3 +71,6 @@ $path: "/public/images/";
   padding-left: 40px
 }
 
+.if-empty {
+  min-height: 1px;
+}
