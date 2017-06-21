@@ -100,8 +100,18 @@ module.exports = function(app){
                     amount = 410
             }
         }
-
+        req.session.data.amount = amount;
         res.render('prototype-june2-2017/claim-total', { amount: amount})
     });
+
+    app.get('*/prototype-june2-2017/claim-submitted', function (req, res) {
+        var today = new Date().toDateString();
+        res.render('prototype-june2-2017/claim-submitted', {today: today, amount: req.session.data.amount })
+    })
+
+    app.get('*/prototype-june2-2017/pay-by-card', function (req, res) {
+        var today = new Date().toDateString();
+        res.render('prototype-june2-2017/pay-by-card', {amount: req.session.data.amount })
+    })
 
 }
