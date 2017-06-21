@@ -4,6 +4,13 @@
   {% include "includes/phase_banner_alpha.html" %}
   <div class="grid-row">
     <div class="column-two-thirds">
+      <a class="link-back pointer" onclick="goBack()">Back</a>
+
+      <script>
+          function goBack() {
+              window.history.back();
+          }
+      </script>
       {% block main_content %}
       <h1 class="heading-large">Issue a claim</h1>
       <p><a href="prototype-may-2017/start" role="button">Sprint 2 - Prototype May 2017</a></p>
