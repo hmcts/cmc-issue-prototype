@@ -12,19 +12,12 @@
     <input type="text" class="form-control" id="rep_email" name="rep_email" value="{{ data['rep_email'] }}">
   </div>
 
-  <!-- <div class="form-group">
-    <p>Tell us how you'd like us to contact you. You can choose both.</p>
+  <div class="form-group">
+    <label class="form-label" for="rep_dx_number">DX address (optional)</label>
+    <input type="text" class="form-control" id="rep_dx_number" name="rep_dx_number" value="{{ data['rep_dx_number'] }}">
+  </div>
 
-    <div class="multiple-choice">
-      <input id="card" name="rep_contactDetails_email" type="checkbox" value="email" {{ checked('rep_contactDetails_email','email') }}>
-      <label for="card">Email</label>
-    </div>
-
-    <div class="multiple-choice">
-      <input id="account" name="rep_contactDetails_phone" type="checkbox" value="phone" {{ checked('rep_contactDetails_phone','phone') }}>
-      <label for="account">Phone</label>
-    </div>
-  </div> -->
+  <!-- removed contact preferences -->
 
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">
