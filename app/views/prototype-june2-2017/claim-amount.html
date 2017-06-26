@@ -1,10 +1,8 @@
-{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
-<a href="claim-details" class="link-back">Back</a>
-
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 <h1 class="heading-large">Calculate the claim fee</h1>
 
-<p class="bold-small">Enter the two values you expect the claim to fall between</p>
-<form action="claim-total" method="post">
+<p class="bold-small">Tell us the values you expect the claim to fall between</p>
+<form action="claim-interest" method="post">
   <div class="form-group">
     <div class="column-one-half no-padding">
       <span class="form-block">Lower value</span>
@@ -24,7 +22,7 @@
   </div>
 
   <div class="form-group">
-    <input type="submit" class="button" value="Calculate fee">
+    <input type="submit" class="button" value="Save and continue">
   </div>
 </form>
 

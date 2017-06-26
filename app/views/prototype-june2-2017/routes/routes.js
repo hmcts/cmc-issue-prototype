@@ -67,10 +67,11 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-june2-2017/claim-total', function (req, res) {
+    app.get('*/prototype-june2-2017/claim-total', function (req, res) {
         var amount = 10000
-        if (req.body.higherValue) {
-            var higherValue = parseFloat(req.body.higherValue)
+        console.log(req.session.data["higherValue"])
+        if (req.session.data["higherValue"]) {
+            var higherValue = parseFloat(req.session.data["higherValue"])
             switch(true) {
                 case (higherValue <= 300):
                     amount = 25
@@ -100,8 +101,18 @@ module.exports = function(app){
                     amount = 410
             }
         }
-
+        req.session.data.amount = amount;
         res.render('prototype-june2-2017/claim-total', { amount: amount})
     });
+
+    app.get('*/prototype-june2-2017/claim-submitted', function (req, res) {
+        var today = new Date().toDateString();
+        res.render('prototype-june2-2017/claim-submitted', {today: today, amount: req.session.data.amount })
+    })
+
+    app.get('*/prototype-june2-2017/pay-by-card', function (req, res) {
+        var today = new Date().toDateString();
+        res.render('prototype-june2-2017/pay-by-card', {amount: req.session.data.amount })
+    })
 
 }

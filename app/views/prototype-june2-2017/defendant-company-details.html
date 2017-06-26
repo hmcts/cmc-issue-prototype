@@ -1,12 +1,4 @@
-{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-
-<a class="link-back" style="cursor: pointer; cursor: hand;" onclick="goBack()">Back</a>
-
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">Enter defendant details</h1>
 <form action="claim-details" method="post">
@@ -84,43 +76,39 @@ function goBack() {
 
     <div id="service-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
       <div class="form-group">
-        <label class="form-label" for="defendant_company_service_name">Firm name</label>
-        <input class="form-control" type="text" id="defendant_company_service_name" name="defendant_company_service_name" value="{{ data['defendant_company_service_name'] }}">
+        <label class="form-label" for="defendant_rep_service_name">Firm name</label>
+        <input class="form-control" type="text" id="defendant_rep_service_name" name="defendant_rep_service_name" value="{{ data['defendant_rep_service_name'] }}">
       </div>
 
       <div class="form-group">
-        <label for="defendant_company_service_address1" class="form-label">Address 1</label>
-        <input  type="text" class="form-control" id="defendant_company_service_address1" name="defendant_company_service_address1" value="{{ data['defendant_company_service_address1'] }}">
+        <label for="defendant_rep_service_address1" class="form-label">Address 1</label>
+        <input  type="text" class="form-control" id="defendant_rep_service_address1" name="defendant_rep_service_address1" value="{{ data['defendant_rep_service_address1'] }}">
       </div>
 
       <div class="form-group">
-        <label for="defendant_company_service_address2" class="form-label">Address 2</label>
-        <input  type="text" class="form-control" id="defendant_company_service_address2" name="defendant_company_service_address2" value="{{ data['defendant_company_service_address2'] }}">
+        <label for="defendant_rep_service_address2" class="form-label">Address 2</label>
+        <input  type="text" class="form-control" id="defendant_rep_service_address2" name="defendant_rep_service_address2" value="{{ data['defendant_rep_service_address2'] }}">
       </div>
 
       <div class="form-group">
-        <label for="defendant_company_service_city" class="form-label">Town or city</label>
-        <input  type="text" class="form-control" id="defendant_company_service_city" name="defendant_company_service_city" value="{{ data['defendant_company_service_city'] }}">
+        <label for="defendant_rep_service_city" class="form-label">Town or city</label>
+        <input  type="text" class="form-control" id="defendant_rep_service_city" name="defendant_rep_service_city" value="{{ data['defendant_rep_service_city'] }}">
       </div>
 
       <div class="form-group">
-        <label for="defendant_company_service_postcode" class="form-label">Postcode</label>
-        <input  type="text" class="form-control" id="defendant_company_service_postcode" name="defendant_company_service_postcode" value="{{ data['defendant_company_service_postcode'] }}">
+        <label for="defendant_rep_service_postcode" class="form-label">Postcode</label>
+        <input  type="text" class="form-control" id="defendant_rep_service_postcode" name="defendant_rep_service_postcode" value="{{ data['defendant_rep_service_postcode'] }}">
       </div>
     </div>
 
   </fieldset>
-  </form>
-<br>
 
-    <div class="form-group">
-      <a class="button secondary-button" href="defendant-type" role="button">Add another defendant</a>
-    </div>
+  <div class="form-group">
+    <a class="button secondary-button" href="defendant-type" role="button">Add another defendant</a>
+  </div>
 
-    <!-- <div class="form-group">
-      <input type="submit" class="button" value="Save and continue">
-    </div> -->
-
-    <a class="button" href="claim-details" role="button">Save and Continue</a>
-
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
 {% endblock %}
