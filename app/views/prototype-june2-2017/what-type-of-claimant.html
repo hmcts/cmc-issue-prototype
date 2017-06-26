@@ -1,19 +1,19 @@
 {% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-<h1 class="heading-large">What type of claimant</h1>
+<h1 class="heading-large">Choose claimant type</h1>
 <form action="claimant-address" id="form" method="post" class="form-group">
     <fieldset class="form-group">
       <div class="multiple-choice" data-target="company-name">
           <input id="company" name="claimantType" type="radio" value="company" {{ checked('claimantType','company') }}>
-          <label for="company">A company</label>
+          <label for="company">An organisation</label>
       </div>
 
       <div id="company-name" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
         <div class="form-group">
-          <label class="form-label" for="claimant_company_name">Company name</label>
+          <label class="form-label" for="claimant_company_name">Organisation name</label>
           <input class="form-control" type="text" id="claimant_company_name" name="claimant_company_name" value="{{ data['claimant_company_name'] }}">
         </div>
         <div class="form-group">
-          <label class="form-label" for="claimant_company_number">Companies number</label>
+          <label class="form-label" for="claimant_company_number">Company number</label>
           <input class="form-control" type="text" id="claimant_company_number" name="claimant_company_number" value="{{ data['claimant_company_number'] }}">
         </div>
       </div>
