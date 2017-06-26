@@ -1,0 +1,30 @@
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">How do you intend to serve particulars of claim?</h1>
+
+
+<form action="type-of-claim" method="post">
+
+<div class="form-group">
+  <fieldset>
+    <div class="multiple-choice">
+      <input id="radio-1" type="radio" name="radio-group" value="attached">
+      <label for="radio-1">I’ll include particulars when I print and serve the sealed claim form</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="serve" type="radio" name="radio-group" value="serve">
+      <label for="serve">I’ll serve the claim without including particulars
+</label>
+    </div>
+    </fieldset
+</div>
+<br>
+
+  <div class="form-group">
+
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

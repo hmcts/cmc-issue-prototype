@@ -1,9 +1,7 @@
 {% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-<h1 class="heading-large">Who is the first defendant?</h1>
+<h1 class="heading-large">Defendant type</h1>
 <form action="defendant-type" id="form" method="post" class="form-group">
     <fieldset class="form-group">
-      <legend class="visually-hidden">Who is the first defendant?</legend>
-
       <div class="multiple-choice" data-target="company-name">
           <input id="company" name="defendantType" type="radio" value="company" {{ checked('defendantType','company') }}>
           <label for="company">A company</label>
