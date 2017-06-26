@@ -1,9 +1,16 @@
-{% extends "layout.html" %}{% block home_link %} /prototype-may-2017/index {% endblock %} {% block page_title %} Claim Issue {% endblock %} {% block content %}
+{% extends "../layout.html" %}{% block home_link %} /prototype-june2-2017/index {% endblock %} {% block page_title %} Claim Issue {% endblock %} {% block content %}
 
 <main id="content" role="main">
   {% include "includes/phase_banner_alpha.html" %}
   <div class="grid-row">
     <div class="column-two-thirds">
+      <a class="link-back pointer" onclick="goBack()">Back</a>
+
+      <script>
+        function goBack() {
+            window.history.back();
+        }
+      </script>
       {% block main_content %}
       <h1 class="heading-large">Issue a claim</h1>
       <p><a href="prototype-may-2017/start" role="button">Sprint 2 - Prototype May 2017</a></p>

@@ -67,10 +67,11 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-june2-2017/claim-total', function (req, res) {
+    app.get('*/prototype-june2-2017/claim-total', function (req, res) {
         var amount = 10000
-        if (req.body.higherValue) {
-            var higherValue = parseFloat(req.body.higherValue)
+        console.log(req.session.data["higherValue"])
+        if (req.session.data["higherValue"]) {
+            var higherValue = parseFloat(req.session.data["higherValue"])
             switch(true) {
                 case (higherValue <= 300):
                     amount = 25

@@ -1,18 +1,40 @@
-{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Who is the first defendant?</h1>
 <form action="defendant-type" id="form" method="post" class="form-group">
     <fieldset class="form-group">
-        <legend class="visually-hidden">Who is the first defendant?</legend>
+      <legend class="visually-hidden">Who is the first defendant?</legend>
 
-        <div class="multiple-choice">
-            <input id="company" name="defendantType" type="radio" value="company" {{ checked('defendantType','company') }}>
-            <label for="company">A company</label>
-        </div>
+      <div class="multiple-choice" data-target="company-name">
+          <input id="company" name="defendantType" type="radio" value="company" {{ checked('defendantType','company') }}>
+          <label for="company">A company</label>
+      </div>
 
-        <div class="multiple-choice">
-            <input id="individual" name="defendantType" type="radio" value="individual" {{ checked('defendantType','individual') }}>
-            <label for="individual">An individual</label>
+      <div id="company-name" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="defendant_company_name">Company name</label>
+          <input class="form-control" type="text" id="defendant_company_name" name="defendant_company_name" value="{{ data['defendant_company_name'] }}">
         </div>
+        <div class="form-group">
+          <label class="form-label" for="defendant_company_number">Companies number</label>
+          <input class="form-control" type="text" id="defendant_company_number" name="defendant_company_number" value="{{ data['defendant_company_number'] }}">
+        </div>
+      </div>
+
+      <div class="multiple-choice" data-target="individual-name">
+          <input id="individual" name="defendantType" type="radio" value="individual" {{ checked('defendantType','individual') }}>
+          <label for="individual">An individual</label>
+      </div>
+
+      <div id="individual-name" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="defendant_title">Title</label>
+          <input type="text" class="form-control form-control-1-4" id="defendant_title" name="defendant_title" value="{{ data['defendant_title'] }}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="defendant_name">Full name</label>
+          <textarea type="text" class="form-control" id="defendant_name" name="defendant_name" value="{{ data['defendant_name'] }}">{{ data['defendant_name'] }}</textarea>
+        </div>
+      </div>
 
     </fieldset>
 
