@@ -1,13 +1,26 @@
-{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">Describe the claim</h1>
 <p>Enter a short statement about the nature of the claim and the remedy you seek, for example payment of money.</p>
 
-  <p>You'll have a chance to include particulars of claim later.</p>
+<p>You'll have a chance to include particulars of claim later.</p>
 
 <form action="type-of-claim" method="post">
   <div class="form-group">
     <textarea class="form-control form-control-large" id="claim_details" rows="3" name="claim_details" type="text">{{ data['claim_details'] }}</textarea>
+  </div>
+
+  <h1 class= "heading-medium">Particulars of claim</h1>
+  <div class="form-group">
+      <div class="multiple-choice">
+        <input id="radio-1" type="radio" name="particulars" value="attached" {{ checked('particulars','attached') }}>
+        <label for="radio-1">I will send the particulars of claim as an attachment to this claim</label>
+      </div>
+
+      <div class="multiple-choice">
+        <input id="serve" type="radio" name="particulars" value="serve" {{ checked('particulars','serve') }}>
+        <label for="serve">I will file the particulars of claim when I serve them on the defendant</label>
+      </div>
   </div>
 
   <div class="form-group">

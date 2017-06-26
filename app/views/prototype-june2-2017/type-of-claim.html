@@ -1,4 +1,4 @@
-{% extends "../index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">Type of claim</h1>
 <form action="type-of-claim" id="form" method="post" class="form-group">
@@ -12,7 +12,7 @@
 
     <div class="multiple-choice">
       <input id="individual" name="typeOfClaim" type="radio" value="unspecified" {{ checked('typeOfClaim','unspecified') }}>
-      <label for="individual">Unspecified (you want the court to decide the amount)</label>
+      <label for="individual">Unspecified (you don't know the exact amount you're claiming)</label>
     </div>
 
   </fieldset>
