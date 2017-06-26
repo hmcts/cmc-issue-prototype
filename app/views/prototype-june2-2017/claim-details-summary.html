@@ -3,7 +3,7 @@
 
 <p>Make sure this information is correct before you issue. </p>
 
-<form action="statement-of-truth" id="form" method="post" class="form-group">
+<form action="client-sign" id="form" method="post" class="form-group">
   <div>
     <div class="task-list-item">
       <div class="column-third form-hint">Your name</div>
@@ -115,14 +115,26 @@
       <div class="column-third form-hint">Interest</div>
       <div class="column-third if-empty">{% if data['interestRate'] %} {{ data['interestRate'] }} {% endif %}</div>
       <div class="column-third"><a class="right" href="calculate-interest">Change</a></div>
-    </div>
+</div>
   </div>
+  <br>
+
+  <div>
+    <div class="heading-medium" style="padding-top: 50px;">See how your form will look when printed</div>
+    <a target="_blank" href="/public/documents/N1-form-draft.pdf" role="button">
+
+      <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form"><p>Preview N1 form</p>
+    </a>
+  </div>
+
+  <br>
+
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">
   </div>
 </form>
 
-{% endblock %}
+<!-- {% endblock %}
 
 {% block side_content %}
 <div class="column-third" style="margin-top: 55px">
@@ -131,7 +143,7 @@
     <p>Preview N1 form</p>
     <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
   </a>
-</div>
+</div> -->
 
 
 {% endblock %}
