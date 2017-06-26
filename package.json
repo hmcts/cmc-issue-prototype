@@ -4,7 +4,6 @@
   "author": "HMCTS",
   "license": "MIT",
   "version": "6.1.0",
-  "private": true,
   "engines": {
     "node": ">=6.0 <7.0"
   },
