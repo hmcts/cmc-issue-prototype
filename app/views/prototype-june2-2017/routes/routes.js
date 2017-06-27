@@ -9,30 +9,6 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-june2-2017/what-type-of-claimant', function(req, res){
-        if (!req.body.claimantType) {
-            res.render('prototype-june2-2017/what-type-of-claimant')
-        }
-        else if (req.body.claimantType === 'company') {
-            res.redirect('claimant-company-details')
-        }
-        else {
-            res.redirect('claimant-name')
-        }
-    });
-
-    app.post('*/prototype-june2-2017/defendant-type', function(req, res){
-        if (!req.body.defendantType) {
-            res.render('prototype-june2-2017/defendant-type')
-        }
-        else if (req.body.defendantType.toString() === 'company') {
-            res.redirect('defendant-company-details')
-        }
-        else {
-            res.redirect('defendant-details')
-        }
-    });
-
     app.post('*/prototype-june2-2017/type-of-claim', function(req, res){
         if (!req.body.typeOfClaim) {
             res.render('prototype-june2-2017/type-of-claim')
@@ -113,6 +89,11 @@ module.exports = function(app){
     app.get('*/prototype-june2-2017/pay-by-card', function (req, res) {
         var today = new Date().toDateString();
         res.render('prototype-june2-2017/pay-by-card', {amount: req.session.data.amount })
+    })
+
+    app.get('*/prototype-june2-2017/pay-by-account', function (req, res) {
+        var today = new Date().toDateString();
+        res.render('prototype-june2-2017/pay-by-account', {amount: req.session.data.amount })
     })
 
 }
