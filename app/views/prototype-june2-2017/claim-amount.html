@@ -15,9 +15,12 @@
   </div>
 
   <div class="form-group">
-    <div class="multiple-choice">
+    <div class="multiple-choice" data-target="max-fee">
       <input id="card" name="claim_amount_checkbox" type="checkbox" value="cannot" {{ checked('claim_amount_checkbox','cannot') }}>
       <label for="card">I can't state the value of the claim</label>
+    </div>
+    <div id="max-fee" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <p>You will be charged the maximum fee</p>
     </div>
   </div>
 
