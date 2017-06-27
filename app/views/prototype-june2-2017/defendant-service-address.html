@@ -1,12 +1,14 @@
 {% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large"><span class="form-hint">Defendant: {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
-  Service Address
+  Service address
 </h1>
 <form action="claim-details" method="post">
   <fieldset class="form-group">
     <legend class="visually-hidden">Address</legend>
 
-    <p>Choose which address will be used to serve this claim</p>
+    <p>Choose the address you'll serve the claim to.</p>
+
+    <p>You must have written permission from a defendant's solicitor to serve to their address.</p>
 
     <div class="form-group">
       <label for="defendant_rep_name" class="form-label">Defendant's solicitor</label>

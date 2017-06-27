@@ -1,19 +1,23 @@
 {% extends "prototype-june2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-<h1 class="heading-large">Defendant type</h1>
+<h1 class="heading-large">Choose defendant type</h1>
+
+<p>You'll have a chance to add more defendants later.</p>
+
 <form action="defendant-type" id="form" method="post" class="form-group">
     <fieldset class="form-group">
       <div class="multiple-choice" data-target="company-name">
           <input id="company" name="defendantType" type="radio" value="company" {{ checked('defendantType','company') }}>
-          <label for="company">A company</label>
+          <label for="company">An organisation</label>
       </div>
+
 
       <div id="company-name" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
         <div class="form-group">
-          <label class="form-label" for="defendant_company_name">Company name</label>
+          <label class="form-label" for="defendant_company_name">Organisation name</label>
           <input class="form-control" type="text" id="defendant_company_name" name="defendant_company_name" value="{{ data['defendant_company_name'] }}">
         </div>
         <div class="form-group">
-          <label class="form-label" for="defendant_company_number">Companies number</label>
+          <label class="form-label" for="defendant_company_number">Companies House number (if claimant is a company)</label>
           <input class="form-control" type="text" id="defendant_company_number" name="defendant_company_number" value="{{ data['defendant_company_number'] }}">
         </div>
       </div>
