@@ -79,12 +79,12 @@
         <div class="column-third if-empty">
           {% if data['claimant_company_name'] %} {{ data['claimant_company_name'] }} {% endif %}
         </div>
-        <div class="column-third"><a class="right" href="claimant-company-details">Change</a></div>
+        <div class="column-third"><a class="right" href="what-type-of-claimant">Change</a></div>
       </div>
       <div class="task-list-item">
         <div class="column-third form-hint">Claimant's company house number</div>
         <div class="column-third if-empty">{% if data['claimant_company_number'] %} {{ data['claimant_company_number'] }} {% endif %}</div>
-        <div class="column-third"><a class="right" href="claimant-company-details">Change</a></div>
+        <div class="column-third"><a class="right" href="claimant-address">Change</a></div>
       </div>
       <div class="task-list-item">
         <div class="column-third form-hint">Claimant's address</div>
@@ -125,12 +125,12 @@
       <div class="column-third if-empty">
         {% if data['defendant_company_name'] %} {{ data['defendant_company_name'] }} {% endif %}
       </div>
-      <div class="column-third"><a class="right" href="defendant-company-details">Change</a></div>
+      <div class="column-third"><a class="right" href="defendant-type">Change</a></div>
     </div>
     <div class="task-list-item">
       <div class="column-third form-hint">Defendant's company house number</div>
       <div class="column-third if-empty">{% if data['defendant_company_number'] %} {{ data['defendant_company_number'] }} {% endif %}</div>
-      <div class="column-third"><a class="right" href="defendant-company-details">Change</a></div>
+      <div class="column-third"><a class="right" href="defendant-details">Change</a></div>
     </div>
     <div class="task-list-item">
       <div class="column-third form-hint">Defendant's address</div>
