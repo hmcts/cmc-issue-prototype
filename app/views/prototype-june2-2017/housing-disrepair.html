@@ -15,34 +15,34 @@
   <div id="housing-repair-yes" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
     <div class="form-group">
       <p>How much do you expect to recover as general damages for the cost of repairs or other work?</p>
-    </div>
-    <div class="multiple-choice">
-      <input id="company" name="painValue" type="radio" value="company">
-      <label for="company">£1,000 or less</label>
-    </div>
-
-    <div class="multiple-choice">
-      <input id="company" name="painValue" type="radio" value="company">
-      <label for="company">More than £1,000</label>
+      <div class="multiple-choice">
+        <input id="company" name="generalDamages" type="radio" value="less">
+        <label for="company">£1,000 or less</label>
+      </div>
+      <div class="multiple-choice">
+        <input id="company" name="generalDamages" type="radio" value="more">
+        <label for="company">More than £1,000</label>
+      </div>
     </div>
 
     <div class="form-group">
       <p>How much do you expect to recover for other damages besides the cost of repairs?</p>
-    </div>
-    <div class="multiple-choice">
-      <input id="company" name="painValue" type="radio" value="company">
-      <label for="company">I'm not claiming for other damages</label>
+      <div class="multiple-choice">
+        <input id="company" name="otherDamages" type="radio" value="not">
+        <label for="company">I'm not claiming for other damages</label>
+      </div>
+
+      <div class="multiple-choice">
+        <input id="company" name="otherDamages" type="radio" value="less">
+        <label for="company">£1,000 or less</label>
+      </div>
+
+      <div class="multiple-choice">
+        <input id="company" name="otherDamages" type="radio" value="more">
+        <label for="company">More than £1,000</label>
+      </div>
     </div>
 
-    <div class="multiple-choice">
-      <input id="company" name="painValue" type="radio" value="company">
-      <label for="company">£1,000 or less</label>
-    </div>
-
-    <div class="multiple-choice">
-      <input id="company" name="painValue" type="radio" value="company">
-      <label for="company">More than £1,000</label>
-    </div>
   </div>
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">
