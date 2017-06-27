@@ -45,7 +45,6 @@ module.exports = function(app){
 
     app.get('*/prototype-june2-2017/claim-total', function (req, res) {
         var amount = 10000
-        console.log(req.session.data["higherValue"])
         if (req.session.data["higherValue"]) {
             var higherValue = parseFloat(req.session.data["higherValue"])
             switch(true) {
