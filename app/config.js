@@ -28,6 +28,6 @@ module.exports = {
   // Enable or disable Browser Sync
   useBrowserSync: 'true',
 
-  defaultHome: '/prototype-may-2017'
+  defaultHome: '/'
 
 }
