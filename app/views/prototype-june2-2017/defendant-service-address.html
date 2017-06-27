@@ -11,8 +11,8 @@
     <p>You must have written permission from a defendant's solicitor to serve to their address.</p>
 
     <div class="form-group">
-      <label for="defendant_rep_name" class="form-label">Defendant's solicitor</label>
-      <input  type="text" class="form-control" id="defendant_rep_name" name="defendant_rep_name" value="{{ data['defendant_rep_name'] }}">
+      <label for="defendant_service_name" class="form-label">Defendant's solicitor</label>
+      <input  type="text" class="form-control" id="defendant_service_name" name="defendant_service_name" value="{{ data['defendant_service_name'] }}">
     </div>
 
     <div class="form-group-compound">
@@ -36,7 +36,7 @@
     </div>
 
     <div class="multiple-choice text" data-target="defendant-address">
-      <input class="" id="defendantsAddressForService" type="checkbox" value="true">
+      <input class="" id="defendantsAddressForService" type="checkbox" value="true" {{ checked('defendantsAddressForService','defendants_address') }}>
       <label for="defendantsAddressForService">Use defendants address for service</label>
     </div>
 

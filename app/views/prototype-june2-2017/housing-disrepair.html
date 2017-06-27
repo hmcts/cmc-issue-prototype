@@ -4,42 +4,42 @@
 <form action="claim-total" id="form" method="post" class="form-group">
   <div class="form-group inline">
     <div class="multiple-choice" data-target="housing-repair-yes">
-      <input id="housingRepair_yes" name="housingRepair" type="radio" value="yes">
-      <label for="housingRepair_yes">Yes</label>
+      <input id="housing_disrepair_yes" name="housing_disrepair" type="radio" value="yes" {{ checked('housing_disrepair','yes') }}>
+      <label for="housing_disrepair_yes">Yes</label>
     </div>
     <div class="multiple-choice">
-      <input id="housingRepair_no" name="housingRepair" type="radio" value="no">
-      <label for="housingRepair_no">No</label>
+      <input id="housing_disrepair_no" name="housing_disrepair" type="radio" value="no" {{ checked('housing_disrepair','no') }}>
+      <label for="housing_disrepair_no">No</label>
     </div>
   </div>
   <div id="housing-repair-yes" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
     <div class="form-group">
       <p>How much do you expect to recover as general damages for the cost of repairs or other work?</p>
       <div class="multiple-choice">
-        <input id="company" name="generalDamages" type="radio" value="less">
-        <label for="company">£1,000 or less</label>
+        <input id="general_damages_less" name="general_damages" type="radio" value="£1000 or less" {{ checked('general_damages','£1000 or less') }}>
+        <label for="general_damages_less">£1,000 or less</label>
       </div>
       <div class="multiple-choice">
-        <input id="company" name="generalDamages" type="radio" value="more">
-        <label for="company">More than £1,000</label>
+        <input id="general_damages_more" name="general_damages" type="radio" value="more than £1000" {{ checked('general_damages','more than £1000') }}>
+        <label for="general_damages_more">More than £1,000</label>
       </div>
     </div>
 
     <div class="form-group">
       <p>How much do you expect to recover for other damages besides the cost of repairs?</p>
       <div class="multiple-choice">
-        <input id="company" name="otherDamages" type="radio" value="not">
-        <label for="company">I'm not claiming for other damages</label>
+        <input id="other_damages_not" name="other_damages" type="radio" value="not claiming" {{ checked('other_damages','not claiming') }}>
+        <label for="other_damages_not">I'm not claiming for other damages</label>
       </div>
 
       <div class="multiple-choice">
-        <input id="company" name="otherDamages" type="radio" value="less">
-        <label for="company">£1,000 or less</label>
+        <input id="other_damages_less" name="other_damages" type="radio" value="£1000 or less" {{ checked('other_damages','£1000 or less') }}>
+        <label for="other_damages_less">£1,000 or less</label>
       </div>
 
       <div class="multiple-choice">
-        <input id="company" name="otherDamages" type="radio" value="more">
-        <label for="company">More than £1,000</label>
+        <input id="other_damages_more" name="other_damages" type="radio" value="more than £1000" {{ checked('other_damages','more than £1000') }}>
+        <label for="other_damages_more">More than £1,000</label>
       </div>
     </div>
 

@@ -45,8 +45,8 @@ module.exports = function(app){
 
     app.get('*/prototype-june2-2017/claim-total', function (req, res) {
         var amount = 10000
-        if (req.session.data["higherValue"]) {
-            var higherValue = parseFloat(req.session.data["higherValue"])
+        if (req.session.data["higher_value"]) {
+            var higherValue = parseFloat(req.session.data["higher_value"])
             switch(true) {
                 case (higherValue <= 300):
                     amount = 25
@@ -95,6 +95,11 @@ module.exports = function(app){
     app.get('*/prototype-june2-2017/pay-by-account', function (req, res) {
         var today = new Date().toDateString();
         res.render('prototype-june2-2017/pay-by-account', {amount: req.session.data.amount })
+    })
+
+    app.get('*/prototype-june2-2017/claim-details-summary', function (req, res) {
+        var today = new Date().toDateString();
+        res.render('prototype-june2-2017/claim-details-summary', {amount: req.session.data.amount })
     })
 
 }

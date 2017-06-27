@@ -1,60 +1,26 @@
-{% extends "../index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
-
-
+{% extends "prototype-june2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
 <form action="statement-of-truth" method="post">
   <h1 class="heading-large">Do you want to download a draft of the claim form for your client to sign?</h1>
 
-  
-
-<div class="form-group">
-  <fieldset class="inline">
-
+  <div class="form-group inline">
     <div class="multiple-choice" data-target="send-to-client">
-      <input id="radio-inline-1" type="radio" name="radio-inline-group" value="yes">
-      <label for="radio-inline-1">Yes</label>
+      <input id="download_draft_yes" type="radio" name="download_draft" value="yes" {{ checked('download_draft','yes') }}>
+      <label for="download_draft_yes">Yes</label>
     </div>
-
     <div class="multiple-choice">
-      <input id="radio-inline-2" type="radio" name="radio-inline-group" value="no">
-      <label for="radio-inline-2">No</label>
+      <input id="download_draft_no" type="radio" name="download_draft" value="no" {{ checked('download_draft','no') }}>
+      <label for="download_draft_no">No</label>
     </div>
 
-  <div id="send-to-client" class="panel panel-border-narrow js-hidden" aria-hidden="false">
-
+    <div id="send-to-client" class="panel panel-border-narrow js-hidden" aria-hidden="false">
       <div class="form-group">
-        <label>You can print the form after you've downloaded it.</label><br>
+        <p>You can print the form after you've downloaded it.</p>
         <a target="_blank" href="/public/documents/N1-form-draft.pdf" role="button">
-          <img class="icon icon-file-download" alt="sealed claim form" style="padding-right: 10px;">Download the form</a>
+          <img class="form-label" src="/public/images/response-pack.png" alt="sealed claim form">Download the form</a>
       </div>
-</div>
-
-
-    </fieldset
-</div>
-
-
-<!-- <form>
-  <div class="form-group">
-    <fieldset class="inline">
-
-      <legend class="visually-hidden">Do you already have a personal user account?</legend>
-
-      <div class="multiple-choice">
-        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-        <label for="radio-inline-1">Yes</label>
-      </div>
-      <div class="multiple-choice">
-        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-        <label for="radio-inline-2">No</label>
-      </div>
-
-    </fieldset>
+    </div>
   </div>
-</form> -->
-
-<br>
-
 
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">
