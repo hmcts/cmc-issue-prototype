@@ -82,8 +82,10 @@ module.exports = function(app){
     });
 
     app.get('*/prototype-june2-2017/claim-submitted', function (req, res) {
-        var today = new Date().toDateString();
-        res.render('prototype-june2-2017/claim-submitted', {today: today, amount: req.session.data.amount })
+        var today = new Date();
+        var date = today.toDateString();
+        var time = today.toLocaleTimeString();
+        res.render('prototype-june2-2017/claim-submitted', {today: date, time: time, amount: req.session.data.amount })
     })
 
     app.get('*/prototype-june2-2017/pay-by-card', function (req, res) {
