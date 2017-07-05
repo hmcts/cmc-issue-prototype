@@ -1,0 +1,30 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">How do you intend to serve particulars of claim?</h1>
+
+
+<form action="type-of-claim" method="post">
+
+<div class="form-group">
+  <fieldset>
+    <div class="multiple-choice">
+      <input id="particulars-attached" type="radio" name="particulars" value="attached" {{ checked('particulars','attached') }}>
+      <label for="particulars-attached">I’ll include particulars when I serve</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="particulars-serve" type="radio" name="particulars" value="serve" {{ checked('particulars','not attached') }}>
+      <label for="particulars-serve">I won't include particulars when I serve
+</label>
+    </div>
+    </fieldset
+</div>
+<br>
+
+  <div class="form-group">
+
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">Calculating your fee</h1>
+
+<form action="claim-details-summary" id="form" method="post" class="form-group">
+  <table class="table-form form-group">
+    <thead>
+    <tr>
+      <th class="font-small"  scope="col"></th>
+      <th class="numeric last" scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="font-small" scope="row">Claim value</th>
+        <td class="numeric last">
+        <span class="font-small">{% if data['lower_value'] %} £{{ data['lower_value'] }} {% else %} Not stated  {% endif %}
+            to
+            {% if data['higher_value'] %} £{{ data['higher_value'] }} {% else %} Not stated {% endif %}</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="bold-small" scope="row">Issue Fee</th>
+        <td class="numeric last">
+        <span class="bold-small">£{{ amount }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

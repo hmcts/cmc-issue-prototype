@@ -1,0 +1,62 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">All [solicitor firm] claims</h1>
+
+<form action="what-type-of-claimant" id="form" method="post" class="form-group">
+<br>
+  <div class="form-group">
+    <input type="submit" class="button" value="Start a new claim">
+  </div>
+  <table class="table-form form-group">
+    <thead>
+    <tr>
+      <th class="font-bold"  scope="col">Claim ref.</th>
+      <th class="font-bold"  scope="col">Your ref.</th>
+      <th class="font-bold" scope="col">Date of issue</th>
+      <th class="font-bold" scope="col">Status</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+  <td class="font-small">
+      <span class="font-small">D99YJ987</span>
+  </td>
+
+  <td class="font-small">
+        <span class="font-small">US-2017-765</span>
+  </td>
+
+    <td class="font-small">
+        <span class="font-small">-</span>
+    </td>
+    <td class="font-small">
+      <a class="button secondary-button" href="claim-submitted" role="button">Draft</a>
+        <!-- <input class="button" type="submit" value="draft";> -->
+    </td>
+    </tr>
+
+    <tr>
+  <td class="font-small">
+      <span class="font-small">D99YJ987</span>
+  </td>
+
+  <td class="font-small">
+        <span class="font-small">US-2017-765</span>
+  </td>
+
+    <td class="font-small">
+        <span class="font-small">22 May 2017</span>
+    </td>
+    <td class="font-small">
+          <a class="button secondary-button" href="/public/documents/N1-form-sealed.pdf" role="button">Issued</a>
+    </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+
+</form>
+
+{% endblock %}

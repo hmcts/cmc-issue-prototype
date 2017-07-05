@@ -1,0 +1,24 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Statement of truth</h1>
+
+<script type='text/javascript'>
+    function checkDisabled(){
+        if (document.getElementById('HasAcceptedTermsAndConditions').checked == true) {
+            document.getElementById('submit').disabled = false;
+        } else {
+            document.getElementById('submit').disabled = true;
+        }
+    }
+</script>
+<div class="form-group">
+  <div class="multiple-choice text">
+    <input class="" id="HasAcceptedTermsAndConditions" type="checkbox" onclick="checkDisabled()" value="true">
+    <label for="HasAcceptedTermsAndConditions">I believe that the information I've provided in this claim form is true. I'm authorised by the claimant to sign this statement.</label>
+  </div>
+</div>
+
+<form method="post" action="choose-how-to-pay" class="form">
+  <input type="submit" id="submit" class="button" value="Submit and continue to payment" disabled>
+</form>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">Your firm address</h1>
+
+<form action="representative-contact" method="post">
+
+  <div class="form-group-compound">
+    <label class="form-label" for="rep_AddressLine1">Address line 1</label>
+    <input class="form-control" id="rep_AddressLine1" name="rep_AddressLine1" type="text" value="{{ data['rep_AddressLine1'] }}">
+  </div>
+
+  <div class="form-group-compound">
+    <label class="form-label" for="rep_AddressLine2">Address line 2 (optional)</label>
+    <input class="form-control" id="rep_AddressLine2" name="rep_AddressLine2" type="text" value="{{ data['rep_AddressLine2'] }}">
+  </div>
+
+  <div class="form-group-compound">
+    <label class="form-label" for="rep_city">Town or city</label>
+    <input class="form-control" id="rep_city" name="rep_city" type="text" value="{{ data['rep_city'] }}">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="rep_Postcode">Postcode</label>
+    <input class="form-control form-control-1-4" id="rep_Postcode" name="rep_Postcode" type="text" value="{{ data['rep_Postcode'] }}">
+  </div>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}
