@@ -17,20 +17,9 @@ module.exports = function(app){
             res.redirect('not-supported')
         }
         else {
-            res.redirect('claim-amount')
+            res.redirect('personal-injury')
         }
     });
-
-    app.post('*/prototype-july-2017/claim-interest', function (req, res) {
-        if (!req.body.interestRate) {
-            res.render('prototype-junjulye2-2017/claim-interest')
-        }
-        else if (req.body.interestRate == 'No interest') {
-            res.redirect('claim-total')
-        } else {
-            res.redirect('claim-interest-date')
-        }
-    })
 
     app.post('*/prototype-july-2017/choose-how-to-pay', function (req, res) {
         if (!req.body.paymentType) {
