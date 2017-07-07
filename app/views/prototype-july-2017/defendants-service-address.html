@@ -7,7 +7,7 @@
     <legend class="visually-hidden">Address</legend>
 
     <div class="multiple-choice" data-target="defendant-service-address">
-      <input id="company" name="defendantService" type="radio" value="defendantsAddress" {{ checked('defendantRepresented','yes') }}>
+      <input id="company" name="defendantService" type="radio" value="defendantsAddress" {{ checked('defendantService','defendantsAddress') }}>
       <label for="company">Use defendants address for service</label>
     </div>
 
@@ -19,7 +19,7 @@
     </div>
 
     <div class="multiple-choice" data-target="defendant-service-other">
-      <input id="individual" name="defendantService" type="radio" value="other" {{ checked('defendantRepresented','no') }}>
+      <input id="individual" name="defendantService" type="radio" value="other" {{ checked('defendantService','other') }}>
       <label for="individual">Other</label>
     </div>
 
