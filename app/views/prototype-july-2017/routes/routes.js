@@ -21,18 +21,6 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-july-2017/defendant-represented', function(req, res){
-        if (!req.body.defendantRepresented) {
-            res.render('prototype-july-2017/defendant-represented')
-        }
-        else if (req.body.defendantRepresented.toString() === 'yes') {
-            res.redirect('defendant-reps-address')
-        }
-        else {
-            res.redirect('defendants-service-address')
-        }
-    });
-
     app.post('*/prototype-july-2017/choose-how-to-pay', function (req, res) {
         if (!req.body.paymentType) {
             res.render('prototype-july-2017/choose-how-to-pay')
