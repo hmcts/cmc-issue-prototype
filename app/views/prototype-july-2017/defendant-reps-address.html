@@ -6,10 +6,6 @@
   <fieldset class="form-group">
     <legend class="visually-hidden">Address</legend>
 
-    <p>Choose the address you'll serve the claim to.</p>
-
-    <p>You must have written permission from a defendant's solicitor to serve to the solicitor's address.</p>
-
     <div class="form-group">
       <label for="defendant_service_name" class="form-label">Defendant's solicitor</label>
       <input  type="text" class="form-control" id="defendant_service_name" name="defendant_service_name" value="{{ data['defendant_service_name'] }}">
@@ -33,11 +29,6 @@
     <div class="form-group">
       <label for="defendant_service_postcode" class="form-label">Postcode</label>
       <input  type="text" class="form-control form-control-1-4" id="defendant_service_postcode" name="defendant_service_postcode" value="{{ data['defendant_service_postcode'] }}">
-    </div>
-
-    <div class="multiple-choice text" data-target="defendant-address">
-      <input class="" id="defendantsAddressForService" type="checkbox" value="true" {{ checked('defendantsAddressForService','defendants_address') }}>
-      <label for="defendantsAddressForService">Use defendants address for service</label>
     </div>
 
     <div id="defendant-address" class="panel panel-border-narrow js-hidden" aria-hidden="true">
