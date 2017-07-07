@@ -32,6 +32,18 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-july-2017/defendant-represented', function(req, res){
+        if (!req.body.defendantRepresented) {
+            res.render('prototype-july-2017/defendant-represented')
+        }
+        else if (req.body.defendantRepresented.toString() === 'yes') {
+            res.redirect('defendant-reps-address')
+        }
+        else {
+            res.redirect('defendants-service-address')
+        }
+    });
+
     app.get('*/prototype-july-2017/claim-total', function (req, res) {
         var amount = 10000
         if (req.session.data["higher_value"]) {
