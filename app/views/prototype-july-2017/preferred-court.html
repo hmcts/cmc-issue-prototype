@@ -1,0 +1,19 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Choose a county court</h1>
+<form action="what-type-of-claimant" method="post">
+  <div class="form-group">
+    <label for="preferred_court" class="form-label"><span class="form-hint">The hearing may not happen at your preferred county court</span></label>
+    <input id="preferred_court" name="preferred_court" type="text" class="form-control" value="{{ data['preferred_court'] }}">
+  </div>
+
+
+  <a class="form-group" target="_blank" href="https://courttribunalfinder.service.gov.uk/search/postcode?aol=Money+claims&spoe=nearest">Find the county court nearest to a postcode</a>
+  <br>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}
