@@ -16,20 +16,26 @@
 </div>
 
 
-
-
 <form method="post" action="choose-how-to-pay" class="form">
   <input type="submit" id="submit" class="button" value="Submit and continue to payment" disabled>
 </form>
 
 <script type='text/javascript'>
-    function checkDisabled(){
-        if (document.getElementById('HasAcceptedTermsAndConditions').checked == true) {
-            document.getElementById('submit').disabled = false;
-        } else {
-            document.getElementById('submit').disabled = true;
+    window.onload = function() {
+        var txts = document.getElementById('signer_name');
+
+        var func = function() {
+            if(this.value.length > 0) {
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
         }
+
+        txts.onkeyup = func;
+        txts.onblur = func;
     }
+
 </script>
 
 {% endblock %}
