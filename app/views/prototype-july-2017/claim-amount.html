@@ -1,11 +1,11 @@
 {% extends "prototype-july-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 <h1 class="heading-large">Enter claim value</h1>
 
-<p class="bold-small">Tell us the values you expect the claim to fall between</p>
+<p class="bold-small">Your fee will be calculated based on the higher value.</p>
 <form action="claim-total" method="post">
   <div class="form-group">
     <div class="column-one-half no-padding">
-      <span class="form-block">Lower value</span>
+      <span class="form-block">Lower value (optional)</span>
       <input type="text" class="form-control form-control-3-4 pound" name="lower_value" id="lower_value" value="{{ data['lower_value'] }}">
     </div>
     <div class="column-one-half no-padding">
@@ -20,7 +20,7 @@
       <label for="card">I can't state the value of the claim</label>
     </div>
     <div id="max-fee" class="panel panel-border-narrow js-hidden" aria-hidden="true">
-      <p>You will be charged the maximum fee</p>
+      <p>You'll be charged the maximum fee</p>
     </div>
   </div>
 
