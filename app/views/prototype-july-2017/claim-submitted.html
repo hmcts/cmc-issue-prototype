@@ -7,56 +7,39 @@
   <p>{{ today }} -  {{ time }}</p>
 </div>
 
-<div class="form-group">
-  <div class="task-list-item form-group">
-    <div class="column-third bold">Total Paid</div>
-    <div class="column-third bold numeric">£{{ amount }}</div>
+<div class="task-list-item form-group">
+  <div class="column-third bold">Total Paid</div>
+  <div class="column-third bold numeric">£{{ amount }}</div>
+</div>
 
-  </div>
+<p>Follow these steps to serve a claim:</p>
 
-  <p>Follow these steps to serve a claim:</p>
-
-<p>  <ol type="1">
+<ol class="form-group" type="1">
   <li>1. Download the sealed claim form.</li>
   <li>2. Send it to the defendant within 4 months of the date of issue.</li>
   <li>3. Include particulars of claim with the sealed claim form, or serve them separately within 14 days.</li>
-</ol></p>
+</ol>
 
-  <p>You must send the court a certificate of service within 21 days from the date you served particulars:</p>
+<p>You must send the court a certificate of service within 21 days from the date you served particulars:</p>
 
 <div id="defendant-service-address" class="panel panel-border-narrow">
   <p class="form-group-compound">County Court Money Claims Centre (CCMCC)</p>
   <p class="form-group-compound">Salford</p>
   <p class="form-group-compound">Greater Manchester</p>
-  <p class="form-group-compound">M5 0BY</p>
-<br>
+  <p class="form-group">M5 0BY</p>
   <p class="form-group-compound"><span class="bold">DX:</span> 702634 Salford 5</p>
 </div>
 
-  <p class="form-group-compound">{% if data['defendant_address2'] %} {{ data['defendant_address2'] }},{% endif %}</p>
-  <p class="form-group-compound">{% if data['defendant_town'] %} {{ data['defendant_town'] }}, {% endif %}</p>
-  <p class="form-group-compound">{% if data['defendant_postcode'] %} {{ data['defendant_postcode'] }} {% endif %}</p>
-</div>
+<div class="form-group">
+  <div class="column-half">
+    <p>Sealed claim form</p>
 
-
-  <div class="form-group">
-    <div class="column-half">
-      <p>Sealed claim form</p>
-
-      <a target="_blank" href="/public/documents/N1-form-sealed.pdf">
-        <div class="form-group">
-          <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
-        </div>
-        <span class="button secondary-button">Download</span>
-      </a>
-    </div>
-    <!-- <div class="column-half">
-      <p>Response Pack</p>
+    <a target="_blank" href="/public/documents/N1-form-sealed.pdf">
       <div class="form-group">
-        <img class="form-label" src="/public/images/response-pack.png" alt="response pack">
+        <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
       </div>
-      <a class="button secondary-button" href="/" role="button">Download</a>
-    </div> -->
+      <span class="button secondary-button">Download</span>
+    </a>
   </div>
 </div>
 
