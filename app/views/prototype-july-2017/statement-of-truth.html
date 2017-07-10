@@ -1,5 +1,16 @@
 {% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Statement of truth</h1>
+<p>You must add the name and role in your firm of the person signing</p>
+
+<div class="form-group">
+  <label class="form-label" for="claimant_name">Full name</label>
+  <textarea type="text" class="form-control" id="signer_name" name="signer_name" value="{{ data['signer_name'] }}">{{ data['signer_name'] }}</textarea>
+</div>
+
+<div class="form-group">
+  <label class="form-label" for="signer-role">What is your role in the firm?</label>
+  <input class="form-control" id="signer-role" name="signer-role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
+</div>
 
 <script type='text/javascript'>
     function checkDisabled(){
