@@ -1,9 +1,12 @@
 {% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Statement of truth</h1>
-<p>You must add the name and role in your firm of the person signing</p>
 
 <div class="form-group">
-  <label class="form-label" for="signer_name">Full name</label>
+  <label>The claimant believes that the information in this claim form is true. I'm authorised by the claimant to sign this statement.</label>
+</div>
+
+<div class="form-group">
+  <label class="form-label" for="signer_name">Name</label>
   <textarea type="text" class="form-control" id="signer_name" name="signer_name" value="{{ data['signer_name'] }}">{{ data['signer_name'] }}</textarea>
 </div>
 
@@ -12,12 +15,7 @@
   <input class="form-control" id="signer-role" name="signer-role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
 </div>
 
-<div class="form-group">
-  <div class="multiple-choice text">
-    <input class="" id="HasAcceptedTermsAndConditions" type="checkbox" onclick="checkDisabled()" value="true">
-    <label for="HasAcceptedTermsAndConditions">The claimant believes that the information in this claim form is true. I'm authorised by the claimant to sign this statement.</label>
-  </div>
-</div>
+
 
 
 <form method="post" action="choose-how-to-pay" class="form">
