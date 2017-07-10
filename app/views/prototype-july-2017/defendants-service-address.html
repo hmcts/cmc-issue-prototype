@@ -1,6 +1,6 @@
 {% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large"><span class="form-hint">Defendant: {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
-  Service address
+  Where do you want to serve the claim?
 </h1>
 <form action="type-of-claim" method="post">
   <fieldset class="form-group">
@@ -8,7 +8,7 @@
 
     <div class="multiple-choice" data-target="defendant-service-address">
       <input id="company" name="defendantService" type="radio" value="defendantsAddress" {{ checked('defendantService','defendantsAddress') }}>
-      <label for="company">Use defendants address for service</label>
+      <label for="company">The defendant's address</label>
     </div>
 
     <div id="defendant-service-address" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
@@ -20,7 +20,7 @@
 
     <div class="multiple-choice" data-target="defendant-service-other">
       <input id="individual" name="defendantService" type="radio" value="other" {{ checked('defendantService','other') }}>
-      <label for="individual">Other</label>
+      <label for="individual">Another address</label>
     </div>
 
     <div id="defendant-service-other" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
