@@ -1,0 +1,31 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Is the defendant represented?</h1>
+<form action="defendant-represented" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Is the defendant represented?</legend>
+
+    <div class="multiple-choice" data-target="defendant-represented-yes">
+      <input id="company" name="defendantRepresented" type="radio" value="yes" {{ checked('defendantRepresented','yes') }}>
+      <label for="company">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="individual" name="defendantRepresented" type="radio" value="no" {{ checked('defendantRepresented','no') }}>
+      <label for="individual">No</label>
+    </div>
+
+    <div id="defendant-represented-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <div class="form-group">
+        <label for="defendant_service_name" class="form-label">Defendant representative company name</label>
+        <input  type="text" class="form-control" id="defendant_service_name" name="defendant_service_name" value="{{ data['defendant_service_name'] }}">
+      </div>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Your reference for this claim</h1>
+<form action="preferred-court" method="post">
+  <div class="form-group">
+    <label for="claimant_individual_reference" class="form-label"><span class="form-hint">Optional</span></label>
+    <input id="claimant_individual_reference" name="claimant_individual_reference" type="text" class="form-control" value="{{ data['claimant_individual_reference'] }}">
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "prototype-july-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Pay by credit card</h1>
+
+<div class="form-group">
+  <div class="task-list-item">
+    <div class="column-half bold">Total cost</div>
+    <div class="column-half bold numeric">£{{ amount }}</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Credit card number</div>
+    <div class="column-half numeric">1234123412341234</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Name on card</div>
+    <div class="column-half numeric">James Jimson</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Code on back of card</div>
+    <div class="column-half numeric">786</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Expiry date</div>
+    <div class="column-half numeric">02/2019</div>
+  </div>
+</div>
+
+<a class="button" href="claim-submitted" role="button">Save and Continue</a> {% endblock %}
