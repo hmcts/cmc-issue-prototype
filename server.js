@@ -228,6 +228,7 @@ require('./app/views/prototype-may-2017/routes/routes.js')(app);
 require('./app/views/prototype-june-2017/routes/routes.js')(app);
 require('./app/views/prototype-june2-2017/routes/routes.js')(app);
 require('./app/views/prototype-july-2017/routes/routes.js')(app);
+require('./app/views/prototype-july2-2017/routes/routes.js')(app);
 require('./app/views/prototype-MVP-2017/routes/routes.js')(app);
 
 
