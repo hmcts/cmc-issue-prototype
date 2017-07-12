@@ -73,6 +73,9 @@ module.exports = function(app){
                 case (higherValue > 10000):
                     amount = higherValue * .045
                     break;
+                case (higherValue > 200000):
+                    amount = 10000
+                    break;
                 default:
                     amount = 410
             }
