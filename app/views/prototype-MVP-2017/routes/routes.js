@@ -9,18 +9,6 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-MVP-2017/type-of-claim', function(req, res){
-        if (!req.body.typeOfClaim) {
-            res.render('prototype-MVP-2017/type-of-claim')
-        }
-        else if (req.body.typeOfClaim.toString() === 'specified') {
-            res.redirect('not-supported')
-        }
-        else {
-            res.redirect('personal-injury')
-        }
-    });
-
     app.post('*/prototype-MVP-2017/choose-how-to-pay', function (req, res) {
         if (!req.body.paymentType) {
             res.render('prototype-MVP-2017/choose-how-to-pay')
