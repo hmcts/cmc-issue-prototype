@@ -16,9 +16,12 @@
     </div>
 
     <div id="defendant-represented-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
-      <div class="form-group">
-        <label for="defendant_service_name" class="form-label">Defendant representative company name</label>
-        <input  type="text" class="form-control" id="defendant_service_name" name="defendant_service_name" value="{{ data['defendant_service_name'] }}">
+
+
+          <div class="multiple-choice">
+  <input id="checkbox-service" name="accept-service" type="checkbox" value="true">
+  <label for="checkbox-service">The legal respresentative has given permission to accept service (temporary content - could be y/n or just guidance)</label>
+        <value="{{ data['defendant_service_name'] }}">
       </div>
     </div>
 
