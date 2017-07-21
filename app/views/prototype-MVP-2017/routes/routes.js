@@ -28,7 +28,7 @@ module.exports = function(app){
             res.redirect('defendant-reps-address')
         }
         else {
-            res.redirect('defendants-service-address')
+            res.redirect('personal-injury')
         }
     });
 
