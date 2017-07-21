@@ -1,0 +1,56 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Do you want to add another defendant?</h1>
+<form action="defendant-type" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Do you want to add another defendant?</legend>
+    <p>You can add up to 4 defendants, for any more you will need to use the paper N1 form.</p>
+
+    <div class="multiple-choice" data-target="add-defendant-yes">
+      <input id="company" name="addDefendant" type="radio" value="yes" {{ checked('addDefendant','yes') }}>
+      <label for="company">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="individual" name="addDefendant" type="radio" value="no" {{ checked('addDefendant','no') }}>
+      <label for="individual">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+<form>
+<table>
+<h1 class="heading medium">
+Already added
+</h1>
+  <thead>
+    <tr>
+      <th scope="col">Defendant</th>
+      <th class="numeric" scope="col">Defended</th>
+      <th class="numeric" scope="col">Representative</th>
+      <th class="numeric" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Pepe LePew</th>
+      <td class="numeric">-</td>
+      <td class="numeric">-</td>
+      <td class="numeric">Delete</td>
+    </tr>
+    <tr>
+      <th scope="row">Peter Piper</th>
+      <td class="numeric">yes</td>
+      <td class="numeric">Mr Eldrige Eldridge</td>
+      <td class="numeric">Delete</td>
+
+    </tr>
+  </tbody>
+</table>
+</form>
+{% endblock %}
