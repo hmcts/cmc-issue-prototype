@@ -9,6 +9,18 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-july2-2017/defendant-add', function(req, res){
+        if (!req.body.addDefendant) {
+            res.render('prototype-july2-2017/defendant-add')
+        }
+        else if (req.body.addDefendant.toString() === 'yes') {
+            res.redirect('defendant-type')
+        }
+        else {
+            res.redirect('type-of-claim')
+        }
+    });
+
     app.post('*/prototype-july2-2017/type-of-claim', function(req, res){
         if (!req.body.typeOfClaim) {
             res.render('prototype-july2-2017/type-of-claim')
