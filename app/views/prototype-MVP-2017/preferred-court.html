@@ -1,9 +1,12 @@
-{% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Choose a county court</h1>
+
+<p>This should be your preferred court for a hearing.</p>
+
 <form action="what-type-of-claimant" method="post">
- <div class="form-group">
-    <!--<label for="preferred_court" class="form-label"><span class="form-hint">Hearings won't always happen at the court you choose.</span></label>-->
-    <input id="preferred_court" name="preferred_court" type="text" class="form-control" value="{{ data['preferred_court'] }}">
+  <div class="form-group">
+    <label for="preferred-court" class="form-label"><span class="form-hint">Optional</span></label>
+    <input id="preferred-court" name="preferred-court" type="text" class="form-control" value="{{ data['claimant_individual_reference'] }}">
   </div>
 
 
