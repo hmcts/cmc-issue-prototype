@@ -24,33 +24,27 @@
 </form>
 
 <form>
-<table>
-<h1 class="heading medium">
+<h1 class="heading-medium">
 Already added
 </h1>
-  <thead>
-    <tr>
-      <th scope="col">Defendant</th>
-      <th class="numeric" scope="col">Defended</th>
-      <th class="numeric" scope="col">Representative</th>
-      <th class="numeric" scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Pepe LePew</th>
-      <td class="numeric">-</td>
-      <td class="numeric">-</td>
-      <td class="numeric">Delete</td>
-    </tr>
-    <tr>
-      <th scope="row">Peter Piper</th>
-      <td class="numeric">yes</td>
-      <td class="numeric">Mr Eldrige Eldridge</td>
-      <td class="numeric">Delete</td>
+  <div class="column-full">
+    <div class="column-one-quarter bold">Defendant</div>
+    <div class="column-one-quarter bold">Defendant Solicitor</div>
+    <div class="column-one-quarter bold">Service Address</div>
+    <div class="column-one-quarter bold">Action</div>
+  </div>
+  <hr>
+  {% for defendant in defendants %}
+    <div class="column-full">
+      <div class="column-one-quarter">{{ defendant.defendantName }}</div>
+      <div class="column-one-quarter">{{ defendant.solicitor }}</div>
+      <div class="column-one-quarter">{{ defendant.serviceAddress }}</div>
+      <div class="column-one-quarter"><a class="button remove">Remove</a></div>
+    </div>
+  <hr>
+  {% endfor %}
 
-    </tr>
-  </tbody>
-</table>
 </form>
 {% endblock %}
+
+
