@@ -33,18 +33,25 @@ Already added
     <div class="column-one-quarter bold">Service Address</div>
     <div class="column-one-quarter bold">Action</div>
   </div>
-  <hr>
+  <hr class="column-full">
   {% for defendant in defendants %}
     <div class="column-full">
       <div class="column-one-quarter">{{ defendant.defendantName }}</div>
       <div class="column-one-quarter">{{ defendant.solicitor }}</div>
       <div class="column-one-quarter">{{ defendant.serviceAddress }}</div>
-      <div class="column-one-quarter"><a class="button remove">Remove</a></div>
+      <div class="column-one-quarter"><a onclick="delete_item(this)" class="button remove">Remove</a></div>
+      <hr class="column-full">
     </div>
-  <hr>
   {% endfor %}
 
 </form>
+
+<script type='text/javascript'>
+    function delete_item(el) {
+        el.parentNode.parentNode.parentNode.removeChild(el.parentNode.parentNode);
+    }
+
+</script>
 {% endblock %}
 
 
