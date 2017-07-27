@@ -24,9 +24,10 @@
 </form>
 
 <form>
-<h1 class="heading-medium">
-Already added
-</h1>
+{% if defendants.length > 1 %}
+  <h1 class="heading-medium">
+    Already added
+  </h1>
   <div class="column-full">
     <div class="column-one-quarter bold">Defendant</div>
     <div class="column-one-quarter bold">Defendant Solicitor</div>
@@ -35,14 +36,16 @@ Already added
   </div>
   <hr class="column-full">
   {% for defendant in defendants %}
-    <div class="column-full">
-      <div class="column-one-quarter">{{ defendant.defendantName }}</div>
-      <div class="column-one-quarter">{{ defendant.solicitor }}</div>
-      <div class="column-one-quarter">{{ defendant.serviceAddress }}</div>
-      <div class="column-one-quarter"><a onclick="delete_item(this)" class="button remove">Remove</a></div>
-      <hr class="column-full">
-    </div>
+  <div class="column-full">
+    <div class="column-one-quarter">{{ defendant.defendantName }}</div>
+    <div class="column-one-quarter">{{ defendant.solicitor }}</div>
+    <div class="column-one-quarter">{{ defendant.serviceAddress }}</div>
+    <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
+    <hr class="column-full">
+  </div>
   {% endfor %}
+{% endif %}
+
 
 </form>
 

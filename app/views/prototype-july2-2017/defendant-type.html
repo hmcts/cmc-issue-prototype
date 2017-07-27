@@ -1,9 +1,12 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Choose defendant type</h1>
+{% if defendants.length > 0 %}
+  <span class="form-hint form-group-compound">Defendant {{ defendants.length + 1 }}</span>
+{% else %}
+  <p>You'll have a chance to add more defendants later.</p>
+{% endif %}
 
-<p>You'll have a chance to add more defendants later.</p>
-
-<form action="defendant-details" id="form" method="post" class="form-group">
+<form action="defendant-type" id="form" method="post" class="form-group">
     <fieldset class="form-group">
       <div class="multiple-choice" data-target="company-name">
           <input id="company" name="defendantType" type="radio" value="company" {{ checked('defendantType','company') }}>

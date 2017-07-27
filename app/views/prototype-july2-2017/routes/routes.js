@@ -14,6 +14,41 @@ module.exports = function(app){
         res.render('prototype-july2-2017/claim-details-summary', { defendants: defendants })
     });
 
+    app.get('*/prototype-july2-2017/defendant-type', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-july2-2017/defendant-type', { defendants: defendants })
+    });
+
+    app.get('*/prototype-july2-2017/defendant-details', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-july2-2017/defendant-details', { defendants: defendants })
+    });
+
+    app.get('*/prototype-july2-2017/defendant-reps-address', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-july2-2017/defendant-reps-address', { defendants: defendants })
+    });
+
+    app.get('*/prototype-july2-2017/defendants-service-address', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-july2-2017/defendants-service-address', { defendants: defendants })
+    });
+
+    app.post('*/prototype-july2-2017/defendant-type', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        if (!req.body.defendantType) {
+            res.render('prototype-july2-2017/defendant-type', { defendants: defendants })
+        }
+        else {
+            res.redirect('defendant-details')
+        }
+    });
+
     app.post('*/prototype-july2-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
@@ -120,15 +155,25 @@ module.exports = function(app){
                     amount = 410
             }
         }
+        var formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 2, /* this might not be necessary */
+        });
         req.session.data.amount = amount;
-        res.render('prototype-july2-2017/claim-total', { amount: amount})
+        res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
     });
 
     app.get('*/prototype-july2-2017/claim-submitted', function (req, res) {
         var today = new Date();
         var date = today.toDateString();
         var time = today.toLocaleTimeString();
-        res.render('prototype-july2-2017/claim-submitted', {today: date, time: time, amount: req.session.data.amount })
+        var formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 0, /* this might not be necessary */
+        });
+        res.render('prototype-july2-2017/claim-submitted', {today: date, time: time, amount: formatter.format(req.session.data.amount)  })
     })
 
     app.get('*/prototype-july2-2017/pay-by-card', function (req, res) {
@@ -143,7 +188,12 @@ module.exports = function(app){
 
     app.get('*/prototype-july2-2017/claim-details-summary', function (req, res) {
         var today = new Date().toDateString();
-        res.render('prototype-july2-2017/claim-details-summary', {amount: req.session.data.amount })
+        var formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 0, /* this might not be necessary */
+        });
+        res.render('prototype-july2-2017/claim-details-summary', {amount: formatter.format(req.session.data.amount) })
     })
 
 }

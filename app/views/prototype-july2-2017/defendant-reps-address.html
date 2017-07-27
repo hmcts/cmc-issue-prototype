@@ -1,5 +1,5 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-<h1 class="heading-large"><span class="form-hint">Defendant's representative{% if data['defendant_service_name'] %} {{ data['defendant_service_name'] }} {% endif %}</span>
+<h1 class="heading-large"><span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %} representative</span>
   Address for service
 </h1>
 <form action="defendant-add" method="post">
