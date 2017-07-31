@@ -1,16 +1,16 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 <h1 class="heading-large">Your company contact details</h1>
 
-<p>These will appear on the sealed claim form.</p>
+<p>The defendant can use these to contact you.</p>
 
 <form action="claimant-individual-reference" method="post">
   <div class="form-group">
-    <label class="form-label" for="rep_phone_number">Phone number</label>
+    <label class="form-label" for="rep_phone_number">Phone number (optional)</label>
     <input type="text" class="form-control" id="rep_phone_number" name="rep_phone_number" value="{{ data['rep_phone_number'] }}">
   </div>
 
   <div class="form-group">
-    <label class="form-label" for="rep_email">Email</label>
+    <label class="form-label" for="rep_email">Email (optional)</label>
     <input type="text" class="form-control" id="rep_email" name="rep_email" value="{{ data['rep_email'] }}">
   </div>
 
