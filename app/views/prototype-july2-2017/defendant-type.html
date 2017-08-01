@@ -1,11 +1,15 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-{% if defendants.length > 0 %}
-<span class="form-hint form-group-compound">Defendant {{ defendants.length + 1 }}</span>
-{% else %}
+
+
+<h1 class="heading-large">
+  {% if defendants.length > 0 %}
+    <span class="form-hint">Defendant {{ defendants.length + 1 }}</span>
+  {% endif %}
+  Choose defendant type</h1>
+
+{% if defendants.length == 0 %}
 <p>You'll have a chance to add more defendants later.</p>
 {% endif %}
-<h1 class="heading-large">Choose defendant type</h1>
-
 
 <form action="defendant-type" id="form" method="post" class="form-group">
     <fieldset class="form-group">
