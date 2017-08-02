@@ -14,12 +14,6 @@ module.exports = function(app){
         res.render('prototype-july2-2017/claim-details-summary', { defendants: defendants })
     });
 
-    app.get('*/prototype-july2-2017/defendant-type', function(req, res){
-        var defendants = req.session.defendants || [];
-
-        res.render('prototype-july2-2017/defendant-type', { defendants: defendants })
-    });
-
     app.get('*/prototype-july2-2017/defendant-details', function(req, res){
         var defendants = req.session.defendants || [];
 

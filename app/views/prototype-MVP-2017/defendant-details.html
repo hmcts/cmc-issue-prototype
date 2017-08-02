@@ -1,7 +1,10 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-<h1 class="heading-large"><span class="form-hint">Defendant: {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
+
+<h1 class="heading-large">
+  <span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %}: {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
   Address
 </h1>
+
 <form action="defendant-represented" method="post">
   <fieldset>
     <legend class="visually-hidden">Address</legend>
@@ -32,4 +35,4 @@
   </div>
 </form>
 
- {% endblock %}
+{% endblock %}

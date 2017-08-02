@@ -9,6 +9,82 @@ module.exports = function(app){
         }
     });
 
+    app.get('*/prototype-MVP-2017/defendants-service-address', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-MVP-2017/defendants-service-address', { defendants: defendants })
+    });
+
+    app.post('*/prototype-MVP-2017/defendant-type', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        if (!req.body.defendantType) {
+            res.render('prototype-MVP-2017/defendant-type', { defendants: defendants })
+        }
+        else {
+            res.redirect('defendant-details')
+        }
+    });
+
+    app.get('*/prototype-MVP-2017/defendant-details', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-MVP-2017/defendant-details', { defendants: defendants })
+    });
+
+    app.get('*/prototype-MVP-2017/defendant-reps-address', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-MVP-2017/defendant-reps-address', { defendants: defendants })
+    });
+
+    app.post('*/prototype-MVP-2017/defendant-represented', function(req, res){
+        if (!req.body.defendantRepresented) {
+            res.render('prototype-MVP-2017/defendant-represented')
+        }
+        else if (req.body.defendantRepresented.toString() === 'yes') {
+            res.redirect('defendant-reps-address')
+        }
+        else {
+            res.redirect('defendants-service-address')
+        }
+    });
+
+    app.post('*/prototype-MVP-2017/defendant-add', function(req, res){
+        var defendants = req.session.defendants || [];
+        var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
+        var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
+        var defendantSolicitorName = (req.session.data['defendant_rep_company']) ? req.session.data['defendant_rep_company'] : '-'
+        var defendantAddress1 = (req.session.data['defendant_address1']) ? req.session.data['defendant_address1'] : '-'
+        var defendantAddress2 = (req.session.data['defendant_address2']) ? req.session.data['defendant_address2'] : ''
+        var defendantTown = (req.session.data['defendant_town']) ? req.session.data['defendant_town'] : ''
+        var defendantPostcode = (req.session.data['defendant_postcode']) ? req.session.data['defendant_postcode'] : ''
+        var defendantAddress = defendantAddress1 + ' ' + defendantAddress2 + ' ' + defendantTown + ' ' + defendantPostcode
+        var defendantServiceAddress1 = (req.session.data['defendant_service_address1']) ? req.session.data['defendant_service_address1'] : req.session.data['defendant_address1']
+        var defendantServiceAddress2 = (req.session.data['defendant_service_address2']) ? req.session.data['defendant_service_address2'] : req.session.data['defendant_address2']
+        var defendantServiceTown = (req.session.data['defendant_service_city']) ? req.session.data['defendant_service_city'] : req.session.data['defendant_town']
+        var defendantServicePostcode = (req.session.data['defendant_service_postcode']) ? req.session.data['defendant_service_postcode'] : req.session.data['defendant_postcode']
+        var defendantServiceAddress = defendantServiceAddress1 + ' ' + defendantServiceAddress2 + ' ' + defendantServiceTown + ' ' + defendantServicePostcode
+
+        req.session.defendants = defendants
+
+        if (!req.body.addDefendant) {
+            defendants.push({'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
+
+            res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
+        }
+        else if (req.body.addDefendant.toString() === 'yes') {
+            req.session.data['defendant_name'] = req.session.data['defendant_rep_company'] = req.session.data['defendant_address1'] = req.session.data['defendant_address2'] = undefined
+            req.session.data['defendant_town'] = req.session.data['defendant_postcode'] = req.session.data['defendant_service_address1'] = req.session.data['defendant_service_address2'] = undefined
+            req.session.data['defendant_service_city'] = req.session.data['defendant_service_postcode'] = req.session.data['defendant_company_name'] = req.session.data['defendantType'] = undefined
+            req.session.data['defendantRepresented'] = req.session.data['defendant_title'] = req.session.data['defendantService'] = req.session.data['accept-service'] = undefined
+            res.redirect('defendant-type')
+        }
+        else {
+            res.redirect('type-of-claim')
+        }
+    });
+
     app.post('*/prototype-MVP-2017/choose-how-to-pay', function (req, res) {
         if (!req.body.paymentType) {
             res.render('prototype-MVP-2017/choose-how-to-pay')
