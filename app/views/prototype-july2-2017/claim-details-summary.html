@@ -146,7 +146,7 @@
   <div class="form-group">
     <div class="task-list-item">
       <div class="column-third form-hint">Maximum claim amount</div>
-      <div class="column-third if-empty">{% if data['higher_value'] %} £{{ data['higher_value'] }} {% endif %}</div>
+      <div class="column-third if-empty">TBA</div>
       <div class="column-third"><a class="right" href="claim-amount">Change</a></div>
     </div>
     <div class="task-list-item">
@@ -180,6 +180,10 @@
       <div class="column-third if-empty">{% if data['other_damages'] %} {{ data['other_damages'] }} {% endif %}</div>
     </div>
     {% endif %}
+    <div class="task-list-item">
+      <div class="column-third form-hint">Statement of value</div>
+      <div class="column-third if-empty">Claim for damages in excess of £? but limited to {% if data['higher_value'] %} £{{ data['higher_value'] }}. {% endif %} Claim includes a claim for personal injuries, the amount the claimant expects to recover as damages for pain, suffering and loss of amenity is {% if data['pain_value'] %} {{ data['pain_value'] }} {% endif %}</div>
+    </div>
     <div class="task-list-item">
       <div class="column-third form-hint">Issue fee</div>
       <div class="column-third if-empty">{{ amount }}</div>
