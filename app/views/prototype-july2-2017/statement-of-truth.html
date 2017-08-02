@@ -11,6 +11,11 @@
 </div>
 
 <div class="form-group">
+  <label class="form-label" for="signer_company">Company</label>
+  <p class="heading-small">{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</p>
+</div>
+
+<div class="form-group">
   <label class="form-label" for="signer-role">Your role</label>
   <input class="form-control" id="signer-role" name="signer-role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
 </div>
