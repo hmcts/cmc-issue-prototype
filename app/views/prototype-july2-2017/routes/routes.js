@@ -14,10 +14,10 @@ module.exports = function(app){
         res.render('prototype-july2-2017/claim-details-summary', { defendants: defendants })
     });
 
-    app.get('*/prototype-july2-2017/defendant-details', function(req, res){
+    app.get('*/prototype-MVP-2017/defendant-reps-address', function(req, res){
         var defendants = req.session.defendants || [];
 
-        res.render('prototype-july2-2017/defendant-details', { defendants: defendants })
+        res.render('prototype-MVP-2017/defendant-reps-address', { defendants: defendants })
     });
 
     app.get('*/prototype-july2-2017/defendant-reps-address', function(req, res){
@@ -30,6 +30,12 @@ module.exports = function(app){
         var defendants = req.session.defendants || [];
 
         res.render('prototype-july2-2017/defendants-service-address', { defendants: defendants })
+    });
+
+    app.get('*/prototype-july2-2017/defendants-type', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-july2-2017/defendants-type', { defendants: defendants })
     });
 
     app.post('*/prototype-july2-2017/defendant-type', function(req, res){

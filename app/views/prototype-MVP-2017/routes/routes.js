@@ -9,10 +9,10 @@ module.exports = function(app){
         }
     });
 
-    app.get('*/prototype-MVP-2017/defendants-service-address', function(req, res){
+    app.get('*/prototype-MVP-2017/defendant-type', function(req, res){
         var defendants = req.session.defendants || [];
 
-        res.render('prototype-MVP-2017/defendants-service-address', { defendants: defendants })
+        res.render('prototype-MVP-2017/defendant-type', { defendants: defendants })
     });
 
     app.post('*/prototype-MVP-2017/defendant-type', function(req, res){
@@ -46,7 +46,7 @@ module.exports = function(app){
             res.redirect('defendant-reps-address')
         }
         else {
-            res.redirect('defendants-service-address')
+            res.redirect('defendants-add')
         }
     });
 
