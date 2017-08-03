@@ -50,7 +50,7 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-MVP-2017/defendant-add', function(req, res){
+    app.get('*/prototype-MVP-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
         var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
@@ -65,12 +65,17 @@ module.exports = function(app){
         var defendantServiceTown = (req.session.data['defendant_service_city']) ? req.session.data['defendant_service_city'] : req.session.data['defendant_town']
         var defendantServicePostcode = (req.session.data['defendant_service_postcode']) ? req.session.data['defendant_service_postcode'] : req.session.data['defendant_postcode']
         var defendantServiceAddress = defendantServiceAddress1 + ' ' + defendantServiceAddress2 + ' ' + defendantServiceTown + ' ' + defendantServicePostcode
+        defendants.push({'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
 
         req.session.defendants = defendants
+        console.log(req.session.defendants)
+        res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
+    });
+
+    app.post('*/prototype-MVP-2017/defendant-add', function(req, res){
+        var defendants = req.session.defendants || [];
 
         if (!req.body.addDefendant) {
-            defendants.push({'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
-
             res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
         }
         else if (req.body.addDefendant.toString() === 'yes') {
@@ -78,7 +83,6 @@ module.exports = function(app){
             req.session.data['defendant_town'] = req.session.data['defendant_postcode'] = req.session.data['defendant_service_address1'] = req.session.data['defendant_service_address2'] = undefined
             req.session.data['defendant_service_city'] = req.session.data['defendant_service_postcode'] = req.session.data['defendant_company_name'] = req.session.data['defendantType'] = undefined
             req.session.data['defendantRepresented'] = req.session.data['defendant_title'] = req.session.data['defendantService'] = req.session.data['accept-service'] = undefined
-            defendants.push({'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
 
             res.redirect('defendant-type')
         }
