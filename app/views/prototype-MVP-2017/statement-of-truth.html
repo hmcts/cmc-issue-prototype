@@ -22,25 +22,7 @@
 
 
 <form method="post" action="pay-by-account" class="form">
-  <input type="submit" id="submit" class="button" value="Continue to payment" disabled>
+  <input type="submit" id="submit" class="button" value="Continue to payment">
 </form>
-
-<script type='text/javascript'>
-    window.onload = function() {
-        var txts = document.getElementById('signer_name');
-
-        var func = function() {
-            if(this.value.length > 0) {
-                document.getElementById('submit').disabled = false;
-            } else {
-                document.getElementById('submit').disabled = true;
-            }
-        }
-
-        txts.onkeyup = func;
-        txts.onblur = func;
-    }
-
-</script>
 
 {% endblock %}
