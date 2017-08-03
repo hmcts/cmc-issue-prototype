@@ -46,7 +46,7 @@ module.exports = function(app){
             res.redirect('defendant-reps-address')
         }
         else {
-            res.redirect('defendants-add')
+            res.redirect('defendant-add')
         }
     });
 
