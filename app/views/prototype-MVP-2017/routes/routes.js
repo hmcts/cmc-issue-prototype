@@ -1,14 +1,5 @@
 module.exports = function(app){
 
-    app.post('*/prototype-MVP-2017/representation', function(req, res){
-        if (req.body.representativeType.toString() === 'represent') {
-            res.redirect('representatives-details')
-        }
-        else {
-            res.redirect('not-supported')
-        }
-    });
-
     app.get('*/prototype-MVP-2017/defendant-type', function(req, res){
         var defendants = req.session.defendants || [];
 
@@ -36,6 +27,10 @@ module.exports = function(app){
         var defendants = req.session.defendants || [];
 
         res.render('prototype-MVP-2017/defendant-reps-address', { defendants: defendants })
+    });
+
+    app.post('*/prototype-MVP-2017/defendant-reps-address', function(req, res){
+        res.redirect('defendant-add')
     });
 
     app.post('*/prototype-MVP-2017/defendant-represented', function(req, res){
@@ -68,13 +63,12 @@ module.exports = function(app){
         defendants.push({'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
 
         req.session.defendants = defendants
-        console.log(req.session.defendants)
         res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
     });
 
     app.post('*/prototype-MVP-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
-
+        
         if (!req.body.addDefendant) {
             res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
         }
