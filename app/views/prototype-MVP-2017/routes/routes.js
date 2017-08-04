@@ -68,7 +68,7 @@ module.exports = function(app){
 
     app.post('*/prototype-MVP-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
-        
+
         if (!req.body.addDefendant) {
             res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
         }
