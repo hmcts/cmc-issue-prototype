@@ -29,17 +29,15 @@
     Already added
   </h1>
   <div class="column-full">
-    <div class="column-one-quarter bold">Defendant</div>
-    <div class="column-one-quarter bold">Defendant Solicitor</div>
-    <div class="column-one-quarter bold">Service Address</div>
+    <div class="column-one-quarter bold">No.</div>
+    <div class="column-half bold">Defendant name</div>
     <div class="column-one-quarter bold">Action</div>
   </div>
   <hr class="column-full">
   {% for defendant in defendants %}
   <div class="column-full">
-    <div class="column-one-quarter">{{ defendant.defendantName }}</div>
-    <div class="column-one-quarter">{{ defendant.solicitor }}</div>
-    <div class="column-one-quarter">{{ defendant.serviceAddress }}</div>
+      <div class="column-one-quarter">1</div>
+    <div class="column-half">{{ defendant.defendantName }}</div>
     <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">
   </div>
@@ -56,5 +54,3 @@
 
 </script>
 {% endblock %}
-
-
