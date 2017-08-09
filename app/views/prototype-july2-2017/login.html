@@ -3,12 +3,12 @@
 
 <form action="start" method="post">
   <div class="form-group">
-    <label class="form-label" for="claimant_title">Username</label>
-    <input type="text" class="form-control" id="claimant_title" name="claimant_title">
+    <label class="form-label" for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" value="{{ data['username'] }}">
   </div>
   <div class="form-group">
     <label class="form-label" for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="claimant_title">
+    <input type="password" class="form-control" id="password" name="password" value="{{ data['password'] }}">
   </div>
 
   <div class="form-group">

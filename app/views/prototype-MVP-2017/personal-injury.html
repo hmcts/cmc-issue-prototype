@@ -1,8 +1,11 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 <h1 class="heading-large">Is it a personal injury claim?</h1>
 
-<form action="housing-disrepair" id="form" method="post" class="form-group">
-  <div class="form-group inline">
+<form action="personal-injury" id="form" method="post" class="form-group">
+  <div class="form-group inline {% for error in errors %}{% if error.fieldName == 'personal_injury' %} form-group-error {% endif %}{% endfor %}">
+    {% for error in errors %}
+      {% if error.fieldName == 'personal_injury' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <div class="multiple-choice" data-target="personal-injury-yes">
       <input id="personalInjury_yes" name="personal_injury" type="radio" value="yes" {{ checked('personal_injury','yes') }}>
       <label for="personalInjury_yes">Yes</label>
@@ -13,8 +16,11 @@
     </div>
   </div>
 
-  <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
-    <p>How much do you expect to recover as general damages for pain, suffering and amenity?</p>
+  <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden form-group {% for error in errors %}{% if error.fieldName == 'pain_value' %} form-group-error {% endif %}{% endfor %}" aria-hidden="true">
+    <p class="form-label-bold">How much do you expect to recover as general damages for pain, suffering and amenity?</p>
+    {% for error in errors %}
+      {% if error.fieldName == 'pain_value' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <div class="multiple-choice">
       <input id="pain_value_less" name="pain_value" type="radio" value="less than £1000" {{ checked('pain_value','less than £1000') }}>
       <label for="pain_value_less">£1,000 or less</label>

@@ -1,14 +1,19 @@
-{% extends "prototype-MVP-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+{% extends "prototype-MVP-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %}
+
+{% block main_content %}
 <h1 class="heading-large">Login</h1>
 
-<form action="start" method="post">
-  <div class="form-group">
-    <label class="form-label" for="claimant_title">Username</label>
-    <input type="text" class="form-control" id="claimant_title" name="claimant_title">
+<form action="login" method="post">
+  <div class="form-group {% if errors %} form-group-error {% endif %}">
+    <label class="form-label" for="username">Username</label>
+    {% if errors %}
+      <span class="error-message">{{ errors[0].message }}</span>
+    {% endif %}
+    <input type="text" class="form-control" id="username" name="username" value="{{ data['username'] }}">
   </div>
   <div class="form-group">
     <label class="form-label" for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="claimant_title">
+    <input type="password" class="form-control" id="password" name="password" value="{{ data['password'] }}">
   </div>
 
   <div class="form-group">

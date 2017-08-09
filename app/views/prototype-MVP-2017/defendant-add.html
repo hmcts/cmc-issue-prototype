@@ -2,10 +2,13 @@
 
 <h1 class="heading-large">Do you want to add another defendant?</h1>
 <form action="defendant-add" id="form" method="post" class="form-group">
-  <fieldset class="form-group inline">
+  <fieldset class="form-group inline {% for error in errors %}{% if error.fieldName == 'addDefendant' %} form-group-error {% endif %}{% endfor %}">
     <legend class="visually-hidden">Do you want to add another defendant?</legend>
     <p>You can add up to 4 defendants, for any more you will need to use the paper N1 form.</p>
 
+    {% for error in errors %}
+      {% if error.fieldName == 'addDefendant' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <div class="multiple-choice" data-target="add-defendant-yes">
       <input id="company" name="addDefendant" type="radio" value="yes" {{ checked('addDefendant','yes') }}>
       <label for="company">Yes</label>

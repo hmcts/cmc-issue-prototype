@@ -2,9 +2,11 @@
 
 <h1 class="heading-large">Has the defendant got a representative who's instructed to accept service?</h1>
 <form action="defendant-represented" id="form" method="post" class="form-group">
-  <fieldset class="form-group inline">
+  <fieldset class="form-group inline {% if errors %} form-group-error {% endif %}">
     <legend class="visually-hidden">Has the defendant got a representative who's instructed to accept service?</legend>
-
+    {% for error in errors %}
+      {% if error.fieldName == 'defendantRepresented' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <div class="multiple-choice" data-target="defendant-represented-yes">
       <input id="company" name="defendantRepresented" type="radio" value="yes" {{ checked('defendantRepresented','yes') }}>
       <label for="company">Yes</label>

@@ -6,28 +6,43 @@
   <fieldset class="form-group">
     <legend class="visually-hidden">Address</legend>
 
-    <div class="form-group-compound">
+    <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'defendant_rep_company' %} form-group-error {% endif %}{% endfor %}">
       <label for="defendant_rep_company" class="form-label">Company name</label>
+      {% for error in errors %}
+        {% if error.fieldName == 'defendant_rep_company' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
       <input type="text" class="form-control" id="defendant_rep_company" name="defendant_rep_company" value="{{ data['defendant_rep_company'] }}">
     </div>
 
-    <div class="form-group-compound">
+    <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'defendant_service_address1' %} form-group-error {% endif %}{% endfor %}">
       <label for="defendant_service_address1" class="form-label">Address line 1</label>
+      {% for error in errors %}
+        {% if error.fieldName == 'defendant_service_address1' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
       <input type="text" class="form-control" id="defendant_service_address1" name="defendant_service_address1" value="{{ data['defendant_service_address1'] }}">
     </div>
 
-    <div class="form-group-compound">
+    <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'defendant_service_address2' %} form-group-error {% endif %}{% endfor %}">
       <label for="defendant_service_address2" class="form-label">Address line 2 (optional)</label>
-      <input type="text" class="form-control" id="defendant_service_address2" name="defendant_service_address2" value="{{ data['defendant_service_address2'] }}">
+      {% for error in errors %}
+        {% if error.fieldName == 'defendant_service_address2' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
+    <input type="text" class="form-control" id="defendant_service_address2" name="defendant_service_address2" value="{{ data['defendant_service_address2'] }}">
     </div>
 
-    <div class="form-group-compound">
+    <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'defendant_service_city' %} form-group-error {% endif %}{% endfor %}">
       <label for="defendant_service_city" class="form-label">Town or city (optional)</label>
-      <input type="text" class="form-control" id="defendant_service_city" name="defendant_service_city" value="{{ data['defendant_service_city'] }}">
+      {% for error in errors %}
+        {% if error.fieldName == 'defendant_service_city' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
+    <input type="text" class="form-control" id="defendant_service_city" name="defendant_service_city" value="{{ data['defendant_service_city'] }}">
     </div>
 
-    <div class="form-group">
+    <div class="form-group {% for error in errors %}{% if error.fieldName == 'defendant_service_postcode' %} form-group-error {% endif %}{% endfor %}">
       <label for="defendant_service_postcode" class="form-label">Postcode</label>
+      {% for error in errors %}
+        {% if error.fieldName == 'defendant_service_postcode' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
       <input type="text" class="form-control form-control-1-4" id="defendant_service_postcode" name="defendant_service_postcode" value="{{ data['defendant_service_postcode'] }}">
     </div>
 

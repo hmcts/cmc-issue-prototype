@@ -3,16 +3,18 @@
 
 <p>This should be your preferred court for a hearing.</p>
 
-<form action="what-type-of-claimant" method="post">
-  <div class="form-group">
-    <label for="preferred-court" class="form-label"><span class="form-hint">Optional</span></label>
-    <input id="preferred-court" name="preferred-court" type="text" class="form-control" value="{{ data['county_court'] }}">
+<form action="preferred-court" method="post">
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'county_court' %} form-group-error {% endif %}{% endfor %}">
+    <label for="county_court" class="form-label"><span class="form-hint">Optional</span></label>
+    {% for error in errors %}
+      {% if error.fieldName == 'county_court' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
+    <input id="county_court" name="county_court" type="text" class="form-control" value="{{ data['county_court'] }}">
   </div>
 
-
-  <a class="form-group" target="_blank" href="https://courttribunalfinder.service.gov.uk/search/postcode?aol=Money+claims&spoe=nearest">Find a county court</a>
-  <br>
-
+  <div class="form-group">
+    <a target="_blank" href="https://courttribunalfinder.service.gov.uk/search/postcode?aol=Money+claims&spoe=nearest">Find a county court</a>
+  </div>
 
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">

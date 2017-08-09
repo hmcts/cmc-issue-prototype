@@ -2,15 +2,28 @@
 
 <main id="content" role="main">
   {% include "includes/phase_banner_alpha.html" %}
+  <a class="link-back pointer" onclick="goBack()">Back</a>
+
+  <script>
+      function goBack() {
+          window.history.back();
+      }
+  </script>
+  {% block errorSummary %}
+    {% if errors %}
+      <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
+        <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
+        <ul class="error-summary-list">
+          {% for error in errors %}
+          <li><a href="#{{ error.fieldName }}">{{ error.message }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endblock %}
   <div class="grid-row">
     <div class="column-two-thirds">
-      <a class="link-back pointer" onclick="goBack()">Back</a>
 
-      <script>
-        function goBack() {
-            window.history.back();
-        }
-      </script>
       {% block main_content %}
       <h1 class="heading-large">Issue a claim</h1>
       <p><a href="prototype-may-2017/start" role="button">Sprint 2 - Prototype May 2017</a></p>

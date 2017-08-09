@@ -1,8 +1,11 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 <h1 class="heading-large">Is it a claim for housing disrepair?</h1>
 
-<form action="claim-details" id="form" method="post" class="form-group">
-  <div class="form-group inline">
+<form action="housing-disrepair" id="form" method="post" class="form-group">
+  <div class="form-group inline {% for error in errors %}{% if error.fieldName == 'housing_disrepair' %} form-group-error {% endif %}{% endfor %}">
+    {% for error in errors %}
+      {% if error.fieldName == 'housing_disrepair' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <div class="multiple-choice" data-target="housing-repair-yes">
       <input id="housing_disrepair_yes" name="housing_disrepair" type="radio" value="yes" {{ checked('housing_disrepair','yes') }}>
       <label for="housing_disrepair_yes">Yes</label>
@@ -13,8 +16,11 @@
     </div>
   </div>
   <div id="housing-repair-yes" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
-    <div class="form-group">
-      <p>How much do you expect to recover for the cost of repairs or other work?</p>
+    <div class="form-group {% for error in errors %}{% if error.fieldName == 'general_damages' %} form-group-error {% endif %}{% endfor %}">
+      <p class="form-label-bold">How much do you expect to recover for the cost of repairs or other work?</p>
+      {% for error in errors %}
+        {% if error.fieldName == 'general_damages' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
       <div class="multiple-choice">
         <input id="general_damages_less" name="general_damages" type="radio" value="£1000 or less" {{ checked('general_damages','£1000 or less') }}>
         <label for="general_damages_less">£1,000 or less</label>
@@ -25,8 +31,11 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <p>How much do you expect to recover for damages?</p>
+    <div class="form-group {% for error in errors %}{% if error.fieldName == 'other_damages' %} form-group-error {% endif %}{% endfor %}">
+      <p class="form-label-bold">How much do you expect to recover for damages?</p>
+      {% for error in errors %}
+        {% if error.fieldName == 'other_damages' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
       <div class="multiple-choice">
         <input id="other_damages_not" name="other_damages" type="radio" value="not claiming" {{ checked('other_damages','not claiming') }}>
         <label for="other_damages_not">I'm not claiming for other damages</label>

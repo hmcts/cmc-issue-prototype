@@ -2,19 +2,34 @@
 <h1 class="heading-large">Enter claim value</h1>
 
 <p class="bold-small">Your fee will be calculated based on the higher value.</p>
-<form action="claim-total" method="post">
-  <div class="form-group">
+<form action="claim-amount" method="post">
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'lower_value' or error.fieldName == 'higher_value' %} form-group-error {% endif %}{% endfor %}">
     <div class="column-one-half no-padding">
       <span class="form-block">Lower value (optional)</span>
+      <span class="error-message {% if errors and errors[0].fieldName != 'claim_amount_checkbox' %}error-min-height{% endif %}">
+        {% for error in errors %}
+          {% if error.fieldName == 'lower_value' %}
+            {{ error.message }}
+          {% endif %}
+        {% endfor %}
+      </span>
       <input type="text" class="form-control form-control-3-4 pound" name="lower_value" id="lower_value" value="{{ data['lower_value'] }}">
     </div>
     <div class="column-one-half no-padding">
       <span class="form-block">Higher value</span>
+        {% for error in errors %}
+          {% if error.fieldName == 'higher_value' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+        {% endfor %}
       <input type="text" class="form-control form-control-3-4 pound" name="higher_value" id="higher_value" value="{{ data['higher_value'] }}">
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'claim_amount_checkbox' %} form-group-error {% endif %}{% endfor %}">
+    {% if errors %}
+      {% for error in errors %}
+        {% if error.fieldName == 'claim_amount_checkbox' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+      {% endfor %}
+    {% endif %}
     <div class="multiple-choice" data-target="max-fee">
       <input id="card" name="claim_amount_checkbox" type="checkbox" value="cannot" {{ checked('claim_amount_checkbox','cannot') }}>
       <label for="card">I can't state the value of the claim</label>

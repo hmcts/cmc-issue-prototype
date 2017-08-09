@@ -2,24 +2,36 @@
 
 <h1 class="heading-large"><span class="form-hint">Claimant: {% if data['claimant_name'] %} {{ data['claimant_name'] }} {% else %} {{ data['claimant_company_name'] }} {% endif %}</span>Address</h1>
 
-<form method="post" action="defendant-type" class="form">
-  <div class="form-group-compound">
+<form method="post" action="claimant-address" class="form">
+  <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'claimant_AddressLine1' %} form-group-error {% endif %}{% endfor %}">
     <label class="form-label" for="claimant_AddressLine1">Address line 1</label>
+    {% for error in errors %}
+      {% if error.fieldName == 'claimant_AddressLine1' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <input class="form-control" id="claimant_AddressLine1" name="claimant_AddressLine1" type="text" value="{{ data['claimant_AddressLine1'] }}">
   </div>
 
-  <div class="form-group-compound">
+  <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'claimant_AddressLine2' %} form-group-error {% endif %}{% endfor %}">
     <label class="form-label" for="claimant_AddressLine2">Address line 2 (optional)</label>
+    {% for error in errors %}
+      {% if error.fieldName == 'claimant_AddressLine2' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <input class="form-control" id="claimant_AddressLine2" name="claimant_AddressLine2" type="text" value="{{ data['claimant_AddressLine2'] }}">
   </div>
 
-  <div class="form-group-compound">
+  <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'claimant_city' %} form-group-error {% endif %}{% endfor %}">
     <label class="form-label" for="claimant_city">Town or city (optional)</label>
+    {% for error in errors %}
+      {% if error.fieldName == 'claimant_city' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <input class="form-control" id="claimant_city" name="claimant_city" type="text" value="{{ data['claimant_city'] }}">
   </div>
 
-  <div class="form-group">
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'claimant_Postcode' %} form-group-error {% endif %}{% endfor %}">
     <label class="form-label" for="claimant_Postcode">Postcode</label>
+    {% for error in errors %}
+      {% if error.fieldName == 'claimant_Postcode' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
     <input class="form-control form-control-1-4" id="claimant_Postcode" name="claimant_Postcode" type="text" value="{{ data['claimant_Postcode'] }}">
   </div>
 
