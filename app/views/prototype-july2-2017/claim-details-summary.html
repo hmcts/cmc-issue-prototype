@@ -4,8 +4,9 @@
 <p>Make sure this information is correct before you issue. </p>
 
 <form action="statement-of-truth" id="form" method="post" class="form-group">
-  <div>
 
+<div class="heading-medium">Your Company</div>
+  <div>
     <div class="task-list-item">
       <div class="column-third form-hint">Your company name</div>
       <div class="column-third if-empty">
@@ -42,7 +43,9 @@
       <div class="column-third"><a class="right" href="claimant-individual-reference">Change</a></div>
     </div>
   </div>
+
   {% if data['claimant_name'] %}
+  <div class="heading-medium">Claimant</div>
     <div>
       <div class="task-list-item">
         <div class="column-third form-hint">Claimant's name</div>
@@ -91,7 +94,10 @@
     </div>
   {% endif %}
 
+{% if data['claimant_name'] %}
   <div>
+    <div class="heading-medium">Defendant</div>
+
     {% for defendant in defendants %}
       <div class="task-list-item">
         <div class="column-third form-hint">Defendant's name
@@ -131,7 +137,11 @@
       </div>
     {% endfor %}
   </div>
+  
+  {% endif %}
   <div>
+    <div class="heading-medium">The Claim</div>
+
     <div class="task-list-item">
       <div class="column-third form-hint">Brief details of claim</div>
       <div class="column-third if-empty">{% if data['claim_details'] %} {{ data['claim_details'] }} {% endif %}</div>
