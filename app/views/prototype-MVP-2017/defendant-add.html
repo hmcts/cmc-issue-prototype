@@ -4,7 +4,7 @@
 <form action="defendant-add" id="form" method="post" class="form-group">
   <fieldset class="form-group inline {% for error in errors %}{% if error.fieldName == 'addDefendant' %} form-group-error {% endif %}{% endfor %}">
     <legend class="visually-hidden">Do you want to add another defendant?</legend>
-    <p>You can add up to 4 defendants, for any more you will need to use the paper N1 form.</p>
+    <p>You can add up to 4 defendants in this service.</p>
 
     {% for error in errors %}
       {% if error.fieldName == 'addDefendant' %}<span class="error-message">{{ error.message }}</span>{% endif %}
@@ -44,7 +44,7 @@
     <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">
   </div>
-  
+
   {% endfor %}
 {% endif %}
 
