@@ -442,7 +442,7 @@ module.exports = function(app){
         var form = req.body;
         var errors = [];
 
-        if (form.higher_value === '' && form.claim_amount_checkbox !== 'cannot') {
+        if (form.higher_value === '' && form.claim_amount_checkbox[0] !== 'cannot') {
             errors.push({fieldName: 'higher_value', message: "Enter valid higher value" });
         } else if (isNaN(form.higher_value)) {
             errors.push({fieldName: 'higher_value', message: "Enter a maximum two decimal places" });
@@ -455,25 +455,11 @@ module.exports = function(app){
         if (form.claim_amount_checkbox[0] === 'cannot' && parseFloat(form.higher_value) > 0) {
             errors.push({fieldName: 'claim_amount_checkbox', message: "Enter a value or choose ‘I can’t state the value’" });
         }
-        console.log(errors);
 
         if (errors.length === 0) {
             res.redirect('claim-total')
         } else {
             res.render('prototype-MVP-2017/claim-amount', { errors: errors })
-        }
-    });
-
-
-    app.post('*/prototype-MVP-2017/defendant-represented', function(req, res){
-        if (!req.body.defendantRepresented) {
-            res.render('prototype-MVP-2017/defendant-represented')
-        }
-        else if (req.body.defendantRepresented.toString() === 'yes') {
-            res.redirect('defendant-reps-address')
-        }
-        else {
-            res.redirect('personal-injury')
         }
     });
 
@@ -515,6 +501,46 @@ module.exports = function(app){
         }
         req.session.data.amount = amount;
         res.render('prototype-MVP-2017/claim-total', { amount: amount})
+    });
+
+    app.post('*/prototype-MVP-2017/statement-of-truth', function(req, res){
+        var form = req.body;
+        var errors = [];
+
+        if (form.signer_name === '') {
+            errors.push({fieldName: 'signer_name', message: "Enter the name of the person signing the statement" });
+        } else if (form.signer_name.length > 70) {
+            errors.push({fieldName: 'signer_name', message: "You’ve entered too many characters" });
+        }
+
+        if (form.signer_role === '') {
+            errors.push({fieldName: 'signer_role', message: "Enter the role of the person signing the statement" });
+        } else if (form.signer_role.length > 255) {
+            errors.push({fieldName: 'signer_role', message: "You’ve entered too many characters" });
+        }
+
+        if (errors.length === 0) {
+            res.redirect('pay-by-account')
+        } else {
+            res.render('prototype-MVP-2017/statement-of-truth', { errors: errors })
+        }
+    });
+
+    app.post('*/prototype-MVP-2017/pay-by-account', function(req, res){
+        var form = req.body;
+        var errors = [];
+
+        if (form.fee_account === '') {
+            errors.push({fieldName: 'fee_account', message: "Enter your Fee Account number" });
+        } else if (form.fee_account.length != 10) {
+            errors.push({fieldName: 'fee_account', message: "Enter a valid Fee Account number" });
+        }
+
+        if (errors.length === 0) {
+            res.redirect('claim-submitted')
+        } else {
+            res.render('prototype-MVP-2017/pay-by-account', { errors: errors })
+        }
     });
 
     app.get('*/prototype-MVP-2017/claim-submitted', function (req, res) {

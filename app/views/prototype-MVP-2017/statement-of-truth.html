@@ -1,28 +1,35 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Statement of truth</h1>
+<form method="post" action="statement-of-truth" class="form">
+  <div class="form-group">
+    <label>The claimant believes that the facts in this claim form are true. I'm duly authorised by the claimant to sign this statement.</label>
+  </div>
 
-<div class="form-group">
-  <label>The claimant believes that the facts in this claim form are true. I'm duly authorised by the claimant to sign this statement.</label>
-</div>
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'signer_name' %} form-group-error {% endif %}{% endfor %}">
+    <label class="form-label" for="signer_name">Name</label>
+    {% for error in errors %}
+      {% if error.fieldName == 'signer_name' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
+    <textarea type="text" class="form-control" id="signer_name" name="signer_name" value="{{ data['signer_name'] }}">{{ data['signer_name'] }}</textarea>
+  </div>
 
-<div class="form-group">
-  <label class="form-label" for="signer_name">Name</label>
-  <textarea type="text" class="form-control" id="signer_name" name="signer_name" value="{{ data['signer_name'] }}">{{ data['signer_name'] }}</textarea>
-</div>
+  <div class="form-group">
+    <label class="form-label" for="company_name">Company</label>
+    <p id="company_name" class="heading-small">{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</p>
+  </div>
 
-<div class="form-group">
-  <label class="form-label" for="signer_company">Company</label>
-  <p class="heading-small">{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</p>
-</div>
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'signer_role' %} form-group-error {% endif %}{% endfor %}">
+    <label class="form-label" for="signer_role">Your role</label>
+    {% for error in errors %}
+      {% if error.fieldName == 'signer_role' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
+    <input class="form-control" id="signer_role" name="signer_role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
+  </div>
 
-<div class="form-group">
-  <label class="form-label" for="signer-role">Your role</label>
-  <input class="form-control" id="signer-role" name="signer-role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
-</div>
+  <div class="form-group">
+    <input type="submit" class="button" value="Continue to payment">
+  </div>
 
-
-<form method="post" action="pay-by-account" class="form">
-  <input type="submit" id="submit" class="button" value="Continue to payment">
 </form>
 
 {% endblock %}
