@@ -3,26 +3,28 @@
 <div class="govuk-box-highlight">
   <h1 class="bold-large">Your claim has been issued</h1>
   <br>
-  <p>Claim number: D99YJ987</p>
+  <h2 class="bold-medium">Claim number: D99YJ987</h2>
   <p>{{ today }} -  {{ time }}</p>
+  <p>Fee paid: {{ amount }}</p>
 </div>
 
-<div class="task-list-item form-group">
-  <div class="column-third bold">Total paid</div>
-  <div class="column-third bold numeric">£{{ amount }}</div>
-</div>
+<!--  If there is no email address, append the text: We've sent confirmation to the address you provided earlier
+-->
 
-<p>Follow these steps to serve a claim:</p>
+<p>We've emailed confirmation to:
+  <span class="bold-small">{{ data['rep_email'] }}</span>
+</p>
+
+<h1 class="bold-medium">Follow these steps to serve a claim:</h1>
 
 <ol class="form-group" type="1">
-  <li>1. Download the sealed claim form.</li>
+  <li>1. <a target="_blank" href="/public/documents/N1-form-sealed.pdf">Download the sealed claim form</a> (this will open in a new window)</li>
   <li>2. Send it to the defendant within 4 months of the date of issue.</li>
-  <li>3. Include particulars of claim with the sealed claim form, or serve them separately within 14 days.</li>
+  <li>3. Include particulars of claim with the sealed claim form.</li>
+  <li>4. Send a certificate of service and the particulars to the court within 21 days from the date you served.</li>
 </ol>
-
-<p>You must send the court a certificate of service within 21 days from the date you served particulars:</p>
-
-<div id="defendant-service-address" class="panel panel-border-narrow">
+<br>
+<div class="panel panel-border-narrow">
   <p class="form-group-compound">County Court Money Claims Centre (CCMCC)</p>
   <p class="form-group-compound">Salford</p>
   <p class="form-group-compound">Greater Manchester</p>
@@ -30,18 +32,6 @@
   <p class="form-group-compound"><span class="bold">DX:</span> 702634 Salford 5</p>
 </div>
 
-<div class="form-group">
-  <div class="column-half">
-    <p>Sealed claim form</p>
-
-    <a target="_blank" href="/public/documents/N1-form-sealed.pdf">
-      <div class="form-group">
-        <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form">
-      </div>
-      <span class="button secondary-button">Download</span>
-    </a>
-  </div>
-</div>
 
 
-<a class="button" href="start" role="button">Finish</a> {% endblock %}
+<a class="button" href="start" role="button">Finish</a>  {% endblock %}
