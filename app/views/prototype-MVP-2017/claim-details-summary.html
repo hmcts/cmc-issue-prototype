@@ -1,46 +1,40 @@
-{% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Check the claim details</h1>
 
 <p>Make sure this information is correct before you issue. </p>
 
 <form action="statement-of-truth" id="form" method="post" class="form-group">
+
+<div class="heading-medium">Company details</div>
   <div>
     <div class="task-list-item">
-      <div class="column-third form-hint">Your name</div>
-      <div class="column-third if-empty">
-        {% if data['rep_title'] %} {{ data['rep_title'] }} {% endif %}
-        {% if data['rep_name'] %} {{ data['rep_name'] }} {% endif %}
-      </div>
-      <div class="column-third"><a class="right" href="representative-name">Change</a></div>
-    </div>
-    <div class="task-list-item">
-      <div class="column-third form-hint">Your company name</div>
+      <div class="column-third form-hint">Company name</div>
       <div class="column-third if-empty">
         {% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}
       </div>
       <div class="column-third"><a class="right" href="representative-name">Change</a></div>
     </div>
     <div class="task-list-item">
-      <div class="column-third form-hint">Your company address</div>
+      <div class="column-third form-hint">Address</div>
       <div class="column-third if-empty">
         {% if data['rep_AddressLine1'] %} {{ data['rep_AddressLine1'] }}, {% endif %}
         {% if data['rep_AddressLine2'] %} {{ data['rep_AddressLine2'] }},{% endif %}
         {% if data['rep_city'] %} {{ data['rep_city'] }}, {% endif %}
         {% if data['rep_Postcode'] %} {{ data['rep_Postcode'] }} {% endif %}
       </div>
-      <div class="column-third"><a class="right" href="representative-address">Change</a></div>
+
     </div>
     <div class="task-list-item">
-      <div class="column-third form-hint">Your company phone number</div>
+      <div class="column-third form-hint">Phone number</div>
       <div class="column-third if-empty">{% if data['rep_phone_number'] %} {{ data['rep_phone_number'] }} {% endif %}</div>
       <div class="column-third"><a class="right" href="representative-contact">Change</a></div>
     </div>
     <div class="task-list-item">
-      <div class="column-third form-hint">Your company email</div>
+      <div class="column-third form-hint">Email</div>
       <div class="column-third if-empty">{% if data['rep_email'] %} {{ data['rep_email'] }} {% endif %}</div>
     </div>
     <div class="task-list-item">
-      <div class="column-third form-hint">Your DX address</div>
+      <div class="column-third form-hint">DX address</div>
       <div class="column-third if-empty">{% if data['rep_dx_number'] %} {{ data['rep_dx_number'] }} {% endif %}</div>
     </div>
     <div class="task-list-item">
@@ -49,10 +43,12 @@
       <div class="column-third"><a class="right" href="claimant-individual-reference">Change</a></div>
     </div>
   </div>
+
   {% if data['claimant_name'] %}
+  <div class="heading-medium">Claimant details</div>
     <div>
       <div class="task-list-item">
-        <div class="column-third form-hint">Claimant's name</div>
+        <div class="column-third form-hint">Name</div>
         <div class="column-third if-empty">
           {% if data['claimant_title'] %} {{ data['claimant_title'] }} {% endif %}
           {% if data['claimant_name'] %} {{ data['claimant_name'] }} {% endif %}
@@ -60,7 +56,7 @@
         <div class="column-third"><a class="right" href="what-type-of-claimant">Change</a></div>
       </div>
       <div class="task-list-item">
-        <div class="column-third form-hint">Claimant's address</div>
+        <div class="column-third form-hint">Address</div>
         <div class="column-third if-empty">
           {% if data['claimant_AddressLine1'] %} {{ data['claimant_AddressLine1'] }}, {% endif %}
           {% if data['claimant_AddressLine2'] %} {{ data['claimant_AddressLine2'] }},{% endif %}
@@ -74,19 +70,19 @@
   {% if data['claimant_company_name'] %}
     <div>
       <div class="task-list-item">
-        <div class="column-third form-hint">Claimant's company name</div>
+        <div class="column-third form-hint">Company name</div>
         <div class="column-third if-empty">
           {% if data['claimant_company_name'] %} {{ data['claimant_company_name'] }} {% endif %}
         </div>
         <div class="column-third"><a class="right" href="what-type-of-claimant">Change</a></div>
       </div>
       <div class="task-list-item">
-        <div class="column-third form-hint">Claimant's Companies House number</div>
+        <div class="column-third form-hint">Companies House number</div>
         <div class="column-third if-empty">{% if data['claimant_company_number'] %} {{ data['claimant_company_number'] }} {% endif %}</div>
         <div class="column-third"><a class="right" href="claimant-address">Change</a></div>
       </div>
       <div class="task-list-item">
-        <div class="column-third form-hint">Claimant's address</div>
+        <div class="column-third form-hint">Address</div>
         <div class="column-third if-empty">
           {% if data['claimant_company_address1'] %} {{ data['claimant_company_address1'] }}, {% endif %}
           {% if data['claimant_company_address2'] %} {{ data['claimant_company_address2'] }},{% endif %}
@@ -98,57 +94,54 @@
     </div>
   {% endif %}
 
+{% if data['claimant_name'] %}
   <div>
-    {% if data['defendant_name'] %}
+    <div class="heading-medium">Defendant details</div>
+
+    {% for defendant in defendants %}
       <div class="task-list-item">
-        <div class="column-third form-hint">Defendant's name</div>
+        <div class="column-third form-hint">Name
+        </div>
         <div class="column-third if-empty">
-          {% if data['defendant_title'] %} {{ data['defendant_title'] }} {% endif %}
-          {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% endif %}
+          {{ defendant.defendantName }}
         </div>
         <div class="column-third"><a class="right" href="defendant-type">Change</a></div>
       </div>
-    {% endif %}
-    {% if data['defendant_company_name'] %}
-    <div class="task-list-item">
-      <div class="column-third form-hint">Defendant's name</div>
-      <div class="column-third if-empty">
-        {% if data['defendant_company_name'] %} {{ data['defendant_company_name'] }} {% endif %}
+
+      {% if defendant.defendantCompanyNumber != '-' %}
+        <div class="task-list-item">
+          <div class="column-third form-hint">Companies House number</div>
+          <div class="column-third if-empty">{{ defendant.defendantCompanyNumber }}</div>
+          <div class="column-third"><a class="right" href="defendant-type">Change</a></div>
+        </div>
+      {% endif %}
+      <div class="task-list-item">
+        <div class="column-third form-hint">Address</div>
+        <div class="column-third if-empty">
+          {{ defendant.defendantAddress}}
+        </div>
+        <div class="column-third"><a class="right" href="defendant-details">Change</a></div>
       </div>
-      <div class="column-third"><a class="right" href="defendant-type">Change</a></div>
-    </div>
-    <div class="task-list-item">
-      <div class="column-third form-hint">Defendant's Companies House number</div>
-      <div class="column-third if-empty">{% if data['defendant_company_number'] %} {{ data['defendant_company_number'] }} {% endif %}</div>
-      <div class="column-third"><a class="right" href="defendant-type">Change</a></div>
-    </div>
-    {% endif %}
-    <div class="task-list-item">
-      <div class="column-third form-hint">Defendant's address</div>
-      <div class="column-third if-empty">
-        {% if data['defendant_address1'] %} {{ data['defendant_address1'] }}, {% endif %}
-        {% if data['defendant_address2'] %} {{ data['defendant_address2'] }},{% endif %}
-        {% if data['defendant_town'] %} {{ data['defendant_town'] }}, {% endif %}
-        {% if data['defendant_postcode'] %} {{ data['defendant_postcode'] }} {% endif %}
+      {% if defendant.solicitor != '-' %}
+        <div class="task-list-item">
+          <div class="column-third form-hint">Solicitor</div>
+          <div class="column-third if-empty">{{ defendant.solicitor }}</div>
+          <div class="column-third"><a class="right" href="defendant-service-address">Change</a></div>
+        </div>
+      {% endif %}
+      <div class="task-list-item">
+        <div class="column-third form-hint">Service address</div>
+        <div class="column-third if-empty">
+          {{ defendant.serviceAddress }}
+        </div>
       </div>
-      <div class="column-third"><a class="right" href="defendant-details">Change</a></div>
-    </div>
-    <div class="task-list-item">
-      <div class="column-third form-hint">Defendant's solicitor</div>
-      <div class="column-third if-empty">{% if data['defendant_service_name'] %} {{ data['defendant_service_name'] }} {% endif %}</div>
-      <div class="column-third"><a class="right" href="defendant-reps-address">Change</a></div>
-    </div>
-    <div class="task-list-item">
-      <div class="column-third form-hint">Defendant's service address</div>
-      <div class="column-third if-empty">
-        {% if data['defendant_service_address1'] %} {{ data['defendant_service_address1'] }}, {% else %} {{ data['defendant_address1'] }}, {% endif %}
-        {% if data['defendant_service_address2'] %} {{ data['defendant_service_address2'] }}, {% else %} {{ data['defendant_address2'] }} {% endif %}
-        {% if data['defendant_service_city'] %} {{ data['defendant_service_city'] }}, {% else %} {{ data['defendant_town'] }}, {% endif %}
-        {% if data['defendant_service_postcode'] %} {{ data['defendant_service_postcode'] }} {% else %} {{ data['defendant_postcode'] }} {% endif %}
-      </div>
-    </div>
+    {% endfor %}
   </div>
+
+  {% endif %}
   <div>
+    <div class="heading-medium">About this claim</div>
+
     <div class="task-list-item">
       <div class="column-third form-hint">Brief details of claim</div>
       <div class="column-third if-empty">{% if data['claim_details'] %} {{ data['claim_details'] }} {% endif %}</div>
@@ -157,45 +150,33 @@
   </div>
   <div class="form-group">
     <div class="task-list-item">
-      <div class="column-third form-hint">Higher claim value</div>
-      <div class="column-third if-empty">{% if data['higher_value'] %} £{{ data['higher_value'] }} {% endif %}</div>
+      <div class="column-third form-hint">Claim amount</div>
+      <div class="column-third if-empty">To be assessed</div>
       <div class="column-third"><a class="right" href="claim-amount">Change</a></div>
     </div>
+
+
     <div class="task-list-item">
-      <div class="column-third form-hint">Interest</div>
-      <div class="column-third if-empty">{% if data['interest_rate'] %} {{ data['interest_rate'] }} {% endif %}</div>
-      <div class="column-third"><a class="right" href="calculate-interest">Change</a></div>
+      <div class="column-third form-hint">Statement of value</div>
+      <div class="column-third if-empty">This claim is for personal injury. The claimant expects to recover {% if data['pain_value'] %} {{ data['pain_value'] }}{% endif %} as general damages for pain, suffering and loss of amenity. The claimant expects to recover more than {% if data['lower_value'] %} £{{ data['lower_value'] }} {% endif %} but not more than {% if data['higher_value'] %} £{{ data['higher_value'] }} {% endif %}
+              </div>
+        <div class="column-third"><a class="right" href="personal-injury">Change</a></div>
+
+
     </div>
-    <div class="task-list-item">
-      <div class="column-third form-hint">Personal injury</div>
-      <div class="column-third if-empty">{% if data['personal_injury'] %} {{ data['personal_injury'] }} {% endif %}</div>
-      <div class="column-third"><a class="right" href="personal-injury">Change</a></div>
-    </div>
-    {% if data['personal_injury'] == 'yes' %}
-      <div class="task-list-item">
-        <div class="column-third form-hint">Expected recovery for pain or suffering</div>
-        <div class="column-third if-empty">{% if data['pain_value'] %} {{ data['pain_value'] }} {% endif %}</div>
-      </div>
-    {% endif %}
-    <div class="task-list-item">
-      <div class="column-third form-hint">Housing disrepair</div>
-      <div class="column-third if-empty">{% if data['housing_disrepair'] %} {{ data['housing_disrepair'] }} {% endif %}</div>
-      <div class="column-third"><a class="right" href="housing-disrepair">Change</a></div>
-    </div>
-    {% if data['housing_disrepair'] == 'yes' %}
-    <div class="task-list-item">
-      <div class="column-third form-hint">Expected recovery for repairs</div>
-      <div class="column-third if-empty">{% if data['pain_value'] %} {{ data['pain_value'] }} {% endif %}</div>
-    </div>
-    <div class="task-list-item">
-      <div class="column-third form-hint">Expected recovery for damages</div>
-      <div class="column-third if-empty">{% if data['other_damages'] %} {{ data['other_damages'] }} {% endif %}</div>
-    </div>
-    {% endif %}
     <div class="task-list-item">
       <div class="column-third form-hint">Issue fee</div>
-      <div class="column-third if-empty">£{{ amount }}</div>
+      <div class="column-third if-empty">{{ amount }}</div>
     </div>
+  </div>
+
+  <div>
+    <div class="heading-medium" style="padding-top: 50px;">See how your form will look when printed</div>
+    <a target="_blank" href="/public/documents/N1-form-draft.pdf" role="button">
+
+      <img class="form-label" src="/public/images/sealed-claim.png" alt="sealed claim form"><p>Preview N1 form</a>
+     (this will open in a new window)</p>
+
   </div>
 
 <br>
