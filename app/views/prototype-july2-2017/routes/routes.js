@@ -95,7 +95,7 @@ module.exports = function(app){
             res.render('prototype-july2-2017/type-of-claim')
         }
         else if (req.body.typeOfClaim.toString() === 'specified') {
-            res.redirect('not-supported')
+            res.redirect('fixed-claim-amount')
         }
         else {
             res.redirect('personal-injury')
