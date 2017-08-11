@@ -1,0 +1,259 @@
+<!--[if lt IE 9]><html class="lte-ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>
+Money Claims Prototype
+</title>
+
+    <!--[if gt IE 8]><!--><link href="/public/stylesheets/govuk-template.css?0.19.2" media="screen" rel="stylesheet" /><!--<![endif]-->
+    <!--[if IE 6]><link href="/public/stylesheets/govuk-template-ie6.css?0.19.2" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 7]><link href="/public/stylesheets/govuk-template-ie7.css?0.19.2" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 8]><link href="/public/stylesheets/govuk-template-ie8.css?0.19.2" media="screen" rel="stylesheet" /><![endif]-->
+    <link href="/public/stylesheets/govuk-template-print.css?0.19.2" media="print" rel="stylesheet" />
+
+    <!--[if IE 8]><link href="/public/stylesheets/fonts-ie8.css?0.19.2" media="all" rel="stylesheet" /><![endif]-->
+    <!--[if gte IE 9]><!--><link href="/public/stylesheets/fonts.css?0.19.2" media="all" rel="stylesheet" /><!--<![endif]-->
+    <!--[if lt IE 9]><script src="/public/javascripts/ie.js?0.19.2"></script><![endif]-->
+
+    <link rel="shortcut icon" href="/public/images/favicon.ico?0.19.2" type="image/x-icon" />
+    <link rel="mask-icon" href="/public/images/gov.uk_logotype_crown.svg?0.19.2" color="#0b0c0c">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/images/apple-touch-icon-152x152.png?0.19.2">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/public/images/apple-touch-icon-120x120.png?0.19.2">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/public/images/apple-touch-icon-76x76.png?0.19.2">
+    <link rel="apple-touch-icon-precomposed" href="/public/images/apple-touch-icon-60x60.png?0.19.2">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="/public/images/opengraph-image.png?0.19.2">
+
+
+  <!--[if lte IE 8]><link href="/public/stylesheets/application-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if gt IE 8]><!-->
+<link href="/public/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+<!--<![endif]-->
+
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u = "//hmctspiwik.useconnect.co.uk/";
+    _paq.push(['setTrackerUrl', u + 'piwik.php']);
+    _paq.push(['setSiteId', {
+      {
+        piwikSiteId
+      }
+    }]);
+    var d = document,
+      g = d.createElement('script'),
+      s = d.getElementsByTagName('script')[0];
+    g.type = 'text/javascript';
+    g.async = true;
+    g.defer = true;
+    g.src = u + 'piwik.js';
+    s.parentNode.insertBefore(g, s);
+  })();
+</script>
+<!-- End Piwik Code -->
+
+
+
+  </head>
+
+  <body class="">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+
+
+    <div id="skiplink-container">
+      <div>
+        <a href="#content" class="skiplink">Skip to main content</a>
+      </div>
+    </div>
+
+    <div id="global-cookie-message">
+
+
+  <p>GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a></p>
+
+
+    </div>
+
+
+    <header role="banner" id="global-header" class="
+  with-proposition
+">
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="https://www.gov.uk" title="Go to the GOV.UK homepage" id="logo" class="content">
+              <img src="/public/images/gov.uk_logotype_crown_invert_trans.png?0.19.2" width="36" height="32" alt=""> GOV.UK
+            </a>
+          </div>
+
+        </div>
+
+<div class="header-proposition">
+  <div class="content">
+    <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+    <nav id="proposition-menu">
+      <a href=" ../task-list " id="proposition-name">
+
+
+           Money Claims
+
+      </a>
+
+    </nav>
+  </div>
+</div>
+
+      </div>
+    </header>
+
+
+
+
+    <div id="global-header-bar"></div>
+
+
+<main id="content" role="main">
+  <div class="phase-banner-beta">
+  <p>
+    <strong class="phase-tag">BETA</strong>
+    <span>This is a new service – your <a target="_black" href="http://www.smartsurvey.co.uk/s/CMCMVPFB/">feedback</a> will help us to improve it. (opens in a new window)</span>
+  </p>
+</div>
+
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form method="post" action="fixed-interest" class="form">
+
+
+        <h1 class="heading-large">
+          Claim amount
+        </h1>
+        <p>Your claim could be for a single amount or might be made up of multiple items.</p>
+        <div class="panel panel-border-wide">
+          <p>Don't include interest - we'll ask you about this next.</p>
+          <p>Don't include your claim fee - we'll add this for you.</p>
+        </div>
+        <br>
+        <!--<a href="" style="float: left" data-alert="This feature is not available in this demo">More about what you can claim</a>-->
+        <div id="timeline" class="timeline">
+          <div class="timeline-headings">
+            <div id="timeline-heading-1" class="timeline-column-3">
+              <label class="form-label-bold" for="event-form-control">
+                What you're claiming for
+              </label>
+              <span class="form-hint">Briefly explain why you're claiming for this - for example, "unpaid debt" or "house deposit not returned" </span>
+            </div>
+            <div id="timeline-heading-2" class="timeline-column-4 ">
+              <label class="form-label-bold" for="date-form-control">
+                Amount
+              </label>
+              <span class="form-hint"> </span>
+            </div>
+          </div>
+          <div class="timeline-rows">
+            <div class="timeline-row">
+              <input class="form-control timeline-column-3" type="text" id="event-form-control" name="timeline-1"
+              value="">
+              <input class="form-control timeline-column-4 fee pound" type="text" id="amount1" name="date-1"
+              value="">
+            </div>
+            <div class="timeline-row">
+              <input class="form-control timeline-column-3" type="text" id="event-form-control" name="timeline-2"
+              value="">
+              <input class="form-control timeline-column-4 fee pound" type="text" id="amount2" name="date-2"
+              value="">
+            </div>
+            <div class="timeline-row">
+              <input class="form-control timeline-column-3" type="text" id="event-form-control" name="timeline-3"
+              value="">
+              <input class="form-control timeline-column-4 fee pound" type="text" id="amount3" name="date-3"
+              value="">
+            </div>
+            <div class="timeline-row">
+              <input class="form-control timeline-column-3" type="text" id="event-form-control" name="timeline-4"
+              value="">
+              <input class="form-control timeline-column-4 fee pound" type="text" id="amount4" name="date-4"
+              value="">
+            </div>
+          </div>
+          <div class="timeline-row">
+          <div id="add-event-container">
+            <a class="secondary-button" id="add-another-event-button" href="#">Add another row</a>
+          </div>
+<!--           <a class="" id="calculate" href="#">Calculate total</a>
+ -->        </div>
+        <div class="timeline-row total bold-medium" >
+         £<span id="totalSumDisplay"></span>
+        </div>
+        <input  type="hidden" name="totalSum" id="totalSum" value=>
+        <script>
+          $(document).ready(function () {
+            $('#add-another-event-button').click(function (event) {
+              event.preventDefault();
+              $('.timeline-rows').append(
+                '<div class="timeline-row">' +
+                '<input class="form-control timeline-column-3" style="margin-right: 1px; margin-right: 10px;" type="text">' +
+                '<input class="form-control timeline-column-4 fee pound" style="margin-left: 3px" type="text">' +
+                '</div>'
+                );
+            });
+          });
+        </script>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Save and continue"/>
+        </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+
+    <footer class="group js-footer" id="footer" role="contentinfo">
+
+      <div class="footer-wrapper">
+
+
+        <div class="footer-meta">
+          <div class="footer-meta-inner">
+
+
+     <ul>
+       <li>
+         <a href="/prototype-admin/clear-data">Clear data</a>
+       </li>
+     </ul>
+
+
+
+            <div class="open-government-licence">
+              <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
+
+                <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+
+            </div>
+          </div>
+
+          <div class="copyright">
+            <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">&copy; Crown copyright</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="global-app-error" class="app-error hidden"></div>
+
+    <script src="/public/javascripts/govuk-template.js?0.19.2"></script>
