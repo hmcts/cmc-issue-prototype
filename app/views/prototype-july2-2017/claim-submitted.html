@@ -4,12 +4,9 @@
   <h1 class="bold-large">Your claim has been issued</h1>
   <br>
   <h2 class="bold-medium">Claim number: D99YJ987</h2>
-  <p>{{ today }}</p>
+  <p>Issue date: {{ today }}</p>
   <p>Fee paid: {{ amount }}</p>
 </div>
-
-<!--  If there is no email address, append the text: We've sent confirmation to the address you provided earlier
--->
 
 <p>We've emailed confirmation to:
   <span class="bold-small">{{ data['rep_email'] }}</span>
@@ -26,7 +23,7 @@
 
 <br>
 
-<h2 class="bold-small">Court address</h2>
+<h2 class="bold-small">Court address:</h2>
 <div class="panel panel-border-narrow">
   <p class="form-group-compound">County Court Money Claims Centre (CCMCC)</p>
   <p class="form-group-compound">Salford</p>

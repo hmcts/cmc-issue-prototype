@@ -171,15 +171,13 @@ module.exports = function(app){
     });
 
     app.get('*/prototype-july2-2017/claim-submitted', function (req, res) {
-        var today = new Date();
-        var date = today.toDateString();
-        var time = today.toLocaleTimeString();
+        var moment = require('moment');
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-july2-2017/claim-submitted', {today: date, time: time, amount: formatter.format(req.session.data.amount)  })
+        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('Do MMMM YYYY'), amount: formatter.format(req.session.data.amount)  })
     })
 
     app.get('*/prototype-july2-2017/pay-by-card', function (req, res) {

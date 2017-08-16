@@ -545,7 +545,12 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/claim-submitted', function (req, res) {
         var moment = require('moment');
-        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('Do MMMM YYYY'), amount: req.session.data.amount })
+        var formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 0, /* this might not be necessary */
+        });
+        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('Do MMMM YYYY'), amount: formatter.format(req.session.data.amount) })
     })
 
     app.get('*/prototype-MVP-2017/pay-by-card', function (req, res) {
