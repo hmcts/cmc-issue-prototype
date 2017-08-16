@@ -1,8 +1,6 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Choose claimant type</h1>
 
-<p>You'll have a chance to add more claimants later.</p>
-
 <form action="what-type-of-claimant" id="form" method="post" class="form-group">
     <fieldset class="form-group {% for error in errors %}{% if error.fieldName == 'claimantType' %} form-group-error {% endif %}{% endfor %}">
       {% for error in errors %}
