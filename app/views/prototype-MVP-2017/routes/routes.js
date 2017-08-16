@@ -267,7 +267,6 @@ module.exports = function(app){
             res.render('prototype-MVP-2017/defendant-details', { errors: errors, defendants: defendants })
         }
     });
-
     app.post('*/prototype-MVP-2017/defendant-represented', function(req, res){
         var form = req.body;
         var errors = [];
@@ -287,6 +286,7 @@ module.exports = function(app){
             res.render('prototype-MVP-2017/defendant-represented', { errors: errors })
         }
     });
+
 
     app.get('*/prototype-MVP-2017/defendant-reps-address', function(req, res){
         var defendants = req.session.defendants || [];
@@ -335,6 +335,7 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
+        var defendantNo = defendants.length + 1;
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
         var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
         var defendantSolicitorName = (req.session.data['defendant_rep_company']) ? req.session.data['defendant_rep_company'] : '-'
@@ -348,7 +349,7 @@ module.exports = function(app){
         var defendantServiceTown = (req.session.data['defendant_service_city']) ? req.session.data['defendant_service_city'] : req.session.data['defendant_town']
         var defendantServicePostcode = (req.session.data['defendant_service_postcode']) ? req.session.data['defendant_service_postcode'] : req.session.data['defendant_postcode']
         var defendantServiceAddress = defendantServiceAddress1 + ' ' + defendantServiceAddress2 + ' ' + defendantServiceTown + ' ' + defendantServicePostcode
-        defendants.push({'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
+        defendants.push({'defendantNo': defendantNo, 'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
 
         req.session.defendants = defendants
         res.render('prototype-MVP-2017/defendant-add', { defendants: defendants })
@@ -503,6 +504,11 @@ module.exports = function(app){
         res.render('prototype-MVP-2017/claim-total', { amount: amount})
     });
 
+    app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
+        var defendants = req.session.defendants || [];
+        res.render('prototype-MVP-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
+    })
+
     app.post('*/prototype-MVP-2017/statement-of-truth', function(req, res){
         var form = req.body;
         var errors = [];
@@ -561,11 +567,6 @@ module.exports = function(app){
     app.get('*/prototype-MVP-2017/pay-by-account', function (req, res) {
         var today = new Date().toDateString();
         res.render('prototype-MVP-2017/pay-by-account', {amount: req.session.data.amount })
-    })
-
-    app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
-        var today = new Date().toDateString();
-        res.render('prototype-MVP-2017/claim-details-summary', {amount: req.session.data.amount })
     })
 
 }

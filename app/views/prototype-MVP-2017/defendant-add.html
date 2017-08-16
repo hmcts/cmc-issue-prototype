@@ -39,7 +39,7 @@
   <hr class="column-full">
   {% for defendant in defendants %}
   <div class="column-full">
-      <div class="column-one-quarter">1</div>
+      <div class="column-one-quarter">{{ defendant.defendantNo}}</div>
     <div class="column-half">{{ defendant.defendantName }}</div>
     <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">
