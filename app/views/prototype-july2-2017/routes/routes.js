@@ -61,7 +61,7 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/defendant-reps-address', function(req, res){
-        res.redirect('prototype-july2-2017/defendant-add')
+        res.redirect('defendant-add')
     });
 
     app.get('*/prototype-july2-2017/defendants-service-address', function(req, res){
@@ -106,7 +106,7 @@ module.exports = function(app){
             res.redirect('defendant-type')
         }
         else {
-            res.redirect('personal-injury')
+            res.redirect('type-of-claim')
         }
     });
 
@@ -189,6 +189,10 @@ module.exports = function(app){
         req.session.data.amount = amount;
         res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
     });
+
+    app.post('*/prototype-july2-2017/claim-total', function (req, res) {
+        res.redirect('claim-details-summary')
+    })
 
     app.get('*/prototype-july2-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
