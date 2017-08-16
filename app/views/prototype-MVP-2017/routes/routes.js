@@ -544,10 +544,13 @@ module.exports = function(app){
     });
 
     app.get('*/prototype-MVP-2017/claim-submitted', function (req, res) {
-        var today = new Date();
-        var date = today.toDateString();
-        var time = today.toLocaleTimeString();
-        res.render('prototype-MVP-2017/claim-submitted', {today: date, time: time, amount: req.session.data.amount })
+        var moment = require('moment');
+        var formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 0, /* this might not be necessary */
+        });
+        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('Do MMMM YYYY'), amount: formatter.format(req.session.data.amount) })
     })
 
     app.get('*/prototype-MVP-2017/pay-by-card', function (req, res) {
