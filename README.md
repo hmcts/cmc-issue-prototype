@@ -1,5 +1,7 @@
 # GOV.UK Prototype kit
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hmcts/cmc-issue-prototype.svg)](https://greenkeeper.io/)
+
 Go to the [GOV.UK Prototype Kit site](https://govuk-prototype-kit.herokuapp.com/docs) to download the latest version and read the documentation.
 
 ## About the prototype kit
