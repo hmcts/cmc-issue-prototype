@@ -1,89 +1,59 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<form method="post" action="fixed-interest-date" class="form">
+  <h1 class="heading-large">When are you claiming interest from?</h1>
 
-<main id="content" role="main">
+  <fieldset class="form-group">
+    <legend class="visuallyhidden">When are you claiming interest from</legend>
+    <div class="multiple-choice" data-target="particular">
+      <input id="interest_date_past" name="interest_date" type="radio" value="particular_date" {{ checked('interest_date','particular_date') }}>
+      <label for="interest_date_past"><strong class="form-label-bold">Claim interest from a particular date</strong>
+      For example, the date an invoice was overdue or that you told someone they owed you the money.</label>
+    </div>
 
-<div>
-  <div>
-    <main>
+    <div class="panel panel-border-narrow js-hidden" id="particular">
 
-  <h1 class="heading-large">
-         When are you claiming interest from?
-       </h1>
+      <div class="form-group form-date">
+        <p class="form-hint form-group-compound">For example, 31 03 2016</p>
 
-       <fieldset>
-         <legend class="visuallyhidden">
-           When are you claiming interest from
-         </legend>
+        <div class="form-group form-group-day">
+          <label for="interest-day">Day</label>
+          <input class="form-control" id="interest-day" name="interest-day" type="number" pattern="[0-9]*" min="0" max="31" value="">
+        </div>
 
-         <div class="multiple-choice" data-target="particular">
-            <input id="radio-1" name="interest-date" type="radio" value="Particular date" >
-           <label for="radio-1"><strong class="bold">Claim interest from a particular date</strong><br>
-             For example, the date an invoice was overdue or that you told someone they owed you the money.</label>
-         </div>
-         <div class="panel panel-border-narrow js-hidden" id="particular">
+        <div class="form-group form-group-month">
+          <label for="interest-month">Month</label>
+          <input class="form-control" id="interest-month" name="interest-month" type="number" pattern="[0-9]*" min="0" max="12" value="">
+        </div>
 
-           <div class="form-date">
+        <div class="form-group form-group-year">
+          <label for="interest-year">Year</label>
+          <input class="form-control" id="interest-year" name="interest-year" type="number" pattern="[0-9]*" min="0" max="2017" value="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="date-why">Explain why you're claiming from this date</label>
+        <input class="form-control" name="date-why" type="text" id="date-why" value="">
+      </div>
+    </div>
 
-             <p style="color: #6F777B">For example, 31 03 2016</p>
+    <div class="multiple-choice">
+      <input id="interest_date_issue" type="radio" name="interest_date" value="issue_date" {{ checked('interest_date','issue_date') }}>
+      <label class="form-label-bold" for="interest_date_issue">Claim interest from the date I submit the claim</label>
+    </div>
 
-             <div class="form-group form-group-day">
-               <label for="interest-day">Day</label>
-               <input class="form-control" id="dob-day" name="interest-day" type="number" pattern="[0-9]*" min="0" max="31" value="">
-             </div>
+</fieldset>
 
-             <div class="form-group form-group-month">
-               <label for="dob-month">Month</label>
-               <input class="form-control" id="interest-month" name="interest-month" type="number" pattern="[0-9]*" min="0" max="12" value="">
-             </div>
+  <details class="form-group">
+    <summary>
+      <span class="summary">Help with this decision</span>
+    </summary>
+  </details>
 
-             <div class="form-group form-group-year">
-               <label for="dob-year">Year</label>
-               <input class="form-control" id="interest-year" name="interest-year" type="number" pattern="[0-9]*" min="0" max="2017" value="">
-             </div>
-           </div>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue"/>
+  </div>
 
-           <fieldset></fieldset>
-           <label class="form-label" for="date-why">Explain why you're claiming from this date</label>
-           <input class="form-control" name="date-why" type="text" id="date-why" value="">
-         </div>
-
-         <div class="multiple-choice">
-           <input id="radio-2" type="radio" name="interest-date" value="Issue date" >
-           <label for="radio-2"><strong class="bold">Claim interest from the date I submit the claim</strong>
-           </label>
-         </div>
-
-       </fieldset>
-
-       <br>
-
-       <details>
-
-         <summary>
-           <span class="summary">Help with this decision</span>
-         </summary>
-
-        <!--  <div class="panel panel-border-narrow">
-           <p>Content goes here...</p>
-         </div> -->
-
-       </details>
-
-       <fieldset></fieldset>
-
-
-       <div class="form-group">
-         <input type="submit" class="button" value="Save and continue"/>
-       </div>
-
-
-     </form>
-
-   </div>
- </div>
-
-
-</main>
+</form>
 
 
 {% endblock %}
