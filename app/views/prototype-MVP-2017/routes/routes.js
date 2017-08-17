@@ -236,6 +236,12 @@ module.exports = function(app){
         }
     });
 
+    app.get('*/prototype-MVP-2017/defendant-details', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-MVP-2017/defendant-details', { defendants: defendants })
+    });
+
     app.post('*/prototype-MVP-2017/defendant-details', function(req, res){
         var form = req.body;
         var defendants = req.session.defendants || [];
@@ -267,6 +273,7 @@ module.exports = function(app){
             res.render('prototype-MVP-2017/defendant-details', { errors: errors, defendants: defendants })
         }
     });
+
     app.post('*/prototype-MVP-2017/defendant-represented', function(req, res){
         var form = req.body;
         var errors = [];
@@ -335,7 +342,7 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
-        var defendantNo = defendants.length + 1;
+        var defendantNo = defendants.length + 1 || 1;
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
         var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
         var defendantSolicitorName = (req.session.data['defendant_rep_company']) ? req.session.data['defendant_rep_company'] : '-'
@@ -568,12 +575,10 @@ module.exports = function(app){
     })
 
     app.get('*/prototype-MVP-2017/pay-by-card', function (req, res) {
-        var today = new Date().toDateString();
         res.render('prototype-MVP-2017/pay-by-card', {amount: req.session.data.amount })
     })
 
     app.get('*/prototype-MVP-2017/pay-by-account', function (req, res) {
-        var today = new Date().toDateString();
         res.render('prototype-MVP-2017/pay-by-account', {amount: req.session.data.amount })
     })
 
