@@ -44,8 +44,8 @@
     </div>
   </div>
 
-  {% if data['claimant_name'] %}
   <div class="heading-medium">Claimant details</div>
+  {% if data['claimant_name'] %}
     <div>
       <div class="task-list-item">
         <div class="column-third form-hint">Name</div>
@@ -68,31 +68,32 @@
     </div>
   {% endif %}
   {% if data['claimant_company_name'] %}
-    <div>
-      <div class="task-list-item">
-        <div class="column-third form-hint">Company name</div>
-        <div class="column-third if-empty">
-          {% if data['claimant_company_name'] %} {{ data['claimant_company_name'] }} {% endif %}
-        </div>
-        <div class="column-third"><a class="right" href="what-type-of-claimant">Change</a></div>
+  <div>
+    <div class="task-list-item">
+      <div class="column-third form-hint">Company name</div>
+      <div class="column-third if-empty">
+        {% if data['claimant_company_name'] %} {{ data['claimant_company_name'] }} {% endif %}
       </div>
-      <div class="task-list-item">
-        <div class="column-third form-hint">Companies House number</div>
-        <div class="column-third if-empty">{% if data['claimant_company_number'] %} {{ data['claimant_company_number'] }} {% endif %}</div>
-        <div class="column-third"><a class="right" href="claimant-address">Change</a></div>
-      </div>
-      <div class="task-list-item">
-        <div class="column-third form-hint">Address</div>
-        <div class="column-third if-empty">
-          {% if data['claimant_company_address1'] %} {{ data['claimant_company_address1'] }}, {% endif %}
-          {% if data['claimant_company_address2'] %} {{ data['claimant_company_address2'] }},{% endif %}
-          {% if data['claimant_company_city'] %} {{ data['claimant_company_city'] }}, {% endif %}
-          {% if data['claimant_company_postcode'] %} {{ data['claimant_company_postcode'] }} {% endif %}
-        </div>
-        <div class="column-third"><a class="right" href="claimant-address">Change</a></div>
-      </div>
+      <div class="column-third"><a class="right" href="what-type-of-claimant">Change</a></div>
     </div>
+    <div class="task-list-item">
+      <div class="column-third form-hint">Companies House number</div>
+      <div class="column-third if-empty">{% if data['claimant_company_number'] %} {{ data['claimant_company_number'] }} {% endif %}</div>
+      <div class="column-third"><a class="right" href="claimant-address">Change</a></div>
+    </div>
+    <div class="task-list-item">
+      <div class="column-third form-hint">Address</div>
+      <div class="column-third if-empty">
+        {% if data['claimant_AddressLine1'] %} {{ data['claimant_AddressLine1'] }}, {% endif %}
+        {% if data['claimant_AddressLine2'] %} {{ data['claimant_AddressLine2'] }},{% endif %}
+        {% if data['claimant_city'] %} {{ data['claimant_city'] }}, {% endif %}
+        {% if data['claimant_Postcode'] %} {{ data['claimant_Postcode'] }} {% endif %}
+      </div>
+      <div class="column-third"><a class="right" href="claimant-address">Change</a></div>
+    </div>
+  </div>
   {% endif %}
+
 
   <div class="heading-medium">Defendant details</div>
 
@@ -154,15 +155,28 @@
 
     <div class="task-list-item">
       <div class="column-third form-hint">Statement of value</div>
-      <div class="column-third if-empty">This claim is for personal injury. The claimant expects to recover {% if data['pain_value'] %} {{ data['pain_value'] }}{% endif %} as general damages for pain, suffering and loss of amenity. The claimant expects to recover more than {% if data['lower_value'] %} £{{ data['lower_value'] }} {% endif %} but not more than {% if data['higher_value'] %} £{{ data['higher_value'] }} {% endif %}
-              </div>
-        <div class="column-third"><a class="right" href="personal-injury">Change</a></div>
+      {% if data['personal_injury'] == 'no' and data['housing_disrepair'] == 'no' and data['lower_value'] == null and data['higher_value'] == null  %}
+        <div class="column-third">The claimant cannot state the value of the claim.</div>
+      {% endif %}
+      {% if data['personal_injury'] == 'no' and data['housing_disrepair'] == 'no' and data['lower_value'] and data['higher_value']  %}
+        <div class="column-third">The claimant expects to recover more than £{{ data['lower_value'] }} but not more than £{{ data['higher_value'] }}.</div>
+      {% endif %}
+      {% if data['personal_injury'] == 'no' and data['housing_disrepair'] == 'no' and data['lower_value'] == null and data['higher_value']  %}
+        <div class="column-third">The claimant expects to recover up to £{{ data['higher_value'] }}.</div>
+      {% endif %}
+      {% if data['personal_injury'] == 'yes' and data['housing_disrepair'] == 'no' and data['lower_value'] == null and data['higher_value'] == null  %}
+        <div class="column-third"><p>The claimant cannot state the value of the claim.</p>
+          This claim is for personal injury. The claimant expects to recover [more than £1,000/not more than £1,000] as general damages for pain, suffering and loss of amenity.</div>
+      {% endif %}
+
+
+      <div class="column-third"><a class="right" href="personal-injury">Change</a></div>
 
 
     </div>
     <div class="task-list-item">
       <div class="column-third form-hint">Issue fee</div>
-      <div class="column-third if-empty">{{ amount }}</div>
+      <div class="column-third if-empty">£{{ amount }}</div>
     </div>
   </div>
 

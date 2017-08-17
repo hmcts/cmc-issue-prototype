@@ -510,6 +510,8 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
+        console.log(req.body)
+        console.log(defendants)
         res.render('prototype-MVP-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
     })
 
@@ -568,12 +570,10 @@ module.exports = function(app){
     })
 
     app.get('*/prototype-MVP-2017/pay-by-card', function (req, res) {
-        var today = new Date().toDateString();
         res.render('prototype-MVP-2017/pay-by-card', {amount: req.session.data.amount })
     })
 
     app.get('*/prototype-MVP-2017/pay-by-account', function (req, res) {
-        var today = new Date().toDateString();
         res.render('prototype-MVP-2017/pay-by-account', {amount: req.session.data.amount })
     })
 
