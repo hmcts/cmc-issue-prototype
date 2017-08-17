@@ -37,7 +37,7 @@
         {% if error.fieldName == 'other_damages' %}<span class="error-message">{{ error.message }}</span>{% endif %}
       {% endfor %}
       <div class="multiple-choice">
-        <input id="other_damages_not" name="other_damages" type="radio" value="not claiming" {{ checked('other_damages','not claiming') }}>
+        <input id="other_damages_not" name="other_damages" type="radio" value="not claiming" {{ checked('other_damages','not being claimed') }}>
         <label for="other_damages_not">I'm not claiming for other damages</label>
       </div>
 

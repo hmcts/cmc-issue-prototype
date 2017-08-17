@@ -335,7 +335,7 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
-        var defendantNo = defendants.length + 1;
+        var defendantNo = defendants.length + 1 || 1;
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
         var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
         var defendantSolicitorName = (req.session.data['defendant_rep_company']) ? req.session.data['defendant_rep_company'] : '-'
@@ -510,8 +510,8 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
-        console.log(req.body)
         console.log(defendants)
+        console.log(req.session.data)
         res.render('prototype-MVP-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
     })
 
