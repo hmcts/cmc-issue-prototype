@@ -517,8 +517,6 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
-        console.log(defendants)
-        console.log(req.session.data)
         res.render('prototype-MVP-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
     })
 

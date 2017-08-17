@@ -42,6 +42,11 @@
       <div class="column-third if-empty">{% if data['claimant_individual_reference'] %} {{ data['claimant_individual_reference'] }} {% endif %}</div>
       <div class="column-third"><a class="right" href="claimant-individual-reference">Change</a></div>
     </div>
+    <div class="task-list-item">
+      <div class="column-third form-hint">Preferred court</div>
+      <div class="column-third if-empty">{% if data['county_court'] %} {{ data['county_court'] }} {% endif %}</div>
+      <div class="column-third"><a class="right" href="preferred-court">Change</a></div>
+    </div>
   </div>
 
   <div class="heading-medium">Claimant details</div>
@@ -152,7 +157,7 @@
 
     <div class="task-list-item">
       <div class="column-third form-hint">Statement of value</div>
-      <div class="column-third">
+      <div class="column-third if-empty">
         {% if data['lower_value'] == '' and data['higher_value'] == '' and data['personal_injury'] == 'no' and data['housing_disrepair'] == 'no' %}
           <span class="form-group">The claimant cannot state the value of the claim.</span>
         {% endif %}
@@ -228,6 +233,11 @@
     <div class="task-list-item">
       <div class="column-third form-hint">Issue fee</div>
       <div class="column-third if-empty">£{{ amount }}</div>
+    </div>
+    <div class="task-list-item">
+      <div class="column-third form-hint">Fee account</div>
+      <div class="column-third if-empty">{% if data['fee_account'] %} {{ data['fee_account'] }} {% endif %}</div>
+      <div class="column-third"><a class="right" href="pay-by-account">Change</a></div>
     </div>
   </div>
 
