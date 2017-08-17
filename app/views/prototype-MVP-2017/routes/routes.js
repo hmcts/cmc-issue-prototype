@@ -510,7 +510,13 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
+        console.log(req.body)
+        console.log(defendants)
         res.render('prototype-MVP-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
+    })
+
+    app.post('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
+        res.redirect('statement-of-truth')
     })
 
     app.post('*/prototype-MVP-2017/statement-of-truth', function(req, res){
