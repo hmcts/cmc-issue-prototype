@@ -236,6 +236,12 @@ module.exports = function(app){
         }
     });
 
+    app.get('*/prototype-MVP-2017/defendant-details', function(req, res){
+        var defendants = req.session.defendants || [];
+
+        res.render('prototype-MVP-2017/defendant-details', { defendants: defendants })
+    });
+
     app.post('*/prototype-MVP-2017/defendant-details', function(req, res){
         var form = req.body;
         var defendants = req.session.defendants || [];
@@ -267,6 +273,7 @@ module.exports = function(app){
             res.render('prototype-MVP-2017/defendant-details', { errors: errors, defendants: defendants })
         }
     });
+
     app.post('*/prototype-MVP-2017/defendant-represented', function(req, res){
         var form = req.body;
         var errors = [];
