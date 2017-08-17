@@ -17,7 +17,7 @@
   </div>
 
   <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden form-group {% for error in errors %}{% if error.fieldName == 'pain_value' %} form-group-error {% endif %}{% endfor %}" aria-hidden="true">
-    <p class="form-label-bold">How much do you expect to recover as general damages for pain, suffering and amenity?</p>
+    <p class="form-label-bold">How much do you expect to recover as general damages for pain, suffering and loss of amenity?</p>
     {% for error in errors %}
       {% if error.fieldName == 'pain_value' %}<span class="error-message">{{ error.message }}</span>{% endif %}
     {% endfor %}
