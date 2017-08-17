@@ -186,7 +186,7 @@ module.exports = function(app){
         }
 
         if (errors.length === 0) {
-            res.redirect('defendant-add')
+            res.redirect('defendant-type')
         } else {
             res.render('prototype-MVP-2017/claimant-address', { errors: errors })
         }
@@ -504,9 +504,17 @@ module.exports = function(app){
         res.render('prototype-MVP-2017/claim-total', { amount: amount})
     });
 
+    app.post('*/prototype-MVP-2017/claim-total', function (req, res) {
+        res.redirect('claim-details-summary')
+    })
+
     app.get('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
         res.render('prototype-MVP-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
+    })
+
+    app.post('*/prototype-MVP-2017/claim-details-summary', function (req, res) {
+        res.redirect('statement-of-truth')
     })
 
     app.post('*/prototype-MVP-2017/statement-of-truth', function(req, res){
@@ -556,7 +564,7 @@ module.exports = function(app){
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('Do MMMM YYYY'), amount: formatter.format(req.session.data.amount) })
+        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), amount: formatter.format(req.session.data.amount) })
     })
 
     app.get('*/prototype-MVP-2017/pay-by-card', function (req, res) {

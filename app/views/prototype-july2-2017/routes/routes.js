@@ -145,6 +145,10 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-july2-2017/fixed-interest-date', function (req, res) {
+        res.redirect('claim-total')
+    })
+
     app.get('*/prototype-july2-2017/claim-total', function (req, res) {
         var amount = 10000
         if (req.session.data["higher_value"]) {
@@ -206,7 +210,7 @@ module.exports = function(app){
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('Do MMMM YYYY'), amount: formatter.format(req.session.data.amount)  })
+        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), amount: formatter.format(req.session.data.amount)  })
     })
 
     app.get('*/prototype-july2-2017/pay-by-card', function (req, res) {
