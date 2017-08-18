@@ -7,7 +7,7 @@
     <legend class="visually-hidden">Address</legend>
 
     <div class="form-group-compound {% for error in errors %}{% if error.fieldName == 'defendant_rep_company' %} form-group-error {% endif %}{% endfor %}">
-      <label for="defendant_rep_company" class="form-label">Company name</label>
+      <label for="defendant_rep_company" class="form-label">Organisation name</label>
       {% for error in errors %}
         {% if error.fieldName == 'defendant_rep_company' %}<span class="error-message">{{ error.message }}</span>{% endif %}
       {% endfor %}

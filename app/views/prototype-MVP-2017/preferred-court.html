@@ -1,7 +1,7 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-<h1 class="heading-large">Choose a county court</h1>
+<h1 class="heading-large">Choose court location</h1>
 
-<p>This should be your preferred court for a hearing.</p>
+<p>This should be your preferred County Court hearing centre.</p>
 
 <form action="preferred-court" method="post">
   <div class="form-group {% for error in errors %}{% if error.fieldName == 'county_court' %} form-group-error {% endif %}{% endfor %}">
@@ -13,7 +13,7 @@
   </div>
 
   <div class="form-group">
-    <a target="_blank" href="https://courttribunalfinder.service.gov.uk/search/postcode?aol=Money+claims&spoe=nearest">Find a county court</a>
+    <a target="_blank" href="https://courttribunalfinder.service.gov.uk/search/postcode?aol=Money+claims&spoe=nearest">Find a hearing centre</a>(this will open in a new window)
   </div>
 
   <div class="form-group">
