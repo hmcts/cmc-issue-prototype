@@ -146,10 +146,21 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/fixed-interest', function (req, res) {
+        var rate = 8;
+        if (req.body.interest_rate === 'no_interest') {
+            rate = 0;
+        } else if (req.body.interest_rate === 'different_rate') {
+            rate = Number(req.session.data.different_rate_value);
+        }
+        req.session.data.interest_rate = rate;
         res.redirect('fixed-interest-date')
     });
 
     app.post('*/prototype-july2-2017/fixed-interest-date', function (req, res) {
+        var moment = require('moment');
+        var date = moment(req.body.interest_year + '-' + req.body.interest_month + '-' + req.body.interest_day).toString();
+        req.session.data.date_from = date;
+        console.log(date)
         res.redirect('claim-details')
     });
 
@@ -175,9 +186,17 @@ module.exports = function(app){
     });
 
     app.get('*/prototype-july2-2017/claim-total', function (req, res) {
+        var moment = require('moment');
         var value = 0;
+        var total = Number(req.session.data.total);
         if (req.session.data.typeOfClaim === 'specified') {
-            value = Number(req.session.data.total)
+            var interest = 0;
+            if (req.session.data.date_from) {
+                var days = moment().diff(moment(req.session.data.date_from), 'days');
+                interest = parseFloat(((Number(req.session.data.total) * Number(days) * Number(req.session.data.interest_rate)) / (365 * 100)).toFixed(2));
+                console.log(interest);
+            }
+            value = Number(req.session.data.total) + interest;
         } else {
             value = Number(req.session.data.higher_value)
         }
@@ -223,7 +242,6 @@ module.exports = function(app){
             minimumFractionDigits: 2, /* this might not be necessary */
         });
         if (req.session.data.typeOfClaim === 'specified') {
-            total = Number(req.session.data.total);
             var fee = 80;
             switch (true) {
                 case (total >25 && total <= 500):
