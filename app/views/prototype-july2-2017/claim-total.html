@@ -12,18 +12,14 @@
     <tbody>
       <tr>
         <th class="font-small" scope="row">Amount claimed</th>
-        <td class="numeric last">
-            To be assessed
-        </td>
+        <td class="numeric last">{% if claimType != 'specified'  %} To be assessed {% else %} {{ total }} {% endif %}</td>
       </tr>
       <tr>
         <th class="font-small" scope="row">Legal representative's costs</th>
-        <td class="numeric last">
-            To be assessed
-        </td>
+        <td class="numeric last">{% if claimType != 'specified'  %} To be assessed {% else %} {{ fee }} {% endif %}</td>
       </tr>
       <tr>
-        <td scope="row"><span class="bold-small">Issue fee</span> (based on higher value of £{{ data['higher_value'] }})</td>
+        <td scope="row"><span class="bold-small">Issue fee</span>{% if claimType != 'specified'  %} (based on higher value of £{{ data['higher_value'] }}){% endif %}</td>
         <td class="numeric last">
         <span class="bold-small">{{ amount }}</span>
         </td>

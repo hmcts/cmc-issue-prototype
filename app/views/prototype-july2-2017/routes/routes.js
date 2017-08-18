@@ -141,6 +141,7 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/fixed-claim-amount', function (req, res) {
+        req.session.data.total = Number(req.body.amount_1) + Number(req.body.amount_2) + Number(req.body.amount_3) + Number(req.body.amount_4);
         res.redirect('fixed-interest')
     });
 
@@ -161,7 +162,6 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/claim-details', function (req, res) {
-        console.log(req.session.data.typeOfClaim)
         if (req.session.data.typeOfClaim === 'specified') {
             res.redirect('claim-total')
         }
@@ -175,48 +175,76 @@ module.exports = function(app){
     });
 
     app.get('*/prototype-july2-2017/claim-total', function (req, res) {
-        var amount = 10000
-        if (req.session.data["higher_value"]) {
-            var higherValue = parseFloat(req.session.data["higher_value"])
-            switch(true) {
-                case (higherValue <= 300):
-                    amount = 25
-                    break;
-                case (higherValue <= 500):
-                    amount = 35
-                    break;
-                case (higherValue <= 1000):
-                    amount = 60
-                    break;
-                case (higherValue <= 1500):
-                    amount = 70
-                    break;
-                case (higherValue <= 3000):
-                    amount = 105
-                    break;
-                case (higherValue <= 5000):
-                    amount = 185
-                    break;
-                case (higherValue <= 10000):
-                    amount = 410
-                    break;
-                case (higherValue > 10000):
-                    amount = higherValue * .045
-                    break;
-                case (higherValue > 200000):
-                    amount = 10000
-                    break;
-                default:
-                    amount = 410
-            }
+        var value = 0;
+        if (req.session.data.typeOfClaim === 'specified') {
+            value = Number(req.session.data.total)
+        } else {
+            value = Number(req.session.data.higher_value)
         }
+
+        var amount = 10000
+        switch (true) {
+            case (value <= 300):
+                amount = 25
+                break;
+            case (value <= 500):
+                amount = 35
+                break;
+            case (value <= 1000):
+                amount = 60
+                break;
+            case (value <= 1500):
+                amount = 70
+                break;
+            case (value <= 3000):
+                amount = 105
+                break;
+            case (value <= 5000):
+                amount = 185
+                break;
+            case (value <= 10000):
+                amount = 410
+                break;
+            case (value > 10000):
+                amount = value * .045
+                break;
+            case (value > 200000):
+                amount = 10000
+                break;
+            default:
+                amount = 410
+        }
+
+        req.session.data.amount = amount;
+
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 2, /* this might not be necessary */
         });
-        req.session.data.amount = amount;
-        res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
+        if (req.session.data.typeOfClaim === 'specified') {
+            total = Number(req.session.data.total);
+            var fee = 80;
+            switch (true) {
+                case (total >25 && total <= 500):
+                    fee = 50
+                    break;
+                case (total > 500 && total <= 1000):
+                    fee = 70
+                    break;
+                case (total > 1000 && total <= 5000):
+                    fee = 80
+                    break;
+                case (total > 5000):
+                    fee = 100
+                    break;
+            }
+
+            res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount), total: formatter.format(total), claimType: req.session.data.typeOfClaim, fee: formatter.format(fee)})
+        }
+        else {
+            res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
+        }
     });
 
     app.post('*/prototype-july2-2017/claim-total', function (req, res) {
