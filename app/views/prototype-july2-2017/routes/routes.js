@@ -152,6 +152,10 @@ module.exports = function(app){
         res.redirect('claim-details')
     });
 
+    app.post('*/prototype-july2-2017/personal-injury', function (req, res) {
+        res.redirect('housing-disrepair')
+    });
+
     app.post('*/prototype-july2-2017/housing-disrepair', function (req, res) {
         res.redirect('claim-details')
     });
