@@ -160,7 +160,6 @@ module.exports = function(app){
         var moment = require('moment');
         var date = moment(req.body.interest_year + '-' + req.body.interest_month + '-' + req.body.interest_day).toString();
         req.session.data.date_from = date;
-        console.log(date)
         res.redirect('claim-details')
     });
 
@@ -189,12 +188,11 @@ module.exports = function(app){
         var moment = require('moment');
         var value = 0;
         var total = Number(req.session.data.total);
+        var interest = 0;
         if (req.session.data.typeOfClaim === 'specified') {
-            var interest = 0;
             if (req.session.data.date_from) {
                 var days = moment().diff(moment(req.session.data.date_from), 'days');
                 interest = parseFloat(((Number(req.session.data.total) * Number(days) * Number(req.session.data.interest_rate)) / (365 * 100)).toFixed(2));
-                console.log(interest);
             }
             value = Number(req.session.data.total) + interest;
         } else {
@@ -258,7 +256,7 @@ module.exports = function(app){
                     break;
             }
 
-            res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount), total: formatter.format(total), claimType: req.session.data.typeOfClaim, fee: formatter.format(fee)})
+            res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount), total: formatter.format(total), interest: formatter.format(interest), claimType: req.session.data.typeOfClaim, fee: formatter.format(fee)})
         }
         else {
             res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
