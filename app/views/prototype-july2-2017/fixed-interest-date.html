@@ -6,8 +6,8 @@
     <legend class="visuallyhidden">When are you claiming interest from</legend>
     <div class="multiple-choice" data-target="particular">
       <input id="interest_date_past" name="interest_date" type="radio" value="particular_date" {{ checked('interest_date','particular_date') }}>
-      <label for="interest_date_past"><strong class="form-label-bold">Claim interest from a particular date</strong>
-      For example, the date an invoice was overdue or that you told someone they owed you the money.</label>
+      <label for="interest_date_past"><strong class="form-label-bold">From a particular date</strong>
+      </label>
     </div>
 
     <div class="panel panel-border-narrow js-hidden" id="particular">
@@ -38,16 +38,12 @@
 
     <div class="multiple-choice">
       <input id="interest_date_issue" type="radio" name="interest_date" value="issue_date" {{ checked('interest_date','issue_date') }}>
-      <label class="form-label-bold" for="interest_date_issue">Claim interest from the date I submit the claim</label>
+      <label class="form-label-bold" for="interest_date_issue">From the date the claim was submitted</label>
     </div>
 
 </fieldset>
 
-  <details class="form-group">
-    <summary>
-      <span class="summary">Help with this decision</span>
-    </summary>
-  </details>
+
 
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue"/>
