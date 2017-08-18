@@ -9,11 +9,6 @@ module.exports = function(app){
         }
     });
 
-    app.post('*/prototype-july2-2017/claim-details-summary', function(req, res){
-        var defendants = req.session.defendants || [];
-        res.render('prototype-july2-2017/claim-details-summary', { defendants: defendants })
-    });
-
     app.get('*/prototype-july2-2017/defendants-service-address', function(req, res){
         var defendants = req.session.defendants || [];
 
@@ -97,7 +92,7 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/defendant-add', function(req, res){
-        if (req.body.addDefendant.toString() === 'yes') {
+        if (req.body.addDefendant && req.body.addDefendant.toString() === 'yes') {
             req.session.data['defendant_name'] = req.session.data['defendant_rep_company'] = req.session.data['defendant_address1'] = req.session.data['defendant_address2'] = undefined
             req.session.data['defendant_town'] = req.session.data['defendant_postcode'] = req.session.data['defendant_service_address1'] = req.session.data['defendant_service_address2'] = undefined
             req.session.data['defendant_service_city'] = req.session.data['defendant_service_postcode'] = req.session.data['defendant_company_name'] = req.session.data['defendantType'] = undefined
@@ -145,9 +140,35 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-july2-2017/fixed-claim-amount', function (req, res) {
+        res.redirect('fixed-interest')
+    });
+
+    app.post('*/prototype-july2-2017/fixed-interest', function (req, res) {
+        res.redirect('fixed-interest-date')
+    });
+
     app.post('*/prototype-july2-2017/fixed-interest-date', function (req, res) {
+        res.redirect('claim-details')
+    });
+
+    app.post('*/prototype-july2-2017/housing-disrepair', function (req, res) {
+        res.redirect('claim-details')
+    });
+
+    app.post('*/prototype-july2-2017/claim-details', function (req, res) {
+        console.log(req.session.data.typeOfClaim)
+        if (req.session.data.typeOfClaim === 'specified') {
+            res.redirect('claim-total')
+        }
+        else {
+            res.redirect('claim-amount')
+        }
+    });
+
+    app.post('*/prototype-july2-2017/claim-amount', function (req, res) {
         res.redirect('claim-total')
-    })
+    });
 
     app.get('*/prototype-july2-2017/claim-total', function (req, res) {
         var amount = 10000
@@ -214,23 +235,11 @@ module.exports = function(app){
     })
 
     app.get('*/prototype-july2-2017/pay-by-card', function (req, res) {
-        var today = new Date().toDateString();
         res.render('prototype-july2-2017/pay-by-card', {amount: req.session.data.amount })
     })
 
     app.get('*/prototype-july2-2017/pay-by-account', function (req, res) {
-        var today = new Date().toDateString();
         res.render('prototype-july2-2017/pay-by-account', {amount: req.session.data.amount })
-    })
-
-    app.get('*/prototype-july2-2017/claim-details-summary', function (req, res) {
-        var today = new Date().toDateString();
-        var formatter = new Intl.NumberFormat('en-GB', {
-            style: 'currency',
-            currency: 'GBP',
-            minimumFractionDigits: 0, /* this might not be necessary */
-        });
-        res.render('prototype-july2-2017/claim-details-summary', {amount: formatter.format(req.session.data.amount) })
     })
 
 }
