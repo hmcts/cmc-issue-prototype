@@ -141,14 +141,25 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/fixed-claim-amount', function (req, res) {
+        req.session.data.total = Number(req.body.amount_1) + Number(req.body.amount_2) + Number(req.body.amount_3) + Number(req.body.amount_4);
         res.redirect('fixed-interest')
     });
 
     app.post('*/prototype-july2-2017/fixed-interest', function (req, res) {
+        var rate = 8;
+        if (req.body.interest_rate === 'no_interest') {
+            rate = 0;
+        } else if (req.body.interest_rate === 'different_rate') {
+            rate = Number(req.session.data.different_rate_value);
+        }
+        req.session.data.interest_rate = rate;
         res.redirect('fixed-interest-date')
     });
 
     app.post('*/prototype-july2-2017/fixed-interest-date', function (req, res) {
+        var moment = require('moment');
+        var date = moment(req.body.interest_year + '-' + req.body.interest_month + '-' + req.body.interest_day).toString();
+        req.session.data.date_from = date;
         res.redirect('claim-details')
     });
 
@@ -161,7 +172,6 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-july2-2017/claim-details', function (req, res) {
-        console.log(req.session.data.typeOfClaim)
         if (req.session.data.typeOfClaim === 'specified') {
             res.redirect('claim-total')
         }
@@ -175,48 +185,85 @@ module.exports = function(app){
     });
 
     app.get('*/prototype-july2-2017/claim-total', function (req, res) {
-        var amount = 10000
-        if (req.session.data["higher_value"]) {
-            var higherValue = parseFloat(req.session.data["higher_value"])
-            switch(true) {
-                case (higherValue <= 300):
-                    amount = 25
-                    break;
-                case (higherValue <= 500):
-                    amount = 35
-                    break;
-                case (higherValue <= 1000):
-                    amount = 60
-                    break;
-                case (higherValue <= 1500):
-                    amount = 70
-                    break;
-                case (higherValue <= 3000):
-                    amount = 105
-                    break;
-                case (higherValue <= 5000):
-                    amount = 185
-                    break;
-                case (higherValue <= 10000):
-                    amount = 410
-                    break;
-                case (higherValue > 10000):
-                    amount = higherValue * .045
-                    break;
-                case (higherValue > 200000):
-                    amount = 10000
-                    break;
-                default:
-                    amount = 410
+        var moment = require('moment');
+        var value = 0;
+        var total = Number(req.session.data.total);
+        var interest = 0;
+        if (req.session.data.typeOfClaim === 'specified') {
+            if (req.session.data.date_from) {
+                var days = moment().diff(moment(req.session.data.date_from), 'days');
+                interest = parseFloat(((Number(req.session.data.total) * Number(days) * Number(req.session.data.interest_rate)) / (365 * 100)).toFixed(2));
             }
+            value = Number(req.session.data.total) + interest;
+        } else {
+            value = Number(req.session.data.higher_value)
         }
+
+        var issueFeeamount = 10000
+        switch (true) {
+            case (value <= 300):
+                issueFeeamount = 25
+                break;
+            case (value <= 500):
+                issueFeeamount = 35
+                break;
+            case (value <= 1000):
+                issueFeeamount = 60
+                break;
+            case (value <= 1500):
+                issueFeeamount = 70
+                break;
+            case (value <= 3000):
+                issueFeeamount = 105
+                break;
+            case (value <= 5000):
+                issueFeeamount = 185
+                break;
+            case (value <= 10000):
+                issueFeeamount = 410
+                break;
+            case (value > 10000):
+                issueFeeamount = value * .045
+                break;
+            case (value > 200000):
+                issueFeeamount = 10000
+                break;
+            default:
+                issueFeeamount = 410
+        }
+
+        req.session.data.issueFeeamount = issueFeeamount;
+        req.session.data.value = value;
+
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 2, /* this might not be necessary */
         });
-        req.session.data.amount = amount;
-        res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
+        if (req.session.data.typeOfClaim === 'specified') {
+            var fee = 80;
+            switch (true) {
+                case (total >25 && total <= 500):
+                    fee = 50
+                    break;
+                case (total > 500 && total <= 1000):
+                    fee = 70
+                    break;
+                case (total > 1000 && total <= 5000):
+                    fee = 80
+                    break;
+                case (total > 5000):
+                    fee = 100
+                    break;
+            }
+
+            req.session.data.fee = fee;
+
+            res.render('prototype-july2-2017/claim-total', { issueFeeamount: formatter.format(issueFeeamount), total: formatter.format(total), interest: formatter.format(interest), claimType: req.session.data.typeOfClaim, fee: formatter.format(fee)})
+        }
+        else {
+            res.render('prototype-july2-2017/claim-total', { issueFeeamount: formatter.format(issueFeeamount) })
+        }
     });
 
     app.post('*/prototype-july2-2017/claim-total', function (req, res) {
@@ -225,25 +272,37 @@ module.exports = function(app){
 
     app.get('*/prototype-july2-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
-        res.render('prototype-july2-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
+        res.render('prototype-july2-2017/claim-details-summary', { issueFeeamount: req.session.data.issueFeeamount, defendants: defendants })
     })
 
     app.get('*/prototype-july2-2017/claim-submitted', function (req, res) {
         var moment = require('moment');
+        var issueDate = moment();
+
+        if (moment().isAfter(moment('16:00', 'HH:mm'))) {
+            if (moment().add('1', 'day').day() == 5) {
+                issueDate = moment().add('3', 'days');
+            } else if (moment().add('1', 'day').day() == 6) {
+                issueDate = moment().add('2', 'days');
+            } else {
+                issueDate = moment().add('1', 'days');
+            }
+        }
+
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), amount: formatter.format(req.session.data.amount)  })
+        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeamount: formatter.format(req.session.data.issueFeeamount), value: formatter.format(req.session.data.value)  })
     })
 
     app.get('*/prototype-july2-2017/pay-by-card', function (req, res) {
-        res.render('prototype-july2-2017/pay-by-card', {amount: req.session.data.amount })
+        res.render('prototype-july2-2017/pay-by-card')
     })
 
     app.get('*/prototype-july2-2017/pay-by-account', function (req, res) {
-        res.render('prototype-july2-2017/pay-by-account', {amount: req.session.data.amount })
+        res.render('prototype-july2-2017/pay-by-account')
     })
 
 }

@@ -13,13 +13,13 @@
       <p class="bold-medium">What rate of interest are you claiming?</p>
 
       <div class="multiple-choice">
-        <input id="8_percent" type="radio" name="interest-rate" value="8_percent" {{ checked('interest-rate','8_percent') }}>
+        <input id="8_percent" type="radio" name="interest-rate" value="8_percent" {{ checked('interest_rate','8_percent') }}>
         <label for="8_percent">8% (the standard amount)
         </label>
       </div>
 
       <div class="multiple-choice" data-target="different">
-        <input id="different_rate" name="interest-rate" type="radio" value="Different rate" {{ checked('interest-rate','different_rate') }}>
+        <input id="different_rate" name="interest-rate" type="radio" value="different_rate" {{ checked('interest_rate','different_rate') }}>
         <label for="different">A different rate</label>
       </div>
 
@@ -31,7 +31,7 @@
       </div>
 
       <div class="multiple-choice">
-        <input id="no_interest" type="radio" name="interest-rate" value="No interest" {{ checked('interest-rate','no_interest') }}>
+        <input id="no_interest" type="radio" name="interest_rate" value="No interest" {{ checked('interest-rate','no_interest') }}>
         <label for="no_interest">I don't want to claim interest</label>
       </div>
     </fieldset>
