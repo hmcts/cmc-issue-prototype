@@ -199,40 +199,41 @@ module.exports = function(app){
             value = Number(req.session.data.higher_value)
         }
 
-        var amount = 10000
+        var issueFeeamount = 10000
         switch (true) {
             case (value <= 300):
-                amount = 25
+                issueFeeamount = 25
                 break;
             case (value <= 500):
-                amount = 35
+                issueFeeamount = 35
                 break;
             case (value <= 1000):
-                amount = 60
+                issueFeeamount = 60
                 break;
             case (value <= 1500):
-                amount = 70
+                issueFeeamount = 70
                 break;
             case (value <= 3000):
-                amount = 105
+                issueFeeamount = 105
                 break;
             case (value <= 5000):
-                amount = 185
+                issueFeeamount = 185
                 break;
             case (value <= 10000):
-                amount = 410
+                issueFeeamount = 410
                 break;
             case (value > 10000):
-                amount = value * .045
+                issueFeeamount = value * .045
                 break;
             case (value > 200000):
-                amount = 10000
+                issueFeeamount = 10000
                 break;
             default:
-                amount = 410
+                issueFeeamount = 410
         }
 
-        req.session.data.amount = amount;
+        req.session.data.issueFeeamount = issueFeeamount;
+        req.session.data.value = value;
 
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
@@ -256,10 +257,12 @@ module.exports = function(app){
                     break;
             }
 
-            res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount), total: formatter.format(total), interest: formatter.format(interest), claimType: req.session.data.typeOfClaim, fee: formatter.format(fee)})
+            req.session.data.fee = fee;
+
+            res.render('prototype-july2-2017/claim-total', { issueFeeamount: formatter.format(issueFeeamount), total: formatter.format(total), interest: formatter.format(interest), claimType: req.session.data.typeOfClaim, fee: formatter.format(fee)})
         }
         else {
-            res.render('prototype-july2-2017/claim-total', { amount: formatter.format(amount) })
+            res.render('prototype-july2-2017/claim-total', { issueFeeamount: formatter.format(issueFeeamount) })
         }
     });
 
@@ -269,25 +272,37 @@ module.exports = function(app){
 
     app.get('*/prototype-july2-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
-        res.render('prototype-july2-2017/claim-details-summary', { amount: req.session.data.amount, defendants: defendants })
+        res.render('prototype-july2-2017/claim-details-summary', { issueFeeamount: req.session.data.issueFeeamount, defendants: defendants })
     })
 
     app.get('*/prototype-july2-2017/claim-submitted', function (req, res) {
         var moment = require('moment');
+        var issueDate = moment();
+
+        if (moment().isAfter(moment('16:00', 'HH:mm'))) {
+            if (moment().add('1', 'day').day() == 5) {
+                issueDate = moment().add('3', 'days');
+            } else if (moment().add('1', 'day').day() == 6) {
+                issueDate = moment().add('2', 'days');
+            } else {
+                issueDate = moment().add('1', 'days');
+            }
+        }
+
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), amount: formatter.format(req.session.data.amount)  })
+        res.render('prototype-july2-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeamount: formatter.format(req.session.data.issueFeeamount), value: formatter.format(req.session.data.value)  })
     })
 
     app.get('*/prototype-july2-2017/pay-by-card', function (req, res) {
-        res.render('prototype-july2-2017/pay-by-card', {amount: req.session.data.amount })
+        res.render('prototype-july2-2017/pay-by-card')
     })
 
     app.get('*/prototype-july2-2017/pay-by-account', function (req, res) {
-        res.render('prototype-july2-2017/pay-by-account', {amount: req.session.data.amount })
+        res.render('prototype-july2-2017/pay-by-account')
     })
 
 }

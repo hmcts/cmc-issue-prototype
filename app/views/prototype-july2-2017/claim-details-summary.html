@@ -136,7 +136,7 @@
   <div class="form-group">
     <div class="task-list-item">
       <div class="column-third form-hint">Claim amount</div>
-      <div class="column-third if-empty">To be assessed</div>
+      <div class="column-third if-empty">{% if claimType != 'specified'  %} To be assessed {% else %} {{ value }} {% endif %}</div>
       <div class="column-third"><a class="right" href="claim-amount">Change</a></div>
     </div>
 
@@ -217,7 +217,7 @@
 
     <div class="task-list-item">
       <div class="column-third form-hint">Issue fee</div>
-      <div class="column-third if-empty">£{{ amount }}</div>
+      <div class="column-third if-empty">£{{ issueFeeamount }}</div>
     </div>
   </div>
 
