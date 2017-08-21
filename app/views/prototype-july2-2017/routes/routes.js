@@ -305,4 +305,26 @@ module.exports = function(app){
         res.render('prototype-july2-2017/pay-by-account')
     })
 
+    app.get('*/prototype-july2-2017/email', function (req, res) {
+        var moment = require('moment');
+        var issueDate = moment();
+
+        if (moment().isAfter(moment('16:00', 'HH:mm'))) {
+            if (moment().add('1', 'day').day() == 5) {
+                issueDate = moment().add('3', 'days');
+            } else if (moment().add('1', 'day').day() == 6) {
+                issueDate = moment().add('2', 'days');
+            } else {
+                issueDate = moment().add('1', 'days');
+            }
+        }
+
+        var formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 0, /* this might not be necessary */
+        });
+        res.render('prototype-july2-2017/email', {issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeamount: formatter.format(req.session.data.issueFeeamount)})
+    })
+
 }
