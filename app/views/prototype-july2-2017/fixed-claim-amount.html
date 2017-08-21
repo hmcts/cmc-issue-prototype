@@ -21,19 +21,19 @@
       <div class="timeline-rows">
         <div class="timeline-row">
           <input class="form-control timeline-column-3" type="text" id="timeline_1" name="timeline_1" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" id="amount_1" name="amount_1" value="">
+          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_1" name="amount_1" value="">
         </div>
         <div class="timeline-row">
           <input class="form-control timeline-column-3" type="text" id="timeline_2" name="timeline_2" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" id="amount_2" name="amount_2" value="">
+          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_2" name="amount_2" value="">
         </div>
         <div class="timeline-row">
           <input class="form-control timeline-column-3" type="text" id="timeline_3" name="timeline_3" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" id="amount_3" name="amount_3" value="">
+          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_3" name="amount_3" value="">
         </div>
         <div class="timeline-row">
           <input class="form-control timeline-column-3" type="text" id="timeline_4" name="timeline_4" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" id="amount_4" name="amount_4" value="">
+          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_4" name="amount_4" value="">
         </div>
       </div>
       <div class="timeline-row">
@@ -51,10 +51,15 @@
       function addRow() {
           $('.timeline-rows').append(
               '<div class="timeline-row">' +
-              '<input class="form-control timeline-column-3" style="margin-right: 1px; margin-right: 10px;" type="text">' +
-              '<input class="form-control timeline-column-4 fee pound" style="margin-left: 3px" type="text">' +
+              '<input class="form-control timeline-column-3" type="text">' +
+              '<input class="form-control timeline-column-4 fee pound" type="text">' +
               '</div>'
           );
+      }
+
+      function updateTotal() {
+          var total = Number($('#amount_1')[0].value) + Number($('#amount_2')[0].value) + Number($('#amount_3')[0].value) + Number($('#amount_4')[0].value);
+          $('#totalSumDisplay')[0].innerText = total;
       }
     </script>
 
