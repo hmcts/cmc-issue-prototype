@@ -42,9 +42,7 @@
         </div>
          <!--<a class="" id="calculate" href="#">Calculate total</a>-->
       </div>
-    <div class="timeline-row total bold-medium" >
-     £<span id="totalSumDisplay"></span>
-    </div>
+    <div class="timeline-row total bold-medium">Total: <span id="totalSumDisplay">0</span></div>
     <input  type="hidden" name="totalSum" id="totalSum" value=>
     <script type='text/javascript'>
 
@@ -58,8 +56,13 @@
       }
 
       function updateTotal() {
+          var formatter = new Intl.NumberFormat('en-GB', {
+              style: 'currency',
+              currency: 'GBP',
+              minimumFractionDigits: 2, /* this might not be necessary */
+          });
           var total = Number($('#amount_1')[0].value) + Number($('#amount_2')[0].value) + Number($('#amount_3')[0].value) + Number($('#amount_4')[0].value);
-          $('#totalSumDisplay')[0].innerText = total;
+          $('#totalSumDisplay')[0].innerText = formatter.format(total);
       }
     </script>
 
