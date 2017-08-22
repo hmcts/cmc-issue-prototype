@@ -1,4 +1,4 @@
-{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-july2-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 <h1 class="heading-large">Check the claim details</h1>
 
 <p>Make sure this information is correct before you issue. </p>
@@ -209,7 +209,7 @@
         <span class="form-group">This claim is for personal injury.</span>
         <span class="form-group">The claimant expects to recover {{ data['pain_value'] }} as damages for pain, suffering and loss of amenity.</span>
         <span class="form-group">This is also a claim for housing disrepair which includes an order for the landlord to carry out work.</span>
-        <span class="form-group">The cost of repairs or other work is {{ data['general_damages'] }}. [The cost of any claim for damages is {{ data['other_damages'] }}.</span>
+        <span class="form-group">The cost of repairs or other work is {{ data['general_damages'] }}.</span>
         <span class="form-group">The claimant expects to recover up to £{{ data['higher_value'] }}.</span>
         <span class="form-group">The claimant estimates the claim to be worth more than £{{ data['lower_value'] }}.</span>
         {% endif %}
