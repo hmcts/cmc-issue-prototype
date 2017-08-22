@@ -566,12 +566,23 @@ module.exports = function(app){
 
     app.get('*/prototype-MVP-2017/claim-submitted', function (req, res) {
         var moment = require('moment');
+        var issueDate = moment();
+
+        if (moment().isAfter(moment('16:00', 'HH:mm'))) {
+            if (moment().add('1', 'day').day() == 5) {
+                issueDate = moment().add('3', 'days');
+            } else if (moment().add('1', 'day').day() == 6) {
+                issueDate = moment().add('2', 'days');
+            } else {
+                issueDate = moment().add('1', 'days');
+            }
+        }
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), amount: formatter.format(req.session.data.amount) })
+        res.render('prototype-MVP-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), issueDate: moment(issueDate).format('D MMMM YYYY'), amount: formatter.format(req.session.data.amount) })
     })
 
     app.get('*/prototype-MVP-2017/pay-by-card', function (req, res) {

@@ -3,13 +3,13 @@
 <main id="content" role="main">
   {% include "includes/phase_banner_alpha.html" %}
   <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="column-full">
       <a class="link-back pointer" onclick="goBack()">Back</a>
 
       <script>
-        function goBack() {
-            window.history.back();
-        }
+          function goBack() {
+              window.history.back();
+          }
       </script>
       {% block main_content %}
       {% endblock %}
