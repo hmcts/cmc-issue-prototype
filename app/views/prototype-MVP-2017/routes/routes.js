@@ -25,7 +25,7 @@ module.exports = function(app){
         var errors = [];
 
         if (form.rep_company_name === undefined || form.rep_company_name === '') {
-            errors.push({fieldName: 'rep_company_name', message: "Enter your company name" });
+            errors.push({fieldName: 'rep_company_name', message: "Enter your organisation name" });
             res.render('prototype-MVP-2017/representative-name', { errors: errors })
         } else if (form.rep_company_name.length > 255) {
             errors.push({fieldName: 'username', message: "You’ve entered too many characters" });
@@ -307,7 +307,7 @@ module.exports = function(app){
         var errors = [];
 
         if (form.defendant_rep_company === undefined || form.defendant_rep_company === '') {
-            errors.push({fieldName: 'defendant_rep_company', message: "Enter defendant representative company name" });
+            errors.push({fieldName: 'defendant_rep_company', message: "Enter defendant representative organisation name" });
         } else if (form.defendant_rep_company.length > 255) {
             errors.push({fieldName: 'defendant_rep_company', message: "You’ve entered too many characters" });
         }
