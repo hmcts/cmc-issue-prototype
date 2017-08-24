@@ -1,0 +1,40 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">Your issue fee</h1>
+
+<form action="claim-total" id="form" method="post" class="form-group">
+  <table class="table-form form-group">
+    <thead>
+    <tr>
+      <th class="font-small"  scope="col"></th>
+      <th class="numeric last" scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="font-small" scope="row">Amount claimed</th>
+        <td class="numeric last">{% if claimType != 'specified'  %} To be assessed {% else %} {{ total }} {% endif %}</td>
+      </tr>
+      {% if claimType === 'specified'  %}
+      <tr>
+        <th class="font-small" scope="row">Interest to date</th>
+        <td class="numeric last">{{ interest }}</td>
+      </tr>
+      {% endif %}
+      <tr>
+        <th class="font-small" scope="row">Legal representative's costs</th>
+        <td class="numeric last">{% if claimType != 'specified'  %} To be assessed {% else %} {{ fee }} {% endif %}</td>
+      </tr>
+      <tr>
+        <td scope="row"><span class="bold-small">Issue fee</span>{% if claimType != 'specified'  %} (based on higher value of £{{ data['higher_value'] }}){% endif %}</td>
+        <td class="numeric last">
+        <span class="bold-small">{{ issueFeeamount }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

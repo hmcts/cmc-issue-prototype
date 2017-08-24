@@ -1,0 +1,54 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<form method="post" action="fixed-interest-date" class="form">
+  <h1 class="heading-large">When are you claiming interest from?</h1>
+
+  <fieldset class="form-group">
+    <legend class="visuallyhidden">When are you claiming interest from</legend>
+    <div class="multiple-choice" data-target="particular">
+      <input id="interest_date_past" name="interest_date" type="radio" value="particular_date" {{ checked('interest_date','particular_date') }}>
+      <label for="interest_date_past">From a particular date</label>
+    </div>
+
+    <div class="panel panel-border-narrow js-hidden" id="particular">
+
+      <div class="form-group form-date">
+        <p class="form-hint form-group-compound">For example, 31 03 2016</p>
+
+        <div class="form-group form-group-day">
+          <label for="interest_day">Day</label>
+          <input class="form-control" id="interest_day" name="interest_day" type="number" pattern="[0-9]*" min="0" max="31" value="">
+        </div>
+
+        <div class="form-group form-group-month">
+          <label for="interest_month">Month</label>
+          <input class="form-control" id="interest_month" name="interest_month" type="number" pattern="[0-9]*" min="0" max="12" value="">
+        </div>
+
+        <div class="form-group form-group-year">
+          <label for="interest_year">Year</label>
+          <input class="form-control" id="interest_year" name="interest_year" type="number" pattern="[0-9]*" min="0" max="2017" value="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="date-why">Explain why you're claiming from this date</label>
+        <input class="form-control" name="date-why" type="text" id="date-why" value="">
+      </div>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="interest_date_issue" type="radio" name="interest_date" value="issue_date" {{ checked('interest_date','issue_date') }}>
+      <label class="form-label" for="interest_date_issue">From the date the claim was submitted</label>
+    </div>
+
+</fieldset>
+
+
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue"/>
+  </div>
+
+</form>
+
+
+{% endblock %}

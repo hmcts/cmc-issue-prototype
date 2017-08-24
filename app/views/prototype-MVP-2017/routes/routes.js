@@ -593,4 +593,9 @@ module.exports = function(app){
         res.render('prototype-MVP-2017/pay-by-account', {amount: req.session.data.amount })
     })
 
+    app.get('*/prototype-MVP-2017/logout', function (req, res) {
+        req.session.destroy()
+        res.redirect('login')
+    })
+
 }

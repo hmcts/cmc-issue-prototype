@@ -187,6 +187,11 @@ app.get('/prototype-admin/clear-data', function (req, res) {
   res.render('prototype-admin/clear-data')
 })
 
+app.get('/prototype-admin/logout', function (req, res) {
+    req.session.destroy()
+    res.redirect('/index')
+})
+
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
   console.log('Prototype kit running in promo mode')
@@ -229,6 +234,7 @@ require('./app/views/prototype-june-2017/routes/routes.js')(app);
 require('./app/views/prototype-june2-2017/routes/routes.js')(app);
 require('./app/views/prototype-july-2017/routes/routes.js')(app);
 require('./app/views/prototype-july2-2017/routes/routes.js')(app);
+require('./app/views/prototype-sept-2017/routes/routes.js')(app);
 require('./app/views/prototype-MVP-2017/routes/routes.js')(app);
 
 

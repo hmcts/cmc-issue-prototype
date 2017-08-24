@@ -1,0 +1,21 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Pay by Fee Account</h1>
+
+<form action="claim-submitted" method="post">
+  <div class="form-group">
+    <div class="task-list-item form-group">
+      <div class="column-half bold">Total cost</div>
+      <div class="column-half bold numeric">£{{ data['issueFeeamount'] }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="fee_account">Fee Account number</label>
+      <input type="text" class="form-control" id="fee_account" name="fee_account" value="{{ data['fee_account'] }}">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Pay and issue">
+  </div>
+</form>
+{% endblock %}
