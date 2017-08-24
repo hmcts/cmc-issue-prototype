@@ -202,28 +202,28 @@ module.exports = function(app){
         var issueFeeamount = 10000
         switch (true) {
             case (value <= 300):
-                issueFeeamount = 25
-                break;
-            case (value <= 500):
                 issueFeeamount = 35
                 break;
-            case (value <= 1000):
-                issueFeeamount = 60
+            case (value <= 500):
+                issueFeeamount = 50
                 break;
-            case (value <= 1500):
+            case (value <= 1000):
                 issueFeeamount = 70
                 break;
+            case (value <= 1500):
+                issueFeeamount = 80
+                break;
             case (value <= 3000):
-                issueFeeamount = 105
+                issueFeeamount = 115
                 break;
             case (value <= 5000):
-                issueFeeamount = 185
+                issueFeeamount = 205
                 break;
             case (value <= 10000):
-                issueFeeamount = 410
+                issueFeeamount = 455
                 break;
             case (value > 10000):
-                issueFeeamount = value * .045
+                issueFeeamount = value * .05
                 break;
             case (value > 200000):
                 issueFeeamount = 10000

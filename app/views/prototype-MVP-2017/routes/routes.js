@@ -477,28 +477,28 @@ module.exports = function(app){
             var higherValue = parseFloat(req.session.data["higher_value"])
             switch(true) {
                 case (higherValue <= 300):
-                    amount = 25
-                    break;
-                case (higherValue <= 500):
                     amount = 35
                     break;
-                case (higherValue <= 1000):
-                    amount = 60
+                case (higherValue <= 500):
+                    amount = 50
                     break;
-                case (higherValue <= 1500):
+                case (higherValue <= 1000):
                     amount = 70
                     break;
+                case (higherValue <= 1500):
+                    amount = 80
+                    break;
                 case (higherValue <= 3000):
-                    amount = 105
+                    amount = 115
                     break;
                 case (higherValue <= 5000):
-                    amount = 185
+                    amount = 205
                     break;
                 case (higherValue <= 10000):
-                    amount = 410
+                    amount = 455
                     break;
                 case (higherValue > 10000):
-                    amount = higherValue * .045
+                    amount = higherValue * .05
                     break;
                 case (higherValue > 200000):
                     amount = 10000
