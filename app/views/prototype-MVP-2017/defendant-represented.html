@@ -1,6 +1,6 @@
 {% extends "prototype-MVP-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">Has the defendant got a representative who's instructed to accept service?</h1>
+<h1 class="heading-large">Has the defendant got a legal representative who's instructed to accept service?</h1>
 <form action="defendant-represented" id="form" method="post" class="form-group">
   <fieldset class="form-group inline {% if errors %} form-group-error {% endif %}">
     <legend class="visually-hidden">Has the defendant got a representative who's instructed to accept service?</legend>
@@ -19,7 +19,7 @@
 
     <div id="defendant-represented-yes" class="panel panel-border-narrow js-hidden" aria-hidden="true">
       <div class="form-group">
-        <label for="defendant_rep_company" class="form-label">Organisation name</label>
+        <label for="defendant_rep_company" class="form-label">Representative's organisation name</label>
         <input  type="text" class="form-control" id="defendant_rep_company" name="defendant_rep_company" value="{{ data['defendant_rep_company'] }}">
       </div>
     </div>
