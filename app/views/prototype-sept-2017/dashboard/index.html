@@ -1,0 +1,193 @@
+{% extends "prototype-sept-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<div id="control-bar">
+
+  <a href="representative-name" class="">Create a new claim</a>
+
+  <div class="search-bar">
+    <div class="searchfield">
+      <form id="singular" action="">
+      <input type="search" name="search" id="search" class="search-input" placeholder="Search by claim number / name ">
+        <button type="submit" class="search-submit" title="search">Search</button>
+      </form>
+    </div>
+  </div>
+<div style="clear: both;"></div>
+</div>
+
+
+<h1 class="heading-large" >
+ Claim list
+</h1>
+
+{% if data['dashboard'] == 1   %}
+<!-- one pager start -->
+<table class="claim-dashboard" >
+  <thead>
+    <tr>
+      <th scope="col">Claim number</th>
+      <th scope="col"">Claimants</th>
+      <th scope="col"">Defendants</th>
+      <th scope="col"><a href='#'>Status</a></th>
+      <th scope="col"><a href='#'>Action</a> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="">
+      <td> <details>
+        <summary class="summary-link">736MC047</summary>
+      </details></td>
+      <td>Michael Jones
+      </td>
+      <td>
+        <span class="sub">Jan Clark + 3 more</span>  
+        <ul class="sub" style="display: none"  >
+          <li>Jan Clark</li>
+          <li>Bob Goddard</li>
+          <li>Chris Kingsley</li>
+          <li>Victoria Waterston</li>
+        </ul>
+      </td>
+      <td> 
+       <span class="sub">Issued</span>
+       <ul class="sub" style="display: none" >
+        <li>Issued</li>
+        <li>Issued</li>
+        <li>Issued</li>
+        <li>Issued</li>
+      </ul>
+    </td>
+    <td> 
+     <a href='certificate'>File certificate of service</a>
+   </td>
+ </tr> 
+ <tr>
+  <td>Draft</td>
+  <td></td>
+  <td></td>
+  <td> Draft</td>
+  <td> <a href='representative-name'>Continue with claim</a></td>
+</tr> 
+<tr>
+  <td>253MC124</td>
+  <td>John Barnes </td>  
+  <td>Claire Bells </td>
+  <td> Served</td>
+  <td><a href='certificate/certificate-details'>Request judgment by default</a> </td>
+</tr> 
+<tr>
+  <td>342MC453</td>
+  <td>Tobias Stoddart  </td>     
+  <td>Khadija Bibi   </td>
+  <td> Issued</td>
+  <td> <a href='certificate/certificate-details'>File certificate of service</a></td>
+</tr> 
+<tr class="">
+  <td> <details>
+    <summary class="summary-link2">736MC047</summary>
+  </details></td>
+  <td>
+   <span class="sub2">Trisha Scott + 5 more</span> 
+   <ul class="sub2" style="display: none">
+    <li>Trisha Scott</li>
+    <li>Chris Jones</li>
+    <li>Barry Scott</li>
+    <li>Kate Barrett</li>
+  </ul>
+</td>
+<td>
+  <span class="sub2">Jan Clark + 4 more</span>  
+  <ul class="sub2" style="display: none"  >
+    <li>Jan Clark</li>
+    <li>Bob Goddard</li>
+    <li>Chris Kingsley</li>
+    <li>Victoria Waterston</li>
+  </ul>
+</td>
+<td> 
+ <span class="sub2">Part served</span>
+ <ul class="sub2" style="display: none" >
+  <li>Issued</li>
+  <li>Issued</li>
+  <li>Issued</li>
+  <li>Served</li>
+</ul>
+</td>
+<td> 
+ <span class="sub2">Multiple</span>
+ <ul class="sub2" style="display: none" >
+  <li> <a href='certificate'>File certificate of service</a></li>
+  <li> &nbsp;</li>
+  <li> &nbsp;</li>
+  <li> <a href='certificate'> Request judgment by default</a></li>
+</ul>
+</td>
+</tr> 
+</tbody>
+</table>
+<br>
+{% elseif data['dashboard'] == 2 or data['dashboard'] != 1  %}
+<!-- one pager start -->
+<table class="claim-dashboard2" >
+  <thead>
+    <tr>
+      <th scope="col">Claim number</th>
+      <th scope="col"">Claimants / Defendants</th>
+      <th scope="col"><span class="filter">Status</span></th>
+      <th scope="col"><span class="filter">Action</span> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="">
+      <td> <a href='dashboard/claim-details?details=all'>736MC047</a></td>
+      <td><span class="claimant">Michael Jones</span> <br> Trisha Scott + 3 more
+      </td>
+
+      <td> 
+       Issued
+
+     </td>
+     <td> 
+       <a href='certificate'>File certificate of service</a>
+     </td>
+   </tr> 
+   <tr>
+    <td>Draft</td>
+    <td></td>
+    <td> Draft</td>
+    <td> <a href='representative-name'>Continue with claim</a></td>
+  </tr> 
+  <tr>
+    <td><a href='#'>253MC124</a></td>
+    <td><span class="claimant">John Barnes</span> <br> James Smith </td>  
+    <td> Served</td>
+    <td><a href='certificate/certificate-details'>Request judgment by default</a> </td>
+  </tr> 
+  <tr>
+    <td><a href='#'>342MC453</a></td>
+    <td><span class="claimant">Tobias Stoddart</span> + 5 more  <br> Daniel Clement   </td>     
+    <td> Issued</td>
+    <td> <a href='#'>File certificate of service</a></td>
+  </tr> 
+  <tr class="">
+    <td> <a href='dashboard/claim-details?details=part'>922MC233</a></td>
+    <td>
+     <span class="claimant">Trisha Scott</span> + 3 more <br> Andrew Drummond + 3 more
+
+   </td>
+
+   <td> 
+     Part served
+
+   </td>
+   <td> 
+    <a href='certificate'>File certificate of service</a>
+
+  </td>
+</tr> 
+</tbody>
+</table>
+
+
+{% endif %}
+
+{% endblock %}
