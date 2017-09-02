@@ -6,7 +6,7 @@
   <div class="search-bar">
     <div class="searchfield">
       <form id="singular" action="">
-      <input type="search" name="search" id="search" class="search-input" placeholder="Search claims ">
+      <input type="search" name="search" id="search" class="search-input" placeholder="Search by claim number / name ">
         <button type="submit" class="search-submit" title="search">Search</button>
       </form>
     </div>
@@ -19,7 +19,7 @@
  Claim list
 </h1>
 
-{% if data['dashboard'] == 1  %}
+{% if data['dashboard'] == 1   %}
 <!-- one pager start -->
 <table class="claim-dashboard" >
   <thead>
@@ -125,8 +125,7 @@
 </tbody>
 </table>
 <br>
-<p><a class="secondary-button" href="#">Create a new claim</a></p>
-{% elseif data['dashboard'] == 2 %}
+{% elseif data['dashboard'] == 2 or data['dashboard'] != 1  %}
 <!-- one pager start -->
 <table class="claim-dashboard2" >
   <thead>
@@ -188,8 +187,7 @@
 </tbody>
 </table>
 
-{% else %}
-3
+
 {% endif %}
 
 {% endblock %}
