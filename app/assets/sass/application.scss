@@ -47,6 +47,17 @@ $path: "/public/images/";
   box-sizing: border-box;
 }
 
+.form-control-full {
+  @include box-sizing(border-box);
+  @include core-19;
+  width: 100%;
+
+  padding: 5px 4px 4px;
+  // setting any background-color makes text invisible when changing colours to dark backgrounds in Firefox (https://bugzilla.mozilla.org/show_bug.cgi?id=1335476)
+  // as background-color and color need to always be set together, color should not be set either
+  border: 2px solid $text-colour;
+}
+
 .right {
   float: right;
 }
@@ -69,6 +80,14 @@ $path: "/public/images/";
   background-position: left center;
   background-repeat: no-repeat;
   padding-left: 40px
+}
+
+[type="text"].percentage {
+  background-image: url(/public/images/percentage.png);
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-right: 40px;
 }
 
 .if-empty {
@@ -328,4 +347,8 @@ img.card-image {
   background-repeat: no-repeat;
   background-position: -12.5% 50%;
   border: none;
+}
+
+.center {
+  text-align: center;
 }
