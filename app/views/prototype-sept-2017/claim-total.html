@@ -14,12 +14,6 @@
         <th class="font-small" scope="row">Amount claimed</th>
         <td class="numeric last">{% if claimType != 'specified'  %} To be assessed {% else %} {{ total }} {% endif %}</td>
       </tr>
-      {% if claimType === 'specified'  %}
-      <tr>
-        <th class="font-small" scope="row">Interest to date</th>
-        <td class="numeric last">{{ interest }}</td>
-      </tr>
-      {% endif %}
       <tr>
         <th class="font-small" scope="row">Legal representative's costs</th>
         <td class="numeric last">{% if claimType != 'specified'  %} To be assessed {% else %} {{ fee }} {% endif %}</td>
@@ -27,7 +21,7 @@
       <tr>
         <td scope="row"><span class="bold-small">Issue fee</span>{% if claimType != 'specified'  %} (based on higher value of £{{ data['higher_value'] }}){% endif %}</td>
         <td class="numeric last">
-        <span class="bold-small">{{ issueFeeamount }}</span>
+        <span class="bold-small">{{ issueFeeAmount }}</span>
         </td>
       </tr>
     </tbody>

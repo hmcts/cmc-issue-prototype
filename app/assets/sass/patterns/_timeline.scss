@@ -21,7 +21,7 @@
   display: inline-block;
 }
 
-.timeline-rows div:not(:first-child) {
+.timeline-row:not(:first-child) {
   margin-top: 15px;
 }
 
@@ -38,6 +38,16 @@
 .timeline-column-3 {
   width: 76%;
   margin-right: 10px;
+  display: inline-block;
+}
+
+.timeline-column-5 {
+  width: 44%;
+  display: inline-block;
+}
+
+.timeline-column-6 {
+  width: 12%;
   display: inline-block;
 }
 
