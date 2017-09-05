@@ -4,36 +4,78 @@
     <h1 class="heading-large">Claim amount</h1>
     <p>The claim can be for a single amount or made up of multiple items.</p>
     <div class="panel panel-border-wide">
-      <p>Don't include interest - we'll ask about this next.</p>
       <p>Don't include the claim fee - we'll add this.</p>
     </div>
-    <br>
     <div id="timeline" class="timeline">
-      <div class="timeline-headings">
-        <div id="timeline-heading-1" class="timeline-column-3">
-  <label class="form-label-bold" for="timeline_1">What the claim is for</label>
-          <span class="form-hint">Briefly itemise the claim, for example "unpaid debt". </span>
-        </div>
-        <div id="timeline-heading-2" class="timeline-column-4 ">
-          <span class="form-label-bold">Amount</span>
-        </div>
+      <div class="timeline-column-4">
+        <label class="form-label-bold center" for="">Date</label>
       </div>
+      <div class="timeline-column-5">
+        <label class="form-label-bold center" for="">What the claim is for</label>
+      </div>
+      <div class="timeline-column-4">
+        <label class="form-label-bold center" for="">Amount</label>
+      </div>
+      <div class="timeline-column-6">
+        <label class="form-label-bold center" for="">Interest</label>
+      </div>
+
       <div class="timeline-rows">
         <div class="timeline-row">
-          <input class="form-control timeline-column-3" type="text" id="timeline_1" name="timeline_1" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_1" name="amount_1" value="">
+          <div class="timeline-column-4">
+            <input class="form-control-full" type="text" onblur="updateTotal()" id="timeline_date_1" name="timeline_date_1" value="{{ data['timeline_date_1'] }}">
+          </div>
+          <div class="timeline-column-5">
+            <input class="form-control-full" type="text" id="timeline_text_1" name="timeline_text_1" value="{{ data['timeline_text_1'] }}">
+          </div>
+          <div class="timeline-column-4">
+            <input class="form-control-full fee pound" type="text" onblur="updateTotal()" id="timeline_amount_1" name="timeline_amount_1" value="{{ data['timeline_amount_1'] }}">
+          </div>
+          <div class="timeline-column-6">
+            <input class="form-control-full percentage" type="text" onblur="updateTotal()" id="timeline_interest_1" name="timeline_interest_1" value="{{ data['timeline_interest_1'] }}">
+          </div>
         </div>
         <div class="timeline-row">
-          <input class="form-control timeline-column-3" type="text" id="timeline_2" name="timeline_2" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_2" name="amount_2" value="">
+          <div class="timeline-column-4">
+            <input class="form-control-full" type="text" onblur="updateTotal()" id="timeline_date_2" name="timeline_date_2" value="{{ data['timeline_date_2'] }}">
+          </div>
+          <div class="timeline-column-5">
+            <input class="form-control-full" type="text" id="timeline_text_2" name="timeline_text_2" value="{{ data['timeline_text_2'] }}"">
+          </div>
+          <div class="timeline-column-4">
+            <input class="form-control-full fee pound" type="text" onblur="updateTotal()" id="timeline_amount_2" name="timeline_amount_2" value="{{ data['timeline_amount_2'] }}">
+          </div>
+          <div class="timeline-column-6">
+            <input class="form-control-full percentage" type="text" onblur="updateTotal()" id="timeline_interest_2" name="timeline_interest_2" value="{{ data['timeline_interest_2'] }}">
+          </div>
         </div>
         <div class="timeline-row">
-          <input class="form-control timeline-column-3" type="text" id="timeline_3" name="timeline_3" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_3" name="amount_3" value="">
+          <div class="timeline-column-4">
+            <input class="form-control-full" type="text" onblur="updateTotal()" id="timeline_date_3" name="timeline_date_3" value="{{ data['timeline_date_3'] }}">
+          </div>
+          <div class="timeline-column-5">
+            <input class="form-control-full" type="text" id="timeline_text_3" name="timeline_text_3" value="{{ data['timeline_text_3'] }}">
+          </div>
+          <div class="timeline-column-4">
+            <input class="form-control-full fee pound" type="text" onblur="updateTotal()" id="timeline_amount_3" name="timeline_amount_3" value="{{ data['timeline_amount_3'] }}">
+          </div>
+          <div class="timeline-column-6">
+            <input class="form-control-full percentage" type="text" onblur="updateTotal()" id="timeline_interest_3" name="timeline_interest_3" value="{{ data['timeline_interest_3'] }}">
+          </div>
         </div>
         <div class="timeline-row">
-          <input class="form-control timeline-column-3" type="text" id="timeline_4" name="timeline_4" value="">
-          <input class="form-control timeline-column-4 fee pound" type="text" onblur="updateTotal()" id="amount_4" name="amount_4" value="">
+          <div class="timeline-column-4">
+            <input class="form-control-full" type="text" onblur="updateTotal()" id="timeline_date_4" name="timeline_date_4" value="{{ data['timeline_date_4'] }}">
+          </div>
+          <div class="timeline-column-5">
+            <input class="form-control-full" type="text" id="timeline_text_4" name="timeline_text_4" value="{{ data['timeline_text_4'] }}">
+          </div>
+          <div class="timeline-column-4">
+            <input class="form-control-full fee pound" type="text" onblur="updateTotal()" id="timeline_amount_4" name="timeline_amount_4" value="{{ data['timeline_amount_4'] }}">
+          </div>
+          <div class="timeline-column-6">
+            <input class="form-control-full percentage" type="text" onblur="updateTotal()" id="timeline_interest_4" name="timeline_interest_4" value="{{ data['timeline_interest_4'] }}">
+          </div>
         </div>
       </div>
       <div class="timeline-row">
@@ -42,7 +84,6 @@
         </div>
       </div>
     <div class="timeline-row total bold-medium">Total: <span id="totalSumDisplay">0</span></div>
-    <input  type="hidden" name="totalSum" id="totalSum" value=>
     <script type='text/javascript'>
 
       function addRow() {
@@ -60,7 +101,15 @@
               currency: 'GBP',
               minimumFractionDigits: 2, /* this might not be necessary */
           });
-          var total = Number($('#amount_1')[0].value) + Number($('#amount_2')[0].value) + Number($('#amount_3')[0].value) + Number($('#amount_4')[0].value);
+          var interest_1 = parseFloat(((Number($('#timeline_amount_1')[0].value) * Number(moment().diff(moment($('#timeline_date_1')[0].value), 'days')) * Number($('#timeline_interest_1')[0].value)) / (365 * 100)).toFixed(2));
+          var interest_2 = parseFloat(((Number($('#timeline_amount_2')[0].value) * Number(moment().diff(moment($('#timeline_date_2')[0].value), 'days')) * Number($('#timeline_interest_2')[0].value)) / (365 * 100)).toFixed(2));
+          var interest_3 = parseFloat(((Number($('#timeline_amount_3')[0].value) * Number(moment().diff(moment($('#timeline_date_3')[0].value), 'days')) * Number($('#timeline_interest_3')[0].value)) / (365 * 100)).toFixed(2));
+          var interest_4 = parseFloat(((Number($('#timeline_amount_4')[0].value) * Number(moment().diff(moment($('#timeline_date_4')[0].value), 'days')) * Number($('#timeline_interest_4')[0].value)) / (365 * 100)).toFixed(2));
+          interest_1 = (interest_1.toString() == 'NaN') ? 0 : interest_1
+          interest_2 = (interest_2.toString() == 'NaN') ? 0 : interest_2
+          interest_3 = (interest_3.toString() == 'NaN') ? 0 : interest_3
+          interest_4 = (interest_4.toString() == 'NaN') ? 0 : interest_4
+          var total = Number($('#timeline_amount_1')[0].value) + Number(interest_1) + Number($('#timeline_amount_2')[0].value) + Number(interest_2) + Number($('#timeline_amount_3')[0].value) + Number(interest_3) + Number($('#timeline_amount_4')[0].value) + Number(interest_4);
           $('#totalSumDisplay')[0].innerText = formatter.format(total);
       }
     </script>

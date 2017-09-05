@@ -6,11 +6,11 @@
   <h2 class="bold-medium form-group">Claim number: D99YJ987</h2>
   <p class="form-group-compound">Submitted {{ today }}</p>
   <p>Issued {{ issueDate }}</p>
-  <p class="form-group-compound">Fee paid: {{ issueFeeamount }}</p>
+  <p class="form-group-compound">Fee paid: {{ issueFeeAmount }}</p>
 </div>
 
 <p>We've emailed confirmation to:
-  <span class="bold-small">{{ data['rep_email'] }}</span>
+  <span class="bold-small">{{ data['username'] }}</span>
 </p>
 
 <h2 class="bold-medium">Follow these steps to serve a claim:</h2>
@@ -36,7 +36,8 @@
   <a class="button" href="start" role="button">Finish</a>
 </div>
 
-<a href="email" role="button">Example - email</a>
+<p><a href="email" role="button">Example - email</a></p>
+<p><a href="dashboard" role="button">Example - dashboard</a></p>
 
 
 {% endblock %}

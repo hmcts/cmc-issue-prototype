@@ -3,7 +3,7 @@
 
 // Warn about using the kit in production
 if (window.console && window.console.info) {
-    window.console.info('GOV.UK Prototype Kit - do not use for production')
+	window.console.info('GOV.UK Prototype Kit - do not use for production')
 }
 
 $(document).ready(function () {
@@ -17,3 +17,53 @@ $(document).ready(function () {
     var showHideContent = new GOVUK.ShowHideContent()
     showHideContent.init()
 })
+
+$( document ).ready(function() {
+	$('.otherType').on('change',function(){
+		if( $(this).val()==="4"){
+			$(".other").show()
+		}
+		else if ( $(this).val()==="7"){
+			$(".other").show()
+		}		
+		else{
+			$(".other").hide()
+
+		}
+	}); 
+
+
+	$(".summary-link").click(function(){
+	    $(".sub").toggle();
+
+	   
+	});
+ 	
+ 		$(".summary-link2").click(function(){
+	    $(".sub2").toggle();
+
+	   
+	});
+
+
+
+	$('.otherType').on('change',function(){
+		if( $(this).val()==="4"){
+			$(".evidence-message").text("Please specify");
+
+
+		}
+		else if ( $(this).val()==="7"){
+			$(".evidence-message").text("Please specify");
+		}
+		else{
+			$(".evidence-message").text("");
+		}
+	});
+
+
+
+
+
+
+});
