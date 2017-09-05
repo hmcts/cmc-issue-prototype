@@ -101,11 +101,10 @@
               currency: 'GBP',
               minimumFractionDigits: 2, /* this might not be necessary */
           });
-          var interest_1 = parseFloat(((Number($('#timeline_amount_1')[0].value) * Number(moment($('#timeline_date_1')[0].value).diff(moment(), 'days')) * Number($('#timeline_interest_1')[0].value)) / (365 * 100)).toFixed(2));
-          var interest_2 = parseFloat(((Number($('#timeline_amount_2')[0].value) * Number(moment($('#timeline_date_2')[0].value).diff(moment(), 'days')) * Number($('#timeline_interest_2')[0].value)) / (365 * 100)).toFixed(2));
-          var interest_3 = parseFloat(((Number($('#timeline_amount_3')[0].value) * Number(moment($('#timeline_date_3')[0].value).diff(moment(), 'days')) * Number($('#timeline_interest_3')[0].value)) / (365 * 100)).toFixed(2));
-          var interest_4 = parseFloat(((Number($('#timeline_amount_4')[0].value) * Number(moment($('#timeline_date_4')[0].value).diff(moment(), 'days')) * Number($('#timeline_interest_4')[0].value)) / (365 * 100)).toFixed(2));
-
+          var interest_1 = parseFloat(((Number($('#timeline_amount_1')[0].value) * Number(moment().diff(moment($('#timeline_date_1')[0].value), 'days')) * Number($('#timeline_interest_1')[0].value)) / (365 * 100)).toFixed(2));
+          var interest_2 = parseFloat(((Number($('#timeline_amount_2')[0].value) * Number(moment().diff(moment($('#timeline_date_2')[0].value), 'days')) * Number($('#timeline_interest_2')[0].value)) / (365 * 100)).toFixed(2));
+          var interest_3 = parseFloat(((Number($('#timeline_amount_3')[0].value) * Number(moment().diff(moment($('#timeline_date_3')[0].value), 'days')) * Number($('#timeline_interest_3')[0].value)) / (365 * 100)).toFixed(2));
+          var interest_4 = parseFloat(((Number($('#timeline_amount_4')[0].value) * Number(moment().diff(moment($('#timeline_date_4')[0].value), 'days')) * Number($('#timeline_interest_4')[0].value)) / (365 * 100)).toFixed(2));
           interest_1 = (interest_1.toString() == 'NaN') ? 0 : interest_1
           interest_2 = (interest_2.toString() == 'NaN') ? 0 : interest_2
           interest_3 = (interest_3.toString() == 'NaN') ? 0 : interest_3

@@ -161,10 +161,10 @@ module.exports = function(app){
     app.post('*/prototype-sept-2017/fixed-claim-amount', function (req, res) {
         var moment = require('moment');
         req.session.data.total = Number(req.body.timeline_amount_1) + Number(req.body.timeline_amount_2) + Number(req.body.timeline_amount_3) + Number(req.body.timeline_amount_4);
-        var interest_1 = parseFloat(((Number(req.body.timeline_amount_1) * Number(moment(req.body.timeline_date_1).diff(moment(), 'days')) * Number(req.body.timeline_interest_1)) / (365 * 100)).toFixed(2));
-        var interest_2 = parseFloat(((Number(req.body.timeline_amount_2) * Number(moment(req.body.timeline_date_1).diff(moment(), 'days')) * Number(req.body.timeline_interest_2)) / (365 * 100)).toFixed(2));
-        var interest_3 = parseFloat(((Number(req.body.timeline_amount_3) * Number(moment(req.body.timeline_date_1).diff(moment(), 'days')) * Number(req.body.timeline_interest_3)) / (365 * 100)).toFixed(2));
-        var interest_4 = parseFloat(((Number(req.body.timeline_amount_4) * Number(moment(req.body.timeline_date_1).diff(moment(), 'days')) * Number(req.body.timeline_interest_4)) / (365 * 100)).toFixed(2));
+        var interest_1 = parseFloat(((Number(req.body.timeline_amount_1) * Number(moment().diff(moment(req.body.timeline_date_1), 'days')) * Number(req.body.timeline_interest_1)) / (365 * 100)).toFixed(2));
+        var interest_2 = parseFloat(((Number(req.body.timeline_amount_2) * Number(moment().diff(moment(req.body.timeline_date_2), 'days')) * Number(req.body.timeline_interest_2)) / (365 * 100)).toFixed(2));
+        var interest_3 = parseFloat(((Number(req.body.timeline_amount_3) * Number(moment().diff(moment(req.body.timeline_date_3), 'days')) * Number(req.body.timeline_interest_3)) / (365 * 100)).toFixed(2));
+        var interest_4 = parseFloat(((Number(req.body.timeline_amount_4) * Number(moment().diff(moment(req.body.timeline_date_4), 'days')) * Number(req.body.timeline_interest_4)) / (365 * 100)).toFixed(2));
 
         req.session.data.interestTotal = interest_1 + interest_2 + interest_3 + interest_4;
         res.redirect('claim-details')
