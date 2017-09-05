@@ -132,7 +132,7 @@ module.exports = function(app){
     app.post('*/prototype-sept-2017/fixed-claim-amount-total', function(req, res){
         req.session.data.total = Number(req.body.spec_claim_total_amount)
         req.session.data.interestTotal = Number(req.body.spec_claim_total_interest)
-        res.redirect('claim-total')
+        res.redirect('claim-details')
     });
 
     app.post('*/prototype-sept-2017/choose-how-to-pay', function (req, res) {
