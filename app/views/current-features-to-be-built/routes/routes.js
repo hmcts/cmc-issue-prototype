@@ -49,7 +49,7 @@ module.exports = function(app){
     });
 
     app.post('*/current-features-to-be-built/claimant-add', function(req, res){
-        if (req.body.addClaimant.toString() === 'yes') {
+        if (req.body.addClaimant && req.body.addClaimant.toString() === 'yes') {
             req.session.data['claimant_name'] = req.session.data['claimant_title'] = req.session.data['claimant_company_name'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
             req.session.data['claimant_town'] = req.session.data['claimant_postcode'] = req.session.data['claimantType'] = undefined
 
@@ -85,8 +85,16 @@ module.exports = function(app){
             res.redirect('defendant-reps-address')
         }
         else {
-            res.redirect('defendant-add')
+            res.redirect('defendants-service-address')
         }
+    });
+
+    app.get('*/current-features-to-be-built/defendants-service-address', function(req, res){
+        res.render('current-features-to-be-built/defendants-service-address')
+    });
+
+    app.post('*/current-features-to-be-built/defendants-service-address', function(req, res){
+        res.redirect('defendant-add')
     });
 
     app.get('*/current-features-to-be-built/defendant-reps-address', function(req, res){
@@ -98,7 +106,6 @@ module.exports = function(app){
     app.post('*/current-features-to-be-built/defendant-reps-address', function(req, res){
         res.redirect('defendant-add')
     });
-
 
     app.get('*/current-features-to-be-built/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
@@ -123,7 +130,7 @@ module.exports = function(app){
     });
 
     app.post('*/current-features-to-be-built/defendant-add', function(req, res){
-        if (req.body.addDefendant.toString() === 'yes') {
+        if (req.body.addDefendant && req.body.addDefendant.toString() === 'yes') {
             req.session.data['defendant_name'] = req.session.data['defendant_rep_company'] = req.session.data['defendant_address1'] = req.session.data['defendant_address2'] = undefined
             req.session.data['defendant_town'] = req.session.data['defendant_postcode'] = req.session.data['defendant_service_address1'] = req.session.data['defendant_service_address2'] = undefined
             req.session.data['defendant_service_city'] = req.session.data['defendant_service_postcode'] = req.session.data['defendant_company_name'] = req.session.data['defendantType'] = undefined
