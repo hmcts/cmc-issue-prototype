@@ -1,0 +1,54 @@
+{% extends "current-features-to-be-built/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Do you want to add another claimant?</h1>
+<form action="claimant-add" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Do you want to add another claimant?</legend>
+
+    <div class="multiple-choice">
+      <input id="addClaimant_yes" name="addClaimant" type="radio" value="yes" {{ checked('addClaimant','yes') }}>
+      <label for="addClaimant_yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="addClaimant_no" name="addClaimant" type="radio" value="no" {{ checked('addClaimant','no') }}>
+      <label for="addClaimant_no">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+<form>
+{% if claimants.length > 1 %}
+  <h1 class="heading-medium">
+    Already added
+  </h1>
+  <div class="column-full">
+    <div class="column-one-quarter bold">Number</div>
+    <div class="column-half bold">Claimant name</div>
+    <div class="column-one-quarter bold">Action</div>
+  </div>
+  <hr class="column-full">
+  {% for claimant in claimants %}
+  <div class="column-full">
+      <div class="column-one-quarter">{{ claimant.claimantNo}}</div>
+    <div class="column-half">{{ claimant.claimantName }}</div>
+    <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
+    <hr class="column-full">
+  </div>
+
+  {% endfor %}
+{% endif %}
+
+</form>
+
+<script type='text/javascript'>
+    function delete_item(el) {
+        el.parentNode.parentNode.parentNode.removeChild(el.parentNode.parentNode);
+    }
+</script>
+{% endblock %}

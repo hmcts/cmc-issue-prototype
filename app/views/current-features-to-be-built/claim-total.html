@@ -1,0 +1,25 @@
+{% extends "current-features-to-be-built/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">Your issue fee</h1>
+
+<form action="claim-total" id="form" method="post" class="form-group">
+  <div class="form-group">
+    <div class="task-list-item">
+      <div class="column-two-thirds">Amount claimed</div>
+      <div class="column-one-thirds text-align-right">To be assessed</div>
+    </div>
+    <div class="task-list-item">
+      <div class="column-two-thirds">Legal representative's costs</div>
+      <div class="column-one-thirds text-align-right">To be assessed</div>
+    </div>
+    <div class="task-list-item">
+      <div class="column-two-thirds"><label class="bold-small">Issue fee</label> (based on higher value of £{{ data['higher_value'] }})</div>
+      <div class="column-one-thirds bold-small text-align-right">£{{ amount }}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

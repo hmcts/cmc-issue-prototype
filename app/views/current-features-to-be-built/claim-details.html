@@ -1,0 +1,27 @@
+{% extends "current-features-to-be-built/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Briefly describe the claim</h1>
+
+<p>Tell us:
+
+  <ul class="list list-bullet">
+    <li>the type of claim, for example 'rent arrears' or 'damages'</li>
+    <li>what you expect to recover</li>
+  </ul>
+
+<p>Don't include particulars of claim here - serve them on the defendant when you get your sealed claim form.</p>
+
+<form action="claim-details" method="post">
+  <div class="form-group {% for error in errors %}{% if error.fieldName == 'claim_details' %} form-group-error {% endif %}{% endfor %}">
+    {% for error in errors %}
+      {% if error.fieldName == 'claim_details' %}<span class="error-message">{{ error.message }}</span>{% endif %}
+    {% endfor %}
+    <textarea class="form-control form-control-large" id="claim_details" rows="3" name="claim_details" type="text">{{ data['claim_details'] }}</textarea>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

@@ -236,6 +236,7 @@ require('./app/views/prototype-july-2017/routes/routes.js')(app);
 require('./app/views/prototype-july2-2017/routes/routes.js')(app);
 require('./app/views/prototype-sept-2017/routes/routes.js')(app);
 require('./app/views/prototype-MVP-2017/routes/routes.js')(app);
+require('./app/views/current-features-to-be-built/routes/routes.js')(app);
 
 
 // Returns a url to the zip of the latest release on github

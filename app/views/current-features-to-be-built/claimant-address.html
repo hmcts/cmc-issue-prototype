@@ -1,0 +1,32 @@
+{% extends "current-features-to-be-built/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<h1 class="heading-large"><span class="form-hint">Claimant: {% if data['claimant_name'] %} {{ data['claimant_name'] }} {% else %} {{ data['claimant_company_name'] }} {% endif %}</span>Address</h1>
+
+<form method="post" action="claimant-address" class="form">
+  <div class="form-group-compound">
+    <label class="form-label" for="claimant_AddressLine1">Address line 1</label>
+    <input class="form-control" id="claimant_AddressLine1" name="claimant_AddressLine1" type="text" value="{{ data['claimant_AddressLine1'] }}">
+  </div>
+
+  <div class="form-group-compound">
+    <label class="form-label" for="claimant_AddressLine2">Address line 2 (optional)</label>
+    <input class="form-control" id="claimant_AddressLine2" name="claimant_AddressLine2" type="text" value="{{ data['claimant_AddressLine2'] }}">
+  </div>
+
+  <div class="form-group-compound">
+    <label class="form-label" for="claimant_town">Town or city</label>
+    <input class="form-control" id="claimant_town" name="claimant_town" type="text" value="{{ data['claimant_town'] }}">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="claimant_postcode">Postcode</label>
+    <input class="form-control form-control-1-4" id="claimant_postcode" name="claimant_postcode" type="text" value="{{ data['claimant_postcode'] }}">
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+
+</form>
+
+{% endblock %}
