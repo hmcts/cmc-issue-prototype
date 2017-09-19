@@ -1,0 +1,111 @@
+{% extends "prototype-sept-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<div id="control-bar">
+
+  <a href="representative-name" class="">Create a new claim</a>
+
+  <div class="search-bar">
+    <div class="searchfield">
+      <form id="singular" action="">
+      <input type="search" name="search" id="search" class="search-input" placeholder="Search by claim number / name ">
+        <button type="submit" class="search-submit" title="search">Search</button>
+      </form>
+    </div>
+  </div>
+<div style="clear: both;"></div>
+</div>
+
+
+<h1 class="heading-large" >
+ Claim list
+</h1>
+
+
+<ol class="tabs">
+  <li class="active"><a href="">My tasks</a></li>
+  <li><a href="dashboard/all-claims">All active claims</a></li>
+  <li><a href="">Settled claims</a> <span class="badge">1</span></li>
+</ol>
+
+<!-- one pager start -->
+<table class="claim-dashboard2" >
+  <thead>
+    <tr>
+      <th scope="col">Claim number</th>
+      <th scope="col">Claimants / Defendants</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+      <th scope="col"><span class="filter">Due in</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="">
+      <td> <a href='dashboard/claim-details?details=all'>736MC047</a></td>
+      <td><span class="claimant">Michael Jones</span> <br> Trisha Scott + 3 more
+      </td>
+
+      <td> 
+       Issued
+
+     </td>
+     <td> 
+       <a href='certificate'>File certificate of service</a>
+     </td>
+     <td>
+      <span class="due soon">1 day</span>
+    </td>
+   </tr> 
+  <tr>
+    <td><a href='dashboard/claim-details?details=all'>253MC124</a></td>
+    <td><span class="claimant">John Barnes</span> <br> James Smith </td>  
+    <td> Issued</td>
+    <td><a href='certificate'>File certificate of service</a></td>
+     <td>
+      <span class="due soon">4 days</span>
+    </td>
+  </tr> 
+  <tr>
+    <td><a href='dashboard/claim-details?details=all'>342MC453</a></td>
+    <td><span class="claimant">Tobias Stoddart</span> + 5 more  <br> Daniel Clement   </td>     
+    <td> Issued</td>
+    <td> <a href='certificate'>File certificate of service</a></td>
+     <td>
+      <span class="due far">2 months</span>
+    </td>
+  </tr> 
+  <tr class="">
+    <td> <a href='dashboard/claim-details?details=part'>922MC233</a></td>
+    <td>
+     <span class="claimant">Trisha Scott</span> + 3 more <br> Andrew Drummond + 3 more
+
+   </td>
+
+   <td> 
+     Part served
+   </td>
+   <td> 
+    <a href='certificate'>File certificate of service</a>
+
+  </td>
+     <td>
+      <span class="due far">3 months</span>
+    </td>
+</tr> 
+   <tr>
+    <td><a href='dashboard/claim-details-draft'>Draft</td>
+    <td></td>
+    <td> Draft</td>
+    <td> <a href='type-of-claim'>Continue with claim</a></td>
+    <td></td>
+  </tr> 
+
+   <tr>
+    <td><a href='dashboard/claim-details-draft'>Draft</td>
+    <td><span class="claimant">John Barnes</span> <br> James Smith </td>  
+    <td> Ready to submit</td>
+    <td> <a href='choose-how-to-pay'>Pay and issue</a></td>
+    <td></td>
+  </tr> 
+</tbody>
+</table>
+
+{% endblock %}

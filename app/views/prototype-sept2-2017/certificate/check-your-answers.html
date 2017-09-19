@@ -1,0 +1,119 @@
+{% extends "prototype-sept-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large"><span class="form-hint">Apply for certificate of service </span>
+  Check your answers
+</h1>
+
+
+
+
+  <form method="post" action="submitted" class="form">
+
+
+    <table class="check-your-answers">
+
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Certificate of service details
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            Defendant name/s
+          </td>
+          <td>
+            <ul>
+              <li>Jan Clark</li>
+              <li>Neil Barrett</li>
+              <li>Jane Times</li>
+              <li>Victoria Williams</li>
+            </ul>
+          </td>
+          <td class="change-answer">
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            What date did you serve
+          </td>
+          <td>
+            31 August 2017
+          </td>
+          <td class="change-answer">
+           <a href="#">
+            Change <span class="visuallyhidden">Individual</span>
+          </a>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          What document did you serve 
+        </td>
+        <td>
+          <ul>
+            <li>Document 1</li>
+            <li>Document 2</li>
+          </ul>
+        </td>
+        <td class="change-answer">
+       <a href="#">
+        Change <span class="visuallyhidden">Individual</span>
+      </a>
+        </td>
+      </tr>
+
+    <tr>
+      <td>
+        How did you serve the documents?
+
+
+      </td>
+      <td>
+      First class post or other service
+      </td>
+      <td class="change-answer">
+       <a href="#">
+        Change <span class="visuallyhidden">Individual</span>
+      </a>
+    </td>
+  </tr>
+
+</tbody>
+</table>
+
+
+<div class="form-group">
+
+  <h2 class="heading-medium">Statement of truth</h2>
+
+
+  <div class="form-group">
+
+
+    <a name="hasacceptedtermsandconditions"></a>
+
+    <div class="multiple-choice text">
+      <input class="" id="HasAcceptedTermsAndConditions" type="checkbox" value="true">
+      <label for="HasAcceptedTermsAndConditions"> I believe that the facts stated in this form are true.</label>
+    </div>
+
+
+    <span class="field-validation-valid" data-valmsg-for="HasAcceptedTermsAndConditions" data-valmsg-replace="true" aria-live="polite"></span></div>
+
+    <form method="post" action="check-and-send/enter-card" class="form">
+
+      <button id="submit" class="button">Submit application</button>
+    </form>
+  </form>
+
+
+  {% endblock %}

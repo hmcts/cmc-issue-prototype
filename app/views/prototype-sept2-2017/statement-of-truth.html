@@ -1,0 +1,28 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Statement of truth</h1>
+
+<div class="form-group">
+  <label>The claimant believes that the facts in this claim form are true. I'm duly authorised by the claimant to sign this statement.</label>
+</div>
+
+<div class="form-group">
+  <label class="form-label" for="signer_name">Name</label>
+  <textarea type="text" class="form-control" id="signer_name" name="signer_name" value="{{ data['signer_name'] }}">{{ data['signer_name'] }}</textarea>
+</div>
+
+<div class="form-group">
+  <label class="form-label" for="signer_company">Organisation</label>
+  <label class="bold">{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</label>
+</div>
+
+<div class="form-group">
+  <label class="form-label" for="signer-role">Your role</label>
+  <input class="form-control" id="signer-role" name="signer-role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
+</div>
+
+
+<form method="post" action="choose-how-to-pay" class="form">
+  <input type="submit" id="submit" class="button" value="Continue to payment">
+</form>
+
+{% endblock %}
