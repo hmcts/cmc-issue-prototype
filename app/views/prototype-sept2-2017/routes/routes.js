@@ -101,7 +101,7 @@ module.exports = function(app){
             res.redirect('defendant-type')
         }
         else {
-            res.redirect('type-of-claim')
+            res.redirect('jurisdiction')
         }
     });
 
@@ -117,7 +117,7 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-sept2-2017/jurisdiction', function(req, res){
-        console.log(req.body);
+
         if (!req.body.serviceLocation) {
             res.render('prototype-sept2-2017/jurisdiction')
         }

@@ -8,7 +8,7 @@
   <fieldset class="form-group">
     <legend class="visually-hidden">Jurisdiction statement</legend>
       <hr class="form-group" />
-        <h2 class="heading-small">Statements 1–3</h2>
+        <h2 class="heading-small">Statement 1</h2>
 
         <p>I state that each claim made against the defendant to be served and included in the claim form is a claim which the Court has power to determine under the <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">Civil Jurisdiction and Judgments Act 1982</a>.</p>
         <p>No proceedings between the parties concerning the same claim are pending in the courts of any other part of the United Kingdom.</p>
@@ -18,23 +18,23 @@
     <div class="multiple-choice">
 
 
-      <input id="in-uk" name="serviceLocation" type="radio" value="in-uk1" {{ checked('serviceLocation','in-uk') }}>
-      <label for="in-uk">
+      <input id="statement1" name="jurisdictionStatement" type="radio" value="statement1" {{ checked('jurisdictionStatement','statement1') }}>
+      <label for="statement1">
         <p>The defendant is domiciled in the United Kingdom.</p>
       </label>
     </div>
 
     <div class="multiple-choice">
-      <input id="in-uk2" name="serviceLocation" type="radio" value="in-uk2" {{ checked('serviceLocation','in-uk') }}>
-      <label for="in-uk2">
+      <input id="statement2" name="jurisdictionStatement" type="radio" value="statement2" {{ checked('jurisdictionStatement','statement2') }}>
+      <label for="statement2">
         <p>The proceedings are within <a href="http://www.legislation.gov.uk/ukpga/1982/27/schedule/4/paragraph/11">paragraph 11 of Schedule 4 of the Civil Jurisdiction and Judgements Act 1982</a>.</p>
       </label>
     </div>
       
 
     <div class="multiple-choice">
-      <input id="in-uk3" name="serviceLocation" type="radio" value="in-uk3" {{ checked('serviceLocation','in-uk') }}>
-      <label for="in-uk3">
+      <input id="statement3" name="jurisdictionStatement" type="radio" value="statement3" {{ checked('jurisdictionStatement','statement') }}>
+      <label for="statement3">
         <p>The defendant is party to an agreement conferring jurisdiction, within <a href="http://www.legislation.gov.uk/ukpga/1982/27/schedule/4/paragraph/12">paragraph 12 of Schedule 4 to the 1982 act</a>.</p>
       </label>
     </div>
@@ -42,7 +42,7 @@
       </fieldset>
 
       <hr class="form-group" />
-        <h2 class="heading-small">Statement 4</h2>
+        <h2 class="heading-small">Statement 2</h2>
 
       <fieldset>
 
@@ -53,8 +53,8 @@
     </div>
 
     <div class="multiple-choice">
-      <input id="out-uk" name="serviceLocation" type="radio" value="out-uk" {{ checked('serviceLocation','out-uk') }}>
-      <label for="out-uk">I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under an enactment other than the <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">Civil Jurisdiction and Judgments Act 1982</a> namely (state the provisions of the enactment relied on to confer the power below) notwithstanding that the defendant is not within the jurisdiction; or the facts giving rise to the claim did not occur within the jurisdiction.</label>
+      <input id="statement4" name="jurisdictionStatement" type="radio" value="statement4" {{ checked('jurisdictionStatement','statement4') }}>
+      <label for="statement4">I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under an enactment other than the <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">Civil Jurisdiction and Judgments Act 1982</a> namely (state the provisions of the enactment relied on to confer the power below) notwithstanding that the defendant is not within the jurisdiction; or the facts giving rise to the claim did not occur within the jurisdiction.</label>
     </div>
 
   </fieldset>
