@@ -101,19 +101,34 @@ module.exports = function(app){
             res.redirect('defendant-type')
         }
         else {
-            res.redirect('type-of-claim')
+            res.redirect('jurisdiction')
         }
     });
 
-    app.post('*/prototype-sept2-2017/type-of-claim', function(req, res){
-        if (!req.body.typeOfClaim) {
-            res.render('prototype-sept2-2017/type-of-claim')
-        }
-        else if (req.body.typeOfClaim.toString() === 'specified') {
-            res.redirect('spec-claim-amount-type')
+    app.post('*/prototype-sept2-2017/defendant-represented', function(req, res){
+        if (req.body.defendantRepresented === undefined) {
+            res.render('prototype-sept2-2017/defendant-represented')
+        } else if (req.body.defendantRepresented.toString() === 'yes') {
+            res.redirect('defendant-reps-address')
         }
         else {
-            res.redirect('personal-injury')
+            res.redirect('defendants-service-address')
+        }
+    });
+
+    app.post('*/prototype-sept2-2017/jurisdiction', function(req, res){
+
+        if (!req.body.serviceLocation) {
+            res.render('prototype-sept2-2017/jurisdiction')
+        }
+        else if (req.body.serviceLocation.toString() === 'in-uk') {
+            res.redirect('jurisdiction-statements')
+        }
+        else if (req.body.serviceLocation.toString() === 'out-uk') {
+            res.redirect('jurisdiction-statements-2')
+        }
+        else {
+            res.redirect('type-of-claim')
         }
     });
 

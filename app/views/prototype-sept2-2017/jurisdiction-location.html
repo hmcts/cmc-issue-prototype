@@ -6,6 +6,10 @@
     <legend class="visually-hidden">Claim service location</legend>
 
     <div class="multiple-choice">
+      <input id="in-eng" name="serviceLocation" type="radio" value="in-eng" {{ checked('serviceLocation','in-eng') }}>
+      <label for="in-eng">England or Wales</label>
+    </div>
+    <div class="multiple-choice">
       <input id="in-uk" name="serviceLocation" type="radio" value="in-uk" {{ checked('serviceLocation','in-uk') }}>
       <label for="in-uk">Scotland or Northern Ireland</label>
     </div>
