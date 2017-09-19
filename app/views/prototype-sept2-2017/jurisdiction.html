@@ -1,0 +1,24 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Jurisdiction {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Are you serving a claim to a service address that’s not in England or Wales?</h1>
+<form action="jurisdiction-location" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Claim jurisdiction</legend>
+
+    <div class="multiple-choice">
+      <input id="yes" name="outsideJurisdiction" type="radio" value="yes" {{ checked('outsideJurisdiction','yes') }}>
+      <label for="yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="no" name="outsideJurisdiction" type="radio" value="no" {{ checked('outsideJurisdiction','no') }}>
+      <label for="no">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

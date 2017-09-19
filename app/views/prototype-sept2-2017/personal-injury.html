@@ -1,0 +1,33 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">Is it a personal injury claim?</h1>
+
+<form action="personal-injury" id="form" method="post" class="form-group">
+  <div class="form-group inline">
+    <div class="multiple-choice" data-target="personal-injury-yes">
+      <input id="personalInjury_yes" name="personal_injury" type="radio" value="yes" {{ checked('personal_injury','yes') }}>
+      <label for="personalInjury_yes">Yes</label>
+    </div>
+    <div class="multiple-choice">
+      <input id="personalInjury_no" name="personal_injury" type="radio" value="no" {{ checked('personal_injury','no') }}>
+      <label for="personalInjury_no">No</label>
+    </div>
+  </div>
+
+  <div id="personal-injury-yes" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+    <p>How much do you expect to recover as damages for pain, suffering and loss of amenity?</p>
+    <div class="multiple-choice">
+      <input id="pain_value_less" name="pain_value" type="radio" value="less than £1000" {{ checked('pain_value','less than £1000') }}>
+      <label for="pain_value_less">£1,000 or less</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="pain_value_more" name="pain_value" type="radio" value="more than £1000" {{ checked('pain_value','more than £1000') }}>
+      <label for="pain_value_more">More than £1,000</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}
