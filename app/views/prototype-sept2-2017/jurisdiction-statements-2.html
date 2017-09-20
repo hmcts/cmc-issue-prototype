@@ -8,24 +8,29 @@
   <fieldset class="form-group">
     <legend class="visually-hidden">Jurisdiction statement</legend>
       <hr class="form-group" />
-        <h2 class="heading-small">Statement 1</h2>
+        <h2 class="heading-small">Statement 1-3</h2>
 
         <p>I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">The Civil Jurisdiction and Judgment Act 1982</a> or the <a href="http://ec.europa.eu/world/agreements/Login.do?message=SessionExpired">Lugano Convention</a>.</p>
         <p>No proceedings between the parties concerning the same claim are pending in the courts of any other part of the United Kingdom or any other Convention territory.</p>
 
         <p>I also state:</p>
 
-    <div class="multiple-choice">
+    <div class="multiple-choice" data-target="statement1-which">
       <input id="statement1" name="jurisdictionStatement" type="radio" value="statement1" {{ checked('jurisdictionStatement','statement1') }}>
       <label for="statement1">
-        <p>The defendant is domiciled in [the United Kingdom] or [in a Convention territory, namely (state which)].</p>
+        <p>The defendant is domiciled in the United Kingdom or in a Convention territory, namely (state which).</p>
       </label>
+
     </div>
+
+      <div class="panel panel-border-narrow js-hidden" id="statement1-which">
+        State which 
+      </div>
 
     <div class="multiple-choice">
       <input id="statement2" name="jurisdictionStatement" type="radio" value="statement2" {{ checked('jurisdictionStatement','istatement2') }}>
       <label for="statement2">
-        <p>The proceedings are within <a href="http://www.legislation.gov.uk/ukpga/1982/27/schedule/1">article 16 of Schedule 1 to the said Act</a> or [<a href="http://ec.europa.eu/world/agreements/downloadFile.do?fullText=yes&treatyTransId=13041">article 22 of the said Convention</a>].</p>
+        <p>The proceedings are within <a href="http://www.legislation.gov.uk/ukpga/1982/27/schedule/1">article 16 of Schedule 1 to the said Act</a> or <a href="http://ec.europa.eu/world/agreements/downloadFile.do?fullText=yes&treatyTransId=13041">article 22 of the said Convention</a>.</p>
       </label>
     </div>
       
@@ -40,7 +45,7 @@
       </fieldset>
 
       <hr class="form-group" />
-        <h2 class="heading-small">Statement 2</h2>
+        <h2 class="heading-small">Statement 4-8</h2>
 
       <fieldset>
 
@@ -94,7 +99,7 @@
 
 
       <hr class="form-group" />
-        <h2 class="heading-small">Statement 3</h2>
+        <h2 class="heading-small">Statement 9</h2>
 
       <fieldset>
 
@@ -111,7 +116,7 @@
 
 
       <hr class="form-group" />
-        <h2 class="heading-small">Statement 4</h2>
+        <h2 class="heading-small">Statement 10</h2>
 
       <fieldset>
 
