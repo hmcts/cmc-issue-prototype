@@ -4,7 +4,7 @@
 <form action="defendant-add" id="form" method="post" class="form-group">
   <fieldset class="form-group inline">
     <legend class="visually-hidden">Do you want to add another defendant?</legend>
-    <p>You can add up to 4 defendants in this service.</p>
+    <p>You can add up to 20 defendants in this service.</p>
 
     <div class="multiple-choice">
       <input id="company" name="addDefendant" type="radio" value="yes" {{ checked('addDefendant','yes') }}>
@@ -29,16 +29,13 @@
     Already added
   </h1>
   <div class="column-full">
-    <div class="column-one-quarter bold">Number</div>
-    <div class="column-half bold">Defendant name</div>
-    <div class="column-one-quarter bold">Action</div>
+    <div class="column-one-third bold">Defendant</div>
   </div>
   <hr class="column-full">
   {% for defendant in defendants %}
   <div class="column-full">
-      <div class="column-one-quarter">{{ defendant.defendantNo}}</div>
-    <div class="column-half">{{ defendant.defendantName }}</div>
-    <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
+    <div class="column-two-thirds">{{ defendant.defendantName }}</div>
+    <div class="column-one-third"><a class="change link" href="defendant-type">Change</a> <a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">
   </div>
 
