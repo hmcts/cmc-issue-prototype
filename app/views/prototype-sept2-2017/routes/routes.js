@@ -132,6 +132,18 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-sept2-2017/type-of-claim', function(req, res){
+        if (!req.body.typeOfClaim) {
+            res.render('prototype-sept2-2017/type-of-claim')
+        }
+        else if (req.body.typeOfClaim.toString() === 'specified') {
+            res.redirect('spec-claim-amount-type')
+        }
+        else {
+            res.redirect('personal-injury')
+        }
+    });
+
     app.post('*/prototype-sept2-2017/spec-claim-amount-type', function(req, res){
         if (!req.body.interestTotal) {
             res.render('prototype-sept2-2017/spec-claim-amount-type')
