@@ -1,4 +1,6 @@
-{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %}
+{% import "prototype-sept2-2017/address.html" as address%}
+{% block main_content %}
   <form method="post" action="pay-by-card-confirmation" class="form">
     <h1 class="heading-large">Enter card details</h1>
 
@@ -48,27 +50,9 @@
         <p>This is the address associated with the card</p>
       </div>
 
+
       <fieldset class="form-group">
-        <legend class="visually-hidden">Address</legend>
-        <div class="form-group-compound">
-          <label class="form-label" for="payment_AddressLine1">Address line 1</label>
-          <input class="form-control" id="payment_AddressLine1" name="payment_AddressLine1" type="text" value="{{ data['payment_AddressLine1'] }}">
-        </div>
-
-        <div class="form-group-compound">
-          <label class="form-label" for="payment_AddressLine2">Address line 2 (optional)</label>
-          <input class="form-control" id="payment_AddressLine2" name="payment_AddressLine2" type="text" value="{{ data['payment_AddressLine2'] }}">
-        </div>
-
-        <div class="form-group-compound">
-          <label class="form-label" for="payment_city">Town or city (optional)</label>
-          <input class="form-control" id="payment_city" name="payment_city" type="text" value="{{ data['payment_city'] }}">
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="payment_Postcode">Postcode</label>
-          <input class="form-control form-control-1-4" id="payment_Postcode" name="payment_Postcode" type="text" value="{{ data['payment_Postcode'] }}">
-        </div>
+        {{ address.lookup('payment') }}
       </fieldset>
 
       <div class="form-group">
@@ -79,7 +63,7 @@
     </div>
 
     <div class="form-group">
-      <input type="submit" class="button" value="Save and continue">
+      <input type="submit" class="button" id="continue-button" value="Save and continue">
     </div>
   </form>
 {% endblock %}

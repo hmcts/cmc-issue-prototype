@@ -14,6 +14,8 @@ var browserSync = require('browser-sync')
 var config = require('./app/config.js')
 var utils = require('./lib/utils.js')
 var packageJson = require('./package.json')
+var postcodeLookup = require('./app/services/postcodeLookup.js')
+var countryLookup = require('./app/services/countryLookup.js')
 
 // Grab environment variables specified in Procfile or as Heroku config vars
 var releaseVersion = packageJson.version
@@ -218,6 +220,10 @@ if (promoMode === 'true') {
     res.send('User-agent: *\nDisallow: /')
   })
 }
+
+
+app.get('/postcode-lookup', postcodeLookup);
+app.get('/country-lookup', countryLookup);
 
 // routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
