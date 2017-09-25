@@ -505,3 +505,31 @@ ol.tabs {
   font-size: 19px;
   font-weight: 400;
 }
+
+
+input.postcode {
+  width: 8.5em;
+}
+
+.second-text-input {
+    margin-top: 15px;
+}
+
+@media (max-width: 640px) {
+  .postcode {
+    width: 100%;
+  }
+}
+
+#enter-manually {
+  margin-top: 20px;
+}
+
+#select-address {
+  margin-top: 20px;
+}
+
+#abroad-address {
+  display:    none;
+  margin-top: 20px;
+}

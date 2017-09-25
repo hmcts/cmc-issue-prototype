@@ -12,37 +12,15 @@
     </div>
 
     <div id="defendant-service-address" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
-      <p class="form-group-compound">{% if data['defendant_address1'] %} {{ data['defendant_address1'] }}, {% endif %}</p>
-      <p class="form-group-compound">{% if data['defendant_address2'] %} {{ data['defendant_address2'] }},{% endif %}</p>
-      <p class="form-group-compound">{% if data['defendant_town'] %} {{ data['defendant_town'] }}, {% endif %}</p>
-      <p class="form-group-compound">{% if data['defendant_postcode'] %} {{ data['defendant_postcode'] }} {% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_AddressLine1'] %} {{ data['defendant_AddressLine1'] }}, {% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_AddressLine2'] %} {{ data['defendant_AddressLine2'] }},{% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_city'] %} {{ data['defendant_city'] }}, {% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_Postcode'] %} {{ data['defendant_Postcode'] }} {% endif %}</p>
     </div>
 
-    <div class="multiple-choice" data-target="defendant-service-other">
+    <div class="multiple-choice">
       <input id="individual" name="defendantService" type="radio" value="other" {{ checked('defendantService','other') }}>
       <label for="individual">Use another address</label>
-    </div>
-
-    <div id="defendant-service-other" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
-      <div class="form-group-compound">
-        <label for="defendant_service_address1" class="form-label">Address line 1</label>
-        <input type="text" class="form-control" id="defendant_service_address1" name="defendant_service_address1" value="{{ data['defendant_service_address1'] }}">
-      </div>
-
-      <div class="form-group-compound">
-        <label for="defendant_service_address2" class="form-label">Address line 2 (optional)</label>
-        <input type="text" class="form-control" id="defendant_service_address2" name="defendant_service_address2" value="{{ data['defendant_service_address2'] }}">
-      </div>
-
-      <div class="form-group-compound">
-        <label for="defendant_service_city" class="form-label">Town or city (optional)</label>
-        <input type="text" class="form-control" id="defendant_service_city" name="defendant_service_city" value="{{ data['defendant_service_city'] }}">
-      </div>
-
-      <div class="form-group">
-        <label for="defendant_service_postcode" class="form-label">Postcode</label>
-        <input type="text" class="form-control form-control-1-4" id="defendant_service_postcode" name="defendant_service_postcode" value="{{ data['defendant_service_postcode'] }}">
-      </div>
     </div>
 
   </fieldset>
