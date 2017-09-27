@@ -4,7 +4,7 @@
 <p>Choose a statement that explains why you don’t need court permission to serve your claim out of jurisdiction.</p>
 <p>If none of the statements apply, you must get court permission.</p>
 
-<form action="type-of-claim" id="form" method="post" class="form-group">
+<form action="jurisdiction-statements-2" id="form" method="post" class="form-group">
   <fieldset class="form-group">
     <legend class="visually-hidden">Jurisdiction statement</legend>
       <hr class="form-group" />
@@ -15,7 +15,7 @@
 
         <p>I also state:</p>
 
-    <div class="multiple-choice" data-target="statement1-which">
+    <div class="multiple-choice">
       <input id="statement1" name="jurisdictionStatement" type="radio" value="statement1" {{ checked('jurisdictionStatement','statement1') }}>
       <label for="statement1">
         <p>The defendant is domiciled in the United Kingdom or in a Convention territory, namely (state which).</p>
@@ -23,9 +23,6 @@
 
     </div>
 
-      <div class="panel panel-border-narrow js-hidden" id="statement1-which">
-        State which 
-      </div>
 
     <div class="multiple-choice">
       <input id="statement2" name="jurisdictionStatement" type="radio" value="statement2" {{ checked('jurisdictionStatement','istatement2') }}>
