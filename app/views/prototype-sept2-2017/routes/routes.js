@@ -56,7 +56,26 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-sept2-2017/defendant-reps-address', function(req, res){
-        res.redirect('defendant-add')
+
+
+
+        if (req.session.data.defendant_service_country ) {
+
+            if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
+                res.redirect('defendant-add')
+            } else if ( req.session.data.defendant_service_country == 'Scotland' || req.session.data.defendant_service_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_service_country.toLowerCase() == 'ni' ||  req.session.data.defendant_service_country.toLowerCase().indexOf('bt') === 0 )  {
+                res.redirect('jurisdiction-statements')
+            } else {
+                res.redirect('jurisdiction-statements-2')
+            }
+
+
+        } else {
+             res.redirect('defendant-add')
+        }
+
+
+
     });
 
     app.get('*/prototype-sept2-2017/defendants-service-address', function(req, res){
@@ -70,9 +89,47 @@ module.exports = function(app){
             res.redirect('defendants-service-address-other')
         }
         else {
-            res.redirect('defendant-add')
+
+
+                if (req.session.data.defendant_country ) {
+
+                    if ( req.session.data.defendant_country == 'England' || req.session.data.defendant_country == 'Wales' )  {
+                        res.redirect('defendant-add')
+                    } else if ( req.session.data.defendant_country == 'Scotland' || req.session.data.defendant_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_country.toLowerCase() == 'ni' ||  req.session.data.defendant_Postcode.toLowerCase().indexOf('bt') === 0 )  {
+                        res.redirect('jurisdiction-statements')
+                    } else {
+                        res.redirect('jurisdiction-statements-2')
+                    }
+
+
+                } else {
+                     res.redirect('defendant-add')
+                }
+
         }
     });
+
+
+    app.post('*/prototype-sept2-2017/defendants-service-address-other', function(req, res){
+
+        if (req.session.data.defendant_service_country ) {
+
+            if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
+                res.redirect('defendant-add')
+            } else if ( req.session.data.defendant_service_country == 'Scotland' || req.session.data.defendant_service_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_service_country.toLowerCase() == 'ni' ||  req.session.data.defendant_service_Postcode.toLowerCase().indexOf('bt') === 0 )  {
+                res.redirect('jurisdiction-statements')
+            } else {
+                res.redirect('jurisdiction-statements-2')
+            }
+
+
+        } else {
+             res.redirect('defendant-add')
+        }
+
+
+    });
+
 
     app.get('*/prototype-sept2-2017/defendant-add', function(req, res){
         var defendants = req.session.defendants || [];
@@ -90,13 +147,16 @@ module.exports = function(app){
         var defendantServiceTown = (req.session.data['defendant_service_city']) ? req.session.data['defendant_service_city'] : req.session.data['defendant_city']
         var defendantServicePostcode = (req.session.data['defendant_service_Postcode']) ? req.session.data['defendant_service_Postcode'] : req.session.data['defendant_Postcode']
         var defendantServiceAddress = defendantServiceAddress1 + ' ' + defendantServiceAddress2 + ' ' + defendantServiceTown + ' ' + defendantServicePostcode
-        defendants.push({'defendantNo': defendantNo, 'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress})
+        var defendantCountry = (req.session.data['defendant_country']) ? req.session.data['defendant_country'] : ''
+        defendants.push({'defendantNo': defendantNo, 'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress, 'defendantCountry': defendantCountry})
 
         req.session.defendants = defendants
         res.render('prototype-sept2-2017/defendant-add', { defendants: defendants })
     });
 
     app.post('*/prototype-sept2-2017/defendant-add', function(req, res){
+
+
         if (req.body.addDefendant && req.body.addDefendant.toString() === 'yes') {
             req.session.data['defendant_name'] = req.session.data['defendant_rep_company'] = req.session.data['defendant_AddressLine1'] = req.session.data['defendant_AddressLine2'] = undefined
             req.session.data['defendant_city'] = req.session.data['defendant_Postcode'] = req.session.data['defendant_service_AddressLine1'] = req.session.data['defendant_service_AddressLine2'] = undefined
@@ -104,12 +164,22 @@ module.exports = function(app){
             req.session.data['defendantRepresented'] = req.session.data['defendant_title'] = req.session.data['defendantService'] = req.session.data['accept-service'] = undefined
 
             res.redirect('defendant-type')
+        } else {
+            res.redirect('type-of-claim');
         }
-        else {
-            res.redirect('jurisdiction')
-        }
+
     });
 
+
+
+
+    app.post('*/prototype-sept2-2017/jurisdiction-statements', function(req, res){
+        res.redirect('defendant-add');
+    });
+
+    app.post('*/prototype-sept2-2017/jurisdiction-statements-2', function(req, res){
+        res.redirect('defendant-add');
+    });
 
     app.post('*/prototype-sept2-2017/type-of-claim', function(req, res){
         if (!req.body.typeOfClaim) {
@@ -122,7 +192,7 @@ module.exports = function(app){
             res.redirect('personal-injury')
         }
     });
-    
+
     app.post('*/prototype-sept2-2017/defendant-represented', function(req, res){
         if (req.body.defendantRepresented === undefined) {
             res.render('prototype-sept2-2017/defendant-represented')
@@ -131,34 +201,6 @@ module.exports = function(app){
         }
         else {
             res.redirect('defendants-service-address')
-        }
-    });
-
-    app.post('*/prototype-sept2-2017/jurisdiction', function(req, res){
-
-        if (!req.body.serviceLocation) {
-            res.render('prototype-sept2-2017/jurisdiction')
-        }
-        else if (req.body.serviceLocation.toString() === 'in-uk') {
-            res.redirect('jurisdiction-statements')
-        }
-        else if (req.body.serviceLocation.toString() === 'out-uk') {
-            res.redirect('jurisdiction-statements-2')
-        }
-        else {
-            res.redirect('type-of-claim')
-        }
-    });
-
-    app.post('*/prototype-sept2-2017/type-of-claim', function(req, res){
-        if (!req.body.typeOfClaim) {
-            res.render('prototype-sept2-2017/type-of-claim')
-        }
-        else if (req.body.typeOfClaim.toString() === 'specified') {
-            res.redirect('spec-claim-amount-type')
-        }
-        else {
-            res.redirect('personal-injury')
         }
     });
 

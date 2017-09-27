@@ -217,9 +217,21 @@ module.exports = function(app){
         res.redirect('pay-by-account')
     });
 
+    app.post('*/current-features-to-be-built/choose-how-to-pay', function (req, res) {
+        if (!req.body.paymentType) {
+            res.render('prototype-sept2-2017/choose-how-to-pay')
+        }
+        else if (req.body.paymentType == 'card') {
+            res.redirect('pay-by-card')
+        } else {
+            res.redirect('pay-by-account')
+        }
+    });
+
     app.post('*/current-features-to-be-built/pay-by-account', function(req, res){
         res.redirect('claim-submitted')
     });
+
 
     app.get('*/current-features-to-be-built/claim-submitted', function (req, res) {
         var moment = require('moment');

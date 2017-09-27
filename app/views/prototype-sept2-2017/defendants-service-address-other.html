@@ -5,7 +5,7 @@
 <h1 class="heading-large"><span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %}: {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
   Address for service
 </h1>
-<form action="defendants-service-address" method="post">
+<form action="defendants-service-address-other" method="post">
 
   <fieldset class="form-group">
     {{ address.lookup('defendant_service') }}
