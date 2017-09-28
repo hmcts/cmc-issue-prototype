@@ -1,5 +1,57 @@
 module.exports = function(app){
 
+
+    app.get('*/prototype-sept2-2017/what-type-of-claimant', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        res.render('prototype-sept2-2017/what-type-of-claimant', { claimants: claimants })
+    });
+
+    app.post('*/prototype-sept2-2017/what-type-of-claimant', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        if (!req.body.claimantType) {
+            res.render('prototype-sept2-2017/what-type-of-claimant', { claimants: claimants })
+        }
+        else {
+            res.redirect('claimant-address')
+        }
+    });
+
+    app.get('*/prototype-sept2-2017/claimant-address', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        res.render('prototype-sept2-2017/claimant-address', { claimants: claimants })
+    });
+
+
+    app.post('*/prototype-sept2-2017/claimant-add', function(req, res){
+
+        if (req.body.addClaimant === undefined) {
+            var claimants = req.session.claimants || [];
+            var claimantNo = claimants.length + 1;
+            var claimantName = (req.session.data['claimant_name']) ? req.session.data['claimant_name'] : req.session.data['claimant_company_name']
+            var claimantCompanyNumber = (req.session.data['claimant_company_number']) ? req.session.data['claimant_company_number'] : '-'
+            var claimantAddress1 = (req.session.data['claimant_AddressLine1']) ? req.session.data['claimant_AddressLine1'] : '-'
+            var claimantAddress2 = (req.session.data['claimant_AddressLine2']) ? req.session.data['claimant_AddressLine2'] : ''
+            var claimantTown = (req.session.data['claimant_city']) ? req.session.data['claimant_city'] : ''
+            var claimantPostcode = (req.session.data['claimant_Postcode']) ? req.session.data['claimant_Postcode'] : ''
+            var claimantAddress = claimantAddress1 + ' ' + claimantAddress2 + ' ' + claimantTown + ' ' + claimantPostcode
+            claimants.push({'claimantNo': claimantNo, 'claimantName': claimantName, 'claimantCompanyNumber': claimantCompanyNumber, 'claimantAddress': claimantAddress})
+
+            req.session.claimants = claimants
+            res.render('prototype-sept2-2017/claimant-add', { claimants: claimants })
+        } else if (req.body.addClaimant && req.body.addClaimant.toString() === 'yes') {
+            req.session.data['claimant_name'] = req.session.data['claimant_rep_company'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
+            req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = req.session.data['claimantType'] = req.session.data['claimant_title'] = undefined
+
+            res.redirect('what-type-of-claimant')
+        } else {
+            res.redirect('defendant-type');
+        }
+
+    });
+
     app.post('*/prototype-sept2-2017/representation', function(req, res){
         if (req.body.representativeType.toString() === 'represent') {
             res.redirect('representatives-details')
@@ -59,7 +111,7 @@ module.exports = function(app){
 
 
 
-        if (req.session.data.defendant_service_country ) {
+        if (req.session.data.defendant_service_country ) { 
 
             if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
                 res.redirect('defendant-add')
@@ -193,6 +245,7 @@ module.exports = function(app){
         }
     });
 
+    // REPEATED BLOCK - delete?
     app.post('*/prototype-sept2-2017/defendant-represented', function(req, res){
         if (req.body.defendantRepresented === undefined) {
             res.render('prototype-sept2-2017/defendant-represented')
@@ -233,6 +286,7 @@ module.exports = function(app){
         }
     });
 
+    // REPEATED BLOCK - delete?
     app.post('*/prototype-sept2-2017/defendant-represented', function(req, res){
         if (!req.body.defendantRepresented) {
             res.render('prototype-sept2-2017/defendant-represented')
