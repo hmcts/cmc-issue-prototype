@@ -18,17 +18,6 @@
 
   </fieldset>
 
-
-  {% if defendants.length > 0 %}
-    {% for defendant in defendants %}
-      {% if defendant.defendantCountry %}
-        {% if defendant.defendantCountry != "England" %}
-          <input type="hidden" name="outOfJurisdiction" value="1" />
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-
   <div class="form-group">
     <input type="submit" class="button" value="Save and continue">
   </div>
