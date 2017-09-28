@@ -124,7 +124,6 @@ function showSelectAddress() {
             $('#manual-address').hide();
             $('#postcode-seach-error').hide();
             $('#postcode-seach-ni-error').hide();
-            $('#abroad-address').hide();
             $('#continue-button').unbind('click').click(function(e){
               e.preventDefault();
               $('#address-select-container').addClass('error');
@@ -181,6 +180,7 @@ function showSelectAddress() {
 
   function showAbroadAddress() {
     $('#street-label').html('Address');
+    $('#postcode-label').html('Postal/ZIP code');
     $('#manual-address').show();
     $('#country').attr('type', 'text');
     $('#manual-address').addClass( 'abroad' );

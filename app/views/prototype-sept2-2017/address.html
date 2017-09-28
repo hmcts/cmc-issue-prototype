@@ -45,7 +45,7 @@
         <input class="form-control" id="county" name="{{ prefix }}_county" type="text"  value="{{ data['{{ prefix }}_county'] }}">
       </div>
       <div class="form-group">
-        <label class="form-label" for="postcode-full">Postcode</label>
+        <label class="form-label" for="postcode-full" id="postcode-label">Postcode</label>
         <input class="form-control" id="postcode-full" name="{{ prefix }}_Postcode" type="text"  value="{{ data['{{ prefix }}_Postcode'] }}">
       </div>
       <div class="form-group" id="country-group">
@@ -57,16 +57,6 @@
 
       <div id="enter-manually">
         <a class="link" href="#" onclick="return showAbroadAddress();">I need to enter an address outside the UK</a>
-      </div>
-
-      <div id="abroad-address">
-        <label for="abroadAddress">Enter full address</label>
-        <textarea class="form-control"
-                  rows="10"
-                  id="abroadAddress"
-                  name="abroadAddress"
-                  type="text"></textarea>
-                <br/>
       </div>
 
 
