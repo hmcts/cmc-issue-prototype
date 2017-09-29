@@ -1,5 +1,63 @@
 module.exports = function(app){
 
+
+    app.get('*/current-features-to-be-built/what-type-of-claimant', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        res.render('current-features-to-be-built/what-type-of-claimant', { claimants: claimants })
+    });
+
+    app.post('*/current-features-to-be-built/what-type-of-claimant', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        if (!req.body.claimantType) {
+            res.render('current-features-to-be-built/what-type-of-claimant', { claimants: claimants })
+        }
+        else {
+            res.redirect('claimant-address')
+        }
+    });
+
+    app.get('*/current-features-to-be-built/claimant-address', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        res.render('current-features-to-be-built/claimant-address', { claimants: claimants })
+    });
+
+
+    app.post('*/current-features-to-be-built/claimant-add', function(req, res){
+
+        if (req.body.addClaimant === undefined) {
+            var claimants = req.session.claimants || [];
+            var claimantNo = claimants.length + 1;
+            var claimantName = (req.session.data['claimant_name']) ? req.session.data['claimant_name'] : req.session.data['claimant_company_name']
+            var claimantCompanyNumber = (req.session.data['claimant_company_number']) ? req.session.data['claimant_company_number'] : '-'
+            var claimantAddress1 = (req.session.data['claimant_AddressLine1']) ? req.session.data['claimant_AddressLine1'] : '-'
+            var claimantAddress2 = (req.session.data['claimant_AddressLine2']) ? req.session.data['claimant_AddressLine2'] : ''
+            var claimantTown = (req.session.data['claimant_city']) ? req.session.data['claimant_city'] : ''
+            var claimantPostcode = (req.session.data['claimant_Postcode']) ? req.session.data['claimant_Postcode'] : ''
+            var claimantAddress = claimantAddress1 + ' ' + claimantAddress2 + ' ' + claimantTown + ' ' + claimantPostcode
+            claimants.push({'claimantNo': claimantNo, 'claimantName': claimantName, 'claimantCompanyNumber': claimantCompanyNumber, 'claimantAddress': claimantAddress})
+
+            req.session.claimants = claimants
+            res.render('current-features-to-be-built/claimant-add', { claimants: claimants })
+        } else if (req.body.addClaimant && req.body.addClaimant.toString() === 'yes') {
+            req.session.data['claimant_name'] = req.session.data['claimant_rep_company'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
+            req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = req.session.data['claimantType'] = req.session.data['claimant_title'] = undefined
+
+            res.redirect('what-type-of-claimant')
+        } else {
+            res.redirect('defendant-type');
+        }
+
+    });
+
+
+
+
+
+ 
+
     app.post('*/current-features-to-be-built/login', function(req, res){
         res.redirect('start')
     });
@@ -219,7 +277,7 @@ module.exports = function(app){
 
     app.post('*/current-features-to-be-built/choose-how-to-pay', function (req, res) {
         if (!req.body.paymentType) {
-            res.render('prototype-sept2-2017/choose-how-to-pay')
+            res.render('current-features-to-be-built/choose-how-to-pay')
         }
         else if (req.body.paymentType == 'card') {
             res.redirect('pay-by-card')
