@@ -107,12 +107,12 @@ function showSelectAddress() {
 
             jQuery.each( data, function(key, value){
               var formatted_address = [
-                value.building_number || value.building_name || value.organisation_name,
+                ( value.organisation_name || value.sub_building_name ) + ' ' + ( value.building_number || value.building_name || null),
                 value.thoroughfare_name || value.dependent_locality,
                 value.post_town,
                 value.postcode
               ];
-              html += '<option value="' + formatted_address.join(', ') + '">' + formatted_address.join(', ') + '</option>';
+              html += '<option value="' + formatted_address.join(', ').trim() + '">' + formatted_address.join(', ').trim() + '</option>';
             });
 
             $('#addressList').html(html);
@@ -166,7 +166,7 @@ function showSelectAddress() {
 
   function updateAddress(address) {
     showSelectedAddress();
-    var addresses = $('#addressList').val().split(',');
+    var addresses = $('#addressList').val().split(', ');
     $("#street-1").val(addresses[0]);
     $("#street-2").val(addresses[1]);
     $("#town").val(addresses[2]);
