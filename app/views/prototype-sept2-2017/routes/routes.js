@@ -414,12 +414,13 @@ module.exports = function(app){
 
     app.get('*/prototype-sept2-2017/claim-details-summary', function (req, res) {
         var defendants = req.session.defendants || [];
+        var claimants = req.session.claimants || [];
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 2, /* this might not be necessary */
         });
-        res.render('prototype-sept2-2017/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim })
+        res.render('prototype-sept2-2017/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, claimants: claimants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim })
     })
 
     app.get('*/prototype-sept2-2017/claim-submitted', function (req, res) {
