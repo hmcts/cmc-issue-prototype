@@ -48,50 +48,32 @@
     </div>
   </div>
 
-  <div class="heading-medium">Claimant details</div>
-  {% if data['claimant_name'] %}
+  {% for claimant in claimants %}
+  <div class="heading-medium">Claimant {{ claimant.claimantNo }} details</div>
+  {% if claimant.claimantName %}
     <div class="task-list-item">
       <div class="column-one-quarter form-hint">Name</div>
       <div class="column-one-half if-empty">
-        {% if data['claimant_title'] %} {{ data['claimant_title'] }} {% endif %}
-        {% if data['claimant_name'] %} {{ data['claimant_name'] }} {% endif %}
+        {% if claimant.claimantTitle %} {{ claimant.claimantTitle }} {% endif %}
+        {{ claimant.claimantName }}
       </div>
       <div class="column-one-quarter"><a class="right" href="what-type-of-claimant">Change</a></div>
     </div>
     <div class="task-list-item">
       <div class="column-one-quarter form-hint">Address</div>
       <div class="column-one-half if-empty">
-        {% if data['claimant_AddressLine1'] %} {{ data['claimant_AddressLine1'] }}, {% endif %}
-        {% if data['claimant_AddressLine2'] %} {{ data['claimant_AddressLine2'] }},{% endif %}
-        {% if data['claimant_city'] %} {{ data['claimant_city'] }}, {% endif %}
-        {% if data['claimant_Postcode'] %} {{ data['claimant_Postcode'] }} {% endif %}
+        {% if claimant.claimantAddress %} {{ claimant.claimantAddress }} {% endif %}
       </div>
       <div class="column-one-quarter"><a class="right" href="claimant-address">Change</a></div>
     </div>
   {% endif %}
-  {% if data['claimant_company_name'] %}
-    <div class="task-list-item">
-      <div class="column-one-quarter form-hint">Organisation name</div>
-      <div class="column-one-half if-empty">
-        {% if data['claimant_company_name'] %} {{ data['claimant_company_name'] }} {% endif %}
-      </div>
-      <div class="column-one-quarter"><a class="right" href="what-type-of-claimant">Change</a></div>
-    </div>
+  {% if claimant.claimantCompanyNumber != '-' %}
     <div class="task-list-item">
       <div class="column-one-quarter form-hint">Companies House number</div>
-      <div class="column-one-half if-empty">{% if data['claimant_company_number'] %} {{ data['claimant_company_number'] }} {% endif %}</div>
-    </div>
-    <div class="task-list-item">
-      <div class="column-one-quarter form-hint">Address</div>
-      <div class="column-one-half if-empty">
-        {% if data['claimant_AddressLine1'] %} {{ data['claimant_AddressLine1'] }}, {% endif %}
-        {% if data['claimant_AddressLine2'] %} {{ data['claimant_AddressLine2'] }},{% endif %}
-        {% if data['claimant_city'] %} {{ data['claimant_city'] }}, {% endif %}
-        {% if data['claimant_Postcode'] %} {{ data['claimant_Postcode'] }} {% endif %}
-      </div>
-      <div class="column-one-quarter"><a class="right" href="claimant-address">Change</a></div>
+      <div class="column-one-half if-empty">{% if claimant.claimantCompanyNumber %} {{ claimant.claimantCompanyNumber }} {% endif %}</div>
     </div>
   {% endif %}
+  {% endfor %}
 
 
   {% for defendant in defendants %}
