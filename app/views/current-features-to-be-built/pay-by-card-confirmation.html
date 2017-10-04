@@ -1,0 +1,28 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Pay by credit card</h1>
+
+<div class="form-group">
+  <div class="task-list-item">
+    <div class="column-half bold">Total cost</div>
+    <div class="column-half bold numeric">£{{ data['issueFeeAmount'] }}</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Credit card number</div>
+    <div class="column-half numeric">{{ data['card_number'] }}</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Name on card</div>
+    <div class="column-half numeric">{{ data['card_name'] }}</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Code on back of card</div>
+    <div class="column-half numeric">{{ data['card_security'] }}</div>
+  </div>
+  <div class="task-list-item">
+    <div class="column-half form-hint">Expiry date</div>
+    <div class="column-half numeric">{{ data['card_month'] }}/{{ data['card_year'] }}</div>
+  </div>
+</div>
+
+<a class="button" href="claim-submitted" role="button">Save and Continue</a>
+{% endblock %}

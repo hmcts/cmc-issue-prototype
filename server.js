@@ -14,6 +14,8 @@ var browserSync = require('browser-sync')
 var config = require('./app/config.js')
 var utils = require('./lib/utils.js')
 var packageJson = require('./package.json')
+var postcodeLookup = require('./app/services/postcodeLookup.js')
+var countryLookup = require('./app/services/countryLookup.js')
 
 // Grab environment variables specified in Procfile or as Heroku config vars
 var releaseVersion = packageJson.version
@@ -219,6 +221,10 @@ if (promoMode === 'true') {
   })
 }
 
+
+app.get('/postcode-lookup', postcodeLookup);
+app.get('/country-lookup', countryLookup);
+
 // routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
   console.log(routes.bind)
@@ -235,7 +241,9 @@ require('./app/views/prototype-june2-2017/routes/routes.js')(app);
 require('./app/views/prototype-july-2017/routes/routes.js')(app);
 require('./app/views/prototype-july2-2017/routes/routes.js')(app);
 require('./app/views/prototype-sept-2017/routes/routes.js')(app);
+require('./app/views/prototype-sept2-2017/routes/routes.js')(app);
 require('./app/views/prototype-MVP-2017/routes/routes.js')(app);
+require('./app/views/current-features-to-be-built/routes/routes.js')(app);
 
 
 // Returns a url to the zip of the latest release on github

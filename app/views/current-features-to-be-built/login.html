@@ -1,8 +1,10 @@
-{% extends "prototype-july2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
-<h1 class="heading-large">Sign in</h1>
+{% extends "current-features-to-be-built/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %}
 
-<form action="start" method="post">
-  <div class="form-group">
+{% block main_content %}
+<h1 class="heading-large">Login</h1>
+
+<form action="login" method="post">
+  <div class="form-group {% if errors %} form-group-error {% endif %}">
     <label class="form-label" for="username">Username</label>
     <input type="text" class="form-control" id="username" name="username" value="{{ data['username'] }}">
   </div>
