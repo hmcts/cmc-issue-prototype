@@ -1,0 +1,181 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+
+  <legend>
+
+    <form method="post" action="when" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        {{ defendant.defendantName }}
+      </h1>
+
+      <div class="form-group">
+        <h2 class="heading-medium">
+          How did you serve the documents to {{ defendant.defendantFirstName }}?
+        </h2>
+
+         <div class="form-group">
+           <div class="form-group"> 
+             <div class="multiple-choice" data-target="post-address">
+              <input id="post" name="how-served" type="radio" value="post">
+              <label for="post">First class post, or other next-day service</label>
+            </div>
+            <div id="post-address" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+              <p class="form-group-compound">{{ defendant.serviceAddress }}</p>
+
+              <p>If you served to a different address, you must amend the claim before you confirm service.</p>
+            </div>
+
+            <div class="multiple-choice" data-target="deliver-address">
+              <input id="delivering" name="how-served" type="radio" value="delivering">
+              <label for="delivering">Delivering to or leaving at a permitted place</label>
+            </div>
+            <div id="deliver-address" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+              <p class="form-group-compound">{{ defendant.serviceAddress }}</p>
+
+              <p>If you served to a different address, you must amend the claim before you confirm service.</p>
+            </div>
+
+            <div class="multiple-choice" data-target="handing-address">
+              <input id="handed" name="how-served" type="radio" value="handed">
+              <label for="handed">Personally handing it to or leaving it with recipient</label>
+            </div>
+            <div id="handing-address" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+               <div class="form-group">
+                <label class="form-label" for="left-with">Who did you leave it with?</label>
+                <input class="form-control" type="text" id="left-with" name="left-with" value="">
+              </div>
+              <p class="form-group-compound">{{ defendant.serviceAddress }}</p>
+              <p>If you served to a different address, you must amend the claim before you confirm service.</p>
+            </div>
+
+            <div class="multiple-choice" data-target="dx-address-panel">
+              <input id="dx" name="how-served" type="radio" value="dx">
+              <label for="dx">Document Exchange</label>
+            </div>
+            <div id="dx-address-panel" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+              <label class="form-label" for="dx-address">DX address</label>
+              <input class="form-control" type="text" id="dx-address" name="dx-address" value="" style="width: 75%;">
+            </div>
+
+            <div class="multiple-choice" data-target="email-address-panel">
+              <input id="email" name="how-served" type="radio" value="email">
+              <label for="email">Email</label>
+            </div>
+            <div id="email-address-panel" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+              <label class="form-label" for="email-address">Email address</label>
+              <input class="form-control" type="text" id="email-address" name="email-address" value="" style="width: 75%;">
+            </div>
+
+            <div class="multiple-choice" data-target="other-electronic-panel">
+              <input id="other-electronic" name="how-served" type="radio" value="other-electronic">
+              <label for="other-electronic">Other electronic method</label>
+            </div>
+            <div id="other-electronic-panel" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+              <div class="form-group">
+                <label class="form-label" for="other-electronic-method">Please specify method</label>
+                <input class="form-control" type="text" id="other-electronic-method" name="other-electronic-method" value="" style="width: 75%;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="other-electronic-address">Electronic address/identifier</label>
+                <input class="form-control" type="text" id="other-electronic-address" name="other-electronic-address" value="" style="width: 75%;">
+              </div>
+            </div>
+
+            <div class="multiple-choice" data-target="fax-panel">
+              <input id="fax" name="how-served" type="radio" value="fax">
+              <label for="fax">Fax</label>
+            </div>
+            <div id="fax-panel" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+              <label class="form-label" for="fax-number">Fax number</label>
+              <input class="form-control" type="text" id="fax-number" name="fax-number" value="">
+            </div>
+
+
+            <div class="multiple-choice" data-target="other-doc-box">
+              <input id="other" name="how-served" type="radio" value="other">
+              <label for="other">Other</label>
+            </div>
+              <div class="form-group js-hidden multiple-choice" id="other-doc-box">
+                <label class="form-label" for="other-doc" style="float: none;">Please specify</label>
+                <textarea class="form-control" id="other-doc" name="other-doc" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
+              </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+      <div class="form-group">
+        <h2 class="heading-medium">
+          This destination being the defendant's 
+        </h2>
+
+         <div class="multiple-choice">
+          <input id="usual-res" name="destination" type="radio" value="Usual residence">
+          <label for="usual-res">usual residence</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="last-res" name="destination" type="radio" value="Last known residence">
+          <label for="last-res">last known residence</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="registered-office" name="destination" type="radio" value="Registered office">
+          <label for="registered-office">registered office address</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="bus" name="destination" type="radio" value="Place of business">
+          <label for="bus">place of business</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="princ-bus" name="destination" type="radio" value="Principal place of business">
+          <label for="princ-bus">principal place of business</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="last-bus" name="destination" type="radio" value="Last known place of business">
+          <label for="last-bus">last known place of business</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="last-princ" name="destination" type="radio" value="Last known principal place of business">
+          <label for="last-princ">last known principal place of business</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="princ-office" name="destination" type="radio" value="Principal office of the partnership">
+          <label for="princ-office">principal office of the partnership</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="princ-corp" name="destination" type="radio" value="Principal office of the corporation">
+          <label for="princ-corp">principal office of the corporation</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="princ-comp" name="destination" type="radio" value="Principal office of the company">
+          <label for="princ-comp">principal office of the company</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="jurisdiction" name="destination" type="radio" value="Place of business of the partnership/company/corporation within the jurisdiction with a connection to claim">
+          <label for="jurisdiction">place of business of the partnership/company/corporation within the jurisdiction with a connection to claim</label>
+        </div>
+
+        <div class="multiple-choice" data-target="other-dest-box">
+          <input id="other-dest" name="how-served" type="radio" value="other">
+          <label for="other-dest">other</label>
+        </div>
+        <div class="form-group js-hidden multiple-choice" id="other-dest-box">
+          <label class="form-label" for="other-dest-value" style="float: none;">Please specify</label>
+          <textarea class="form-control" id="other-dest-value" name="other-dest-value" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}
