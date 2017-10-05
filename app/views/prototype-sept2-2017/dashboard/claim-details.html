@@ -1,20 +1,18 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 
+<h1 class="heading-large"><span class="heading-secondary">PW1241/KU</span>
+	Jones v Clark
+</h1>
 
 {% if data['details']=="all"  %}
-
-<h1 class="heading-large"><span class="heading-secondary">Claim number </span>
-	736MC047
-</h1>
 <h3 class="heading-medium">Claimant </h3>
 <ul>
 	<li>Michael Jones</li>
 </ul>
 <h3 class="heading-medium">Defendants </h3>
 
-
-<table class="" >
+<table class="">
 	<thead>
 		<tr>
 			<th scope="col">Names</th>
@@ -43,13 +41,10 @@
 </table>
 {% elseif data['details']=="part" %}
 
-<h1 class="heading-large"><span class="heading-secondary">Claim number </span>
-	922MC233
-</h1>
 <h3 class="heading-medium">Claimants </h3>
 <ul>
-	<li>Trisha Scott</li>
 	<li>Chris Jones</li>
+	<li>Trisha Scott</li>
 	<li>Barry Scott</li>
 	<li>Kate Barrett</li>
 </ul>
@@ -83,7 +78,7 @@
 		</tr>
 
 		<tr class="">
-			<td> Jan Clark</td>
+			<td> Dave Fortey</td>
 			<td> Served</td>
 			<td> 
 				<a href='#' class="button secondary-button">Request default judgement</a>
@@ -108,13 +103,16 @@ else
 
 
 <aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
+
+	<h3 class="heading-small" style="margin-top:.42105em">Claim number</h3>
+	<p class="font-xsmall">736MC047</p>
+
+
 	<h3 class="heading-small" id="subsection-title">Claim options </h3>
 	<nav role="navigation" aria-labelledby="subsection-title">
 		<ul class="font-xsmall">
 			<li><a href="#">Download the sealed claim form</a> </li>
 			<li><a href="#">Apply to amend the claim</a> </li>
-
-
 		</ul>
 	</nav>
 </aside>
