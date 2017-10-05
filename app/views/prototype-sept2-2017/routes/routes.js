@@ -518,7 +518,6 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-sept2-2017/certificate/when', function(req, res){
-        console.log( req.session.defendantsServed  );
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
 
