@@ -187,6 +187,7 @@ module.exports = function(app){
         var defendants = req.session.defendants || [];
         var defendantNo = defendants.length + 1;
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name']
+        var defendantFirstName = req.session.data['defendant_company_name'] || req.session.data['defendant_name'].substring(0, (req.session.data['defendant_name'].indexOf(' ') > 0 ? req.session.data['defendant_name'].indexOf(' ') : req.session.data['defendant_name'].length ) );
         var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
         var defendantSolicitorName = (req.session.data['defendant_rep_company']) ? req.session.data['defendant_rep_company'] : '-'
         var defendantAddress1 = (req.session.data['defendant_AddressLine1']) ? req.session.data['defendant_AddressLine1'] : '-'
@@ -200,11 +201,12 @@ module.exports = function(app){
         var defendantServicePostcode = (req.session.data['defendant_service_Postcode']) ? req.session.data['defendant_service_Postcode'] : req.session.data['defendant_Postcode']
         var defendantServiceAddress = defendantServiceAddress1 + ' ' + defendantServiceAddress2 + ' ' + defendantServiceTown + ' ' + defendantServicePostcode
         var defendantCountry = (req.session.data['defendant_country']) ? req.session.data['defendant_country'] : ''
-        defendants.push({'defendantNo': defendantNo, 'defendantName': defendantName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress, 'defendantCountry': defendantCountry})
+        defendants.push({'defendantNo': defendantNo, 'defendantName': defendantName, 'defendantFirstName': defendantFirstName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress, 'defendantCountry': defendantCountry})
 
         req.session.defendants = defendants
         res.render('prototype-sept2-2017/defendant-add', { defendants: defendants })
     });
+
 
     app.post('*/prototype-sept2-2017/defendant-add', function(req, res){
 
@@ -481,4 +483,76 @@ module.exports = function(app){
         res.redirect('login')
     })
 
+    app.post('*/prototype-sept2-2017/certificate/documents', function(req, res){
+
+        defendantNo = req.session.data['defendants-served'][0]-1;
+        req.session.defendantsServed = req.session.data['defendants-served'];
+        
+        var defendants = req.session.defendants || getDummyDefendants();
+        req.session.defendant = defendants[defendantNo];
+
+        res.render('prototype-sept2-2017/certificate/documents', { defendant: req.session.defendant })
+    });
+
+    app.get('*/prototype-sept2-2017/certificate', function(req, res){
+        var defendants = req.session.defendants || getDummyDefendants();
+        res.render('prototype-sept2-2017/certificate/index', { defendants: defendants })
+    });
+
+
+    app.get('*/prototype-sept2-2017/certificate/documents', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        res.render('prototype-sept2-2017/certificate/documents', { defendant: defendant })
+    });
+
+    app.get('*/prototype-sept2-2017/certificate/how', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+
+        res.render('prototype-sept2-2017/certificate/how', { defendant: defendant })
+    });
+
+    app.get('*/prototype-sept2-2017/certificate/when', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+
+        res.render('prototype-sept2-2017/certificate/when', { defendant: defendant })
+    });
+
+    app.post('*/prototype-sept2-2017/certificate/when', function(req, res){
+        console.log( req.session.defendantsServed  );
+        var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        if ( req.body['how-served']) {
+
+            blnShowTime = ( req.body['how-served'] == 'email' || req.body['how-served'] == 'fax' || req.body['how-served'] == 'email' || req.body['how-served'] == 'other-electronic' );
+            res.render('prototype-sept2-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime })
+        } else {
+            
+            // last one
+            if ( defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
+                res.redirect('check-your-answers');
+            } else {
+
+                //find the next one and go again
+                var defendants = req.session.defendants || getDummyDefendants();
+
+                for ( i=0; i<req.session.defendantsServed.length; i++ ) {
+                    if ( req.session.defendantsServed[i] > defendant.defendantNo ) {
+                        req.session.defendant = defendants[req.session.defendantsServed[i]-1];
+                        res.render('prototype-sept2-2017/certificate/documents', { defendant: req.session.defendant });
+                        break;
+                    }
+                }
+            }  
+        }
+    });
+}
+
+function getDummyDefendants() {
+    return [ { defendantNo: 1, defendantName: 'Jan Clarke', defendantFirstName: 'Jan', defendantCompanyNumber: '-', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', defendantCountry: 'England' }, { defendantNo: 2, defendantName: 'Bob Goddard', defendantFirstName: 'Bob', defendantCompanyNumber: '-', defendantAddress: '30 LONGBRIDGE ROAD HORLEY RH6 7EL', solicitor: 'Keoghs', serviceAddress: '2 COLCHESTER STREET COVENTRY CV1 5NZ', defendantCountry: 'England' }, { defendantNo: 3, defendantName: 'Chris Kingsley', defendantFirstName: 'Chris',  defendantCompanyNumber: '-', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', defendantCountry: 'England' } ];
+}
+
+function getDummyDefendant() {
+    var arrDummyDefendants = getDummyDefendants();
+    return arrDummyDefendants[0];
 }

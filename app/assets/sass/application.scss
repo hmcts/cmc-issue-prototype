@@ -561,3 +561,22 @@ input.postcode {
 #manual-address.abroad #country-group {
   display: block;
 }
+
+div.form-group.form-group-hour {
+  margin-right: 10px;
+}
+
+div.form-group.form-group-minutes {
+  margin-right: 30px;
+}
+
+div.form-group.form-group-colon {
+  width: 16px;
+  margin-right: 0px;
+  margin-top: 34px;
+}
+
+#am-pm {
+  margin-top: 4px;
+  width:      66px;
+}
