@@ -1,15 +1,17 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-
 <h1 class="heading-large"><span class="heading-secondary">PW1241/KU</span>
 	Jones v Clark
 </h1>
 
-{% if data['details']=="all"  %}
+<h3 class="heading-medium">Status</h3>
+<p>Issued: 12 Oct 2017</p>
+
 <h3 class="heading-medium">Claimant </h3>
 <ul>
 	<li>Michael Jones</li>
 </ul>
+
 <h3 class="heading-medium">Defendants </h3>
 
 <table class="">
@@ -39,8 +41,8 @@
 		</tr>							 
 	</tbody>
 </table>
-{% elseif data['details']=="part" %}
 
+<!--
 <h3 class="heading-medium">Claimants </h3>
 <ul>
 	<li>Chris Jones</li>
@@ -91,13 +93,9 @@
 		</tr> 									 
 	</tbody>
 </table>
-{% else %}
-else
-{% endif %}
 
+-->
 {% endblock %}
-
-
 
 {% block side_content %}
 
@@ -107,7 +105,9 @@ else
 	<h3 class="heading-small" style="margin-top:.42105em">Claim number</h3>
 	<p class="font-xsmall">736MC047</p>
 
+	<p><a href="#">Download the sealed claim form</a> </p>
 
+<!--
 	<h3 class="heading-small" id="subsection-title">Claim options </h3>
 	<nav role="navigation" aria-labelledby="subsection-title">
 		<ul class="font-xsmall">
@@ -115,5 +115,6 @@ else
 			<li><a href="#">Apply to amend the claim</a> </li>
 		</ul>
 	</nav>
+-->
 </aside>
 {% endblock %}

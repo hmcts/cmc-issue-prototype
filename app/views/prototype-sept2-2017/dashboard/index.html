@@ -1,108 +1,19 @@
 {% extends "prototype-sept-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
-<div id="control-bar">
-
-  <a href="representative-name" class="">Issue a new claim</a>
-
-  <div class="search-bar">
-    <div class="searchfield">
-      <form id="singular" action="">
-      <input type="search" name="search" id="search" class="search-input" placeholder="Search by claim number / name ">
-        <button type="submit" class="search-submit" title="search">Search</button>
-      </form>
-    </div>
-  </div>
-<div style="clear: both;"></div>
-</div>
 
 
-<h1 class="heading-large" >
- Manage your claims
+<h1 class="heading-large">
+Civil Money Claims
 </h1>
 
-<!--
-<ol class="tabs">
-  <li class="active"><a href="">My tasks</a></li>
-  <li><a href="dashboard/all-claims">All active claims</a></li>
-  <li><a href="">Settled claims</a> <span class="badge">1</span></li>
-</ol>
--->
+<a href="representative-name" class="button button-start" id="new-claim">Issue a new claim</a>
 
-<!-- one pager start -->
-<table class="claim-dashboard2" >
-  <thead>
-    <tr>
-      <th scope="col">Reference</th>
-<!--      <th scope="col">Claim number</th>  -->
-      <th scope="col">Claimant</th>
-      <th scope="col">Status</th>
-      <th scope="col">Action</th>
-      <th scope="col"><span class="filter">Due</span></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="">
-      <td> <a href='dashboard/claim-details?details=all'>PW1241/KU</a></td>
-      <td>Michael Jones</td>
 
-      <td> 
-       Issued
+<h1 class="heading-medium" style="margin-bottom: 0">Search for a claim</h2>
+<p class="form-hint" style="margin-top: 0; margin-bottom: 10px;">Search by your reference or claim number</p>
 
-     </td>
-     <td> 
-       <a href='certificate' class="button secondary-button">Confirm service</a>
-     </td>
-     <td>
-      <span class="due soon">16 Oct 2017</span>
-    </td>
-   </tr> 
-  <tr>
-    <td><a href='dashboard/claim-details?details=all'>PW2452/JV</a></td>
-    <td>John Barnes</td>  
-    <td> Issued</td>
-    <td><a href='certificate' class="button secondary-button">Confirm service</a></td>
-     <td>
-      <span class="due soon">17 Oct 2017</span>
-    </td>
-  </tr> 
-  <tr>
-    <td><a href='dashboard/claim-details?details=all'>PW7342/KC</a></td>
-    <td>Tobias Stoddart</td>     
-    <td> Issued</td>
-    <td> <a href='certificate' class="button secondary-button">Confirm service</a></td>
-     <td>
-      <span class="due far">24 Nov 2017</span>
-    </td>
-  </tr> 
-  <tr class="">
-    <td> <a href='dashboard/claim-details?details=part'>000MC523</a></td>
-    <td>Trisha Scott</td>
-   <td> 
-     Part served
-   </td>
-   <td> 
-    <a href='certificate' class="button secondary-button">Confirm service</a>
-
-  </td>
-     <td>
-      <span class="due far">14 Dec 2017</span>
-    </td>
-</tr> 
-   <tr>
-    <td><a href='dashboard/claim-details-draft'>PW8223/IG</td>
-    <td></td>
-    <td> Draft</td>
-    <td> <a href='type-of-claim' class="button secondary-button">Continue with claim</a></td>
-    <td></td>
-  </tr> 
-
-   <tr>
-    <td><a href='dashboard/claim-details-draft'>Draft</td>
-    <td>John Barnes</td>  
-    <td> Ready to submit</td>
-    <td> <a href='choose-how-to-pay' class="button secondary-button">Pay and issue</a></td>
-    <td></td>
-  </tr> 
-</tbody>
-</table>
+<form id="singular" action="dashboard/claim-details" class="searchfield" method="post">
+  <input type="search" name="search" id="search" class="search-input">
+  <button type="submit" class="search-submit" title="search">Search</button>
+</form>
 
 {% endblock %}
