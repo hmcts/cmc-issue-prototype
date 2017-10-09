@@ -4,8 +4,6 @@
 </h1>
 
 
-
-
   <form method="post" action="submitted" class="form">
 
 
@@ -60,12 +58,15 @@
         </td>
         <td>
           <ul>
-            <li>Document 1</li>
-            <li>Document 2</li>
+            {% for document in documents %}
+            {% if (document != 'Claim form') and (document != 'Response pack') %}
+            <li>{{ document }}</li>
+            {% endif %}
+            {% endfor %}
           </ul>
         </td>
         <td class="change-answer">
-       <a href="#">
+       <a href="documents">
         Change <span class="visuallyhidden">Individual</span>
       </a>
         </td>

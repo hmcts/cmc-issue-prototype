@@ -507,6 +507,8 @@ module.exports = function(app){
 
     app.post('*/prototype-sept2-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
+        req.session.documents = req.body.documents;
+
         res.render('prototype-sept2-2017/certificate/upload', { defendant: defendant, documents: req.body.documents })
     });
 
@@ -534,7 +536,7 @@ module.exports = function(app){
             
             // last one
             if ( !req.session.defendantsServed || defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
-                res.redirect('check-your-answers');
+                res.render('prototype-sept2-2017/certificate/check-your-answers', { documents: req.session.documents });
             } else {
 
                 //find the next one and go again

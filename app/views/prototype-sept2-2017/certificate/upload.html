@@ -14,7 +14,9 @@
           <p>You must upload the following documents which you served:</p>
           <ul class="docs">
             {% for document in documents %}
+            {% if (document != 'Claim form') and (document != 'Response pack') %}
             <li>{{ document }}</li>
+            {% endif %}
             {% endfor %}
           <ul>
         </div>

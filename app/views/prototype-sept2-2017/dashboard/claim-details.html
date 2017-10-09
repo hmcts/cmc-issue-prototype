@@ -1,11 +1,152 @@
 {% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
+{% if data['claim-status'] == 3 %}
+
 <h1 class="heading-large"><span class="heading-secondary">PW1241/KU</span>
 	Jones v Clark
 </h1>
 
-<h3 class="heading-medium">Status</h3>
-<p>Issued: 12 Oct 2017</p>
+<h3 class="heading-medium">Issued</h3>
+<p>12 Oct 2017</p>
+
+
+<h3 class="heading-medium">Served</h3>
+<p>14 Oct 2017</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants </h3>
+
+<table class="">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Served</th>
+			<th scope="col">Served by</th>
+			<th scope="col">Certificate of Service</th>
+			<!--<th scope="col">Action </th>
+			<th scope="col">Due </th>-->
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="no-border">
+			<td>Jan Clark</td>
+			<td>14 Oct 2017</td>
+			<td>Post</td>
+			<td><a href="#">Download</a></td>
+			<!--<td> 
+				Awaiting response
+			</td>
+			<td>
+				16 Oct 2017
+			</td>
+		-->
+		</tr>
+		<tr class="no-border">
+			<td>Bob Goddard</td>
+			<td>14 Oct 2017</td>
+			<td>Post</td>
+			<td><a href="#">Download</a></td>
+		</tr>
+		<tr class="no-border">
+			<td>Chris Kingsley</td>
+			<td>12 Oct 2017</td>
+			<td>Email</td>
+			<td><a href="#">Download</a></td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 class="heading-medium">Documents served </h3>
+<ul>
+	<li><a href="#">Particulars of claim</a></li>
+	<li><a href="#">Schedule of loss</a></li>
+	<li><a href="#">Medical report</a></li>
+</ul>
+
+{% elseif data['claim-status'] == 2 %}
+
+
+<h1 class="heading-large"><span class="heading-secondary">PW1241/KU</span>
+	Jones v Clark
+</h1>
+
+<h3 class="heading-medium">Issued</h3>
+<p>12 Oct 2017</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants to be served</h3>
+
+<table class="">
+	<thead>
+		<tr>
+			<th scope="col" style="width: 180px">Names</th>
+			<th scope="col" style="width:215px">Serve by </th>
+			<th scope="col">Due </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="no-border">
+			<td>
+				Jan Clark<br />
+				Bob Goddard
+			</td>
+			<td>
+				16 Oct 2017
+			</td>
+			<td> 
+				<a href='../certificate' class="button secondary-button">Confirm service</a>
+			</td>
+		</tr>							 
+	</tbody>
+</table>
+
+<h3 class="heading-medium">Defendants served</h3>
+
+<table class="">
+	<thead>
+		<tr>
+			<th scope="col" style="width: 180px">Name</th>
+			<th scope="col">Served</th>
+			<th scope="col">Served by</th>
+			<th scope="col">Certificate of Service</th>
+			<!--<th scope="col">Action </th>
+			<th scope="col">Due </th>-->
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="no-border">
+			<td>Chris Kingsley</td>
+			<td>12 Oct 2017</td>
+			<td>Email</td>
+			<td><a href="#">Download</a></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h3 class="heading-medium">Documents served </h3>
+<ul>
+	<li><a href="#">Particulars of claim</a></li>
+	<li><a href="#">Schedule of loss</a></li>
+	<li><a href="#">Medical report</a></li>
+</ul>
+
+{% else %}
+
+<h1 class="heading-large"><span class="heading-secondary">PW1241/KU</span>
+	Jones v Clark
+</h1>
+
+<h3 class="heading-medium">Issued</h3>
+<p>12 Oct 2017</p>
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
@@ -18,8 +159,7 @@
 	<thead>
 		<tr>
 			<th scope="col">Names</th>
-			<th scope="col">Status</th>
-			<th scope="col">Action </th>
+			<th scope="col">Serve by </th>
 			<th scope="col">Due </th>
 		</tr>
 	</thead>
@@ -31,16 +171,17 @@
 				Chris Kingsley<br />
 				Victoria Williams
 			</td>
-			<td> Issued</td>
-			<td> 
-				<a href='../certificate' class="button secondary-button">Confirm service</a>
-			</td>
 			<td>
 				16 Oct 2017
+			</td>
+			<td> 
+				<a href='../certificate' class="button secondary-button">Confirm service</a>
 			</td>
 		</tr>							 
 	</tbody>
 </table>
+
+{% endif %}
 
 <!--
 <h3 class="heading-medium">Claimants </h3>
@@ -106,6 +247,7 @@
 	<p class="font-xsmall">736MC047</p>
 
 	<p><a href="#">Download the sealed claim form</a> </p>
+	<p><a href="#">Download Certificate of Services</a> </p>
 
 <!--
 	<h3 class="heading-small" id="subsection-title">Claim options </h3>
@@ -123,11 +265,11 @@
 
 {% block body_end %}
 
-<form method="post" action="#" class="form" >
+<form method="get" action="#" class="form" >
   <select id="claim-status" name="claim-status" onchange="this.form.submit()">
-    <option  value="1" {% if data['claim-status'] == 1 %}selected{% endif %}>1. Issued</option>
+    <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Issued</option>
     <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Part-served</option>
-    <option value="2" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served</option>
+    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served</option>
   </select>
 </form>
 
