@@ -16,13 +16,13 @@
           Did you serve on {{ defendant.defendantFirstName }} today?
         </h2>
 
-       <div class="form-group"> 
+       <div class="form-group">
          <div class="multiple-choice">
           <input id="today-yes" name="served-today" type="radio" value="yes" onclick="$('#day').val( objDateToday.getDate() ); updateServiceDate();">
           <label for="today-yes">Yes</label>
         </div>
 
-       <div class="form-group"> 
+       <div class="form-group">
          <div class="multiple-choice" data-target="when-served">
           <input id="today-no" name="served-today" type="radio" value="no" onclick="$('#day').val( '' ); updateServiceDate(); $('#day').focus();">
           <label for="today-no">No</label>
@@ -78,7 +78,7 @@
 
       <div id="service-block" class="js-hidden">
         <p class="heading-medium">
-          Deemed day of service
+          Deemed date of service
         </p>
         <p id="service-value"></p>
       </div>
@@ -94,7 +94,7 @@
 
     {% block page_scripts %}
     <script>
-      
+
       var objDateToday;
 
       $(document).ready(function () {
@@ -119,7 +119,7 @@
 
             {% if howServed == 'post' %}
               objDate.setDate(objDate.getDate() + 2);
-            {% endif %}    
+            {% endif %}
 
             {% if blnShowTime %}
 
@@ -142,7 +142,7 @@
 
             arrMonths = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
             strMonth = arrMonths[objDate.getMonth()];
-            strDate = objDate.getDate() + ' ' + strMonth + ' ' + objDate.getFullYear() 
+            strDate = objDate.getDate() + ' ' + strMonth + ' ' + objDate.getFullYear()
             $('#service-block').removeClass('js-hidden');
         } else {
             strDate = '';
@@ -156,4 +156,3 @@
 
     </script>
     {% endblock %}
-
