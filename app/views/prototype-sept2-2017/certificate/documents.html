@@ -6,21 +6,15 @@
 
     <form method="post" action="how" class="form">
 
-
-      <h1 class="heading-large">
-        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
-        {{ defendant.defendantName }}
-      </h1>
-
       <div class="form-group">
-        <h2 class="heading-medium">
-          What documents did you serve to {{ defendant.defendantFirstName }}?
-        </h2>
+        <h1 class="heading-large">
+          What documents did you serve?
+        </h1>
 
          <div class="form-group">
            <div class="form-group"> 
              <div class="multiple-choice">
-              <input id="claim-form" name="documents" type="checkbox" value="claim-form">
+              <input id="claim-form" name="documents" type="checkbox" value="claim-form" checked="checked">
               <label for="claim-form">Claim form</label>
             </div>
             <div class="multiple-choice">
@@ -38,10 +32,6 @@
             <div class="multiple-choice">
               <input id="medical-report" name="documents" type="checkbox" value="medical-report">
               <label for="medical-report">Medical report</label>
-            </div>
-            <div class="multiple-choice">
-              <input id="notice-of-funding" name="documents" type="checkbox" value="notice-of-funding">
-              <label for="notice-of-funding">Notice of funding</label>
             </div>
             <div class="multiple-choice" data-target="other-doc-box">
               <input id="other" name="documents" type="checkbox" value="other">

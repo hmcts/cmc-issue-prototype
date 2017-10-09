@@ -524,11 +524,11 @@ module.exports = function(app){
         if ( req.body['how-served']) {
 
             blnShowTime = ( req.body['how-served'] == 'email' || req.body['how-served'] == 'fax' || req.body['how-served'] == 'email' || req.body['how-served'] == 'other-electronic' );
-            res.render('prototype-sept2-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime })
+            res.render('prototype-sept2-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: req.body['how-served'] })
         } else {
             
             // last one
-            if ( defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
+            if ( !req.session.defendantsServed || defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
                 res.redirect('check-your-answers');
             } else {
 
@@ -538,7 +538,7 @@ module.exports = function(app){
                 for ( i=0; i<req.session.defendantsServed.length; i++ ) {
                     if ( req.session.defendantsServed[i] > defendant.defendantNo ) {
                         req.session.defendant = defendants[req.session.defendantsServed[i]-1];
-                        res.render('prototype-sept2-2017/certificate/documents', { defendant: req.session.defendant });
+                        res.render('prototype-sept2-2017/certificate/how', { defendant: req.session.defendant });
                         break;
                     }
                 }

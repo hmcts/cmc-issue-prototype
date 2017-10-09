@@ -13,18 +13,18 @@
 
       <div class="form-group">
         <h2 class="heading-medium">
-          Did you serve {{ defendant.defendantFirstName }} today?
+          Did you serve on {{ defendant.defendantFirstName }} today?
         </h2>
 
        <div class="form-group"> 
          <div class="multiple-choice">
-          <input id="today-yes" name="served-today" type="radio" value="yes">
+          <input id="today-yes" name="served-today" type="radio" value="yes" onclick="$('#day').val( objDateToday.getDate() ); updateServiceDate();">
           <label for="today-yes">Yes</label>
         </div>
 
        <div class="form-group"> 
          <div class="multiple-choice" data-target="when-served">
-          <input id="today-no" name="served-today" type="radio" value="no">
+          <input id="today-no" name="served-today" type="radio" value="no" onclick="$('#day').val( '' ); updateServiceDate();">
           <label for="today-no">No</label>
          </div>
         </div>
@@ -38,11 +38,11 @@
             </div>
             <div class="form-group form-group-month">
               <label for="month">Month</label>
-              <input class="form-control" name="month" id="month" type="number" pattern="[0-9]*" min="0" max="12" value="10">
+              <input class="form-control" name="month" id="month" type="number" pattern="[0-9]*" min="0" max="12" value="">
             </div>
             <div class="form-group form-group-year">
               <label for="year">Year</label>
-              <input class="form-control" name="year" id="year" type="number" pattern="[0-9]*" min="0" max="2018" value="2017">
+              <input class="form-control" name="year" id="year" type="number" pattern="[0-9]*" min="0" max="2018" value="">
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
           <div class="form-date">
             <div class="form-group form-group-hour">
               <label for="hour">Hour</label>
-              <input  class="form-control" name="hour" id="hour" type="number" pattern="[0-9]*" min="0" max="12" value="">
+              <input class="form-control" name="hour" id="hour" type="number" pattern="[0-9]*" min="0" max="12" value="">
             </div>
             <div class="form-group form-group-colon">
               :
@@ -65,10 +65,9 @@
               <label for="minutes">Minutes</label>
               <input class="form-control" name="minutes" id="minutes" type="number" pattern="[0-9]*" min="0" max="60" value="">
             </div>
-          </div>
             <div class="form-group form-group-am-pm">
               <label for="am-pm">AM/PM</label>
-              <select class="form-control" name="am-pm" id="am-pm">
+              <select class="form-control" name="am-pm" id="am-pm" onchange="updateServiceDate();">
                   <option></option>
                   <option>AM</option>
                   <option>PM</option>
@@ -78,6 +77,13 @@
         </div>
         {% endif %}
 
+      <div id="service-block" class="js-hidden">
+        <p class="heading-medium">
+          Deemed day of service
+        </p>
+        <p id="service-value"></p>
+      </div>
+
       <div class="form-group" >
         <input type="submit" class="button" value="Save and continue">
       </div>
@@ -85,3 +91,70 @@
 
 
     {% endblock %}
+
+
+    {% block page_scripts %}
+    <script>
+      
+      var objDateToday;
+
+      $(document).ready(function () {
+
+        objDateToday = new Date();
+        $('#year').val( objDateToday.getFullYear());
+
+        if ( objDateToday.getDate() > 4 ) {
+          $('#month').val( objDateToday.getMonth() + 1);
+        }
+
+        $(' form input').on('keyup', updateServiceDate);
+
+      });
+
+      function updateServiceDate() {
+
+
+        if ( $('#day').val() && (!$('#am-pm').length || ( $('#am-pm').length && $('#am-pm').val() ) ) ) {
+
+            var objDate = new Date( $('#year').val(), $('#month').val()-1, $('#day').val() );
+
+            {% if howServed == 'post' %}
+              objDate.setDate(objDate.getDate() + 2);
+            {% endif %}    
+
+            {% if blnShowTime %}
+
+              if ( $('#minutes').val() && $('#hour').val() ) {
+                intHours = $('#hour').val();
+
+                if ( $('#am-pm').val() == 'PM') {
+                  intHours = parseInt( intHours ) + 12;
+                }
+                objDate.setHours( intHours );
+                objDate.setMinutes( $('#minutes').val() );
+
+                objDateAfternoon = new Date( $('#year').val(), $('#month').val()-1, $('#day').val(), 16, 30 );
+                if ( objDate >= objDateAfternoon ) {
+                  objDate.setDate( objDate.getDate() + 1 );
+                }
+
+              }
+            {% endif %}
+
+            arrMonths = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+            strMonth = arrMonths[objDate.getMonth()];
+            strDate = objDate.getDate() + ' ' + strMonth + ' ' + objDate.getFullYear() 
+            $('#service-block').removeClass('js-hidden');
+        } else {
+            strDate = '';
+            $('#service-block').addClass('js-hidden');
+        }
+
+        $('#service-value').html( strDate );
+
+      }
+
+
+    </script>
+    {% endblock %}
+
