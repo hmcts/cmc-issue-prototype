@@ -1,7 +1,7 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
-  
+
     <h1 class="heading-large">
-      Did you serve to all defendants?
+      Did you serve on all the defendants?
     </h1>
 
 
@@ -23,11 +23,11 @@
               <label for="served-some"> <strong class="bold">No</strong></label>
               </div>
               <div class="panel panel-border-narrow js-hidden" id="which-defendants">
-                <p>Choose the defendants you served to</p>
+                <p>Choose the defendants you served on</p>
                <div class="form-group">
-                 <div class="form-group"> 
+                 <div class="form-group">
 
-                    {% for defendant in defendants %}   
+                    {% for defendant in defendants %}
                    <div class="multiple-choice">
                     <input id="defendant{{ defendant.defendantNo }}" name="defendants-served" type="checkbox" value="{{ defendant.defendantNo }}">
                     <label for="defendant{{ defendant.defendantNo }}">{{ defendant.defendantName }}</label>
