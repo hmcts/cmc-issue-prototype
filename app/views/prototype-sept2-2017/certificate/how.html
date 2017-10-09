@@ -110,8 +110,7 @@
 
 
 
-
-      <div class="form-group">
+      <div class="form-group" id="destination-type">
         <h2 class="heading-medium">
           This place I served to was:
         </h2>
@@ -178,4 +177,18 @@
     </form>
 
 
+
+    {% endblock %}
+
+    {% block page_scripts %}
+    <script>
+    $('input[name="how-served"]').change(function() {
+      strHow = $('input[name="how-served"]:checked').val();
+      if (strHow == 'email' || strHow == 'other-electronic') {
+        $('#destination-type').hide();
+      } else {
+        $('#destination-type').show();
+      }
+    });
+    </script>
     {% endblock %}
