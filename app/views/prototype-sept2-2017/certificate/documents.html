@@ -14,11 +14,11 @@
 
       <div class="form-group">
         <h2 class="heading-medium">
-          What documents did you serve to {{ defendant.defendantFirstName }}?
+          What documents did you serve on {{ defendant.defendantFirstName }}?
         </h2>
 
          <div class="form-group">
-           <div class="form-group"> 
+           <div class="form-group">
              <div class="multiple-choice">
               <input id="claim-form" name="documents" type="checkbox" value="claim-form">
               <label for="claim-form">Claim form</label>
@@ -45,10 +45,10 @@
             </div>
             <div class="multiple-choice" data-target="other-doc-box">
               <input id="other" name="documents" type="checkbox" value="other">
-              <label for="other">Other(s)</label>
+              <label for="other">Other documents</label>
             </div>
               <div class="form-group js-hidden panel panel-border-narrow" id="other-doc-box">
-                <label class="form-label" for="other-doc" style="float: none;">Please list:</label>
+                <label class="form-label" for="other-doc" style="float: none;">List them here:</label>
                 <textarea class="form-control" id="other-doc" name="other-doc" cols="20" rows="4" style="width:400px;";></textarea>
               </div>
           </div>
