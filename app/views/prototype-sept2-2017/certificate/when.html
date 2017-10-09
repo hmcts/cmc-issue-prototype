@@ -24,7 +24,7 @@
 
        <div class="form-group">
          <div class="multiple-choice" data-target="when-served">
-          <input id="today-no" name="served-today" type="radio" value="no" onclick="$('#day').val( '' ); updateServiceDate();">
+          <input id="today-no" name="served-today" type="radio" value="no" onclick="$('#day').val( '' ); updateServiceDate(); $('#day').focus();">
           <label for="today-no">No</label>
          </div>
         </div>
@@ -46,7 +46,6 @@
             </div>
           </div>
         </div>
-
 
         {% if blnShowTime %}
         <div class="form-group">

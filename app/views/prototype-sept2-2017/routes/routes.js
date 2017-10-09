@@ -505,6 +505,11 @@ module.exports = function(app){
         res.render('prototype-sept2-2017/certificate/documents', { defendant: defendant })
     });
 
+    app.post('*/prototype-sept2-2017/certificate/upload', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        res.render('prototype-sept2-2017/certificate/upload', { defendant: defendant, documents: req.body.documents })
+    });
+
     app.get('*/prototype-sept2-2017/certificate/how', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
