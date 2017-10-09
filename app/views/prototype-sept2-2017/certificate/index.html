@@ -13,14 +13,13 @@
 
           <div class="multiple-choice">
             <input id="served-all" type="radio" name="served" value="Yes" onclick="$('[name=defendants-served]').prop('checked', true);">
-            <label for="served-all">
-              <strong class="bold">Yes</strong> </label>
+            <label for="served-all">Yes</label>
             </div>
 
 
             <div class="multiple-choice" data-target="which-defendants">
               <input id="served-some" type="radio" name="served" value="No" onclick="$('[name=defendants-served]').prop('checked', false);">
-              <label for="served-some"> <strong class="bold">No</strong></label>
+              <label for="served-some">No</label>
               </div>
               <div class="panel panel-border-narrow js-hidden" id="which-defendants">
                 <p>Choose the defendants you served on</p>
