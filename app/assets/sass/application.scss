@@ -11,6 +11,8 @@ $path: "/public/images/";
 @import 'patterns/task-list';
 @import 'patterns/timeline';
 @import 'patterns/secondary_button';
+@import 'patterns/dropzone';
+@import 'patterns/lists';
 
 // Related items
 // (These styles will be moved to GOV.UK elements, duplicating here for now.)
@@ -577,4 +579,14 @@ table th {
 
 h3.heading-medium {
   margin-bottom: 5px;
+}
+
+div.dz-error-message, div.dz-error-mark, div.dz-success-mark {
+  display: none !important;
+}
+
+ul.docs li {
+  list-style:           disc;
+  list-style-position:  outside;
+  margin-left:          20px;
 }
