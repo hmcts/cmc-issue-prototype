@@ -20,75 +20,90 @@
           </th>
         </tr>
       </thead>
-
       <tbody>
         <tr>
           <td>
-            Defendant name
+            Documents served
           </td>
           <td>
             <ul>
-              <li>Jan Clark</li>
-              <li>Neil Barrett</li>
-              <li>Jane Times</li>
-              <li>Victoria Williams</li>
+              {% for document in documents %}
+              <li>{{ document }}</li>
+              {% endfor %}
             </ul>
           </td>
           <td class="change-answer">
-
+         <a href="documents">
+          Change
+        </a>
           </td>
         </tr>
         <tr>
           <td>
-            Date you served
+            Documents uploaded
           </td>
           <td>
-            31 August 2017
-          </td>
+            <ul>
+              {% for file in files %}
+              <li>{{ file }}</li>
+              {% endfor %}
+            </ul></td>
           <td class="change-answer">
-           <a href="#">
-            Change <span class="visuallyhidden">Individual</span>
-          </a>
-        </td>
-      </tr>
+         <a href="documents">
+          Change
+        </a>
+          </td>
+        </tr>
+      </tbody>
+    <table>
 
-      <tr>
-        <td>
-          Documents served
-        </td>
-        <td>
-          <ul>
-            {% for document in documents %}
-            {% if (document != 'Claim form') and (document != 'Response pack') %}
-            <li>{{ document }}</li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </td>
-        <td class="change-answer">
-       <a href="documents">
-        Change <span class="visuallyhidden">Individual</span>
-      </a>
-        </td>
-      </tr>
+    {% for defendant in defendants %}
+    <table class="check-your-answers">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Defendant {{ defendant.defendantNo }}
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Name
+          </td>
+          <td>{{ defendant.defendantName }}</td>
+          <td class="change-answer">
+         <a href="documents">Change</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Served by </td>
+          <td>
+            {{ defendant.howServed }}<br />
+            At {{ defendant.destination }}</td>
+          <td class="change-answer"><a href="how">Change</a></td>
+        </tr>
+        <tr>
+          <td>Served at </td>
+          <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }}{{ defendant.amPM }}{% endif %}</td>
+          <td class="change-answer"><a href="when">Change</a></td>
+        </tr>
+        <tr>
+          <td>Deemed day of service </td>
+          <td>{{ defendant.serveDate }}</td>
+          <td class="change-answer"> </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endfor %}
 
-    <tr>
-      <td>
-        How you served
 
 
-      </td>
-      <td>
-      First class post or other service
-      </td>
-      <td class="change-answer">
-       <a href="#">
-        Change <span class="visuallyhidden">Individual</span>
-      </a>
-    </td>
-  </tr>
 
-</tbody>
 </table>
 
 
@@ -112,7 +127,7 @@
 
     <form method="post" action="check-and-send/enter-card" class="form">
 
-      <button id="submit" class="button">Submit application</button>
+      <button id="submit" class="button">Confirm service</button>
     </form>
   </form>
 

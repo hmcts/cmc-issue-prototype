@@ -485,11 +485,20 @@ module.exports = function(app){
 
     app.post('*/prototype-sept2-2017/certificate/documents', function(req, res){
 
-        defendantNo = req.session.data['defendants-served'][0]-1;
         req.session.defendantsServed = req.session.data['defendants-served'];
         
         var defendants = req.session.defendants || getDummyDefendants();
-        req.session.defendant = defendants[defendantNo];
+
+        // remove defendants not served to
+        for ( i=0; i<defendants.length; i++ ) {
+            if (req.session.data['defendants-served'].indexOf( defendants[i].defendantNo.toString()) == -1)  {
+                defendants.splice(i, 1);
+                i--;
+            }
+        }
+
+        req.session.defendant = defendants[0];
+        req.session.defendants = defendants;
 
         res.render('prototype-sept2-2017/certificate/documents', { defendant: req.session.defendant })
     });
@@ -518,6 +527,13 @@ module.exports = function(app){
         res.render('prototype-sept2-2017/certificate/how', { defendant: defendant })
     });
 
+    app.post('*/prototype-sept2-2017/certificate/how', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        req.session.files = req.body['files'].substring( 0, req.body['files'].length-1).split("|");
+
+        res.render('prototype-sept2-2017/certificate/how', { defendant: defendant })
+    });
+
     app.get('*/prototype-sept2-2017/certificate/when', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
@@ -528,27 +544,50 @@ module.exports = function(app){
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
 
+
         if ( req.body['how-served']) {
 
-            blnShowTime = ( req.body['how-served'] == 'email' || req.body['how-served'] == 'fax' || req.body['how-served'] == 'email' || req.body['how-served'] == 'other-electronic' );
+            defendant.howServed = req.body['how-served'];
+            defendant.destination = req.body['destination'];
+            req.session.defendants = updateDefendant(defendant, defendants);
+
+            blnShowTime = ( req.body['how-served'] == 'Email' || req.body['how-served'] == 'Fax' || req.body['how-served'] == 'Other electronic method' );
             res.render('prototype-sept2-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: req.body['how-served'] })
         } else {
             
+            if ( req.body['day']) {
+                defendant.serveDay = req.body['day'];
+                defendant.serveMonth = req.body['month'];
+                arrMonths = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+                defendant.serveMonthWord = arrMonths[req.body['month']-1];
+                defendant.serveYear = req.body['year'];
+                defendant.serveDate = req.body['service-value-field'];
+
+                if ( req.body['hour']) {
+                    defendant.serveHour = req.body['hour'];
+                    defendant.serveMinutes = req.body['minutes'];
+                    defendant.amPm = req.body['am-pm'];
+                }
+                req.session.defendants = updateDefendant(defendant, defendants);
+            }
+
             // last one
             if ( !req.session.defendantsServed || defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
-                res.render('prototype-sept2-2017/certificate/check-your-answers', { documents: req.session.documents });
+                res.render('prototype-sept2-2017/certificate/check-your-answers', { documents: req.session.documents, defendants: defendants, files: req.session.files });
             } else {
 
                 //find the next one and go again
                 var defendants = req.session.defendants || getDummyDefendants();
 
-                for ( i=0; i<req.session.defendantsServed.length; i++ ) {
-                    if ( req.session.defendantsServed[i] > defendant.defendantNo ) {
-                        req.session.defendant = defendants[req.session.defendantsServed[i]-1];
+                for ( i=0; i<defendants.length; i++ ) {
+                    if ( defendants[i].defendantNo == defendant.defendantNo ) {
+
+                        req.session.defendant = defendants[i+1];
                         res.render('prototype-sept2-2017/certificate/how', { defendant: req.session.defendant });
                         break;
                     }
                 }
+
             }  
         }
     });
@@ -561,4 +600,17 @@ function getDummyDefendants() {
 function getDummyDefendant() {
     var arrDummyDefendants = getDummyDefendants();
     return arrDummyDefendants[0];
+}
+
+function updateDefendant( defendant, defendants ) {
+
+    if (defendants) {
+        for ( i=0; defendants.length; i++ ) {
+            if ( defendants[i].defendantNo == defendant.defendantNo ) {
+                defendants[i] = defendant;
+                break;
+            }
+        }
+    }
+    return defendants;
 }

@@ -59,6 +59,8 @@ moj.Modules.docUpload = {
       self.removeFilePreview(file);
       self.updateFiles();
     }, 1500);
+
+    $('#files').val($('#files').val() + file.name + '|' );
   },
 
   removeFileFromList: function(link) {

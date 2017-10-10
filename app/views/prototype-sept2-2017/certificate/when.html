@@ -81,6 +81,7 @@
           Deemed date of service
         </p>
         <p id="service-value"></p>
+        <input type="hidden" id="service-value-field" name="service-value-field" />
       </div>
 
       <div class="form-group" >
@@ -117,7 +118,7 @@
 
             var objDate = new Date( $('#year').val(), $('#month').val()-1, $('#day').val() );
 
-            {% if howServed == 'post' %}
+            {% if howServed == 'First class post or other next-day service' %}
               objDate.setDate(objDate.getDate() + 2);
             {% endif %}
 
@@ -150,6 +151,7 @@
         }
 
         $('#service-value').html( strDate );
+        $('#service-value-field').val( strDate );
 
       }
 
