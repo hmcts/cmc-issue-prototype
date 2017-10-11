@@ -1,14 +1,24 @@
-{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-oct-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <div class="govuk-box-highlight">
-  <h1 class="bold-large">Certificate of service has been accepted</h1>
+  <h1 class="bold-large">Confirmation of service has been accepted</h1>
   <br>
   <p class="claimant">Claim number: 736MC047 </p>
   <p class="claimant">Date of issue: 23 August 2017 </p>
-
 </div>
 <br>
-<p>View the status of your claims on your <a href='../dashboard'>money claims account</a> </p>
+
+  <h2 class="bold-medium">Download certificates of service</h1>
+
+<ul>
+{% for defendant in defendants %}
+	<li><a href="#">{{defendant.defendantName}}</a></li>
+{% endfor %}
+	<li><a href="#">Download all</a></li>
+</ul>
+<br>
+
+<p>You can also access these documents from the <a href='../dashboard/claim-details?claim-status=3'>claim overview screen</a>.</p>
 
 
 <style type="text/css">
