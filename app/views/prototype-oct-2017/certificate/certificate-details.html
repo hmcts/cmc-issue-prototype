@@ -1,0 +1,68 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large"><span class="form-hint">Apply for certificate of service </span>
+  Certificate of service details
+</h1>
+
+
+  <legend>
+
+    <form method="post" action="check-your-answers" class="form">
+
+      <div class="form-group">
+        <h2 class="heading-medium">On what day did you serve?</h2>
+        <div class="form-date">
+          <div class="form-group form-group-day">
+            <label for="day">Day</label>
+            <input  class="form-control" name="day" id="day" type="number" pattern="[0-9]*" min="0" max="31" value="{{data['day']}}">
+          </div>
+          <div class="form-group form-group-month">
+            <label for="month">Month</label>
+            <input class="form-control" name="month" id="month" type="number" pattern="[0-9]*" min="0" max="12" value="{{data['month']}}">
+          </div>
+          <div class="form-group form-group-year">
+            <label for="year">Year</label>
+            <input class="form-control" name="year" id="year" type="number" pattern="[0-9]*" min="0" max="2014" value="{{data['year']}}">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <h2 class="heading-medium">What documents did you serve?</h2>
+        <p class="form-hint">List the documents that you have served </p>
+        <textarea class="form-control form-control-3-4 form-control-medium"
+        id="documents"
+        rows="4"
+        name="documents"
+        cols="20"
+        type="text"
+        style="width: 400px"
+        data-store=""></textarea>
+      </div>
+      <div class="form-group">
+        <h2 class="heading-medium">How did you serve the documents?</h2>
+        <div class="timeline-row">
+          <select class="form-control-select otherType"  name="legal-status1" id="legal-status1" ">
+            <option value="1">-- Please make a selection --</option>
+            <option value="2" >First class post or other service </option>
+            <option value="3" >Delivering to or leaving at a permitted place </option>
+            <option value="4" >Other means permitted by the court </option>
+            <option value="5" >Document Exchange</option>
+            <option value="6" >Fax machine</option>
+            <option value="7">Other electronic means </option>
+          </select>
+          <div class="panel panel-border-narrow other" style="display: none">
+            <p><span class="evidence-message"></span></p>
+            <textarea class="timeline-column-text" name="legal-status-description-1" id="timeline-1" rows="4">{{ data['legal-status-description-1'] }}</textarea>
+          </div>     
+        </div>
+
+      </div>
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}

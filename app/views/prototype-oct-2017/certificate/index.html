@@ -1,0 +1,51 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <h1 class="heading-large">
+      Did you serve on all the defendants?
+    </h1>
+
+
+
+    <form method="post" action="certificate/documents" class="form">
+
+      <div class="form-group">
+        <fieldset>
+
+          <div class="multiple-choice">
+            <input id="served-all" type="radio" name="served" value="Yes" onclick="$('[name=defendants-served]').prop('checked', true);">
+            <label for="served-all">Yes</label>
+            </div>
+
+
+            <div class="multiple-choice" data-target="which-defendants">
+              <input id="served-some" type="radio" name="served" value="No" onclick="$('[name=defendants-served]').prop('checked', false);">
+              <label for="served-some">No</label>
+              </div>
+              <div class="panel panel-border-narrow js-hidden" id="which-defendants">
+                <p>Choose the defendants you served on</p>
+               <div class="form-group">
+                 <div class="form-group">
+
+                    {% for defendant in defendants %}
+                   <div class="multiple-choice">
+                    <input id="defendant{{ defendant.defendantNo }}" name="defendants-served" type="checkbox" value="{{ defendant.defendantNo }}">
+                    <label for="defendant{{ defendant.defendantNo }}">{{ defendant.defendantName }}</label>
+                  </div>
+                    {% endfor %}
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+
+
+          <div class="form-group" >
+            <input type="submit" class="button" value="Save and continue">
+          </div>
+        </form>
+
+        {% endblock %}

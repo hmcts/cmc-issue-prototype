@@ -1,0 +1,19 @@
+{% extends "prototype-sept2-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+
+<h1 class="heading-large">
+Civil Money Claims
+</h1>
+
+<a href="representative-name" class="button button-start" id="new-claim">Issue a new claim</a>
+
+
+<h1 class="heading-medium" style="margin-bottom: 0">Search for a claim</h2>
+<p class="form-hint" style="margin-top: 0; margin-bottom: 10px;">Enter your reference or claim number</p>
+
+<form id="singular" action="dashboard/claim-details" class="searchfield" method="post">
+  <input type="search" name="search" id="search" class="search-input">
+  <button type="submit" class="search-submit" title="search">Search</button>
+</form>
+
+{% endblock %}
