@@ -564,6 +564,18 @@ module.exports = function(app){
     });
 
 
+    app.post('*/prototype-oct-2017/certificate/where', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        if ( req.body['how-served']) {
+            defendant.howServed = req.body['how-served'];
+            req.session.defendants = updateDefendant(defendant, defendants);
+            res.render('prototype-oct-2017/certificate/where', { defendant: defendant, howServed: req.body['how-served'] });
+        }
+
+    });
+
     app.post('*/prototype-oct-2017/certificate/when', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
@@ -571,14 +583,11 @@ module.exports = function(app){
         var files = req.session.files || getDummyFiles();
 
 
-        if ( req.body['how-served']) {
-
-            defendant.howServed = req.body['how-served'];
+        if ( req.body['destination']) {
             defendant.destination = req.body['destination'];
             req.session.defendants = updateDefendant(defendant, defendants);
-
-            blnShowTime = ( req.body['how-served'] == 'Email' || req.body['how-served'] == 'Fax' || req.body['how-served'] == 'Other electronic method' );
-            res.render('prototype-oct-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: req.body['how-served'] })
+            blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' );
+            res.render('prototype-oct-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: defendant.howServed });
         } else {
             
             if ( req.body['day']) {
@@ -591,9 +600,13 @@ module.exports = function(app){
 
                 if ( req.body['hour']) {
                     defendant.serveHour = req.body['hour'];
-                    defendant.serveMinutes = req.body['minutes'];
                     defendant.amPm = req.body['am-pm'];
+                } else {
+                    defendant.serveHour = '';
+                    defendant.serveMinutes = '';
+                    defendant.amPm = '';
                 }
+
                 req.session.defendants = updateDefendant(defendant, defendants);
             }
 
@@ -633,7 +646,7 @@ module.exports = function(app){
 }
 
 function getDummyDefendants() {
-    return [ { defendantNo: 1, defendantName: 'Jan Clarke', defendantFirstName: 'Jan', defendantCompanyNumber: '-', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', defendantCountry: 'England', howServed: 'First class post or other next-day service', destination: 'usual residence', serveDay: '11', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '13 Oct 2017' }, { defendantNo: 2, defendantName: 'Bob Goddard', defendantFirstName: 'Bob', defendantCompanyNumber: '-', defendantAddress: '30 LONGBRIDGE ROAD HORLEY RH6 7EL', solicitor: 'Keoghs', serviceAddress: '2 COLCHESTER STREET COVENTRY CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', destination: 'place of business', serveDay: '08', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3, defendantName: 'Chris Kingsley', defendantFirstName: 'Chris', defendantCompanyNumber: '-', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', destination: 'principal place of business', serveDay: '09', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 Oct 2017' } ];
+    return [ { defendantNo: 1, defendantName: 'Jan Clarke', defendantFirstName: 'Jan', defendantCompanyNumber: '-', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post or other next-day service', destination: 'usual residence', serveDay: '11', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '13 Oct 2017' }, { defendantNo: 2, defendantName: 'Bob Goddard', defendantFirstName: 'Bob', defendantCompanyNumber: '-', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', destination: 'place of business', serveDay: '08', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3, defendantName: 'Chris Kingsley', defendantFirstName: 'Chris', defendantCompanyNumber: '-', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', destination: 'principal place of business', serveDay: '09', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 Oct 2017' } ];
 }
 
 function getDummyDefendant() {
