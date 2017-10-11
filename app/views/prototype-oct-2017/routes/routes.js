@@ -505,6 +505,14 @@ module.exports = function(app){
 
     app.get('*/prototype-oct-2017/certificate', function(req, res){
         var defendants = req.session.defendants || getDummyDefendants();
+        
+        //check if we've deleted any defs on a previous journey, and reset if so
+        for (i=0; i<defendants.length; i++ ) {
+            if (defendants[i].defendantNo != i+1) {
+                defendants = getDummyDefendants();
+                break;
+            }
+        }
         res.render('prototype-oct-2017/certificate/index', { defendants: defendants })
     });
 
