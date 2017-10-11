@@ -617,6 +617,19 @@ module.exports = function(app){
             }  
         }
     });
+
+    app.post('*/prototype-oct-2017/certificate/submitted', function(req, res){
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        res.render('prototype-oct-2017/certificate/submitted', { defendants: defendants })
+    });
+
+    app.get('*/prototype-oct-2017/certificate/submitted', function(req, res){
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        res.render('prototype-oct-2017/certificate/submitted', { defendants: defendants })
+    });
+
 }
 
 function getDummyDefendants() {
