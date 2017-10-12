@@ -620,3 +620,19 @@ ul.docs li {
 .steps>li:nth-child(4) {
     background-image: url(https://assets.publishing.service.gov.uk/static/icon-steps/icon-step-4-9bbba1cd0a183f400c9567b41d8b71e4261273d4633afb4f9657f26485276ae2.png)
 }
+
+.downloads li, a.download {
+    background-image: url(/public/images/download-bullet.png);
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    line-height: 32px;
+    background-position-y: center;
+}
+
+table a.download {
+    line-height: unset;
+}
+
+.downloads.certificates li:last-child {
+  margin-top: 10px;
+}
