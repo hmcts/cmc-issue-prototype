@@ -1,6 +1,12 @@
 module.exports = function(app){
 
 
+    app.post('*/prototype-oct-2017/representative-address', function(req, res){
+        req.session.orgName = req.body['rep_company_name'];
+        console.log(req.session.orgName);
+        res.render('prototype-oct-2017/representative-address');
+    });
+
     app.get('*/prototype-oct-2017/what-type-of-claimant', function(req, res){
         var claimants = req.session.claimants || [];
 
@@ -559,8 +565,9 @@ module.exports = function(app){
         var defendants = req.session.defendants || getDummyDefendants();
         var documents = req.session.documents || getDummyDocuments();
         var files = req.session.files || getDummyFiles();
+        var orgName = req.session.orgName || 'My Solicitor Firm';
 
-        res.render('prototype-oct-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files })
+        res.render('prototype-oct-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName })
     });
 
 
@@ -581,6 +588,7 @@ module.exports = function(app){
         var defendants = req.session.defendants || getDummyDefendants();
         var documents = req.session.documents || getDummyDocuments();
         var files = req.session.files || getDummyFiles();
+        var orgName = req.session.orgName || 'My Solicitor Firm';
 
 
         if ( req.body['destination']) {
@@ -612,7 +620,7 @@ module.exports = function(app){
 
             // last one
             if ( !req.session.defendantsServed || defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
-                res.render('prototype-oct-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files });
+                res.render('prototype-oct-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
             } else {
 
                 //find the next one and go again
