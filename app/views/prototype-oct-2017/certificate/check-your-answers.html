@@ -82,19 +82,19 @@
           </td>
         </tr>
         <tr>
-          <td>Served by </td>
+          <td>How you served </td>
           <td>
             {{ defendant.howServed }}<br />
             At {{ defendant.destination }}</td>
           <td class="change-answer"><a href="how">Change</a></td>
         </tr>
         <tr>
-          <td>Served at </td>
+          <td>When you served </td>
           <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.amPm }}{% endif %}</td>
           <td class="change-answer"><a href="when">Change</a></td>
         </tr>
         <tr>
-          <td>Deemed day of service </td>
+          <td>Deemed date of service </td>
           <td>{{ defendant.serveDate }}</td>
           <td class="change-answer"> </td>
         </tr>

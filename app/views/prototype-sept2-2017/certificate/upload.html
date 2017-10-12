@@ -7,11 +7,11 @@
 
       <div class="form-group">
         <h1 class="heading-large">
-          Upload the documents you served
+          Upload your documents
         </h1>
 
         <div class="panel">
-          <p>You must upload the following documents which you served:</p>
+          <p>You must upload copies of these documents which you served:</p>
           <ul class="docs">
             {% for document in documents %}
             {% if (document != 'Claim form') and (document != 'Response pack') %}
@@ -31,16 +31,16 @@
               <p class="dz-message-copy">
                 Drag and drop files here<br>
                 <strong>or</strong><br>
-                <a href="#" class="faux-link" tabindex="-1">Click to choose file(s)</a>
+                <a href="#" class="faux-link" tabindex="-1">Choose files</a>
               </p>
             </div>
           </div>
         </div>
 
         <div class="uploaded-files-wrapper">
-          <h2 class="heading-medium">Uploaded files</h2>
+          <h2 class="heading-medium">Uploaded documents</h2>
           <ol class="list uploaded-files">
-            <li class="no-files">No files uploaded</li>
+            <li class="no-files">No documents uploaded</li>
           </ol>
         </div>
 
