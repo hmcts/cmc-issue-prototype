@@ -90,7 +90,7 @@
         </tr>
         <tr>
           <td>When you served </td>
-          <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }}{{ defendant.amPM }}{% endif %}</td>
+          <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.amPm }}{% endif %}</td>
           <td class="change-answer"><a href="when">Change</a></td>
         </tr>
         <tr>
@@ -103,31 +103,31 @@
     {% endif %}
     {% endfor %}
 
-
-
-
 </table>
 
 
-<div class="form-group">
+<div class="form-group column-two-thirds" style="padding-left: 0">
 
   <h2 class="heading-medium">Statement of truth</h2>
 
-
-  <div class="form-group">
-
-
-    <a name="hasacceptedtermsandconditions"></a>
-
-    <div class="multiple-choice text">
-      <input class="" id="HasAcceptedTermsAndConditions" type="checkbox" value="true">
-      <label for="HasAcceptedTermsAndConditions"> I believe that the facts stated in this form are true.</label>
+    <div class="form-group">
+      <label>I believe that the facts stated are true.</label>
     </div>
 
+    <div class="form-group">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
+    </div>
 
-    <span class="field-validation-valid" data-valmsg-for="HasAcceptedTermsAndConditions" data-valmsg-replace="true" aria-live="polite"></span></div>
+    <div class="form-group">
+      <label class="form-label" for="signer_company">Organisation</label>
+      <label class="bold">{{ orgName }}</label>
+    </div>
 
-    <form method="post" action="check-and-send/enter-card" class="form">
+    <div class="form-group">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
+    </div>
 
       <button id="submit" class="button">Confirm service</button>
     </form>

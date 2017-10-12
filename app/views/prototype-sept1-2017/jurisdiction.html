@@ -1,0 +1,28 @@
+{% extends "prototype-sept1-2017/index.html" %} {% block page_title %} Claim service location {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Where are you serving the claim?</h1>
+<form action="jurisdiction" method="post" class="form-group">
+  <fieldset class="form-group">
+    <legend class="visually-hidden">Claim service location</legend>
+
+    <div class="multiple-choice">
+      <input id="in-eng" name="serviceLocation" type="radio" value="in-eng" {{ checked('serviceLocation','in-eng') }}>
+      <label for="in-eng">England or Wales</label>
+    </div>
+    <div class="multiple-choice">
+      <input id="in-uk" name="serviceLocation" type="radio" value="in-uk" {{ checked('serviceLocation','in-uk') }}>
+      <label for="in-uk">Scotland or Northern Ireland</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="out-uk" name="serviceLocation" type="radio" value="out-uk" {{ checked('serviceLocation','out-uk') }}>
+      <label for="out-uk">Outside the UK</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

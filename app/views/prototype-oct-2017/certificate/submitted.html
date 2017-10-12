@@ -13,19 +13,19 @@
 
   <h2 class="bold-medium">Download certificates of service</h1>
 
-<ul>
+<ul class="downloads certificates">
 {% for defendant in defendants %}
-	<li><a href="#">{{defendant.defendantName}}</a></li>
+	<li><a href="#">{{defendant.defendantName}}</a> (PDF, 123 KB)</li>
 {% endfor %}
-	<li><a href="#">Download all</a></li>
+	<li><a href="#">Download all</a> (PDF, 456 KB)</li>
 </ul>
 <br>
 
 <p>Download these documents again at any time by logging into the <a href='../dashboard/claim-details?claim-status=3'>Manage your claims page</a>.</p>
 
-<p>Issue a new claim.</p>
-<p>Manage more claims</p>
-
+<div class="form-group">
+  <a class="button" href="start" role="button">Issue a new claim</a>
+</div>
 
 <style type="text/css">
 	.link-back{display: none}
