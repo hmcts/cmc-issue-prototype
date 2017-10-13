@@ -168,8 +168,7 @@
 			<td>
 				Jan Clark<br />
 				Bob Goddard<br />
-				Chris Kingsley<br />
-				Victoria Williams
+				Chris Kingsley
 			</td>
 			<td>
 				16 Oct 2017
@@ -247,7 +246,9 @@
 	<p class="font-xsmall">736MC047</p>
 
 	<p><a href="#" class="download">Download the sealed claim form</a> </p>
+	{% if data['claim-status'] > 1 %}
 	<p><a href="#" class="download">Download Certificate of Services</a> </p>
+	{% endif %}
 
 <!--
 	<h3 class="heading-small" id="subsection-title">Claim options </h3>
