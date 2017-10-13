@@ -54,7 +54,7 @@
       {% if (howServed != 'Email' ) and ( howServed != 'Other electronic method' ) %}
       <div class="form-group" id="destination-type">
         <h2 class="heading-medium">
-          This place I served to was:
+          This place I served to was the defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
         </h2>
 
          <div class="multiple-choice">
@@ -121,12 +121,11 @@
         <input class="form-control" type="text" id="left-with" name="left-with" value="">
       </div>
         {% endif %}
-        
+
       <div class="form-group" >
         <input type="submit" class="button" value="Save and continue">
       </div>
     </form>
-
 
 
     {% endblock %}
