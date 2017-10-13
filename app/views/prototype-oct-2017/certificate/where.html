@@ -24,13 +24,6 @@
 
       </div>
 
-        {% if howServed == 'Personally handed to or left with with recipient' %}
-      <div class="form-group">
-        <h2 class="heading-medium">Who did you leave it with?</h2>
-        <input class="form-control" type="text" id="left-with" name="left-with" value="">
-      </div>
-        {% endif %}
-
       {% elseif howServed == 'Document Exchange' %}
       <div class="form-group">
         <h2 class="heading-medium">DX address</h2>
@@ -121,6 +114,14 @@
       </div>
       {% endif %}
 
+
+        {% if howServed == 'Personally handed to or left with with recipient' %}
+      <div class="form-group">
+        <h2 class="heading-medium">Who did you leave it with?</h2>
+        <input class="form-control" type="text" id="left-with" name="left-with" value="">
+      </div>
+        {% endif %}
+        
       <div class="form-group" >
         <input type="submit" class="button" value="Save and continue">
       </div>

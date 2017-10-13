@@ -84,9 +84,34 @@
         <tr>
           <td>How you served </td>
           <td>
-            {{ defendant.howServed }}<br />
-            At {{ defendant.destination }}</td>
+            {{ defendant.howServed }}</td>
           <td class="change-answer"><a href="how">Change</a></td>
+        </tr>
+        <tr>
+          <td>Where you served </td>
+          <td>
+            {% if defendant.serviceEmail %}
+              {{ defendant.serviceEmail }}
+            {% elseif defendant.serviceFax %}
+              {{ defendant.serviceFax }} <br />
+            {% elseif defendant.serviceDX %}
+              {{ defendant.serviceDX }} <br />
+            {% else %}
+              {% for line in defendant.serviceAddress.split( '\n' ) %}
+              {{line}}<br />
+              {% endfor %}<br />
+
+            {% endif %}
+
+            {% if defendant.leftWith %}
+            Left with {{defendant.leftWith}}<br />
+            {% endif %}
+
+            {% if not defendant.serviceEmail %}
+            Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {% endif %}
+          </td>
+          <td class="change-answer"><a href="where">Change</a></td>
         </tr>
         <tr>
           <td>When you served </td>
