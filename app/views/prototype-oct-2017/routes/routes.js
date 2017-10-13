@@ -516,6 +516,7 @@ module.exports = function(app){
         for (i=0; i<defendants.length; i++ ) {
             if (defendants[i].defendantNo != i+1) {
                 defendants = getDummyDefendants();
+                req.session.defendants = defendants;
                 break;
             }
         }
