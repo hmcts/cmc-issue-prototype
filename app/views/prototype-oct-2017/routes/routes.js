@@ -584,15 +584,14 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-oct-2017/certificate/when', function(req, res){
+
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
         var documents = req.session.documents || getDummyDocuments();
         var files = req.session.files || getDummyFiles();
         var orgName = req.session.orgName || 'My Solicitor Firm';
 
-
-        if ( req.body['destination'] || req.body['email-address'] ) {
-            defendant.destination = req.body['destination'];
+        if ( req.body['destination'] || typeof req.body['email-address'] !== 'undefined') {
 
             if (req.body['left-with']) {
                 defendant.leftWith = req.body['left-with'];
@@ -602,10 +601,12 @@ module.exports = function(app){
                 defendant.serviceEmail = req.body['email-address'];
             } else if (req.body['fax-number']) {
                 defendant.serviceFax = req.body['fax-number'];
+            } else {
+                defendant.destination = req.body['destination'];
             }
 
             req.session.defendants = updateDefendant(defendant, defendants);
-            blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' );
+            blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' || defendant.howServed == 'Personally handed to or left with with recipient');
             res.render('prototype-oct-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: defendant.howServed });
         } else {
             
