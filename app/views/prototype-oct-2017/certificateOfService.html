@@ -1,0 +1,317 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ claimReferenceNumber }}</title>
+  <style>
+    @page {
+      size: 8.5in 11in;
+      margin: 5%;
+
+      @bottom-left {
+        content: "N215 Certificate of service";
+        font-size: 11px;
+      }
+
+      @bottom-right {
+        content: "&#169; Crown copyright Page " counter(page) " of " counter(pages);
+        font-size: 11px;
+      }
+    }
+
+    html {
+      /*noinspection CssNoGenericFontName*/
+      font-family: "Open Sans"
+    }
+
+    {% if watermarkPdf %}
+      body {
+        background-repeat: no-repeat;
+        background-position: 200px 200px;
+        background-attachment: fixed;
+        background-image: url('data:image/png;base64,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');
+      }
+    {% endif %}
+
+    table {
+      width: 100%;
+      border-spacing: 0;
+    }
+
+    table td {
+      padding: 15px 5px;
+      vertical-align: top;
+    }
+
+    .align-bottom {
+      vertical-align: bottom;
+    }
+
+    .border-bottom {
+      border-bottom: 1px solid #999;
+    }
+
+    tr:first-child td:first-child {
+      text-align: left;
+    }
+
+    td:first-child {
+      width:      350px;
+    }
+
+    td.two-per-row {
+      width: 140px;
+    }
+
+    td.two-per-row + td {
+      width: 200px;
+    }
+
+    table td:last-child {
+      width: auto;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    header table td, header table tr:last-child td {
+      border: none;
+    }
+
+    header p, header h2 {
+      text-align: right;
+      margin: 0;
+      padding: 0;
+    }
+
+    header td, h4 {
+      margin: 0;
+      padding: 0;
+    }
+
+    @media print {
+      .new-page {
+        page-break-before: always;
+      }
+    }
+
+    .page-one {
+      min-height: 800px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <table class="border-bottom">
+    <tr>
+      <td rowspan="5" align="right">
+        <h1>Certificate of service</h1>
+      </td>
+      <td align="right"><p>County Court Money Claims Centre</p></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right"><h3><strong>Claim number: </strong> {{ claimReferenceNumber }}</h3></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right"><strong>Date you sent documents: </strong> {{ serviceSentDate }}</td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right"><strong>Deemed date of service: </strong> {{ serviceDate }}</td>
+    </tr>
+
+  </table>
+</header>
+
+<div class="page-one">
+  <div class="border-bottom">
+  {% set maxClaimants = 2 %}
+  {% for claimant in claimants %}
+  {% if loop.index < maxClaimants %}
+    <table>
+      <tr>
+        {% if loop.length == 1 %}
+        {% set claimantHeading = 'Claimant'%}
+        {% else %}
+        {% set claimantHeading = 'Claimant ' + (loop.index +1) %}
+        {% endif %}
+        <td class="two-per-row"><h4>{{ claimantHeading }}</h4></td>
+        <td>
+          {{ claimant.title }} {{ claimant.name }}
+        </td>
+      </tr>
+    </table>
+  {% endif %}
+  {% endfor %}
+  </div>
+
+  {% if externalReferenceNumber  %}
+  <table class="border-bottom">
+    <tr>
+      <td class="two-per-row"><h4>Claimant solicitor reference</h4></td>
+      <td>{{ externalReferenceNumber }}</td>
+    </tr>
+  </table>
+  {% endif %}
+
+  {% if claimantsCount > 2 %}
+    <div class="border-bottom">
+      <table>
+        <tr>
+          <td colspan="4">
+              <strong>See continuation page for further claimants</strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+  {% endif %}
+
+  <div class="border-bottom">
+      <table>
+        <tr>
+          <td class="two-per-row"><h4>Defendant {{ defendant.defendantNo }}</h4></td>
+          <td>
+            {{ defendant.title}} {{ defendant.defendantName }}
+          </td>
+          <td class="two-per-row">
+
+          {% if (defendant.serviceMethod == 'post') or (defendant.serviceMethod == 'delivered') or (defendant.serviceMethod == 'handed') %}
+            <h4>Service address</h4>
+          </td>
+          <td>
+            {% if defendant.representative %}
+              {{ defendant.representative.organisationName }}
+              <br/>
+              {{ defendant.representative.organisationAddress.line1 }}
+              <br/>
+              {% if defendant.representative.organisationAddress.line2 %}
+                {{ defendant.representative.organisationAddress.line2 }}
+              <br/>
+              {% endif %}
+              {{ defendant.representative.organisationAddress.city }}
+              <br/>
+              {{ defendant.representative.organisationAddress.postcode }}
+              <br/>
+            {% else %}
+              {{ defendant.address.line1 }}
+              <br/>
+              {% if defendant.address.line2 %}
+                {{ defendant.address.line2 }}
+                <br/>
+              {% endif %}
+              {{ defendant.address.city }}
+              <br/>
+              {{ defendant.address.postcode }}
+            {% endif %}
+
+
+          {% if defendant.serviceMethod == 'handed' %}
+                Left with {{ defendant.serviceLeftWith }}
+              {% endif %}
+          </td>
+
+          {% elseif defendant.serviceMethod == 'dx' %}
+            <h4>Service address</h4>
+          </td>
+          <td>{{ defendant.serviceDX }}</td>
+
+          {% elseif defendant.serviceMethod == 'dx' %}
+            <h4>Service email address</h4>
+          </td>
+          <td>{{ defendant.serviceEmail }}</td>
+
+          {% elseif defendant.serviceMethod == 'fax' %}
+            <h4>Service fax number</h4>
+          </td>
+          <td>{{ defendant.serviceFax }}</td>
+
+          {% elseif defendant.serviceMethod == 'other-electronic' %}
+            <h4>Other electronic method</h4>
+          </td>
+          <td>
+            {{ defendant.serviceElectronicMethod }}<br />
+            {{ defendant.serviceElectronicAddress }}
+          </td>
+
+          {% elseif defendant.serviceMethod == 'other' %}
+            <h4>Other</h4>
+          </td>
+          <td>{{ defendant.serviceOther }}</td>
+          
+          {% endif %}
+
+        </tr>
+      </table>
+  </div>
+
+  <table class="border-bottom">
+    <tr>
+      <td ><h4>How you served</h4></td>
+      <td colspan="3">
+        {{ defendant.howServed }}
+      </td>
+    </tr>
+    <tr>
+      <td><h4>Where you served</h4></td>
+      <td colspan="3">
+        Defendant's {% if defendant.representative %}solicitor's {%endif%}{{ defendant.destination }}
+      
+      </td>
+    </tr>
+  </table>
+  <table class="border-bottom">
+    <tr>
+      <td><h4>Documents served</h4></td>
+      <td>
+        {% for document in documents %}
+        <li>{{ document }}</li>
+        {% endfor %}
+      </td>
+    </tr>
+  </table>
+
+  <table class="border-bottom">
+    <tr>
+      <td><h4>Statement of truth</h4></td>
+      <td>
+        I believe that the facts stated are true.
+        <br/><br/>
+        <strong>Name:</strong> {{ signerName }}
+        <br/>
+        <strong>Company:</strong> {{ signerCompany }}
+        <br/>
+        <strong>Position held:</strong> {{ signerRole }}
+        <br/>
+        <strong>Date:</strong> {{ signerDate }}
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+{% if claimantsCount > 2 or defendantsCount > 2 %}
+<div class="new-page">
+  <p align="center"><strong>Continuation page</strong></p>
+  {% if claimantsCount > 2 %}
+  {% for claimant in claimants %}
+  {% if loop.index >= maxClaimants %}
+
+    <table class="border-bottom">
+      <tr class="two-per-row">
+
+        {% set claimantHeading = 'Claimant ' + (loop.index +1) %}
+        <td class="two-per-row"><h4>{{ claimantHeading }}</h4></td>
+        <td>
+          {{ claimant.title }} {{ claimant.name }}
+        </td>
+      </tr>
+    </table>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+
+</div>
+{% endif %}
+
+</body>
+</html>
