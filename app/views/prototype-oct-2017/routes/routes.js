@@ -1,6 +1,18 @@
 module.exports = function(app){
 
 
+
+    app.get('*/prototype-oct-2017/certificateOfService', function(req, res){
+        var claimants  = [{ name: 'Jimmy Smith' }];
+        var defendant = { defendantNo: 2, defendantTitle: 'Mr', defendantName: 'Bob Goddard', defendantFirstName: 'Bob', defendantCompanyNumber: '-', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceMethod: 'fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' };
+
+        res.render('prototype-oct-2017/certificateOfService', { defendant: defendant, claimants: claimants, documents: getDummyDocuments(), signerName: 'Robert Wagner', signerCompany: 'Wagner & Co Legal', signerRole: 'Senior solicitor', signerDate: '14 OCtober 2017' });
+    });
+
+
+
+
+
     app.post('*/prototype-oct-2017/representative-address', function(req, res){
         req.session.orgName = req.body['rep_company_name'];
         console.log(req.session.orgName);
