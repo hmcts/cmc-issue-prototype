@@ -9,7 +9,7 @@
 <br>
 
 <p>
-  We've sent a confirmation email to...
+  We've sent a confirmation email to {%if data['username'] %}{{ data['username'] }}{%else%}yourname@example.com{%endif%}.
 
   <h2 class="bold-medium">Download certificates of service</h1>
 
@@ -24,7 +24,7 @@
 <p>Download these documents again at any time by logging into the <a href='../dashboard/claim-details?claim-status=3'>Manage your claims page</a>.</p>
 
 <div class="form-group">
-  <a class="button" href="start" role="button">Issue a new claim</a>
+  <a class="button" href="../start" role="button">Issue a new claim</a>
 </div>
 
 <style type="text/css">
