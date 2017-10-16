@@ -103,12 +103,12 @@
 
             {% endif %}
 
-            {% if defendant.leftWith %}
-            Left with {{defendant.leftWith}}<br />
-            {% endif %}
-
             {% if not defendant.serviceEmail %}
             Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {% endif %}
+
+            {% if defendant.leftWith %}
+            <br />Left with {{defendant.leftWith}}
             {% endif %}
           </td>
           <td class="change-answer"><a href="where">Change</a></td>
