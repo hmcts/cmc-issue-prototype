@@ -55,11 +55,10 @@
     }
 
     td:first-child {
-      width:      350px;
     }
 
     td.two-per-row {
-      width: 140px;
+      width: 150px;
     }
 
     td.two-per-row + td {
@@ -126,14 +125,15 @@
 <div class="page-one">
   <div class="border-bottom">
   {% set maxClaimants = 2 %}
+
   {% for claimant in claimants %}
-  {% if loop.index < maxClaimants %}
+  {% if loop.index <= maxClaimants %}
     <table>
       <tr>
         {% if loop.length == 1 %}
         {% set claimantHeading = 'Claimant'%}
         {% else %}
-        {% set claimantHeading = 'Claimant ' + (loop.index +1) %}
+        {% set claimantHeading = 'Claimant ' + (loop.index) %}
         {% endif %}
         <td class="two-per-row"><h4>{{ claimantHeading }}</h4></td>
         <td>
@@ -154,7 +154,7 @@
   </table>
   {% endif %}
 
-  {% if claimantsCount > 2 %}
+  {% if claimants.length > 2 %}
     <div class="border-bottom">
       <table>
         <tr>
@@ -188,8 +188,16 @@
                 {{ defendant.representative.organisationAddress.line2 }}
               <br/>
               {% endif %}
+              {% if defendant.representative.organisationAddress.line3 %}
+                {{ defendant.representative.organisationAddress.line3 }}
+              <br/>
+              {% endif %}
               {{ defendant.representative.organisationAddress.city }}
               <br/>
+              {% if defendant.representative.organisationAddress.county %}
+                {{ defendant.representative.organisationAddress.county }}
+              <br/>
+              {% endif %}
               {{ defendant.representative.organisationAddress.postcode }}
               <br/>
             {% else %}
@@ -199,8 +207,16 @@
                 {{ defendant.address.line2 }}
                 <br/>
               {% endif %}
+              {% if defendant.address.line3 %}
+                {{ defendant.address.line3 }}
+                <br/>
+              {% endif %}
               {{ defendant.address.city }}
               <br/>
+              {% endif %}
+              {% if defendant.address.county %}
+                {{ defendant.address.county }}
+                <br/>
               {{ defendant.address.postcode }}
             {% endif %}
 
@@ -215,7 +231,7 @@
           </td>
           <td>{{ defendant.serviceDX }}</td>
 
-          {% elseif defendant.serviceMethod == 'dx' %}
+          {% elseif defendant.serviceMethod == 'email' %}
             <h4>Service email address</h4>
           </td>
           <td>{{ defendant.serviceEmail }}</td>
@@ -246,22 +262,31 @@
 
   <table class="border-bottom">
     <tr>
-      <td ><h4>How you served</h4></td>
+      <td class="two-per-row"><h4>How you served</h4></td>
       <td colspan="3">
         {{ defendant.howServed }}
       </td>
     </tr>
+    {% if defendant.serviceMethod != 'email' %}
     <tr>
-      <td><h4>Where you served</h4></td>
+      <td class="two-per-row"><h4>Where you served</h4></td>
       <td colspan="3">
         Defendant's {% if defendant.representative %}solicitor's {%endif%}{{ defendant.destination }}
-      
       </td>
     </tr>
+    {% endif %}
+    {% if ( defendant.serviceMethod == 'email' ) or ( defendant.serviceMethod == 'fax' ) or ( defendant.serviceMethod == 'other-electronic' ) or ( defendant.serviceMethod == 'handed' ) %}
+    <tr>
+      <td class="two-per-row"><h4>When you sent</h4></td>
+      <td colspan="3">
+        {{ serviceSentDate }} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.serveAmPm }}
+      </td>
+    </tr>
+    {% endif %}
   </table>
   <table class="border-bottom">
     <tr>
-      <td><h4>Documents served</h4></td>
+      <td class="two-per-row"><h4>Documents served</h4></td>
       <td>
         {% for document in documents %}
         <li>{{ document }}</li>
@@ -272,7 +297,7 @@
 
   <table class="border-bottom">
     <tr>
-      <td><h4>Statement of truth</h4></td>
+      <td class="two-per-row"><h4>Statement of truth</h4></td>
       <td>
         I believe that the facts stated are true.
         <br/><br/>
@@ -289,17 +314,16 @@
 </div>
 
 
-{% if claimantsCount > 2 or defendantsCount > 2 %}
+{% if claimants.length > 2 %}
 <div class="new-page">
   <p align="center"><strong>Continuation page</strong></p>
-  {% if claimantsCount > 2 %}
   {% for claimant in claimants %}
-  {% if loop.index >= maxClaimants %}
+  {% if loop.index > maxClaimants %}
 
     <table class="border-bottom">
       <tr class="two-per-row">
 
-        {% set claimantHeading = 'Claimant ' + (loop.index +1) %}
+        {% set claimantHeading = 'Claimant ' + (loop.index) %}
         <td class="two-per-row"><h4>{{ claimantHeading }}</h4></td>
         <td>
           {{ claimant.title }} {{ claimant.name }}
@@ -308,7 +332,6 @@
     </table>
   {% endif %}
   {% endfor %}
-  {% endif %}
 
 </div>
 {% endif %}
