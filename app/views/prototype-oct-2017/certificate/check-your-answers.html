@@ -93,7 +93,7 @@
             {% if defendant.serviceEmail %}
               {{ defendant.serviceEmail }}
             {% elseif defendant.serviceFax %}
-              {{ defendant.serviceFax }} <br />
+            Fax number: {{ defendant.serviceFax }} <br />
             {% elseif defendant.serviceDX %}
               {{ defendant.serviceDX }} <br />
             {% else %}
