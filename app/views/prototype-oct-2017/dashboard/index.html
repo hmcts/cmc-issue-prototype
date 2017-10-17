@@ -1,4 +1,4 @@
-{% extends "prototype-sept2-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+{% extends "prototype-oct-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
 
 <h1 class="heading-large">
@@ -15,5 +15,15 @@ Civil Money Claims
   <input type="search" name="search" id="search" class="search-input">
   <button type="submit" class="search-submit" title="search">Search</button>
 </form>
+
+{% endblock %}
+
+{% block extra_js_1 %}
+
+<script>
+$(function(){
+    $("#search").focus();
+});
+</script>
 
 {% endblock %}

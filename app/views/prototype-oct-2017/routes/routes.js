@@ -2,7 +2,7 @@ module.exports = function(app){
 
     app.post('*/prototype-oct-2017/representative-address', function(req, res){
         req.session.orgName = req.body['rep_company_name'];
-        console.log(req.session.orgName);
+
         res.render('prototype-oct-2017/representative-address');
     });
 
@@ -645,6 +645,7 @@ module.exports = function(app){
 
             // last one
             if ( !req.session.defendantsServed || defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
+
                 res.render('prototype-oct-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
             } else {
 

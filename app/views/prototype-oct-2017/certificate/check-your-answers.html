@@ -88,13 +88,13 @@
           <td class="change-answer"><a href="how">Change</a></td>
         </tr>
         <tr>
-          <td>Where you served </td>
+          <td>Where you served</td>
           <td>
             {% if defendant.serviceEmail %}
               {{ defendant.serviceEmail }}
-            {% elseif defendant.serviceFax %}
+            {% elseif (defendant.serviceFax) and (defendant.howServed == 'Fax') %}
               Fax number: {{ defendant.serviceFax }} <br />
-            {% elseif defendant.serviceDX %}
+            {% elseif (defendant.serviceDX) and (defendant.howServed == 'Document Exchange')  %}
               {{ defendant.serviceDX }} <br />
             {% else %}
               {% for line in defendant.serviceAddress.split( '\n' ) %}
@@ -107,7 +107,7 @@
             Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
             {% endif %}
 
-            {% if defendant.leftWith %}
+            {% if (defendant.leftWith) and ( defendant.howServed == 'Personally handed to or left with with recipient') %}
             <br />Left with {{defendant.leftWith}}
             {% endif %}
           </td>
