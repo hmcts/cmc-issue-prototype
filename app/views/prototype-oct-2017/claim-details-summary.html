@@ -3,7 +3,7 @@
 
 <p>Make sure this information is correct before you issue. </p>
 
-<form action="statement-of-truth" id="form" method="post" class="form-group">
+<form action="choose-how-to-pay" id="form" method="post" class="form-group">
 
 <div class="heading-medium">Your organisation's details</div>
   <div>
@@ -215,10 +215,27 @@
     </div>
   </div>
 
+
   <div class="form-group">
-    <input type="submit" class="button" value="Save and continue">
+    <h1 class="heading-large">Statement of truth</h1>
+    <label>The claimant believes that the facts in this claim form are true.<br />I'm duly authorised by the claimant to sign this statement.</label>
   </div>
-</form>
+  
+  <div class="form-group form-group column-two-thirds" style="padding-left: 0">
+    <div class="form-group">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value="{{ data['signer_name'] }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="{{ data['signer_role'] }}" {{ data['signer_role'] }}>
+    </div>
+
+    <input type="submit" id="submit" class="button" value="Continue to payment">
+  
+  </form>
+  </div>
 
 
 
