@@ -1,9 +1,9 @@
-{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-oct-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <div class="govuk-box-highlight">
   <h1 class="bold-large">Your claim has been issued</h1>
   <br>
-  <h2 class="bold-medium form-group">Claim number: D99YJ987</h2>
+  <h2 class="bold-medium form-group">Claim number: 000LR003</h2>
   <p class="form-group-compound">Submitted: {{ today }}</p>
   <p>Issued: {{ issueDate }}</p>
   <p class="form-group-compound">Fee paid: {{ issueFeeAmount }}</p>
@@ -19,7 +19,7 @@
   <li>Download the sealed claim form<br />
     <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download" style="margin-top:8px; display: inline-block">Sealed claim form</a> (PDF, 123 KB)
   </li>
-  <li>Send the form, particulars of claim and <a target="_blank" href="https://formfinder.hmctsformfinder.justice.gov.uk/n9-eng.pdf">a response pack</a> (PDF, 266 KB) to the defendant within 4 months of the date of issue.</li>
+  <li>Send the form, particulars of claim and <a target="_blank" href="https://formfinder.hmctsformfinder.justice.gov.uk/n9-eng.pdf">a response pack</a> (PDF, 266 KB) to the defendant by {{ dueDate }}.</li>
   <li>Confirm service online, within 21 days.<br />
       <a class="button" href="certificate" role="button" style="margin-top:8px">Confirm service</a>
   </li>
@@ -35,4 +35,7 @@
 <p><a href="dashboard" role="button">Example - dashboard</a></p>
 
 
+<style type="text/css">
+  .link-back{display: none}
+</style>
 {% endblock %}
