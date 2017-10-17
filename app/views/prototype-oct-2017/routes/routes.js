@@ -449,7 +449,10 @@ module.exports = function(app){
             currency: 'GBP',
             minimumFractionDigits: 0, /* this might not be necessary */
         });
-        res.render('prototype-oct-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), claimType: req.session.data.typeOfClaim, issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeAmount: formatter.format(req.session.data.issueFeeAmount), value: formatter.format(req.session.data.value)  })
+
+        var objDueDate = moment().add('4', 'months');
+        
+        res.render('prototype-oct-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), dueDate: objDueDate.format('D MMMM YYYY'), claimType: req.session.data.typeOfClaim, issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeAmount: formatter.format(req.session.data.issueFeeAmount), value: formatter.format(req.session.data.value)  })
     })
 
     app.get('*/prototype-oct-2017/pay-by-card', function (req, res) {

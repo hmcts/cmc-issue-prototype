@@ -93,7 +93,7 @@
             {% if defendant.serviceEmail %}
               {{ defendant.serviceEmail }}
             {% elseif defendant.serviceFax %}
-            Fax number: {{ defendant.serviceFax }} <br />
+              Fax number: {{ defendant.serviceFax }} <br />
             {% elseif defendant.serviceDX %}
               {{ defendant.serviceDX }} <br />
             {% else %}
@@ -103,12 +103,12 @@
 
             {% endif %}
 
-            {% if defendant.leftWith %}
-            Left with {{defendant.leftWith}}<br />
-            {% endif %}
-
             {% if not defendant.serviceEmail %}
             Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {% endif %}
+
+            {% if defendant.leftWith %}
+            <br />Left with {{defendant.leftWith}}
             {% endif %}
           </td>
           <td class="change-answer"><a href="where">Change</a></td>
@@ -143,12 +143,7 @@
       <label class="form-label" for="signer_name">Name</label>
       <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
     </div>
-
-    <div class="form-group">
-      <label class="form-label" for="signer_company">Organisation</label>
-      <label class="bold">{{ orgName }}</label>
-    </div>
-
+    
     <div class="form-group">
       <label class="form-label" for="signer-role">Your role</label>
       <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
