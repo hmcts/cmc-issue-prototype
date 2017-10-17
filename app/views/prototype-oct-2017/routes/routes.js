@@ -451,8 +451,9 @@ module.exports = function(app){
         });
 
         var objDueDate = moment().add('4', 'months');
-        
-        res.render('prototype-oct-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), dueDate: objDueDate.format('D MMMM YYYY'), claimType: req.session.data.typeOfClaim, issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeAmount: formatter.format(req.session.data.issueFeeAmount), value: formatter.format(req.session.data.value)  })
+        var objConfirmDueDate = moment().add('21', 'days');
+
+        res.render('prototype-oct-2017/claim-submitted', {today: moment().format('D MMMM YYYY'), dueDate: objDueDate.format('D MMMM YYYY'), confirmDueDate: objConfirmDueDate.format('D MMMM YYYY'), claimType: req.session.data.typeOfClaim, issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeAmount: formatter.format(req.session.data.issueFeeAmount), value: formatter.format(req.session.data.value)  })
     })
 
     app.get('*/prototype-oct-2017/pay-by-card', function (req, res) {
@@ -522,6 +523,10 @@ module.exports = function(app){
                 break;
             }
         }
+        if (defendants[0].defendantFirstName == 'Jan' && defendants.length < 3) {
+                defendants = getDummyDefendants();
+                req.session.defendants = defendants;
+        }
         res.render('prototype-oct-2017/certificate/index', { defendants: defendants })
     });
 
@@ -553,7 +558,11 @@ module.exports = function(app){
 
     app.post('*/prototype-oct-2017/certificate/how', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
-        req.session.files = req.body['files'].substring( 0, req.body['files'].length-1).split("|");
+        if (req.body['files']) {
+            req.session.files = req.body['files'].substring( 0, req.body['files'].length-1).split("|");            
+        } else {
+            req.session.files = getDummyFiles();
+        }
 
         res.render('prototype-oct-2017/certificate/how', { defendant: defendant })
     });
