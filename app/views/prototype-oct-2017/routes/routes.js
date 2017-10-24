@@ -618,7 +618,7 @@ module.exports = function(app){
             }
 
             req.session.defendants = updateDefendant(defendant, defendants);
-            blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' || defendant.howServed == 'Personally handed to or left with with recipient');
+            blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' || defendant.howServed == 'Personally handed to or left with recipient');
             res.render('prototype-oct-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: defendant.howServed });
         } else {
             
