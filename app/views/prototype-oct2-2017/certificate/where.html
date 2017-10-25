@@ -9,12 +9,13 @@
         {{ defendant.defendantName }}
       </h1>
 
-      {% if (howServed == 'First class post or other next-day service') or (howServed == 'Delivered or left at a permitted place') or (howServed == 'Personally handed to or left with with recipient')%}
+      {% if (howServed == 'First class post or other next-day service') or (howServed == 'Delivered or left at a permitted place') or (howServed == 'Personally handed to or left with recipient')%}
 
       <div class="form-group">
         <h2 class="heading-medium">Service address</h2>
         <p class="form-hint">You must have served to the service address on your claim form:</p>
         <p class="form-group-compound">
+          {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
           {% for line in defendant.serviceAddress.split( '\n' ) %}
             {{line}}<br />
           {% endfor %}
