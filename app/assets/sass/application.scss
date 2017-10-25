@@ -386,7 +386,7 @@ a.change {
   line-height: 1.31579;
   font-weight: 400;
   border: none;
-  width: 92%;
+  width: 390px;
 }
 
 .search-submit {
@@ -635,4 +635,22 @@ table a.download {
 
 .downloads.certificates li:last-child {
   margin-top: 10px;
+}
+
+#dashboard .list {
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+
+#dashboard .list li {
+  margin-left: 20px;
+}
+
+#dashboard {
+  padding: 0;
+}
+
+.column-third aside.govuk-related-items {
+  margin-top: 45px;
+  padding-top: 15px;
 }

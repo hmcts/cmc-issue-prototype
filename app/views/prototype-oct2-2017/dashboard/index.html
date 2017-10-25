@@ -1,30 +1,38 @@
 {% extends "prototype-oct2-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 
+<div class="column-two-thirds" id="dashboard">
 
-<h1 class="heading-large">
-Manage your claims
-</h1>
+	<h1 class="heading-large">
+	Manage your claims
+	</h1>
 
-<a href="start" class="button button-start" id="new-claim">Issue a new claim</a>
+	<h1 class="heading-medium" style="margin-bottom: 0">Find a claim</h2>
+
+	<p>Once you've found a claim you can:</p>
+
+	<ul class="list list-bullet">
+		<li>confirm service to the court online</li>
+		<li>download any documents related to the claim</li>
+	</ul>
 
 
-<p>Find a claim by entering the claim number on this page.</p>
+	<h1 class="heading-small">Search by claim number</h2>
 
-<p>Once you've found a claim you can:</p>
+	<form id="singular" action="dashboard/claim-details" class="searchfield" method="post">
+	  <input type="search" name="search" id="search" class="search-input">
+	  <button type="submit" class="search-submit" title="search">Search</button>
+	</form>
 
-  <ul class="list list-bullet">
-    <li>confirm service to the court online</li>
-    <li>download any documents related to the claim</li>
-  </ul>
+</div>
 
-  <h1 class="heading-medium" style="margin-bottom: 0">Find a claim</h2>
 
-<p class="form-hint" style="margin-top: 0; margin-bottom: 10px;">Enter the claim number</p>
-
-<form id="singular" action="dashboard/claim-details" class="searchfield" method="post">
-  <input type="search" name="search" id="search" class="search-input">
-  <button type="submit" class="search-submit" title="search">Search</button>
-</form>
+<div class="column-third" style="padding-right: 0;">
+	<aside class="govuk-related-items" role="complementary">
+        <nav role="navigation" aria-labelledby="subsection-title">
+			<a href="start" class="secondary-button" id="new-claim">Issue a new claim</a>
+        </nav>
+    </aside>
+</div>
 
 {% endblock %}
 
