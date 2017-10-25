@@ -96,6 +96,8 @@
             {% elseif (defendant.serviceDX) and (defendant.howServed == 'Document Exchange')  %}
               {{ defendant.serviceDX }} <br />
             {% else %}
+
+              {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
               {% for line in defendant.serviceAddress.split( '\n' ) %}
               {{line}}<br />
               {% endfor %}<br />
