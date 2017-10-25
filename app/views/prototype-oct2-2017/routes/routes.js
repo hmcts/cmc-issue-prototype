@@ -492,27 +492,8 @@ module.exports = function(app){
         res.redirect('login')
     })
 
-    app.post('*/prototype-oct2-2017/certificate/documents', function(req, res){
-
-        req.session.defendantsServed = req.session.data['defendants-served'];
-        
-        var defendants = req.session.defendants || getDummyDefendants();
-
-        // remove defendants not served to
-        for ( i=0; i<defendants.length; i++ ) {
-            if (req.session.data['defendants-served'].indexOf( defendants[i].defendantNo.toString()) == -1)  {
-                defendants.splice(i, 1);
-                i--;
-            }
-        }
-
-        req.session.defendant = defendants[0];
-        req.session.defendants = defendants;
-
-        res.render('prototype-oct2-2017/certificate/documents', { defendant: req.session.defendant })
-    });
-
     app.get('*/prototype-oct2-2017/certificate', function(req, res){
+
         var defendants = req.session.defendants || getDummyDefendants();
 
         //check if we've deleted any defs on a previous journey, and reset if so
@@ -527,13 +508,12 @@ module.exports = function(app){
                 defendants = getDummyDefendants();
                 req.session.defendants = defendants;
         }
-        res.render('prototype-oct2-2017/certificate/index', { defendants: defendants })
-    });
 
 
-    app.get('*/prototype-oct2-2017/certificate/documents', function(req, res){
-        var defendant = req.session.defendant || getDummyDefendant();
-        res.render('prototype-oct2-2017/certificate/documents', { defendant: defendant })
+        req.session.defendant = defendants[0];
+        req.session.defendants = defendants;
+
+        res.render('prototype-oct2-2017/certificate/index', { defendant: req.session.defendant })
     });
 
     app.post('*/prototype-oct2-2017/certificate/upload', function(req, res){
@@ -644,8 +624,7 @@ module.exports = function(app){
             }
 
             // last one
-            if ( !req.session.defendantsServed || defendant.defendantNo == req.session.defendantsServed[req.session.defendantsServed.length-1] ) {
-
+            if ( defendant.defendantNo == defendants[defendants.length-1].defendantNo ) {
                     res.render('prototype-oct2-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
             } else {
 
