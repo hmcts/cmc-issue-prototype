@@ -132,7 +132,7 @@
                 objDate.setHours( intHours );
                 objDate.setMinutes( $('#minutes').val() );
 
-                objDateAfternoon = new Date( $('#year').val(), $('#month').val()-1, $('#day').val(), 16, 30 );
+                objDateAfternoon = new Date( $('#year').val(), $('#month').val()-1, $('#day').val(), 16 );
                 if ( objDate >= objDateAfternoon ) {
                   objDate.setDate( objDate.getDate() + 1 );
                 }
