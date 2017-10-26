@@ -682,7 +682,7 @@ function getDummyDefendant() {
 }
 
 function getDummyDocuments() {
-    return [ 'Claim form', 'Particulars of claim', 'Response pack', 'Schedule of loss', 'Medical report' ];
+    return [ 'Claim form', 'Particulars of claim', 'Response pack', 'Schedule of loss', 'Medical report(s)' ];
 }
 
 function getDummyFiles() {
