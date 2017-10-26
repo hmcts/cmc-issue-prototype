@@ -1,7 +1,7 @@
 'use strict';
 
 moj.Modules.docUpload = {
-  zone_id: 'doc_upload_zone',
+  zone_class: 'dropzone_wrapper',
   $zone: null,
   $fileList: $('.uploaded-files').eq(0),
 
@@ -11,7 +11,7 @@ moj.Modules.docUpload = {
 
     Dropzone.autoDiscover = false;
 
-    self.$zone = $('#' + self.zone_id);
+    self.$zone = $('.' + self.zone_class);
     dzOptions = {
       autoProcessQueue: true,
       addRemoveLinks: true,
@@ -21,7 +21,7 @@ moj.Modules.docUpload = {
       url: 'send_files',
       accept: function(file, done) {
         done();
-        self.addFileToList(file);
+        self.addFileToList(file, this);
       },
       complete: function(file, done) {
         moj.log(file.name + ' complete');
@@ -52,11 +52,11 @@ moj.Modules.docUpload = {
     });
   },
 
-  addFileToList: function(file) {
+  addFileToList: function(file, objUpload) {
     var self = this;
 
     window.setTimeout(function() {
-      self.removeFilePreview(file);
+      self.removeFilePreview(file, objUpload);
       self.updateFiles();
     }, 1500);
 
@@ -78,11 +78,12 @@ moj.Modules.docUpload = {
     });
   },
 
-  removeFilePreview: function(file) {
+  removeFilePreview: function(file, objUpload) {
     var self = this;
+    var fileList = $( objUpload.element).find('.uploaded-files');
 
-    self.$fileList.find('.no-files').hide();
-    self.$fileList.append('<li class="file">' + file.name + '<a href="#">Remove</a></li>');
+    fileList.find('.no-files').hide();
+    fileList.append('<li class="file">' + file.name + '<a href="#">Remove</a></li>');
     $(file.previewElement).fadeOut(400, function() {
       $(file.previewElement).remove();
       if(!self.$zone.find('.dz-preview').length) {
@@ -104,9 +105,9 @@ moj.Modules.docUpload = {
         fileArray.push($fileCopy.text());
       });
 
-      moj.Modules.dataStore.storeItem(key, fileArray);
+//      moj.Modules.dataStore.storeItem(key, fileArray);
     } else {
-      moj.Modules.dataStore.deleteItem(key);
+ //     moj.Modules.dataStore.deleteItem(key);
     }
   }
 };

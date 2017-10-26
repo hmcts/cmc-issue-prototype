@@ -33,7 +33,7 @@
             </ul>
           </td>
           <td class="change-answer">
-         <a href="./certificate">
+         <a href="../certificate">
           Change
         </a>
           </td>
@@ -49,7 +49,7 @@
               {% endfor %}
             </ul></td>
           <td class="change-answer">
-         <a href="documents">
+         <a href="upload">
           Change
         </a>
           </td>
@@ -96,6 +96,8 @@
             {% elseif (defendant.serviceDX) and (defendant.howServed == 'Document Exchange')  %}
               {{ defendant.serviceDX }} <br />
             {% else %}
+
+              {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
               {% for line in defendant.serviceAddress.split( '\n' ) %}
               {{line}}<br />
               {% endfor %}<br />
