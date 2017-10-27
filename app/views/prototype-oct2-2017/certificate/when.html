@@ -14,14 +14,14 @@
         <h2 class="heading-medium">
           Did you 
           {% if defendant.howServed == 'First class post or other next-day service' %}post to
-          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver to or leave with
-          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}hand to or leave with
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver to
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave with
           {% elseif defendant.howServed == 'Document Exchange' %}DX to
           {% elseif defendant.howServed == 'Fax' %}fax to
           {% elseif defendant.howServed == 'Email' %}email
           {% else %}send
           {% endif %}
-           {{ defendant.defendantFirstName }} today?
+           {% if defendant.defendantType == 'individual' %} {{ defendant.defendantFirstName }}{%else%}{{ defendant.defendantName }}{% endif %} today?
         </h2>
 
        <div class="form-group">
