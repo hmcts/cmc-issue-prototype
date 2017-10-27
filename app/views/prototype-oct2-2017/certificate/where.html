@@ -9,7 +9,7 @@
         {{ defendant.defendantName }}
       </h1>
 
-      {% if (howServed == 'First class post or other next-day service') or (howServed == 'Delivered or left at a permitted place') or (howServed == 'Personally handed to or left with recipient')%}
+      {% if (defendant.howServed == 'First class post or other next-day service') or (defendant.howServed == 'Delivered or left at a permitted place') or (defendant.howServed == 'Personally handed to or left with recipient')%}
 
       <div class="form-group">
         <h2 class="heading-medium">Service address</h2>
@@ -23,25 +23,25 @@
 
       </div>
 
-      {% elseif howServed == 'Document Exchange' %}
+      {% elseif defendant.howServed == 'Document Exchange' %}
       <div class="form-group">
         <h2 class="heading-medium">DX address</h2>
         <input class="form-control" type="text" id="dx-address" name="dx-address">
       </div>
 
-      {% elseif howServed == 'Email' %}
+      {% elseif defendant.howServed == 'Email' %}
       <div class="form-group">
         <h2 class="heading-medium">Email address</h2>
         <input class="form-control" type="text" id="email-address" name="email-address">
       </div>
 
-      {% elseif howServed == 'Other electronic method' %}
+      {% elseif defendant.howServed == 'Other electronic method' %}
       <div class="form-group">        
         <h2 class="heading-medium">Electronic address/identifier</h2>
         <input class="form-control" type="text" id="other-electronic-address" name="other-electronic-address">
       </div>
 
-      {% elseif howServed == 'Fax' %}
+      {% elseif defendant.howServed == 'Fax' %}
       <div class="form-group">
         <h2 class="heading-medium">Fax number</h2>
         <input class="form-control" type="text" id="fax-number" name="fax-number" value="">
@@ -50,7 +50,7 @@
       {% endif %}
 
 
-      {% if (howServed != 'Email' ) and ( howServed != 'Other electronic method' ) %}
+      {% if (defendant.howServed != 'Email' ) and ( defendant.howServed != 'Other electronic method' ) %}
 
       <div class="form-group" id="destination-type">
         <h2 class="heading-medium">
@@ -144,7 +144,7 @@
       {% endif %}
 
 
-        {% if howServed == 'Personally handed to or left with with recipient' %}
+        {% if defendant.howServed == 'Personally handed to or left with with recipient' %}
       <div class="form-group">
         <h2 class="heading-medium">Who did you leave it with?</h2>
         <input class="form-control" type="text" id="left-with" name="left-with" value="">

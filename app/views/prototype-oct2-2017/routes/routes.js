@@ -577,6 +577,13 @@ console.log(defendants);
         }
 
     });
+    app.get('*/prototype-oct2-2017/certificate/where', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        res.render('prototype-oct2-2017/certificate/where', { defendant: defendant, howServed: req.body['how-served'] });
+
+    });
 
     app.post('*/prototype-oct2-2017/certificate/when', function(req, res){
 
