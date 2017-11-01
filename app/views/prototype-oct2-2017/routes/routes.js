@@ -209,8 +209,6 @@ module.exports = function(app){
         var defendantCountry = (req.session.data['defendant_country']) ? req.session.data['defendant_country'] : ''
         defendants.push({'defendantNo': defendantNo, 'defendantType': defendantType,  'defendantName': defendantName, 'defendantFirstName': defendantFirstName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress, 'defendantCountry': defendantCountry})
 
-console.log('defs');
-console.log(defendants);
         req.session.defendants = defendants
         res.render('prototype-oct2-2017/defendant-add', { defendants: defendants })
     });
@@ -521,6 +519,7 @@ console.log(defendants);
 
     app.post('*/prototype-oct2-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
+
         req.session.documents = req.body.documents;
 
         res.render('prototype-oct2-2017/certificate/upload', { defendant: defendant, documents: req.body.documents })
