@@ -12,14 +12,14 @@
 
       <div class="form-group">
         <h2 class="heading-medium">
-          Did you 
-          {% if defendant.howServed == 'First class post or other next-day service' %}post to
-          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver to
-          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave with
-          {% elseif defendant.howServed == 'Document Exchange' %}DX to
-          {% elseif defendant.howServed == 'Fax' %}fax to
-          {% elseif defendant.howServed == 'Email' %}email
-          {% else %}send
+          Did you
+          {% if defendant.howServed == 'First class post or other next-day service' %}post the documents to
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver the documents to
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave the documents with
+          {% elseif defendant.howServed == 'Document Exchange' %}DX the documents to
+          {% elseif defendant.howServed == 'Fax' %}fax the documents to
+          {% elseif defendant.howServed == 'Email' %}email the documents to
+          {% else %}send the documents to
           {% endif %}
            {% if defendant.defendantType == 'individual' %} {{ defendant.defendantFirstName }}{%else%}{{ defendant.defendantName }}{% endif %} today?
         </h2>
@@ -86,7 +86,7 @@
 
       <div id="service-block" class="js-hidden">
         <p class="heading-medium">
-          Deemed day of service
+          Deemed date of service
         </p>
         <p id="service-value"></p>
         <input type="hidden" id="service-value-field" name="service-value-field" />
@@ -149,7 +149,7 @@
               }
             {% endif %}
 
-            arrMonths = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+            arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
             strMonth = arrMonths[objDate.getMonth()];
             strDate = objDate.getDate() + ' ' + strMonth + ' ' + objDate.getFullYear()
             $('#service-block').removeClass('js-hidden');
