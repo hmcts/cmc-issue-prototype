@@ -654,3 +654,11 @@ table a.download {
   margin-top: 45px;
   padding-top: 15px;
 }
+
+#docs .multiple-choice input:disabled + label {
+  opacity: 1;
+}
+
+#docs .multiple-choice [type=checkbox]:disabled + label::before {
+  border: none;
+}
