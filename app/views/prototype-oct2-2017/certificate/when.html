@@ -122,7 +122,7 @@
       function updateServiceDate() {
 
 
-        if ( $('#day').val() && (!$('#am-pm').length || ( $('#am-pm').length && $('#am-pm').val() ) ) ) {
+        if ( $('#day').val() && $('#month').val() && (!$('#am-pm').length || ( $('#am-pm').length && $('#am-pm').val() ) ) ) {
 
             var objDate = new Date( $('#year').val(), $('#month').val()-1, $('#day').val() );
 
