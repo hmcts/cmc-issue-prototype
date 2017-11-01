@@ -9,7 +9,7 @@
         </h1>
 
           {% for document in documents %}
-          {% if (document != 'Claim form') and (document != 'Response pack') %}
+          {% if (document != 'Claim form') and (document != 'Response pack') and (document != '_unchecked') %}
 
           <h2 class="heading-medium">{{ document }}</h2>
 
