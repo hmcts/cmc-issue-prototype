@@ -122,9 +122,10 @@
       function updateServiceDate() {
 
 
-        if ( $('#day').val() && $('#month').val() && (!$('#am-pm').length || ( $('#am-pm').length && $('#am-pm').val() ) ) ) {
+        if ( $('#day').val() && ( $('#month').val() || $('#today-yes').is(':checked') ) && (!$('#am-pm').length || ( $('#am-pm').length && $('#am-pm').val() ) ) ) {
 
-            var objDate = new Date( $('#year').val(), $('#month').val()-1, $('#day').val() );
+            intMonth = ( $('#month').val() > 0 ) ? $('#month').val()-1 : objDateToday.getMonth();
+            var objDate = new Date( $('#year').val(), intMonth, $('#day').val() );
 
             {% if howServed == 'First class post or other next-day service' %}
               objDate.setDate(objDate.getDate() + 2);
@@ -141,7 +142,7 @@
                 objDate.setHours( intHours );
                 objDate.setMinutes( $('#minutes').val() );
 
-                objDateAfternoon = new Date( $('#year').val(), $('#month').val()-1, $('#day').val(), 16 );
+                objDateAfternoon = new Date( $('#year').val(), intMonth, $('#day').val(), 16 );
                 if ( objDate >= objDateAfternoon ) {
                   objDate.setDate( objDate.getDate() + 1 );
                 }
