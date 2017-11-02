@@ -31,11 +31,13 @@
               <input id="handed" name="how-served" type="radio" value="Personally handed to or left with recipient">
               <label for="handed">Personally handed to or left with recipient</label>
             </div>
-
+            
+            {% if defendant.defendantType != 'individual' %}
             <div class="multiple-choice" data-target="dx-address-panel">
               <input id="dx" name="how-served" type="radio" value="Document Exchange">
               <label for="dx">Document Exchange</label>
             </div>
+            {% endif %}
 
             <div class="multiple-choice" data-target="fax-panel">
               <input id="fax" name="how-served" type="radio" value="Fax">

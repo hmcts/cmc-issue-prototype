@@ -691,11 +691,11 @@ function getDummyDefendant() {
 }
 
 function getDummyDocuments() {
-    return [ 'Claim form', 'Particulars of claim', 'Response pack', 'Schedule of loss', 'Medical report(s)' ];
+    return [ 'Claim form', 'Particulars of claim', 'Response pack', 'Medical reports', 'Schedule of loss' ];
 }
 
 function getDummyFiles() {
-    return [ 'Particulars of claim.pdf', 'Schedule of loss.xls', 'Medical report.jpg' ];
+    return [ 'Particulars of claim.pdf', 'Medical report.jpg', 'Schedule of loss.xls' ];
 }
 
 function updateDefendant( defendant, defendants ) {
