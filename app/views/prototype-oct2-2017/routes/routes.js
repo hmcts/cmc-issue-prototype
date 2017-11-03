@@ -521,7 +521,7 @@ module.exports = function(app){
         var defendant = req.session.defendant || getDummyDefendant();
 
         req.session.documents = req.body.documents;
-
+        
         res.render('prototype-oct2-2017/certificate/upload', { defendant: defendant, documents: req.body.documents })
     });
 

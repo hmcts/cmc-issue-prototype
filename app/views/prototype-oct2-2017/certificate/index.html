@@ -3,10 +3,12 @@
 
 
     <form method="post" action="certificate/upload" class="form">
+       <input id="claim-form" name="documents" type="hidden" value="Claim form">
+       <input id="claim-form" name="documents" type="hidden" value="Particulars of claim">
 
       <div class="form-group">
         <h1 class="heading-large">
-          What documents did you serve?
+          Which documents did you serve?
         </h1>
 
          <div class="form-group" id="docs">
@@ -28,7 +30,7 @@
               <label for="schedule-of-losses">Schedule of loss</label>
             </div>
             <div class="multiple-choice">
-              <input id="medical-report" name="documents" type="checkbox" value="Medical report(s)">
+              <input id="medical-report" name="documents" type="checkbox" value="Medical reports">
               <label for="medical-report">Medical reports</label>
             </div>
             <div class="multiple-choice" data-target="other-doc-box">
