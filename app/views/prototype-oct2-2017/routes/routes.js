@@ -532,6 +532,31 @@ module.exports = function(app){
         res.render('prototype-oct2-2017/certificate/upload', { defendant: defendant, documents: documents })
     });
 
+    app.get('*/prototype-oct2-2017/certificate/who', function(req, res){
+
+        if ( req.session.defendant) { 
+            defendant = req.session.defendant;
+        } else {
+            arrDummyDefendants = getDummyDefendants();
+            defendant = arrDummyDefendants[2];
+        }
+
+        res.render('prototype-oct2-2017/certificate/who', { defendant: defendant })
+    });
+
+
+    app.post('*/prototype-oct2-2017/certificate/who', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        if ( req.body['addressed-to']) {
+            defendant.addressedTo = req.body['addressed-to'];
+            req.session.defendants = updateDefendant(defendant, defendants);
+        }
+        res.render('prototype-oct2-2017/certificate/how', { defendant: defendant })
+    });
+
+
     app.get('*/prototype-oct2-2017/certificate/how', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
@@ -546,7 +571,11 @@ module.exports = function(app){
             req.session.files = getDummyFiles();
         }
 
-        res.render('prototype-oct2-2017/certificate/how', { defendant: defendant })
+        if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
+            res.render('prototype-oct2-2017/certificate/who', { defendant: defendant })
+        } else {
+            res.render('prototype-oct2-2017/certificate/how', { defendant: defendant })
+        }
     });
 
     app.get('*/prototype-oct2-2017/certificate/when', function(req, res){
@@ -644,7 +673,13 @@ module.exports = function(app){
                     if ( defendants[i].defendantNo == defendant.defendantNo ) {
 
                         req.session.defendant = defendants[i+1];
-                        res.render('prototype-oct2-2017/certificate/how', { defendant: req.session.defendant });
+
+                        if ( req.session.defendant.defendantType == 'company' && req.session.defendant.solicitor == '-' ) {
+                            res.render('prototype-oct2-2017/certificate/who', { defendant: req.session.defendant })
+                        } else {
+                            res.render('prototype-oct2-2017/certificate/how', { defendant: req.session.defendant })
+                        }
+
                         break;
                     }
                 }
