@@ -80,6 +80,17 @@
           <td class="change-answer"> 
           </td>
         </tr>
+
+        {{ defendant.addressedTo }}</td>
+        <tr>
+          <td>
+            Who did you address to
+          </td>
+          <td>{{ defendant.addressedTo }}</td>
+          <td class="change-answer"><a href="who">Change</a></td>
+        </tr>
+        {{endif}}
+
         <tr>
           <td>How you served </td>
           <td>

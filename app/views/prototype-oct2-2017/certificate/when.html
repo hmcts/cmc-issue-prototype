@@ -26,7 +26,7 @@
 
        <div class="form-group">
          <div class="multiple-choice">
-          <input id="today-yes" name="served-today" type="radio" value="yes" onclick="$('#day').val( objDateToday.getDate() ); updateServiceDate();">
+          <input id="today-yes" name="served-today" type="radio" value="yes" onclick="$('#day').val( objDateToday.getDate() ); $('#month').val( objDateToday.getMonth()+1 ); updateServiceDate();">
           <label for="today-yes">Yes</label>
         </div>
 
