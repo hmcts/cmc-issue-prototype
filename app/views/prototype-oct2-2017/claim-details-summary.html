@@ -78,12 +78,14 @@
 
   {% for defendant in defendants %}
   <div class="heading-medium">Defendant {{ defendant.defendantNo }} details</div>
+
+
     <div class="task-list-item">
       <div class="column-one-quarter form-hint">Name</div>
       <div class="column-one-half if-empty">{{ defendant.defendantName }}</div>
       <div class="column-one-quarter"><a class="right" href="defendant-type">Change</a></div>
     </div>
-
+    
     {% if defendant.defendantCompanyNumber != '-' %}
       <div class="task-list-item">
         <div class="column-one-quarter form-hint">Companies House number</div>

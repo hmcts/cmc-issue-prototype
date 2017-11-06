@@ -57,7 +57,7 @@
           I served to {% if defendant.defendantType == 'individual' %} {{ defendant.defendantFirstName }}{%else%}{{ defendant.defendantName }}{% endif %}'s{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
         </h2>
 
-        {% if defendant.defendantType == 'individual' %}
+        {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) %}
          <div class="multiple-choice">
           <input id="usual-res" name="destination" type="radio" value="usual residence">
           <label for="usual-res">Usual residence</label>
@@ -66,24 +66,33 @@
           <input id="last-res" name="destination" type="radio" value="last known residence">
           <label for="last-res">Last known residence</label>
         </div>
-        <div class="multiple-choice" data-target="other-dest-box">
-          <input id="other-dest" name="destination" type="radio" value="other">
-          <label for="other-dest">Other</label>
-        </div>
-        <div class="form-group js-hidden multiple-choice" id="other-dest-box">
-          <label class="form-label" for="other-dest-value" style="float: none;">Please specify:</label>
-          <textarea class="form-control" id="other-dest-value" name="other-dest-value" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
-        </div>
-        {% else %}
+          {% if defendant.defendantType == 'individual' %}
+          <div class="multiple-choice" data-target="other-dest-box">
+            <input id="other-dest" name="destination" type="radio" value="other">
+            <label for="other-dest">Other</label>
+          </div>
+          <div class="form-group js-hidden multiple-choice" id="other-dest-box">
+            <label class="form-label" for="other-dest-value" style="float: none;">Please specify:</label>
+            <textarea class="form-control" id="other-dest-value" name="other-dest-value" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
+          </div>
+          {% endif %}
+        {% endif %}
 
-         <div class="multiple-choice">
+        {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'trader' ) %}
+
+        {% if defendant.defendantType == 'company' %}
+        <div class="multiple-choice">
           <input id="registered-office" name="destination" type="radio" value="registered office">
           <label for="registered-office">Registered office address</label>
         </div>
+        {% endif %}
          <div class="multiple-choice">
           <input id="bus" name="destination" type="radio" value="place of business">
           <label for="bus">Place of business</label>
         </div>
+
+
+        {% if defendant.defendantType == 'company' %}
          <div class="multiple-choice">
           <input id="princ-bus" name="destination" type="radio" value="principal place of business">
           <label for="princ-bus">Principal place of business</label>
@@ -92,17 +101,29 @@
           <input id="last-bus" name="destination" type="radio" value="last known place of business">
           <label for="last-bus">Last known place of business</label>
         </div>
-
+        {% endif %}
         <div class="form-group">
           <details role="group">
             <summary role="button" aria-controls="details-content-0" aria-expanded="false" style="margin-left: 16px;"><span class="summary" style="padding-left: 16px;">More options</span></summary>
             <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
 
 
+            {% if defendant.defendantType == 'trader' %}
+             <div class="multiple-choice">
+              <input id="princ-bus" name="destination" type="radio" value="principal place of business">
+              <label for="princ-bus">Principal place of business</label>
+            </div>
+             <div class="multiple-choice">
+              <input id="last-bus" name="destination" type="radio" value="last known place of business">
+              <label for="last-bus">Last known place of business</label>
+            </div>
+            {% endif %}
+
              <div class="multiple-choice">
               <input id="last-princ" name="destination" type="radio" value="last known principal place of business">
               <label for="last-princ">Last known principal place of business</label>
             </div>
+            {% if defendant.defendantType == 'company' %}
              <div class="multiple-choice">
               <input id="princ-office" name="destination" type="radio" value="principal office of the partnership">
               <label for="princ-office">Principal office (for a partnership)</label>
@@ -119,6 +140,7 @@
               <input id="jurisdiction" name="destination" type="radio" value="place of business of the partnership/company/corporation within the jurisdiction with a connection to claim">
               <label for="jurisdiction">Place of business of a partnership, company or corporation within the jurisdiction with a connection to claim</label>
             </div>
+            {% endif %}
 
             <div class="multiple-choice" data-target="other-dest-box">
               <input id="other-dest" name="destination" type="radio" value="other">

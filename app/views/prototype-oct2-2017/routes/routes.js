@@ -189,11 +189,23 @@ module.exports = function(app){
 
 
     app.get('*/prototype-oct2-2017/defendant-add', function(req, res){
+
+        if ( req.session.data['defendantType'] == 'trader' ) {
+            req.session.data['defendant_name'] = req.session.data['defendant_name2'] + ' trading as ' + req.session.data['defendant_company_name2'];
+        }
         var defendants = req.session.defendants || [];
         var defendantNo = defendants.length + 1;
         var defendantType = (req.session.data['defendantType']) ? req.session.data['defendantType'] : ''
         var defendantName = (req.session.data['defendant_name']) ? req.session.data['defendant_name'] : req.session.data['defendant_company_name'];
-        var defendantFirstName = req.session.data['defendant_company_name'] || req.session.data['defendant_name'].substring(0, (req.session.data['defendant_name'].indexOf(' ') > 0 ? req.session.data['defendant_name'].indexOf(' ') : req.session.data['defendant_name'].length ) );
+//        var defendantTraderCompanyName = (req.session.data['defendant_company_name2']) ? req.session.data['defendant_company_name2'] : '';
+
+        var defendantFirstName; 
+        if ( req.session.data['defendantType'] == 'individual' ) {
+            defendantFirstName = req.session.data['defendant_name'].substring(0, (req.session.data['defendant_name'].indexOf(' ') > 0 ? req.session.data['defendant_name'].indexOf(' ') : req.session.data['defendant_name'].length ) );
+        } else {
+            defendantFirstName = defendantName;
+        }
+
         var defendantCompanyNumber = (req.session.data['defendant_company_number']) ? req.session.data['defendant_company_number'] : '-'
         var defendantSolicitorName = (req.session.data['defendant_rep_company']) ? req.session.data['defendant_rep_company'] : '-'
         var defendantAddress1 = (req.session.data['defendant_AddressLine1']) ? req.session.data['defendant_AddressLine1'] : '-'
@@ -207,9 +219,9 @@ module.exports = function(app){
         var defendantServicePostcode = (req.session.data['defendant_service_Postcode']) ? req.session.data['defendant_service_Postcode'] : req.session.data['defendant_Postcode']
         var defendantServiceAddress = defendantServiceAddress1 + ' ' + defendantServiceAddress2 + ' ' + defendantServiceTown + ' ' + defendantServicePostcode
         var defendantCountry = (req.session.data['defendant_country']) ? req.session.data['defendant_country'] : ''
-        defendants.push({'defendantNo': defendantNo, 'defendantType': defendantType,  'defendantName': defendantName, 'defendantFirstName': defendantFirstName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress, 'defendantCountry': defendantCountry})
+        defendants.push({'defendantNo': defendantNo, 'defendantType': defendantType,  'defendantName': defendantName, 'defendantFirstName': defendantFirstName, 'defendantCompanyNumber': defendantCompanyNumber, 'defendantAddress': defendantAddress, 'solicitor': defendantSolicitorName, 'serviceAddress': defendantServiceAddress, 'defendantCountry': defendantCountry});
 
-        req.session.defendants = defendants
+        req.session.defendants = defendants;
         res.render('prototype-oct2-2017/defendant-add', { defendants: defendants })
     });
 
@@ -718,7 +730,7 @@ module.exports = function(app){
 
 
 function getDummyDefendants() {
-    return [ { defendantNo: 1, defendantType: 'individual', defendantName: 'Jan Clarke', defendantFirstName: 'Jan', defendantCompanyNumber: '-', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post or other next-day service', destination: 'usual residence', serveDay: '11', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '13 Oct 2017' }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantFirstName: 'Bob', defendantCompanyNumber: '-', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantFirstName: 'Chris', defendantCompanyNumber: '-', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: '9', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017' } ];
+    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantFirstName: 'Jan', defendantCompanyNumber: '-', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post or other next-day service', destination: 'usual residence', serveDay: '11', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '13 Oct 2017' }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantFirstName: 'Bob', defendantCompanyNumber: '-', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantFirstName: 'Chris', defendantCompanyNumber: '-', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: '9', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017' } ];
 }
 
 function getDummyDefendant() {
