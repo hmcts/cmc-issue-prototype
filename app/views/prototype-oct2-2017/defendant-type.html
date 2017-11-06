@@ -27,6 +27,22 @@
         </div>
       </div>
 
+      <div class="multiple-choice" data-target="trader-name">
+          <input id="trader" name="defendantType" type="radio" value="trader" {{ checked('defendantType','trader') }}>
+          <label for="trader">A sole trader</label>
+      </div>
+
+      <div id="trader-name" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="defendant_name2">Full name</label>
+          <textarea type="text" class="form-control" id="defendant_name2" name="defendant_name2" value="{{ data['defendant_name2'] }}" style="height: 38px;">{{ data['defendant_name'] }}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="defendant_company_name2">Trading as (optional)</label>
+          <input class="form-control" type="text" id="defendant_company_name2" name="defendant_company_name2" value="{{ data['defendant_company_name2'] }}">
+        </div>
+      </div>
+
       <div class="multiple-choice" data-target="individual-name">
           <input id="individual" name="defendantType" type="radio" value="individual" {{ checked('defendantType','individual') }}>
           <label for="individual">An individual</label>
