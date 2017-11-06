@@ -549,8 +549,9 @@ module.exports = function(app){
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
 
-        if ( req.body['addressed-to']) {
+        if ( req.body['addressed-to'] || req.body['addressed-role'] ) {
             defendant.addressedTo = req.body['addressed-to'];
+            defendant.addressedRole = req.body['addressed-role'];
             req.session.defendants = updateDefendant(defendant, defendants);
         }
         res.render('prototype-oct2-2017/certificate/how', { defendant: defendant })
