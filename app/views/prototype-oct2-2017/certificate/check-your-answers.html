@@ -86,7 +86,7 @@
           <td>
             Who did you address to
           </td>
-          <td>{{ defendant.addressedTo }}</td>
+          <td>{{ defendant.addressedTo }}{% if defendant.addressedTo %}, {{defendant.addressedRole}}{% endif %}</td>
           <td class="change-answer"><a href="who">Change</a></td>
         </tr>
         {{endif}}
