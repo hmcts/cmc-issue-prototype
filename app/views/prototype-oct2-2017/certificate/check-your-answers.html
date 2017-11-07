@@ -74,17 +74,17 @@
       <tbody>
         <tr>
           <td>
-            Name
+            Organisation name
           </td>
           <td>{{ defendant.defendantName }}</td>
-          <td class="change-answer"> 
+          <td class="change-answer">
           </td>
         </tr>
 
         {% if defendant.addressedTo %}
         <tr>
           <td>
-            Who did you address to
+            Person you addressed documents to
           </td>
           <td>{{ defendant.addressedTo }}{% if defendant.addressedRole %}, {{defendant.addressedRole}}{% endif %}</td>
           <td class="change-answer"><a href="who">Change</a></td>
@@ -129,7 +129,7 @@
           <td>When you
           {% if defendant.howServed == 'First class post or other next-day service' %}posted the documents
           {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the documents
-          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the documents 
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the documents
           {% elseif defendant.howServed == 'Fax' %}faxed the documents
           {% elseif defendant.howServed == 'Email' %}emailed the documents
           {% else %}sent the documents
@@ -163,7 +163,7 @@
       <label class="form-label" for="signer_name">Name</label>
       <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
     </div>
-    
+
     <div class="form-group">
       <label class="form-label" for="signer-role">Your role</label>
       <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
