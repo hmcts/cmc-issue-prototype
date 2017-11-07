@@ -1,8 +1,5 @@
 {% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-
-
-
     <form method="post" action="when" class="form">
 
       <h1 class="heading-large">
@@ -21,7 +18,7 @@
           {% elseif defendant.howServed == 'Email' %}email the documents to
           {% else %}send the documents to
           {% endif %}
-           {% if defendant.defendantType == 'individual' %} {{ defendant.defendantFirstName }}{%else%}{{ defendant.defendantName }}{% endif %}{% if defendant.solicitor != '-' %}'s' solicitor{% endif %} today?
+           the defendant{% if defendant.solicitor != '-' %}'s solicitor{% endif %} today?
         </h2>
 
        <div class="form-group">
