@@ -54,7 +54,7 @@
 
       <div class="form-group" id="destination-type">
         <h2 class="heading-medium">
-          I served to {% if defendant.defendantType == 'individual' %} {{ defendant.defendantFirstName }}{%else%}{{ defendant.defendantName }}{% endif %}'s{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
+          I served to the defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
         </h2>
 
         {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) %}
