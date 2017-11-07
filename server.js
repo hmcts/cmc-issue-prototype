@@ -245,6 +245,7 @@ require('./app/views/prototype-sept1-2017/routes/routes.js')(app);
 require('./app/views/prototype-sept2-2017/routes/routes.js')(app);
 require('./app/views/prototype-oct-2017/routes/routes.js')(app);
 require('./app/views/prototype-oct2-2017/routes/routes.js')(app);
+require('./app/views/prototype-nov-2017/routes/routes.js')(app);
 require('./app/views/prototype-MVP-2017/routes/routes.js')(app);
 require('./app/views/current-features-to-be-built/routes/routes.js')(app);
 

@@ -1,0 +1,35 @@
+{% extends "prototype-nov-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've confirmed service</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <p class="form-group-compound">Issued: 23 September 2017</p>
+</div>
+<br>
+
+<p>
+  We've sent a confirmation email to {%if data['username'] %}{{ data['username'] }}{%else%}yourname@example.com{%endif%}
+
+  <h2 class="bold-medium">Download certificates of service</h1>
+
+<ul class="downloads certificates">
+{% for defendant in defendants %}
+	<li><a target="_blank" href="/public/documents/Certificate-of-service.pdf">{{defendant.defendantName}}</a> (PDF, 123 KB)</li>
+{% endfor %}
+{% if defendants.length > 1 %}
+  <li><a target="_blank" href="/public/documents/Certificates-of-service.pdf">Download all</a> (PDF, 456 KB)</li>
+{% endif %}
+</ul>
+<br>
+
+<p>Download these documents again at any time by logging into the <a href='../dashboard'>Manage your claims page</a>.</p>
+
+<div class="form-group">
+  <a class="button" href="../start" role="button">Issue a new claim</a>
+</div>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}
