@@ -67,12 +67,6 @@
       <div class="column-one-quarter"><a class="right" href="claimant-address">Change</a></div>
     </div>
   {% endif %}
-  {% if claimant.claimantCompanyNumber != '-' %}
-    <div class="task-list-item">
-      <div class="column-one-quarter form-hint">Companies House number</div>
-      <div class="column-one-half if-empty">{% if claimant.claimantCompanyNumber %} {{ claimant.claimantCompanyNumber }} {% endif %}</div>
-    </div>
-  {% endif %}
   {% endfor %}
 
 
@@ -85,14 +79,7 @@
       <div class="column-one-half if-empty">{{ defendant.defendantName }}</div>
       <div class="column-one-quarter"><a class="right" href="defendant-type">Change</a></div>
     </div>
-    
-    {% if defendant.defendantCompanyNumber != '-' %}
-      <div class="task-list-item">
-        <div class="column-one-quarter form-hint">Companies House number</div>
-        <div class="column-one-half if-empty">{{ defendant.defendantCompanyNumber }}</div>
-        <div class="column-one-quarter"><a class="right" href="defendant-type">Change</a></div>
-      </div>
-    {% endif %}
+
     <div class="task-list-item">
       <div class="column-one-quarter form-hint">Address</div>
       <div class="column-one-half if-empty">{{ defendant.defendantAddress}}</div>
