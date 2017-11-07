@@ -1,0 +1,33 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+
+    <form method="post" action="who" class="form">
+
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        {{ defendant.defendantName }}
+      </h1>
+
+      <h2 class="heading-medium">Who did you address the documents to?</h2>
+
+
+      <div class="form-group">
+        <label class="form-label" for="addressed-to">Name (optional)</label>
+        <input class="form-control" type="text" id="addressed-to" name="addressed-to" value="">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="addressed-role">Role (optional)</label>
+        <input class="form-control" type="text" id="addressed-role" name="addressed-role" value="">
+      </div>
+
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}

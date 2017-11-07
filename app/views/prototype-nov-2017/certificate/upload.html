@@ -1,0 +1,64 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+    <form method="post" action="how" class="form">
+
+      <div class="form-group">
+        <h1 class="heading-large">
+          Upload your documents
+        </h1>
+
+          {% for document in documents %}
+          {% if (document != 'Claim form') and (document != 'Response pack') and (document != '_unchecked') %}
+
+          <h2 class="heading-medium">{{ document }}</h2>
+
+
+          <div class="dropzone_wrapper">
+
+            <div class="dropzone doc_upload_zone" tabindex="0">
+              <div class="dz-default dz-message grid-row">
+                <div class="column-one-third arrow-icon">
+                  <p></p>
+                </div>
+                <div class="column-one-half">
+                  <p class="dz-message-copy">
+                    Drag and drop files here<br>
+                    <strong>or</strong><br>
+                    <a href="#" class="faux-link" tabindex="-1">Click to choose files</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="uploaded-files-wrapper">
+              <ol class="list uploaded-files">
+                <li class="no-files">No files uploaded</li>
+              </ol>
+            </div>
+
+          </div>
+          
+          {% endif %}
+          {% endfor %}
+
+      </div>
+
+      <input type="hidden" name="files" id="files"/>
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}
+
+    {% block extra_js_1 %}
+    <script src="/public/javascripts/module_loader.js"></script>
+    <script src="/public/javascripts/modules/doc-upload.js"></script>
+    <script src="/public/javascripts/dropzone.js"></script>
+    <script type="text/javascript">
+      window.moj.init();
+    </script>
+    {% endblock %}

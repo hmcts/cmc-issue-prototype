@@ -1,0 +1,33 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large"><span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %}: {% if data['defendant_name'] %} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
+  Address for service
+</h1>
+<form action="defendants-service-address" method="post">
+  <fieldset class="form-group">
+    <legend class="visually-hidden">Address</legend>
+
+    <div class="multiple-choice" data-target="defendant-service-address">
+      <input id="company" name="defendantService" type="radio" value="defendantsAddress" {{ checked('defendantService','defendantsAddress') }}>
+      <label for="company">Use the defendant's address</label>
+    </div>
+
+    <div id="defendant-service-address" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+      <p class="form-group-compound">{% if data['defendant_AddressLine1'] %} {{ data['defendant_AddressLine1'] }}, {% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_AddressLine2'] %} {{ data['defendant_AddressLine2'] }},{% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_city'] %} {{ data['defendant_city'] }}, {% endif %}</p>
+      <p class="form-group-compound">{% if data['defendant_Postcode'] %} {{ data['defendant_Postcode'] }} {% endif %}</p>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="individual" name="defendantService" type="radio" value="other" {{ checked('defendantService','other') }}>
+      <label for="individual">Use another address</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

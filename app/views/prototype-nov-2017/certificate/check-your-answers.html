@@ -1,0 +1,177 @@
+{% extends "prototype-sept-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">
+  Check your answers
+</h1>
+
+
+  <form method="post" action="submitted" class="form">
+
+
+    <table class="check-your-answers">
+
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Documents
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Documents served
+          </td>
+          <td>
+            <ul>
+              {% for document in documents %}
+              <li>{{ document }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td class="change-answer">
+         <a href="../certificate">
+          Change
+        </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Documents uploaded
+          </td>
+          <td>
+            <ul>
+              {% for file in files %}
+              <li><a href="#">{{ file }}</a></li>
+              {% endfor %}
+            </ul></td>
+          <td class="change-answer">
+         <a href="upload">
+          Change
+        </a>
+          </td>
+        </tr>
+      </tbody>
+    <table>
+
+    {% for defendant in defendants %}
+    {% if defendant.howServed %}
+    <table class="check-your-answers">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Defendant {{ defendant.defendantNo }}
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {% if defendant.defendantType == 'company' %}Organisation name{% else %}Name{% endif %}
+          </td>
+          <td>{{ defendant.defendantName }}</td>
+          <td class="change-answer">
+          </td>
+        </tr>
+
+        {% if defendant.addressedTo %}
+        <tr>
+          <td>
+            Person you addressed documents to
+          </td>
+          <td>{{ defendant.addressedTo }}{% if defendant.addressedRole %}, {{defendant.addressedRole}}{% endif %}</td>
+          <td class="change-answer"><a href="who">Change</a></td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td>How you served </td>
+          <td>
+            {{ defendant.howServed }}</td>
+          <td class="change-answer"><a href="how">Change</a></td>
+        </tr>
+        <tr>
+          <td>Where you served</td>
+          <td>
+            {% if defendant.serviceEmail %}
+              {{ defendant.serviceEmail }}
+            {% elseif (defendant.serviceFax) and (defendant.howServed == 'Fax') %}
+              Fax number: {{ defendant.serviceFax }} <br />
+            {% elseif (defendant.serviceDX) and (defendant.howServed == 'Document Exchange')  %}
+              {{ defendant.serviceDX }} <br />
+            {% else %}
+
+              {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
+              {% for line in defendant.serviceAddress.split( '\n' ) %}
+              {{line}}<br />
+              {% endfor %}<br />
+
+            {% endif %}
+
+            {% if not defendant.serviceEmail %}
+            Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {% endif %}
+
+            {% if (defendant.leftWith) and ( defendant.howServed == 'Personally handed to or left with with recipient') %}
+            <br />Left with {{defendant.leftWith}}
+            {% endif %}
+          </td>
+          <td class="change-answer"><a href="where">Change</a></td>
+        </tr>
+        <tr>
+          <td>When you
+          {% if defendant.howServed == 'First class post or other next-day service' %}posted the documents
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the documents
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the documents
+          {% elseif defendant.howServed == 'Fax' %}faxed the documents
+          {% elseif defendant.howServed == 'Email' %}emailed the documents
+          {% else %}sent the documents
+          {% endif %}
+          </td>
+          <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.amPm }}{% endif %}</td>
+          <td class="change-answer"><a href="when">Change</a></td>
+        </tr>
+        <tr>
+          <td>Deemed date of service </td>
+          <td>{{ defendant.serveDate }}</td>
+          <td class="change-answer"> </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
+
+</table>
+
+
+<div class="form-group column-two-thirds" style="padding-left: 0">
+
+  <h2 class="heading-medium">Statement of truth</h2>
+
+    <div class="form-group">
+      <label>I believe that the facts stated are true.</label>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
+    </div>
+
+      <button id="submit" class="button">Confirm service</button>
+    </form>
+  </form>
+
+
+  {% endblock %}

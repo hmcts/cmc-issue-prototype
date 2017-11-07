@@ -1,0 +1,142 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Jurisdiction statement {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Jurisdiction statement</h1>
+<p>Choose a statement that explains why you don’t need court permission to serve your claim out of jurisdiction.</p>
+<p>If none of the statements apply, you must get court permission.</p>
+
+<form action="jurisdiction-statements-2" id="form" method="post" class="form-group">
+  <fieldset class="form-group">
+    <legend class="visually-hidden">Jurisdiction statement</legend>
+      <hr class="form-group" />
+        <h2 class="heading-small">Statement 1-3</h2>
+
+        <p>I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">The Civil Jurisdiction and Judgment Act 1982</a> or the <a href="http://ec.europa.eu/world/agreements/Login.do?message=SessionExpired">Lugano Convention</a>.</p>
+        <p>No proceedings between the parties concerning the same claim are pending in the courts of any other part of the United Kingdom or any other Convention territory.</p>
+
+        <p>I also state:</p>
+
+    <div class="multiple-choice">
+      <input id="statement1" name="jurisdictionStatement" type="radio" value="statement1" {{ checked('jurisdictionStatement','statement1') }}>
+      <label for="statement1">
+        <p>The defendant is domiciled in the United Kingdom or in a Convention territory, namely (state which).</p>
+      </label>
+
+    </div>
+
+
+    <div class="multiple-choice">
+      <input id="statement2" name="jurisdictionStatement" type="radio" value="statement2" {{ checked('jurisdictionStatement','istatement2') }}>
+      <label for="statement2">
+        <p>The proceedings are within <a href="http://www.legislation.gov.uk/ukpga/1982/27/schedule/1">article 16 of Schedule 1 to the said Act</a> or <a href="http://ec.europa.eu/world/agreements/downloadFile.do?fullText=yes&treatyTransId=13041">article 22 of the said Convention</a>.</p>
+      </label>
+    </div>
+      
+
+    <div class="multiple-choice">
+      <input id="statement3" name="jurisdictionStatement" type="radio" value="statement3" {{ checked('jurisdictionStatement','statement3') }}>
+      <label for="statement3">
+        <p>The defendant is a party to an agreement conferring jurisdiction within <a href="http://www.legislation.gov.uk/ukpga/1982/27/schedule/1">article 17 of Schedule 1 to the said Act</a> or <a href="http://ec.europa.eu/world/agreements/downloadFile.do?fullText=yes&treatyTransId=13041">article 23 of the said Convention</a>.</p>
+      </label>
+    </div>
+
+      </fieldset>
+
+      <hr class="form-group" />
+        <h2 class="heading-small">Statement 4-8</h2>
+
+      <fieldset>
+
+        <p>I state that each claim made against the defendant to be served included in the claim form is a claim which the court has power to determine under the <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=LEGISSUM%3Al33054">Judgments Regulation</a>.</p>
+
+        <p>No proceedings between the parties concerning the same claim are pending in the courts of any other part of the United Kingdom or any other member state.</p>
+
+        <p>I also state:</p>
+
+    <div class="multiple-choice">
+      <input id="statement4" name="jurisdictionStatement" type="radio" value="statement4" {{ checked('jurisdictionStatement','statement4') }}>
+      <label for="statement4">
+        <p>The defendant is domiciled [in the United Kingdom] or [in another member state, namely (state which)].</p>
+      </label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="statement5" name="jurisdictionStatement" type="radio" value="statement5" {{ checked('jurisdictionStatement','statement5') }}>
+      <label for="statement5">
+        <p>The defendant is not a consumer, but is a party to a consumer contract within <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=LEGISSUM%3Al33054">article 17 of the said Regulation</a>.</p>
+      </label>
+    </div>
+      
+
+    <div class="multiple-choice">
+      <input id="statement6" name="jurisdictionStatement" type="radio" value="statement6" {{ checked('jurisdictionStatement','statement6') }}>
+      <label for="statement6">
+        <p>The defendant is an employer and a party to a contract of employment within <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=LEGISSUM%3Al33054">article 20 of the said Regulation</a>.</p>
+      </label>
+    </div>
+
+
+    <div class="multiple-choice">
+      <input id="statement7" name="jurisdictionStatement" type="radio" value="statement7" {{ checked('jurisdictionStatement','statement7') }}>
+      <label for="statement7">
+        <p>The proceedings are within <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=LEGISSUM%3Al33054">article 24 of the said Regulation</a>.</p>
+      </label>
+    </div>
+
+
+    <div class="multiple-choice">
+      <input id="statement8" name="jurisdictionStatement" type="radio" value="statement8" {{ checked('jurisdictionStatement','statement8') }}>
+      <label for="statement8">
+        <p>The defendant is a party to an agreement conferring jurisdiction within <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=LEGISSUM%3Al33054">article 25 of the said Regulation</a>.</p>
+      </label>
+    </div>
+
+
+      </fieldset>
+
+
+
+      <hr class="form-group" />
+        <h2 class="heading-small">Statement 9</h2>
+
+      <fieldset>
+
+    <div class="multiple-choice">
+      <input id="statement9" name="jurisdictionStatement" type="radio" value="statement9" {{ checked('jurisdictionStatement','statement9') }}>
+      <label for="statement9">
+        <p>I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under the Judgments Regulation and the defendant is a party to an agreement conferring exclusive jurisdiction within <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=LEGISSUM%3Al33054">article 25 of the said Regulation</a>.</p>
+      </label>
+    </div>
+
+      </fieldset>
+
+
+
+
+      <hr class="form-group" />
+        <h2 class="heading-small">Statement 10</h2>
+
+      <fieldset>
+
+    <div class="multiple-choice">
+      <input id="statement10" name="jurisdictionStatement" type="radio" value="statement10" {{ checked('jurisdictionStatement','statement10') }}>
+      <label for="statement10">
+        <p>I state that each claim made against the defendant is to be served and included in the claim form is a claim which the court has power to determine other than under the Civil Jurisdiction and Judgments Act 1982 or the Lugano Convention or the Judgments Regulation, namely (state the provisions of the enactment or convention relied on to confer the power) notwithstanding that:</p>
+
+        <p>(a) the defendant is not within the jurisdiction; or</p>
+        <p>(b) the facts giving rise to the claim did not occur within the jurisdiction.</p>
+      </label>
+    </div>
+
+      </fieldset>
+
+
+
+
+
+  <br />
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}
