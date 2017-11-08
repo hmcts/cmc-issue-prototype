@@ -47,7 +47,7 @@ module.exports = function(app){
             res.render('prototype-nov-2017/claimant-add', { claimants: claimants })
         } else if (req.body.addClaimant && req.body.addClaimant.toString() === 'yes') {
             req.session.data['claimant_name'] = req.session.data['claimant_rep_company'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
-            req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = req.session.data['claimantType'] = req.session.data['claimant_title'] = undefined
+            req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = req.session.data['claimantType'] = undefined
 
             res.redirect('what-type-of-claimant')
         } else {
@@ -223,7 +223,7 @@ module.exports = function(app){
             req.session.data['defendant_name'] = req.session.data['defendant_rep_company'] = req.session.data['defendant_AddressLine1'] = req.session.data['defendant_AddressLine2'] = undefined
             req.session.data['defendant_city'] = req.session.data['defendant_Postcode'] = req.session.data['defendant_service_AddressLine1'] = req.session.data['defendant_service_AddressLine2'] = undefined
             req.session.data['defendant_service_city'] = req.session.data['defendant_service_Postcode'] = req.session.data['defendant_company_name'] = req.session.data['defendantType'] = undefined
-            req.session.data['defendantRepresented'] = req.session.data['defendant_title'] = req.session.data['defendantService'] = req.session.data['accept-service'] = undefined
+            req.session.data['defendantRepresented'] = req.session.data['defendantService'] = req.session.data['accept-service'] = undefined
 
             res.redirect('defendant-type')
         } else {
@@ -707,7 +707,7 @@ module.exports = function(app){
     app.get('*/prototype-nov-2017/certificateOfService', function(req, res){
         //var claimants  = [{ name: 'Jimmy Smith1' },{ name: 'Jimmy Smith2' },{ name: 'Jimmy Smith3' },{ name: 'Jimmy Smith4' }];
         var claimants  = [{ name: 'Jimmy Smith1' }];
-        var defendant = { defendantNo: 2, defendantTitle: 'Mr', defendantName: 'Bob Goddard', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceMethod: 'fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
+        var defendant = { defendantNo: 2, defendantName: 'Mr Bob Goddard', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceMethod: 'fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
 //        var defendant = { defendantNo: 2, defendantTitle: 'Mr', defendantName: 'Bob Goddard', defendantFirstName: 'Bob', defendantCompanyNumber: '-', address: { line1: '31 Old Farm Road', line2: '', city: 'Guildford', postcode: 'GU3 3QP'}, solicitor: 'Keoghs', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'First class post or other next-day service', serviceMethod: 'post', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
 
         var arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
