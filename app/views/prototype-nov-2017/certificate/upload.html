@@ -5,12 +5,14 @@
 
       <div class="form-group">
         <h1 class="heading-large">
-          Send us your documents
+          Upload your documents
         </h1>
 
-        <p>Use this page to send us the documents you've served on the defendant.</p>
+        <p>Use this page to send the County Court the documents you've served on the defendant.</p>
 
           <p>You need to have the documents on your computer.</p>
+
+          <p>The court needs these documents in case the claim goes to a hearing or the defendant files an application.</p>
 
           {% for document in documents %}
           {% if (document != 'Claim form') and (document != 'Response pack') and (document != '_unchecked') %}
