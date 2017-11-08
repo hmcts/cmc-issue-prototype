@@ -123,8 +123,8 @@
 
             intMonth = ( $('#month').val() > 0 ) ? $('#month').val()-1 : objDateToday.getMonth();
             var objDate = new Date( $('#year').val(), intMonth, $('#day').val() );
-
-            {% if howServed == 'First class post or other next-day service' %}
+            
+            {% if ( defendant.howServed == 'First class post or other next-day service' ) or ( defendant.howServed == 'Document Exchange' ) %}
               objDate.setDate(objDate.getDate() + 2);
             {% endif %}
 
