@@ -633,6 +633,16 @@ table a.download {
   margin-top: 10px;
 }
 
+p.download {
+    background-image: url(/public/images/download.png);
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    height: 40px;
+    line-height: 40px;
+    background-color: #DEE0E2;
+    padding: 15px 15px 15px 60px;
+}
+
 #dashboard .list {
   padding-left: 0;
   margin-bottom: 30px;
