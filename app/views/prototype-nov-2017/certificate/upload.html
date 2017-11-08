@@ -5,8 +5,12 @@
 
       <div class="form-group">
         <h1 class="heading-large">
-          Upload your documents
+          Send us your documents
         </h1>
+
+        <p>Use this page to send us the documents you've served on the defendant.</p>
+
+          <p>You need to have the documents on your computer.</p>
 
           {% for document in documents %}
           {% if (document != 'Claim form') and (document != 'Response pack') and (document != '_unchecked') %}
@@ -38,7 +42,7 @@
             </div>
 
           </div>
-          
+
           {% endif %}
           {% endfor %}
 
