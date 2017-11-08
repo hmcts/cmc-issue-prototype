@@ -18,21 +18,11 @@
          <div class="form-group">
            <div class="form-group">
              <div class="multiple-choice">
-              <input id="post" name="how-served" type="radio" value="First class post or other next-day service">
-              <label for="post">First class post or other next-day service</label>
+              <input id="post" name="how-served" type="radio" value="First class post">
+              <label for="post">First class post</label>
             </div>
 
-            <div class="multiple-choice">
-              <input id="delivering" name="how-served" type="radio" value="Delivered or left at a permitted place">
-              <label for="delivering">Delivered or left at a permitted place</label>
-            </div>
-
-            <div class="multiple-choice">
-              <input id="handed" name="how-served" type="radio" value="Personally handed to or left with recipient">
-              <label for="handed">Personally handed to or left with recipient</label>
-            </div>
-            
-            {% if defendant.defendantType != 'individual' %}
+            {% if ( defendant.defendantType == 'company' ) or ( defendant.solicitor != '-' ) %}
             <div class="multiple-choice" data-target="dx-address-panel">
               <input id="dx" name="how-served" type="radio" value="Document Exchange">
               <label for="dx">Document Exchange</label>
@@ -44,31 +34,56 @@
               <label for="fax">Fax</label>
             </div>
 
-            <div class="multiple-choice" data-target="email-address-panel">
-              <input id="email" name="how-served" type="radio" value="Email">
-              <label for="email">Email</label>
+
+            <div class="form-group">
+              <details role="group">
+                <summary role="button" aria-controls="details-content-0" aria-expanded="false" style="margin-left: 16px;"><span class="summary" style="padding-left: 16px;">More options</span></summary>
+                <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
+
+               <div class="multiple-choice">
+                <input id="post" name="how-served" type="radio" value="Other next-day delivery service">
+                <label for="post">Other next-day delivery service</label>
+              </div>
+
+                <div class="multiple-choice">
+                  <input id="delivering" name="how-served" type="radio" value="Delivered or left at a permitted place">
+                  <label for="delivering">Delivered or left at a permitted place</label>
+                </div>
+
+                <div class="multiple-choice">
+                  <input id="handed" name="how-served" type="radio" value="Personally handed to or left with recipient">
+                  <label for="handed">Personally handed to or left with recipient</label>
+                </div>
+
+                <div class="multiple-choice" data-target="email-address-panel">
+                  <input id="email" name="how-served" type="radio" value="Email">
+                  <label for="email">Email</label>
+                </div>
+
+                <div class="multiple-choice" data-target="other-electronic-panel">
+                  <input id="other-electronic" name="how-served" type="radio" value="Other electronic method">
+                  <label for="other-electronic">Other electronic method</label>
+                </div>
+                <div id="other-electronic-panel" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+                  <div class="form-group">
+                    <label class="form-label" for="other-electronic-method">Enter the method</label>
+                    <input class="form-control" type="text" id="other-electronic-method" name="other-electronic-method" value="" style="width: 75%;">
+                  </div>
+                </div>
+
+                <div class="multiple-choice" data-target="other-dest-box">
+                  <input id="other-dest" name="destination" type="radio" value="other">
+                  <label for="other-dest">Other</label>
+                </div>
+                <div class="form-group js-hidden multiple-choice" id="other-dest-box">
+                  <label class="form-label" for="other-dest-value" style="float: none;">Please specify:</label>
+                  <textarea class="form-control" id="other-dest-value" name="other-dest-value" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
+                </div>
+
+                </div>
+              </details>
             </div>
 
-            <div class="multiple-choice" data-target="other-electronic-panel">
-              <input id="other-electronic" name="how-served" type="radio" value="Other electronic method">
-              <label for="other-electronic">Other electronic method</label>
-            </div>
-            <div id="other-electronic-panel" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
-              <div class="form-group">
-                <label class="form-label" for="other-electronic-method">Enter the method</label>
-                <input class="form-control" type="text" id="other-electronic-method" name="other-electronic-method" value="" style="width: 75%;">
-              </div>
-            </div>
-
-            <div class="multiple-choice" data-target="other-doc-box">
-              <input id="other" name="how-served" type="radio" value="other">
-              <label for="other">Other</label>
-            </div>
-              <div class="form-group js-hidden multiple-choice" id="other-doc-box">
-                <label class="form-label" for="other-doc" style="float: none;">Please specify:</label>
-                <textarea class="form-control" id="other-doc" name="other-doc" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
-              </div>
-          </div>
         </div>
 
 

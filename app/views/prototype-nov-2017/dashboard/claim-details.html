@@ -1,17 +1,56 @@
 {% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-{% if data['claim-status'] == 3 %}
+{% if data['claim-status'] == 2 %}
 
 <h1 class="heading-large"><span class="heading-secondary">000LR095</span>
 	Michael Jones v Jan Clark
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>12 October 2017</p>
+<p>16 June 2017</p>
 
 
-<h3 class="heading-medium">Date served</h3>
-<p>14 October 2017</p>
+<h3 class="heading-medium">Service</h3>
+<p>
+	Date deemed served: 12 October 2017<br />
+	Served by: Post
+</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants </h3>
+<ul>
+	<li>Jan Clarke trading as Clarke Construction</li>
+	<li>Goddard Plumming</li>
+	<li>Kingsley Building Ltd</li>
+</ul>
+
+
+<h3 class="heading-medium">Documents uploaded </h3>
+<ul class="downloads">
+	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+</ul>
+
+{% elseif data['claim-status'] == 3 %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+	Michael Jones v Jan Clark
+</h1>
+
+<h3 class="heading-medium">Date issued</h3>
+<p>16 June 2017</p>
+
+
+
+<h3 class="heading-medium">Service</h3>
+<p>
+	Date deemed served: 12 to 14 October 2017<br />
+</p>
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
@@ -24,115 +63,30 @@
 	<thead>
 		<tr>
 			<th scope="col">Name</th>
-			<th scope="col">Served</th>
+			<th scope="col">Deemed served</th>
 			<th scope="col">Served by</th>
-			<th scope="col">Certificate of service</th>
-			<!--<th scope="col">Action </th>
-			<th scope="col">Due </th>-->
 		</tr>
 	</thead>
 	<tbody>
 		<tr class="no-border">
-			<td>Jan Clark</td>
+			<td>Jan Clarke trading as Clarke Construction</td>
 			<td>14 Oct 2017</td>
 			<td>Post</td>
-			<td><a target="_blank" href="/public/documents/Certificate-of-service.pdf">Download</a></td>
-			<!--<td>
-				Awaiting response
-			</td>
-			<td>
-				16 Oct 2017
-			</td>
-		-->
 		</tr>
 		<tr class="no-border">
-			<td>Bob Goddard</td>
+			<td>Goddard Plumming</td>
 			<td>14 Oct 2017</td>
 			<td>Post</td>
-			<td><a target="_blank" href="/public/documents/Certificate-of-service.pdf">Download</a></td>
 		</tr>
 		<tr class="no-border">
-			<td>Chris Kingsley</td>
+			<td>Kingsley Building Ltd</td>
 			<td>12 Oct 2017</td>
 			<td>Email</td>
-			<td><a target="_blank" href="/public/documents/Certificate-of-service.pdf">Download</a></td>
 		</tr>
 	</tbody>
 </table>
 
-<h3 class="heading-medium">Documents served </h3>
-<ul class="downloads">
-	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
-	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
-	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
-</ul>
-
-{% elseif data['claim-status'] == 2 %}
-
-
-<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
-	Michael Jones v Jan Clark
-</h1>
-
-<h3 class="heading-medium">Date issued</h3>
-<p>12 October 2017</p>
-
-<h3 class="heading-medium">Claimant </h3>
-<ul>
-	<li>Michael Jones</li>
-</ul>
-
-<h3 class="heading-medium">Defendants to be served</h3>
-
-<table class="">
-	<thead>
-		<tr>
-			<th scope="col" style="width: 159px">Names</th>
-			<th scope="col" style="width:215px">Serve by </th>
-			<th scope="col">Certificate of service</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="no-border">
-			<td>
-				Jan Clark<br />
-				Bob Goddard
-			</td>
-			<td>
-				16 Oct 2017
-			</td>
-			<td>
-				<a href='../certificate' class="button secondary-button">Confirm service</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<h3 class="heading-medium">Defendants served</h3>
-
-<table class="">
-	<thead>
-		<tr>
-			<th scope="col" style="width: 159px">Name</th>
-			<th scope="col">Served</th>
-			<th scope="col">Served by</th>
-			<th scope="col">Certificate of service</th>
-			<!--<th scope="col">Action </th>
-			<th scope="col">Due </th>-->
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="no-border">
-			<td>Chris Kingsley</td>
-			<td>12 Oct 2017</td>
-			<td>Email</td>
-			<td><a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download</a> (PDF, 123 KB)</td>
-		</tr>
-	</tbody>
-</table>
-
-
-<h3 class="heading-medium">Documents served </h3>
+<h3 class="heading-medium">Documents uploaded </h3>
 <ul class="downloads">
 	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
 	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
@@ -146,7 +100,14 @@
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>12 October 2017</p>
+<p>16 June 2017</p>
+
+
+<h3 class="heading-medium">Serve by</h3>
+<p>
+	16 October 2017<br/>
+	<a href='../certificate' class="button secondary-button" style="margin-top: 5px;">Confirm service</a>
+</p>
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
@@ -154,87 +115,14 @@
 </ul>
 
 <h3 class="heading-medium">Defendants </h3>
-
-<table class="">
-	<thead>
-		<tr>
-			<th scope="col">Names</th>
-			<th scope="col">Serve by </th>
-			<th scope="col">Certificate of service</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="no-border">
-			<td>
-				Jan Clark<br />
-				Bob Goddard<br />
-				Chris Kingsley
-			</td>
-			<td>
-				16 Oct 2017
-			</td>
-			<td>
-				<a href='../certificate' class="button secondary-button">Confirm service</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
+<ul>
+	<li>Jan Clarke trading as Clarke Construction</li>
+	<li>Goddard Plumming</li>
+	<li>Kingsley Building Ltd</li>
+</ul>
 
 {% endif %}
 
-<!--
-<h3 class="heading-medium">Claimants </h3>
-<ul>
-	<li>Chris Jones</li>
-	<li>Trisha Scott</li>
-	<li>Barry Scott</li>
-	<li>Kate Barrett</li>
-</ul>
-<h3 class="heading-medium">Defendants </h3>
-
-
-
-<table class="" >
-	<thead>
-		<tr>
-			<th scope="col">Names</th>
-			<th scope="col">Status</th>
-			<th scope="col">Action </th>
-			<th scope="col">Due </th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				Jan Clark<br />
-				Bob Goddard<br />
-				Chris Kingsley
-			</td>
-			<td> Issued</td>
-			<td>
-				<a href='../certificate' class="button secondary-button">Confirm service</a>
-			</td>
-			<td>
-				16 Nov 2017
-			</td>
-		</tr>
-
-		<tr class="">
-			<td> Dave Fortey</td>
-			<td> Served</td>
-			<td>
-				<a href='#' class="button secondary-button">Request default judgement</a>
-			</td>
-			<td>
-				23 Nov 2017
-			</td>
-
-
-		</tr>
-	</tbody>
-</table>
-
--->
 {% endblock %}
 
 {% block side_content %}
@@ -269,8 +157,8 @@
 <form method="get" action="#" class="form" >
   <select id="claim-status" name="claim-status" onchange="this.form.submit()">
     <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Issued</option>
-    <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Part-served</option>
-    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served</option>
+    <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Served (single method)</option>
+    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served (mixed method)</option>
   </select>
 </form>
 
