@@ -519,13 +519,70 @@ module.exports = function(app){
         res.render('prototype-nov-2017/certificate/index', { defendant: req.session.defendant })
     });
 
+
     app.post('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
-        req.session.documents = req.body.documents;
+        if ( req.body.documents ) {
+            req.session.documents = req.body.documents;
+        }
 
-        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: req.body.documents })
+        if (!req.session.uploads) {
+             req.session.uploads = {};
+        }
+
+        if ( req.body.upload ) {
+            document = req.body.doc;
+
+
+            if (!req.session.uploads[document]) {
+                req.session.uploads[document] = new Array( req.body.upload );
+            } else {
+                 req.session.uploads[document].push( req.body.upload );
+            }
+
+        } else {
+
+            var documents = req.session.documents;
+            var blnGonePast = false;
+            document = '';
+            
+            for ( i=0; i < documents.length; i++ ) {
+                if ( documents[i] != 'Claim form' && documents[i] != 'Response pack' ) {
+
+
+                    // are we on page 2+
+                    if ( req.body.doc ) {
+
+                        //and have we gone past the last one yet?
+                        if ( blnGonePast ) {
+                            document = documents[i];
+                            break;  
+
+                        // we are on page 2+ and this is the last one
+                        } else if ( req.body.doc ==  documents[i] ) {
+                            blnGonePast = true;
+                        }
+
+                    } else {
+                        document = documents[i];
+                        break;
+                    }
+
+                }
+            }
+        }
+
+        if (document) {
+            res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, document: document, uploads: req.session.uploads });
+        } else if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
+            res.render('prototype-nov-2017/certificate/who', { defendant: defendant })
+        } else {
+            res.render('prototype-nov-2017/certificate/how', { defendant: defendant })
+        }
+
     });
+
 
     app.get('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
