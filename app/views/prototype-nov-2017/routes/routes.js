@@ -520,11 +520,31 @@ module.exports = function(app){
     });
 
 
+    app.get('*/prototype-nov-2017/certificate/upload-js', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+
+        req.session.documents = req.body.documents || getDummyDocuments();
+        res.render('prototype-nov-2017/certificate/upload-js', { defendant: defendant, documents: req.session.documents })
+    });
+
+
+
+    app.get('*/prototype-nov-2017/certificate/upload', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        req.session.documents = req.body.documents || getDummyDocuments();
+        document = req.session.documents[1];
+
+        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, document: document, uploads: req.session.uploads });
+
+    });
+
     app.post('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
         if ( req.body.documents ) {
             req.session.documents = req.body.documents;
+        } else {
+            req.session.documents = getDummyDocuments();
         }
 
         if (!req.session.uploads) {
