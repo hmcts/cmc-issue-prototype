@@ -6,17 +6,17 @@ module.exports = function(app){
         res.render('prototype-nov-2017/representative-address');
     });
 
-    app.get('*/prototype-nov-2017/what-type-of-claimant', function(req, res){
+    app.get('*/prototype-nov-2017/claimant-name', function(req, res){
         var claimants = req.session.claimants || [];
 
-        res.render('prototype-nov-2017/what-type-of-claimant', { claimants: claimants })
+        res.render('prototype-nov-2017/claimant-name', { claimants: claimants })
     });
 
-    app.post('*/prototype-nov-2017/what-type-of-claimant', function(req, res){
+    app.post('*/prototype-nov-2017/claimant-name', function(req, res){
         var claimants = req.session.claimants || [];
 
-        if (!req.body.claimantType) {
-            res.render('prototype-nov-2017/what-type-of-claimant', { claimants: claimants })
+        if (!req.session.data['claimant_name'] ) {
+            res.render('prototype-nov-2017/claimant-name', { claimants: claimants })
         }
         else {
             res.redirect('claimant-address')
@@ -35,7 +35,7 @@ module.exports = function(app){
         if (req.body.addClaimant === undefined) {
             var claimants = req.session.claimants || [];
             var claimantNo = claimants.length + 1;
-            var claimantName = (req.session.data['claimant_name']) ? req.session.data['claimant_name'] : req.session.data['claimant_company_name']
+            var claimantName = (req.session.data['claimant_name']) ? req.session.data['claimant_name'] : ''
             var claimantAddress1 = (req.session.data['claimant_AddressLine1']) ? req.session.data['claimant_AddressLine1'] : '-'
             var claimantAddress2 = (req.session.data['claimant_AddressLine2']) ? req.session.data['claimant_AddressLine2'] : ''
             var claimantTown = (req.session.data['claimant_city']) ? req.session.data['claimant_city'] : ''
@@ -47,9 +47,9 @@ module.exports = function(app){
             res.render('prototype-nov-2017/claimant-add', { claimants: claimants })
         } else if (req.body.addClaimant && req.body.addClaimant.toString() === 'yes') {
             req.session.data['claimant_name'] = req.session.data['claimant_rep_company'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
-            req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = req.session.data['claimantType'] = undefined
+            req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = undefined
 
-            res.redirect('what-type-of-claimant')
+            res.redirect('claimant-name')
         } else {
             res.redirect('defendant-type');
         }
