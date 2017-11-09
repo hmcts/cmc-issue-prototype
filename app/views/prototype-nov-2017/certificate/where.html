@@ -9,7 +9,8 @@
         {{ defendant.defendantName }}
       </h1>
 
-      {% if (defendant.howServed == 'First class post or other next-day service') or (defendant.howServed == 'Delivered or left at a permitted place') or (defendant.howServed == 'Personally handed to or left with recipient')%}
+
+      {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) or (defendant.howServed == 'Delivered or left at a permitted place') or (defendant.howServed == 'Personally handed to or left with recipient') %}
 
       <div class="form-group">
         <h2 class="heading-medium">Service address</h2>

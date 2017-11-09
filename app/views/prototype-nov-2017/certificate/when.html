@@ -10,7 +10,7 @@
       <div class="form-group">
         <h2 class="heading-medium">
           Did you
-          {% if defendant.howServed == 'First class post or other next-day service' %}post the documents to
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}post the documents to
           {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver the documents to
           {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave the documents with
           {% elseif defendant.howServed == 'Document Exchange' %}DX the documents to
@@ -124,7 +124,7 @@
             intMonth = ( $('#month').val() > 0 ) ? $('#month').val()-1 : objDateToday.getMonth();
             var objDate = new Date( $('#year').val(), intMonth, $('#day').val() );
             
-            {% if ( defendant.howServed == 'First class post or other next-day service' ) or ( defendant.howServed == 'Document Exchange' ) %}
+            {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) or ( defendant.howServed == 'Document Exchange' ) %}
               objDate.setDate(objDate.getDate() + 2);
             {% endif %}
 
