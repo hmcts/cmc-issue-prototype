@@ -127,7 +127,7 @@
         </tr>
         <tr>
           <td>When you
-          {% if defendant.howServed == 'First class post or other next-day service' %}posted the documents
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}posted the documents
           {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the documents
           {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the documents
           {% elseif defendant.howServed == 'Fax' %}faxed the documents
