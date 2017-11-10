@@ -498,6 +498,7 @@ module.exports = function(app){
     app.get('*/prototype-nov-2017/certificate', function(req, res){
 
         var defendants = req.session.defendants || getDummyDefendants();
+        req.session.uploads = [];
 
         //check if we've deleted any defs on a previous journey, and reset if so
         for (i=0; i<defendants.length; i++ ) {
@@ -543,7 +544,7 @@ module.exports = function(app){
 
         if ( req.body.documents ) {
             req.session.documents = req.body.documents;
-        } else {
+        } else if (!req.session.documents) {
             req.session.documents = getDummyDocuments();
         }
 
