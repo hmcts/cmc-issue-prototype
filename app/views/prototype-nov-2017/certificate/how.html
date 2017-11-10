@@ -41,9 +41,17 @@
                 <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
 
                <div class="multiple-choice">
-                <input id="post" name="how-served" type="radio" value="Other next-day delivery service">
-                <label for="post">Other next-day delivery service</label>
+                <input id="next-day" name="how-served" type="radio" value="Other next-day delivery service">
+                <label for="next-day">Other next-day delivery service</label>
               </div>
+
+
+              {% if ( defendant.defendantType == 'trader' ) %}
+              <div class="multiple-choice" data-target="dx-address-panel">
+                <input id="dx" name="how-served" type="radio" value="Document Exchange">
+                <label for="dx">Document Exchange</label>
+              </div>
+              {% endif %}
 
                 <div class="multiple-choice">
                   <input id="delivering" name="how-served" type="radio" value="Delivered or left at a permitted place">
