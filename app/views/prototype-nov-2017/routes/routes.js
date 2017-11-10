@@ -519,13 +519,90 @@ module.exports = function(app){
         res.render('prototype-nov-2017/certificate/index', { defendant: req.session.defendant })
     });
 
+
+    app.get('*/prototype-nov-2017/certificate/upload-js', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+
+        req.session.documents = req.body.documents || getDummyDocuments();
+        res.render('prototype-nov-2017/certificate/upload-js', { defendant: defendant, documents: req.session.documents })
+    });
+
+
+
+    app.get('*/prototype-nov-2017/certificate/upload', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        req.session.documents = req.body.documents || getDummyDocuments();
+        document = req.session.documents[1];
+
+        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, document: document, uploads: req.session.uploads });
+
+    });
+
     app.post('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
-        req.session.documents = req.body.documents;
+        if ( req.body.documents ) {
+            req.session.documents = req.body.documents;
+        } else {
+            req.session.documents = getDummyDocuments();
+        }
 
-        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: req.body.documents })
+        if (!req.session.uploads) {
+             req.session.uploads = {};
+        }
+
+        if ( req.body.upload ) {
+            document = req.body.doc;
+
+
+            if (!req.session.uploads[document]) {
+                req.session.uploads[document] = new Array( req.body.upload );
+            } else {
+                 req.session.uploads[document].push( req.body.upload );
+            }
+
+        } else {
+
+            var documents = req.session.documents;
+            var blnGonePast = false;
+            document = '';
+            
+            for ( i=0; i < documents.length; i++ ) {
+                if ( documents[i] != 'Claim form' && documents[i] != 'Response pack' ) {
+
+
+                    // are we on page 2+
+                    if ( req.body.doc ) {
+
+                        //and have we gone past the last one yet?
+                        if ( blnGonePast ) {
+                            document = documents[i];
+                            break;  
+
+                        // we are on page 2+ and this is the last one
+                        } else if ( req.body.doc ==  documents[i] ) {
+                            blnGonePast = true;
+                        }
+
+                    } else {
+                        document = documents[i];
+                        break;
+                    }
+
+                }
+            }
+        }
+
+        if (document) {
+            res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, document: document, uploads: req.session.uploads });
+        } else if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
+            res.render('prototype-nov-2017/certificate/who', { defendant: defendant })
+        } else {
+            res.render('prototype-nov-2017/certificate/how', { defendant: defendant })
+        }
+
     });
+
 
     app.get('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
@@ -708,7 +785,6 @@ module.exports = function(app){
         //var claimants  = [{ name: 'Jimmy Smith1' },{ name: 'Jimmy Smith2' },{ name: 'Jimmy Smith3' },{ name: 'Jimmy Smith4' }];
         var claimants  = [{ name: 'Jimmy Smith1' }];
         var defendant = { defendantNo: 2, defendantName: 'Mr Bob Goddard', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceMethod: 'fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
-//        var defendant = { defendantNo: 2, defendantTitle: 'Mr', defendantName: 'Bob Goddard', defendantFirstName: 'Bob', defendantCompanyNumber: '-', address: { line1: '31 Old Farm Road', line2: '', city: 'Guildford', postcode: 'GU3 3QP'}, solicitor: 'Keoghs', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'First class post or other next-day service', serviceMethod: 'post', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'Oct', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
 
         var arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
         serviceSentDate = defendant.serveDay + ' ' + arrMonths[defendant.serveMonth] + ' ' + defendant.serveYear;
@@ -720,7 +796,7 @@ module.exports = function(app){
 
 
 function getDummyDefendants() {
-    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post or other next-day service', destination: 'usual residence', serveDay: '11', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '13 October 2017' }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: '9', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017' } ];
+    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post', destination: 'usual residence', serveDay: '11', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '13 October 2017' }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017', serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: '9', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 Oct 2017' } ];
 }
 
 function getDummyDefendant() {
