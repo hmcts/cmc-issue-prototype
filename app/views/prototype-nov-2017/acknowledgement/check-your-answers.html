@@ -1,6 +1,6 @@
 {% extends "prototype-nov-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
 <h1 class="heading-large">
-  Check your answers
+  Check your acknowledgement of service
 </h1>
 
 <form method="post" action="submitted" class="form">
@@ -13,28 +13,28 @@
     </tr>
     <tr>
       <td>Your reference</td>
-      <td>PW1348-151117</td>
+      <td>{{ data['reference'] }}</td>
       <td class="change-answer">
         <a href="../acknowledgement">Change</a>
       </td>
     </tr>
     <tr>
       <td>Defendant's name</td>
-      <td>Jan Clarke</td>
+      <td>{{ data['name'] }}</td>
       <td class="change-answer">
         <a href="name">Change</a>
       </td>
     </tr>
     <tr>
       <td>Defendant's date of birth</td>
-      <td>02 September 1982</td>
+      <td>{{ data['dob'] }}</td>
       <td class="change-answer">
         <a href="dob">Change</a>
       </td>
     </tr>
     <tr>
       <td>Response</td>
-      <td>I intend to defend all of this claim</td>
+      <td>I intend to {{ data['intention'] }}</td>
       <td class="change-answer">
         <a href="intention">Change</a>
       </td>

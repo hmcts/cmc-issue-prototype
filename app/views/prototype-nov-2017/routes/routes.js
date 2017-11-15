@@ -660,8 +660,7 @@ module.exports = function(app){
             if ( req.body['day']) {
                 defendant.serveDay = req.body['day'];
                 defendant.serveMonth = req.body['month'];
-                arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
-                defendant.serveMonthWord = arrMonths[req.body['month']-1];
+                defendant.serveMonthWord = getMonth( req.body['month']-1 );
                 defendant.serveYear = req.body['year'];
                 defendant.serveDate = req.body['service-value-field'];
 
@@ -723,11 +722,48 @@ module.exports = function(app){
         var claimants  = [{ name: 'Jimmy Smith1' }];
         var defendant = { defendantNo: 2, defendantName: 'Mr Bob Goddard', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceMethod: 'fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
 
-        var arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
-        serviceSentDate = defendant.serveDay + ' ' + arrMonths[defendant.serveMonth] + ' ' + defendant.serveYear;
+        serviceSentDate = defendant.serveDay + ' ' + getMonth( defendant.serveMonth ) + ' ' + defendant.serveYear;
         
         res.render('prototype-nov-2017/certificateOfService', { defendant: defendant, claimants: claimants, documents: getDummyDocuments(), signerName: 'Robert Wagner', signerCompany: 'Wagner & Co Legal', signerRole: 'Senior solicitor', signerDate: '14 October 2017', serviceSentDate: serviceSentDate, serviceDate: defendant.serveDate, claimReferenceNumber: '123ML143' });
     });
+
+
+    app.post('*/prototype-nov-2017/acknowledgement/check-your-answers', function(req, res){
+
+
+        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']-1) + ' ' + req.session.data['year'];
+        } else {
+            req.session.data['dob'] = '2 September 1982';
+        }
+
+        if ( !req.session.data['name'] ) {
+            req.session.data['name'] = 'Jan Clarke';
+        }
+
+        res.render('prototype-nov-2017/acknowledgement/check-your-answers', { data: req.session.data } );
+    });
+
+
+    app.get('*/prototype-nov-2017/acknowledgement/check-your-answers', function(req, res){
+
+        if ( !req.session.data['reference'] ) {
+            req.session.data['reference'] = 'PW1348-151117';
+        }
+        if ( !req.session.data['name'] ) {
+            req.session.data['name'] = 'Jan Clarke';
+        }
+        if ( !req.session.data['dob'] ) {
+            req.session.data['dob'] = '2 September 1982';
+        }
+        if ( !req.session.data['intention'] ) {
+            req.session.data['intention'] = 'defend all of this claim';
+        }
+
+        res.render('prototype-nov-2017/acknowledgement/check-your-answers', { data: req.session.data } );
+
+    });  
+
 
 }
 
@@ -761,4 +797,9 @@ function updateDefendant( defendant, defendants ) {
         }
     }
     return defendants;
+}
+
+function getMonth( intMonth ) {
+    var arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+    return arrMonths[ parseInt(intMonth, 10) ];
 }
