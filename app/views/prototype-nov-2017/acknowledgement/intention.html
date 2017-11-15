@@ -1,9 +1,7 @@
 {% extends "prototype-nov-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-      <h1 class="heading-large">Indicate your intention</h1>
+      <h1 class="heading-large">What do you intend to do?</h1>
       <form action="check-your-answers" method="post">
-
-        <h2 class="heading-medium">I intend to</h2>
 
         <fieldset class="form-group">
 
@@ -17,7 +15,7 @@
           </div>
           <div class="multiple-choice">
               <input id="contest" name="intention" type="radio" value="contest" {{ checked('intention','contest') }}>
-              <label for="contest">Content jurisdiction</label>
+              <label for="contest">Contest jurisdiction</label>
           </div>
 
         </fieldset>
