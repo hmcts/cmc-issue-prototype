@@ -1,0 +1,35 @@
+{% extends "prototype-nov-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've acknowledged service</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <p class="form-group-compound">New response deadline: 12 December 2017</p>
+</div>
+<br>
+
+<p>
+You now have an extra 14 days to respond.
+</p>
+
+<p>
+  We've sent a confirmation email to {%if data['username'] %}{{ data['username'] }}{%else%}yourname@example.com{%endif%}
+
+<!--
+  <h2 class="bold-medium"></h1>
+  <p class="download certificate">
+    <a target="_blank" href="/public/documents/Acknowledgemnt-of-service.pdf">Download acknowledgment of service form</a> (PDF, 123 KB)
+  </p>
+
+<p>Download this document again at any time by logging into the <a href='../dashboard'>Manage your claims page</a>.</p>
+
+-->
+
+<div class="form-group">
+  <a class="button" href="../start" role="button">View my claims</a>
+</div>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}
