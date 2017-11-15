@@ -521,81 +521,22 @@ module.exports = function(app){
     });
 
 
-    app.get('*/prototype-nov-2017/certificate/upload-js', function(req, res){
-        var defendant = req.session.defendant || getDummyDefendant();
-
-        req.session.documents = req.body.documents || getDummyDocuments();
-        res.render('prototype-nov-2017/certificate/upload-js', { defendant: defendant, documents: req.session.documents })
-    });
-
-
-
     app.get('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
         req.session.documents = req.body.documents || getDummyDocuments();
-        document = req.session.documents[1];
+        documents = req.session.documents;
 
-        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, document: document, uploads: req.session.uploads });
+        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: documents, uploads: req.session.uploads });
 
     });
+
 
     app.post('*/prototype-nov-2017/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
         if ( req.body.documents ) {
             req.session.documents = req.body.documents;
-        } else if (!req.session.documents) {
-            req.session.documents = getDummyDocuments();
-        }
-
-        if (!req.session.uploads) {
-             req.session.uploads = {};
-        }
-
-        if ( req.body.upload ) {
-            document = req.body.doc;
-
-
-            if (!req.session.uploads[document]) {
-                req.session.uploads[document] = new Array( req.body.upload );
-            } else {
-                 req.session.uploads[document].push( req.body.upload );
-            }
-
-        } else {
-
-            var documents = req.session.documents;
-            var blnGonePast = false;
-            document = '';
-            
-            for ( i=0; i < documents.length; i++ ) {
-                if ( documents[i] != 'Claim form' && documents[i] != 'Response pack' ) {
-
-
-                    // are we on page 2+
-                    if ( req.body.doc ) {
-
-                        //and have we gone past the last one yet?
-                        if ( blnGonePast ) {
-                            document = documents[i];
-                            break;  
-
-                        // we are on page 2+ and this is the last one
-                        } else if ( req.body.doc ==  documents[i] ) {
-                            blnGonePast = true;
-                        }
-
-                    } else {
-                        document = documents[i];
-                        break;
-                    }
-
-                }
-            }
-        }
-
-        if (document) {
-            res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, document: document, uploads: req.session.uploads });
+            res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: req.session.documents });
         } else if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
             res.render('prototype-nov-2017/certificate/who', { defendant: defendant })
         } else {
@@ -604,13 +545,6 @@ module.exports = function(app){
 
     });
 
-
-    app.get('*/prototype-nov-2017/certificate/upload', function(req, res){
-        var defendant = req.session.defendant || getDummyDefendant();
-        documents = req.body.documents || req.session.docuements || getDummyDocuments();
-
-        res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: documents })
-    });
 
     app.get('*/prototype-nov-2017/certificate/who', function(req, res){
 
@@ -687,8 +621,8 @@ module.exports = function(app){
 
     });
     app.get('*/prototype-nov-2017/certificate/where', function(req, res){
-        var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
+        var defendant = req.session.defendant || defendants[0];
 
         res.render('prototype-nov-2017/certificate/where', { defendant: defendant, howServed: req.body['how-served'] });
 
@@ -696,8 +630,9 @@ module.exports = function(app){
 
     app.post('*/prototype-nov-2017/certificate/when', function(req, res){
 
-        var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
+        var defendant = req.session.defendant || defendants[0];
+
         var documents = req.session.documents || getDummyDocuments();
         var files = req.session.files || getDummyFiles();
         var orgName = req.session.orgName || 'My Solicitor Firm';
@@ -717,6 +652,7 @@ module.exports = function(app){
             }
 
             req.session.defendants = updateDefendant(defendant, defendants);
+
             blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' || defendant.howServed == 'Personally handed to or left with recipient');
             res.render('prototype-nov-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: defendant.howServed });
         } else {
@@ -807,6 +743,7 @@ function getDummyDefendant() {
 
 function getDummyDocuments() {
     return [ 'Claim form', 'Particulars of claim', 'Response pack', 'Medical reports', 'Schedule of loss' ];
+//    return [ 'Claim form', 'Particulars of claim', 'Response pack', 'Medical reports'  ];
 }
 
 function getDummyFiles() {

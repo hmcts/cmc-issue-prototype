@@ -7,35 +7,121 @@
           Upload your documents
         </h1>
 
-        <p>Use this page to send the County Court the documents you've served on the defendant. We don't need the claim form or response pack.</p>
+        <p>Use this page to send the County Court the following documents you've served on the defendant.</p>
 
-          <p>You need to have the documents on your computer.</p>
+        <div id="uploads">
 
-          <p>The court needs these documents in case the claim goes to a hearing or the defendant files an application.</p>
+          <h3 class="heading-small">Claim form</h3>
+          <p class="form-hint">Not required</p>
 
-          <h2 class="heading-medium">{{document}}</h2>
+          <div id="poc">
+            <h3 class="heading-small">Particulars of claim</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+            
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <a href="#" class="button" value="Upload file" onclick="return upload('poc');">Upload file</a>
+            </div>
 
-          {% if uploads[document].length %}
-          <h3 class="heading-small">Files uploaded</h3>
-            <ol class="list uploaded-files" style="margin-bottom: 35px;">
-            {% for file in uploads[document] %}
-              <li class="file">{{file}} <a href="#">Remove</a></li>
-            {% endfor %}
-          </ol>
+            <a href="#" class="secondary-button" id="new-claim" onclick="return showForm('poc');">Add file</a>
+          </div>
 
-          <h3 class="heading-small">Upload another file</h3>
+          <h3 class="heading-small">Response pack</h3>
+          <p class="form-hint">Not required</p>
+
+
+          {% if documents.includes('Medical reports') %}
+          <div id="meds">
+            <h3 class="heading-small">Medical reports</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <a href="#" class="button" value="Upload file" onclick="return upload('meds');">Upload file</a>
+            </div>
+
+            <a href="#" class="secondary-button" id="new-claim" onclick="return showForm('meds');">Add file</a>
+          </div>
           {% endif %}
-          <input type="file" name="upload" id="upload" />
-          <input type="hidden" name="doc" value="{{document}}">
 
-      </div>
 
-      <input type="hidden" name="files" id="files"/>
+          {% if documents.includes('Schedule of loss') %}
+          <div id="sched">
+            <h3 class="heading-small">{{ documents['Schedule of loss'] }}Schedule of loss{{ documents['Schedule of loss'].typeOf }}</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
 
-      <div class="form-group" >
-        <input type="submit" class="button" value="Save and continue">
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <a href="#" class="button" value="Upload file" onclick="return upload('sched');">Upload file</a>
+            </div>
+
+            <a href="#" class="secondary-button" id="new-claim" onclick="return showForm('sched');">Add file</a>
+          </div>
+          {% endif %}
+
+        </div>
+
+
+
+        <div class="form-group" >
+          <input type="submit" class="button" value="Save and continue" id="submit">
+        </div>
+
+
       </div>
     </form>
 
+
+<style>
+#uploads .form-group, .uploaded-files, #submit {
+  display: none;
+}
+#uploads {
+  margin-bottom: 45px;
+}
+</style>
+
+<script>
+
+  function showForm( docName ) {
+
+    $('#uploads #' + docName + ' .form-group').show();
+    $('#uploads #' + docName + ' a.secondary-button').hide();
+
+    $('#uploads a.secondary-button').attr( 'disabled', 'disabled' );
+    return false;
+  }
+
+  function upload( docName ) {
+
+    if ( $( $('#uploads #' + docName + ' input')[0] ).val() ) {
+
+      $('#uploads #' + docName + ' ol').append( '<li class="file"><a href="#">' + $('#uploads #' + docName + ' input')[0].files[0].name +'</a> <a href="#" class="remove">Remove</a></li>' );
+      $( $('#uploads #' + docName + ' input')[0] ).val(null); 
+      $('#uploads #' + docName + ' .form-group').hide();
+      $('#uploads #' + docName + ' a.secondary-button').show();
+      $('#uploads a.secondary-button').removeAttr( 'disabled' );
+
+      $('#uploads #' + docName + ' .uploaded-files').show();
+
+      if ( $('#uploads #poc ol li').length {% if documents.includes('Medical reports') %}&& $('#uploads #meds ol li').length{% endif %}{% if documents.includes('Schedule of loss') %} && $('#uploads #sched ol li').length {% endif %}) {
+        $( '#submit').show();
+      }
+      
+    }
+
+    return false;
+  }
+
+</script>
 
     {% endblock %}

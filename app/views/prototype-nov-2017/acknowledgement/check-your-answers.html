@@ -1,0 +1,65 @@
+{% extends "prototype-nov-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">
+  Check your answers
+</h1>
+
+<form method="post" action="submitted" class="form">
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Claim number</td>
+      <td>000LR095</td>
+      <td class="change-answer"></td>
+    </tr>
+    <tr>
+      <td>Your reference</td>
+      <td>PW1348-151117</td>
+      <td class="change-answer">
+        <a href="../acknowledgement">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Defendant's name</td>
+      <td>Jan Clarke</td>
+      <td class="change-answer">
+        <a href="name">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Defendant's date of birth</td>
+      <td>02 September 1982</td>
+      <td class="change-answer">
+        <a href="dob">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Response intention</td>
+      <td>I intend to defend all of this claim</td>
+      <td class="change-answer">
+        <a href="intention">Change</a>
+      </td>
+    </tr>
+  </table>
+
+
+
+  <div class="form-group column-two-thirds" style="padding-left: 0">
+
+    <h2 class="heading-medium">Signed</h2>
+
+    <div class="form-group">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
+    </div>
+
+    <button id="submit" class="button">Acknowledge service</button>
+  </div>
+
+</form>
+
+{% endblock %}
