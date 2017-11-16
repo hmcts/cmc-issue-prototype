@@ -547,6 +547,16 @@ module.exports = function(app){
     });
 
 
+    app.get('*/prototype-nov-2017/certificate/upload-js', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        req.session.documents = req.body.documents || getDummyDocuments();
+        documents = req.session.documents;
+
+        res.render('prototype-nov-2017/certificate/upload-js', { defendant: defendant, documents: documents, uploads: req.session.uploads });
+
+    });
+
+
     app.get('*/prototype-nov-2017/certificate/who', function(req, res){
 
         if ( req.session.defendant) { 

@@ -1,70 +1,110 @@
 {% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-
-    <form method="post" action="how" class="form">
+    <form method="post" action="upload" class="form">
 
       <div class="form-group">
         <h1 class="heading-large">
-          Upload your documents
+          <a href="how" style="text-decoration:none; color: #000; cursor: default;">Upload your documents</a>
         </h1>
 
-        <p>Use this page to send the County Court the documents you've served on the defendant.</p>
+        <p>Use this page to send the County Court the following documents you've served on the defendant.</p>
 
-          <p>You need to have the documents on your computer.</p>
+        <div id="uploads">
 
-          <p>The court needs these documents in case the claim goes to a hearing or the defendant files an application.</p>
+          <h3 class="heading-small">Claim form</h3>
+          <p class="form-hint">Not required</p>
 
-          {% for document in documents %}
-          {% if (document != 'Claim form') and (document != 'Response pack') and (document != '_unchecked') %}
+          <div id="poc">
+            <h3 class="heading-small">Particulars of claim</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="poc-upload" class="secondary-button">Add file</label>
+            <input id="poc-upload" type="file" onchange="return upload('poc');"/>
+          </div>
 
-          <h2 class="heading-medium">{{ document }}</h2>
+          <h3 class="heading-small">Response pack</h3>
+          <p class="form-hint">Not required</p>
 
 
-          <div class="dropzone_wrapper">
+          {% if documents.includes('Medical reports') %}
 
-            <div class="dropzone doc_upload_zone" tabindex="0">
-              <div class="dz-default dz-message grid-row">
-                <div class="column-one-third arrow-icon">
-                  <p></p>
-                </div>
-                <div class="column-one-half">
-                  <p class="dz-message-copy">
-                    Drag and drop files here<br>
-                    <strong>or</strong><br>
-                    <a href="#" class="faux-link" tabindex="-1">Click to choose files</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="uploaded-files-wrapper">
-              <ol class="list uploaded-files">
-                <li class="no-files">No files uploaded</li>
-              </ol>
-            </div>
-
+          <div id="meds">
+            <h3 class="heading-small">Medical reports</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="meds-upload" class="secondary-button">Add file</label>
+            <input id="meds-upload" type="file" onchange="return upload('meds');"/>
           </div>
 
           {% endif %}
-          {% endfor %}
 
-      </div>
 
-      <input type="hidden" name="files" id="files"/>
+          {% if documents.includes('Schedule of loss') %}
 
-      <div class="form-group" >
-        <input type="submit" class="button" value="Save and continue">
+          <div id="sched">
+            <h3 class="heading-small">Schedule of loss</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="sched-upload" class="secondary-button">Add file</label>
+            <input id="sched-upload" type="file" onchange="return upload('sched');"/>
+          </div>
+          
+          {% endif %}
+
+
+          {% if documents.includes('Other documents') %}
+
+          <div id="other">
+            <h3 class="heading-small">Other documents</h3>
+            <p>{{others}}</p>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="other-upload" class="secondary-button">Add file</label>
+            <input id="other-upload" type="file" onchange="return upload('other');"/>
+          </div>
+          
+          {% endif %}
+
+        </div>
+
+        <div class="form-group" >
+          <input type="submit" class="button" value="Save and continue" id="submit">
+        </div>
+
+
       </div>
     </form>
 
 
-    {% endblock %}
+<style>
+#uploads .form-group, .uploaded-files, #submit {
+  display: none;
+}
+#uploads {
+  margin-bottom: 45px;
+}
 
-    {% block extra_js_1 %}
-    <script src="/public/javascripts/module_loader.js"></script>
-    <script src="/public/javascripts/modules/doc-upload.js"></script>
-    <script src="/public/javascripts/dropzone.js"></script>
-    <script type="text/javascript">
-      window.moj.init();
-    </script>
+input[type="file"] {
+    display: none;
+}
+</style>
+
+<script>
+
+  function upload( docName ) {
+
+    if ( $( $('#uploads #' + docName + ' input')[0] ).val() ) {
+
+      $('#uploads #' + docName + ' ol').append( '<li class="file"><a href="#">' + $('#uploads #' + docName + ' input')[0].files[0].name +'</a> <a href="#" class="remove">Remove</a></li>' );
+      $( $('#uploads #' + docName + ' input')[0] ).val(null); 
+
+      $('#uploads #' + docName + ' .uploaded-files').show();
+
+      if ( $('#uploads #poc ol li').length {% if documents.includes('Medical reports') %}&& $('#uploads #meds ol li').length{% endif %}{% if documents.includes('Schedule of loss') %} && $('#uploads #sched ol li').length {% endif %}{% if documents.includes('Other documents') %} && $('#uploads #other ol li').length {% endif %}) {
+        $( '#submit').show();
+      }
+      
+    }
+
+    return false;
+  }
+
+</script>
+
     {% endblock %}
