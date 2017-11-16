@@ -536,7 +536,8 @@ module.exports = function(app){
 
         if ( req.body.documents ) {
             req.session.documents = req.body.documents;
-            res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: req.session.documents });
+
+            res.render('prototype-nov-2017/certificate/upload', { defendant: defendant, documents: req.session.documents, others: req.body['other-doc'] });
         } else if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
             res.render('prototype-nov-2017/certificate/who', { defendant: defendant })
         } else {
