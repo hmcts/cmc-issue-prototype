@@ -53,7 +53,7 @@
 
           {% if documents.includes('Schedule of loss') %}
           <div id="sched">
-            <h3 class="heading-small">{{ documents['Schedule of loss'] }}Schedule of loss{{ documents['Schedule of loss'].typeOf }}</h3>
+            <h3 class="heading-small">Schedule of loss</h3>
             <ol class="list uploaded-files" style="margin-bottom: 15px;">
             </ol>
 
@@ -65,6 +65,25 @@
             </div>
 
             <a href="#" class="secondary-button" onclick="return showForm('sched');">Add file</a>
+          </div>
+          {% endif %}
+
+
+          {% if documents.includes('Other documents') %}
+          <div id="other">
+            <h3 class="heading-small">Other documents:</h3>
+            <p>{{others}}</p>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <a href="#" class="button" value="Upload file" onclick="return upload('other');">Upload file</a>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('other');">Add file</a>
           </div>
           {% endif %}
 
