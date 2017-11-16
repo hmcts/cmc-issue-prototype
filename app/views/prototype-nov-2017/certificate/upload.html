@@ -26,7 +26,7 @@
               <a href="#" class="button" value="Upload file" onclick="return upload('poc');">Upload file</a>
             </div>
 
-            <a href="#" class="secondary-button" id="new-claim" onclick="return showForm('poc');">Add file</a>
+            <a href="#" class="secondary-button" onclick="return showForm('poc');">Add file</a>
           </div>
 
           <h3 class="heading-small">Response pack</h3>
@@ -46,7 +46,7 @@
               <a href="#" class="button" value="Upload file" onclick="return upload('meds');">Upload file</a>
             </div>
 
-            <a href="#" class="secondary-button" id="new-claim" onclick="return showForm('meds');">Add file</a>
+            <a href="#" class="secondary-button" onclick="return showForm('meds');">Add file</a>
           </div>
           {% endif %}
 
@@ -64,12 +64,11 @@
               <a href="#" class="button" value="Upload file" onclick="return upload('sched');">Upload file</a>
             </div>
 
-            <a href="#" class="secondary-button" id="new-claim" onclick="return showForm('sched');">Add file</a>
+            <a href="#" class="secondary-button" onclick="return showForm('sched');">Add file</a>
           </div>
           {% endif %}
 
         </div>
-
 
 
         <div class="form-group" >
@@ -94,11 +93,17 @@
 
   function showForm( docName ) {
 
-    $('#uploads #' + docName + ' .form-group').show();
-    $('#uploads #' + docName + ' a.secondary-button').hide();
+    if ( !$('#uploads #' + docName + ' a.secondary-button').attr('disabled') ) {
 
-    $('#uploads a.secondary-button').attr( 'disabled', 'disabled' );
+      $('#uploads #' + docName + ' .form-group').show();
+      $('#uploads #' + docName + ' a.secondary-button').hide();
+
+      $('#uploads a.secondary-button').attr( 'disabled', 'disabled' );
+
+    }
+    
     return false;
+
   }
 
   function upload( docName ) {
