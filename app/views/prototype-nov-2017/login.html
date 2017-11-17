@@ -2,7 +2,7 @@
 <h1 class="heading-large">Sign in</h1>
 <p class="lede">Sign in to get started.</p>
 
-<form action="{% if data['journey'] == 'dashboard' %}dashboard{%else %}start{% endif %}" method="post">
+<form action="{% if data['journey'] == 'dashboard' %}dashboard{% elseif data['journey'] == 'respondent' %}respondent{%else %}start{% endif %}" method="post">
   <div class="form-group">
     <label class="form-label" for="username">Email address</label>
     <input type="text" class="form-control" id="username" name="username" value="{{ data['username'] }}">
@@ -17,6 +17,5 @@
     <input type="submit" class="button" value="Sign in">
   </div>
 </form>
-
 
 {% endblock %}
