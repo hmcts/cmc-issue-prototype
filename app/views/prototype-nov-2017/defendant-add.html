@@ -35,7 +35,7 @@
   <hr class="column-full">
   {% for defendant in defendants %}
   <div class="column-full">
-    <div class="column-one-third">{{ defendant.defendantName }}</div>
+    <div class="column-one-third">{{ defendant.defendantNo }}. {{ defendant.defendantName }}</div>
     <div class="column-one-third">{{ defendant.serviceAddress }}</div>
     <div class="column-one-third"><a class="change link" href="defendant-type">Change</a> <a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">

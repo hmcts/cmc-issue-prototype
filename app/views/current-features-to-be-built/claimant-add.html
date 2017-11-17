@@ -4,6 +4,7 @@
 <form action="claimant-add" id="form" method="post" class="form-group">
   <fieldset class="form-group inline">
     <legend class="visually-hidden">Do you want to add another claimant?</legend>
+    <p>You can add up to 20 claimants in this service.</p>
 
     <div class="multiple-choice">
       <input id="addClaimant_yes" name="addClaimant" type="radio" value="yes" {{ checked('addClaimant','yes') }}>
@@ -28,16 +29,15 @@
     Already added
   </h1>
   <div class="column-full">
-    <div class="column-one-quarter bold">Number</div>
-    <div class="column-half bold">Claimant name</div>
-    <div class="column-one-quarter bold">Action</div>
+    <div class="column-one-third bold">Claimant</div>
+    <div class="column-one-third bold">Address</div>
   </div>
   <hr class="column-full">
   {% for claimant in claimants %}
   <div class="column-full">
-      <div class="column-one-quarter">{{ claimant.claimantNo}}</div>
-    <div class="column-half">{{ claimant.claimantName }}</div>
-    <div class="column-one-quarter"><a class="link" onclick="delete_item(this)">Remove</a></div>
+    <div class="column-one-third">{{ claimant.claimantNo}}. {{ claimant.claimantName }}</div>
+    <div class="column-one-third">{{ claimant.claimantAddress }}</div>
+    <div class="column-one-third"><a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">
   </div>
 

@@ -36,7 +36,7 @@
   <hr class="column-full">
   {% for claimant in claimants %}
   <div class="column-full">
-    <div class="column-one-third">{{ claimant.claimantName }}</div>
+    <div class="column-one-third">{{ claimant.claimantNo}}. {{ claimant.claimantName }}</div>
     <div class="column-one-third">{{ claimant.claimantAddress }}</div>
     <div class="column-one-third"><a class="change link" href="claimant-name">Change</a> <a class="link" onclick="delete_item(this)">Remove</a></div>
     <hr class="column-full">
