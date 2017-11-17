@@ -1,0 +1,21 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+	Michael Jones v Jan Clark
+</h1>
+
+<form action="claim-details?claim-status=1" id="form" method="post" class="form-group">
+    <fieldset class="form-group">
+
+        <div class="form-group">
+          <label class="form-label" for="pin">Enter the claim's security code to view this claim</label>
+          <textarea type="text" class="form-control" id="pin" name="pin" value="{{ data['pin'] }}" style="height: 38px;">{{ data['pin'] }}</textarea>
+        </div>
+    </fieldset>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Continue">
+    </div>
+</form>
+
+{% endblock %}
