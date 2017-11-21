@@ -1,0 +1,15 @@
+{% extends "../layout.html" %} {% block page_title %} Claim Issue {% endblock %} {% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner_alpha.html" %}
+  <div class="grid-row">
+    <div class="column-full">  
+
+
+      {% block main_content %}
+      {% endblock %}
+    </div>
+    
+  </div>
+</main>
+{% endblock %}
