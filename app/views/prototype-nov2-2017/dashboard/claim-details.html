@@ -1,0 +1,165 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+{% if data['claim-status'] == 2 %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+	Michael Jones v Jan Clark
+</h1>
+
+<h3 class="heading-medium">Date issued</h3>
+<p>16 June 2017</p>
+
+
+<h3 class="heading-medium">Service</h3>
+<p>
+	Date deemed served: 12 October 2017<br />
+	Served by: Post
+</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants </h3>
+<ul>
+	<li>Jan Clarke trading as Clarke Construction</li>
+	<li>Goddard Plumming</li>
+	<li>Kingsley Building Ltd</li>
+</ul>
+
+
+<h3 class="heading-medium">Documents uploaded </h3>
+<ul class="downloads">
+	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+</ul>
+
+{% elseif data['claim-status'] == 3 %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+	Michael Jones v Jan Clark
+</h1>
+
+<h3 class="heading-medium">Date issued</h3>
+<p>16 June 2017</p>
+
+
+
+<h3 class="heading-medium">Service</h3>
+<p>
+	Date deemed served: 12 to 14 October 2017<br />
+</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants </h3>
+
+<table class="">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Deemed served</th>
+			<th scope="col">Served by</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="no-border">
+			<td>Jan Clarke trading as Clarke Construction</td>
+			<td>14 Oct 2017</td>
+			<td>Post</td>
+		</tr>
+		<tr class="no-border">
+			<td>Goddard Plumming</td>
+			<td>14 Oct 2017</td>
+			<td>Post</td>
+		</tr>
+		<tr class="no-border">
+			<td>Kingsley Building Ltd</td>
+			<td>12 Oct 2017</td>
+			<td>Email</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 class="heading-medium">Documents uploaded </h3>
+<ul class="downloads">
+	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+</ul>
+
+{% else %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+	Michael Jones v Jan Clark
+</h1>
+
+<h3 class="heading-medium">Date issued</h3>
+<p>16 June 2017</p>
+
+
+<h3 class="heading-medium">Serve by</h3>
+<p>
+	16 October 2017<br/>
+	<a href='../certificate' class="button secondary-button" style="margin-top: 5px;">Tell the court you've served</a>
+</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants </h3>
+<ul>
+	<li>Jan Clarke trading as Clarke Construction</li>
+	<li>Goddard Plumming</li>
+	<li>Kingsley Building Ltd</li>
+</ul>
+
+{% endif %}
+
+{% endblock %}
+
+{% block side_content %}
+
+
+<aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
+
+	<h3 class="heading-small" style="margin-top:.42105em">Your reference</h3>
+	<p class="font-xsmall">PW1241/KU</p>
+
+	<p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
+	{% if data['claim-status'] > 1 %}
+	<p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
+	{% endif %}
+
+<!--
+	<h3 class="heading-small" id="subsection-title">Claim options </h3>
+	<nav role="navigation" aria-labelledby="subsection-title">
+		<ul class="font-xsmall">
+			<li><a href="#">Download the sealed claim form</a> </li>
+			<li><a href="#">Apply to amend the claim</a> </li>
+		</ul>
+	</nav>
+-->
+</aside>
+
+{% endblock %}
+
+
+{% block body_end %}
+
+<form method="get" action="#" class="form" >
+  <select id="claim-status" name="claim-status" onchange="this.form.submit()">
+    <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Issued</option>
+    <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Served (single method)</option>
+    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served (mixed method)</option>
+  </select>
+</form>
+
+{% endblock %}

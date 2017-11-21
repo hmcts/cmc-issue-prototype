@@ -1,0 +1,94 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+	Michael Jones v Jan Clark
+</h1>
+
+<h3 class="heading-medium">Date issued</h3>
+<p>16 June 2017</p>
+
+
+<h3 class="heading-medium">Service</h3>
+<p>
+	Date deemed served: 12 October 2017<br />
+	Served by: Post
+</p>
+
+<h3 class="heading-medium">Response</h3>
+
+{% if data['claim-status'] == 1 %}
+<p>
+	Response deadline: 26 October 2017
+</p>
+<p>
+	<a href='../acknowledgement' class="button secondary-button" style="margin-top: 5px;">Acknowledge service</a>
+</p>
+{% else %}
+<p>
+	Response deadline: 12 November 2017<br />
+	Service acknowledged on: 17 October 2017
+</p>
+{% endif %}
+<p>
+	<a href='response' class="button secondary-button" style="margin-top: 5px;">Respond to claim</a>
+</p>
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>Michael Jones</li>
+</ul>
+
+<h3 class="heading-medium">Defendants </h3>
+<ul>
+	<li>Jan Clarke trading as Clarke Construction</li>
+	<li>Goddard Plumming</li>
+	<li>Kingsley Building Ltd</li>
+</ul>
+
+
+<h3 class="heading-medium">Documents uploaded </h3>
+<ul class="downloads">
+	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+</ul>
+
+{% endblock %}
+
+{% block side_content %}
+
+
+<aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
+
+	<h3 class="heading-small" style="margin-top:.42105em">Claimant's reference</h3>
+	<p class="font-xsmall">PW1241/KU</p>
+
+	<p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
+	{% if data['claim-status'] > 1 %}
+	<p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
+	{% endif %}
+
+<!--
+	<h3 class="heading-small" id="subsection-title">Claim options </h3>
+	<nav role="navigation" aria-labelledby="subsection-title">
+		<ul class="font-xsmall">
+			<li><a href="#">Download the sealed claim form</a> </li>
+			<li><a href="#">Apply to amend the claim</a> </li>
+		</ul>
+	</nav>
+-->
+</aside>
+
+{% endblock %}
+
+
+{% block body_end %}
+
+<form method="get" action="#" class="form" >
+  <select id="claim-status" name="claim-status" onchange="this.form.submit()">
+    <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Served</option>
+    <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Acknowledged</option>
+  </select>
+</form>
+
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="upload" class="form">
+
+      <div class="form-group">
+        <h1 class="heading-large">
+          <a href="how" style="text-decoration:none; color: #000; cursor: default;">Upload your documents</a>
+        </h1>
+
+        <p>Use this page to send the County Court the following documents you've served on the defendant.</p>
+
+        <div id="uploads">
+
+          <h3 class="heading-small">Claim form</h3>
+          <p class="form-hint">Not required</p>
+
+          <div id="poc">
+            <h3 class="heading-small">Particulars of claim</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="poc-upload" class="secondary-button">Add file</label>
+            <input id="poc-upload" type="file" onchange="return upload('poc');"/>
+          </div>
+
+          <h3 class="heading-small">Response pack</h3>
+          <p class="form-hint">Not required</p>
+
+
+          {% if documents.includes('Medical reports') %}
+
+          <div id="meds">
+            <h3 class="heading-small">Medical reports</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="meds-upload" class="secondary-button">Add file</label>
+            <input id="meds-upload" type="file" onchange="return upload('meds');"/>
+          </div>
+
+          {% endif %}
+
+
+          {% if documents.includes('Schedule of loss') %}
+
+          <div id="sched">
+            <h3 class="heading-small">Schedule of loss</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="sched-upload" class="secondary-button">Add file</label>
+            <input id="sched-upload" type="file" onchange="return upload('sched');"/>
+          </div>
+          
+          {% endif %}
+
+
+          {% if documents.includes('Other documents') %}
+
+          <div id="other">
+            <h3 class="heading-small">Other documents</h3>
+            <p>{{others}}</p>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="other-upload" class="secondary-button">Add file</label>
+            <input id="other-upload" type="file" onchange="return upload('other');"/>
+          </div>
+          
+          {% endif %}
+
+        </div>
+
+        <div class="form-group" >
+          <input type="submit" class="button" value="Save and continue" id="submit">
+        </div>
+
+
+      </div>
+    </form>
+
+
+<style>
+#uploads .form-group, .uploaded-files, #submit {
+  display: none;
+}
+#uploads {
+  margin-bottom: 45px;
+}
+
+input[type="file"] {
+    display: none;
+}
+</style>
+
+<script>
+
+  function upload( docName ) {
+
+    if ( $( $('#uploads #' + docName + ' input')[0] ).val() ) {
+
+      $('#uploads #' + docName + ' ol').append( '<li class="file"><a href="#">' + $('#uploads #' + docName + ' input')[0].files[0].name +'</a> <a href="#" class="remove">Remove</a></li>' );
+      $( $('#uploads #' + docName + ' input')[0] ).val(null); 
+
+      $('#uploads #' + docName + ' .uploaded-files').show();
+
+      if ( $('#uploads #poc ol li').length {% if documents.includes('Medical reports') %}&& $('#uploads #meds ol li').length{% endif %}{% if documents.includes('Schedule of loss') %} && $('#uploads #sched ol li').length {% endif %}{% if documents.includes('Other documents') %} && $('#uploads #other ol li').length {% endif %}) {
+        $( '#submit').show();
+      }
+      
+    }
+
+    return false;
+  }
+
+</script>
+
+    {% endblock %}
