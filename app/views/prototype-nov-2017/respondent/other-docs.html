@@ -1,0 +1,51 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="check-your-answers" class="form">
+
+      <h1 class="heading-large">Supporting documents</h1>
+
+      <h3 class="heading-medium">Would you like to provide any other supporting documents?</h3>
+        <fieldset class="form-group">
+
+          <div class="multiple-choice" data-target="uploads">
+            <input id="docs-yes" name="supportingDocs" type="radio" onclick="$( '#submit').hide();">
+            <label for="docs-yes">Yes</label>
+          </div>
+
+          <div class="multiple-choice" data-target="continue">
+            <input id="docs-no" name="supportingDocs" type="radio" onclick="$( '#submit').show();">
+            <label for="docs-no">No</label>
+          </div>
+
+        </fieldset>
+
+
+        <div id="uploads" class="js-hidden">
+
+          <div id="poc">
+            <h3 class="heading-small">Supporting documents</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+            
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <a href="#" class="button" value="Upload file" onclick="return upload('poc');">Upload file</a>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="$( '#submit').hide(); return showForm('poc');">Add file</a>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Save and continue" id="submit">
+        </div>
+
+
+      </div>
+    </form>
+
+
+    {% endblock %}

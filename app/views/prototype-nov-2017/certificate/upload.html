@@ -90,61 +90,12 @@
         </div>
 
         <div class="form-group" >
-          <input type="submit" class="button" value="Save and continue" id="submit">
+          <input type="submit" class="button upload" value="Save and continue" id="submit">
         </div>
 
 
       </div>
     </form>
 
-
-<style>
-#uploads .form-group, .uploaded-files, #submit {
-  display: none;
-}
-#uploads {
-  margin-bottom: 45px;
-}
-</style>
-
-<script>
-
-  function showForm( docName ) {
-
-    if ( !$('#uploads #' + docName + ' a.secondary-button').attr('disabled') ) {
-
-      $('#uploads #' + docName + ' .form-group').show();
-      $('#uploads #' + docName + ' a.secondary-button').hide();
-
-      $('#uploads a.secondary-button').attr( 'disabled', 'disabled' );
-
-    }
-    
-    return false;
-
-  }
-
-  function upload( docName ) {
-
-    if ( $( $('#uploads #' + docName + ' input')[0] ).val() ) {
-
-      $('#uploads #' + docName + ' ol').append( '<li class="file"><a href="#">' + $('#uploads #' + docName + ' input')[0].files[0].name +'</a> <a href="#" class="remove">Remove</a></li>' );
-      $( $('#uploads #' + docName + ' input')[0] ).val(null); 
-      $('#uploads #' + docName + ' .form-group').hide();
-      $('#uploads #' + docName + ' a.secondary-button').show();
-      $('#uploads a.secondary-button').removeAttr( 'disabled' );
-
-      $('#uploads #' + docName + ' .uploaded-files').show();
-
-      if ( $('#uploads #poc ol li').length {% if documents.includes('Medical reports') %}&& $('#uploads #meds ol li').length{% endif %}{% if documents.includes('Schedule of loss') %} && $('#uploads #sched ol li').length {% endif %}) {
-        $( '#submit').show();
-      }
-      
-    }
-
-    return false;
-  }
-
-</script>
 
     {% endblock %}
