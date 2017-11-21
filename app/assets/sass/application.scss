@@ -669,12 +669,14 @@ p.download {
   border: none;
 }
 
-
 #uploads h3 {
   margin-top: 45px;
 }
 
+#uploads .form-group, .uploaded-files, #submit.upload {
+  display: none;
+}
 
-.list-bullet li li {
-  
+#uploads {
+  margin-bottom: 45px;
 }

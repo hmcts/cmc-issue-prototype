@@ -204,3 +204,53 @@ function showSelectAddress() {
     return false;
     
   }
+
+
+  function showForm( docName ) {
+
+    if ( !$('#uploads #' + docName + ' a.secondary-button').attr('disabled') ) {
+
+      $('#uploads #' + docName + ' .form-group').show();
+      $('#uploads #' + docName + ' a.secondary-button').hide();
+
+      $('#uploads a.secondary-button').attr( 'disabled', 'disabled' );
+
+    }
+    
+    return false;
+
+  }
+
+  function upload( docName ) {
+
+    if ( $( $('#uploads #' + docName + ' input')[0] ).val() ) {
+
+      $('#uploads #' + docName + ' ol').append( '<li class="file"><a href="#">' + $('#uploads #' + docName + ' input')[0].files[0].name +'</a> <a href="#" class="remove">Remove</a></li>' );
+      $( $('#uploads #' + docName + ' input')[0] ).val(null); 
+      $('#uploads #' + docName + ' .form-group').hide();
+      $('#uploads #' + docName + ' a.secondary-button').show();
+      $('#uploads a.secondary-button').removeAttr( 'disabled' );
+
+      $('#uploads #' + docName + ' .uploaded-files').show();
+
+      blnAllUploaded = false;
+
+      for ( i=0; i < $('#uploads ol').length; i++ ) {
+        if ( $( $('#uploads ol')[i] ).find( 'li').length ) {
+          blnAllUploaded = true;
+        } else {
+          blnAllUploaded = false;
+          break;
+        }
+      }
+
+      if ( blnAllUploaded ) {
+         $( '#submit').show();
+      }
+      
+    }
+
+    return false;
+  }
+
+
