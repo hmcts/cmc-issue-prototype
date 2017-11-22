@@ -6,6 +6,57 @@
 
 <form method="post" action="submitted" class="form">
 
+
+  <h2 class="heading-medium">Organisation details</h2>
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Name</td>
+      <td>{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-name">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>
+        {% if data['rep_AddressLine1'] %} {{ data['rep_AddressLine1'] }}, {% endif %}
+        {% if data['rep_AddressLine2'] %} {{ data['rep_AddressLine2'] }},{% endif %}
+        {% if data['rep_city'] %} {{ data['rep_city'] }}, {% endif %}
+        {% if data['rep_Postcode'] %} {{ data['rep_Postcode'] }} {% endif %}
+      </td>
+      <td class="change-answer">
+        <a href="representative-address">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Phone number</td>
+      <td>{% if data['rep_phone_number'] %} {{ data['rep_phone_number'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-contact">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{% if data['rep_email'] %} {{ data['rep_email'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-contact">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>DX address</td>
+      <td>{% if data['rep_dx_number'] %} {{ data['rep_dx_number'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-contact">Change</a>
+      </td>
+    </tr>
+
+  </table>
+
+
+  <h2 class="heading-medium">Claim details</h2>
+
+
   <table class="check-your-answers">
     <tr>
       <td>Claim number</td>
@@ -14,13 +65,20 @@
     </tr>
     <tr>
       <td>Your reference</td>
-      <td>{{ data['reference'] }}</td>
+      <td>{{ data['your-ref'] }}</td>
       <td class="change-answer">
         <a href="../acknowledgement">Change</a>
       </td>
     </tr>
     <tr>
-      <td>Defendant's name</td>
+      <td>Claimant's reference</td>
+      <td>{{ data['claimant-ref'] }}</td>
+      <td class="change-answer">
+        <a href="../acknowledgement">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Defendant</td>
       <td>{{ data['name'] }}</td>
       <td class="change-answer">
         <a href="name">Change</a>
