@@ -1,0 +1,23 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<form action="{{action}}" method="post">
+
+  <h1 class="heading-large">
+      <span class="form-hint">Defendant 1:</span>
+      Goddard Plumming
+  </h1>
+
+  <h2 class="heading-medium">Your organisation name</h2>
+
+
+  <div class="form-group">
+
+    <input type="text" class="form-control" id="rep_company_name" name="rep_company_name" value="{{ data['rep_company_name'] }}">
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}
