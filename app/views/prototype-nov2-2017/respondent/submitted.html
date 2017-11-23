@@ -1,0 +1,25 @@
+{% extends "prototype-nov2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've defended this claim</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+</div>
+<br>
+
+<p>We've sent a confirmation email to {%if data['username'] %}{{ data['username'] }}{%else%}yourname@example.com{%endif%}</p>
+
+<p class="download certificate">
+  <a target="_blank" href="/public/documents/Defence.pdf">Download defence document</a> (PDF, 123 KB)
+</p>
+
+<p>Download this document again at any time by logging into the <a href='../dashboard'>Manage your claims page</a>.</p>
+
+<div class="form-group">
+  <a class="button" href="../respondent/claim-details?claim-status=2" role="button">View this claim</a>
+</div>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}
