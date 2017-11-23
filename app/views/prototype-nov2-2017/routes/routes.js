@@ -739,17 +739,25 @@ module.exports = function(app){
     });
 
 
+
+
+
     app.post('*/prototype-nov2-2017/acknowledgement/check-your-answers', function(req, res){
 
-
-        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
-            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']-1) + ' ' + req.session.data['year'];
-        } else {
+        if ( !req.session.data['intention'] ) {
+            req.session.data['rep_company_name'] = 'Smith & Co Solicitors';
+            req.session.data['rep_AddressLine1'] = '173 High Holborn';
+            req.session.data['rep_city'] = 'London';
+            req.session.data['rep_Postcode'] = 'WC1V 7AA';
+            req.session.data['rep_phone_number'] = '020 36258414';
+            req.session.data['rep_email'] = 'admin@smiths.co.uk';
+            req.session.data['rep_dx_number'] = 'CDE 823 London';
+            req.session.data['rep_dx_number'] = 'CDE 823 London';
+            req.session.data['name'] = 'Goddard Plumbing';
+            req.session.data['your-ref'] = 'PW1348-151117';
+            req.session.data['defendant-ref'] = 'JK/639127/134';
             req.session.data['dob'] = '2 September 1982';
-        }
-
-        if ( !req.session.data['name'] ) {
-            req.session.data['name'] = 'Jan Clarke';
+            req.session.data['intention'] = 'defend all of this claim';
         }
 
         res.render('prototype-nov2-2017/acknowledgement/check-your-answers', { data: req.session.data } );
@@ -758,16 +766,19 @@ module.exports = function(app){
 
     app.get('*/prototype-nov2-2017/acknowledgement/check-your-answers', function(req, res){
 
-        if ( !req.session.data['reference'] ) {
-            req.session.data['reference'] = 'PW1348-151117';
-        }
-        if ( !req.session.data['name'] ) {
-            req.session.data['name'] = 'Jan Clarke';
-        }
-        if ( !req.session.data['dob'] ) {
-            req.session.data['dob'] = '2 September 1982';
-        }
         if ( !req.session.data['intention'] ) {
+            req.session.data['rep_company_name'] = 'Smith & Co Solicitors';
+            req.session.data['rep_AddressLine1'] = '173 High Holborn';
+            req.session.data['rep_city'] = 'London';
+            req.session.data['rep_Postcode'] = 'WC1V 7AA';
+            req.session.data['rep_phone_number'] = '020 36258414';
+            req.session.data['rep_email'] = 'admin@smiths.co.uk';
+            req.session.data['rep_dx_number'] = 'CDE 823 London';
+            req.session.data['rep_dx_number'] = 'CDE 823 London';
+            req.session.data['name'] = 'Goddard Plumbing';
+            req.session.data['your-ref'] = 'PW1348-151117';
+            req.session.data['defendant-ref'] = 'JK/639127/134';
+            req.session.data['dob'] = '2 September 1982';
             req.session.data['intention'] = 'defend all of this claim';
         }
 
