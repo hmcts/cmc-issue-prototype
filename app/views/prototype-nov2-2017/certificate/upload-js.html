@@ -9,6 +9,20 @@
 
         <p>Use this page to send the County Court the following documents you've served on the defendant.</p>
 
+        <p>We accept files sized no larger than 10MB in these formats:</p>
+
+          <ul class="list list-bullet">
+            <li>PDF</li>
+            <li>DOC</li>
+            <li>DOCX</li>
+            <li>JPG</li>
+            <li>JPEG</li>
+            <li>XLS</li>
+            <li>XLSX</li>
+            <li>PNG</li>
+
+          </ul>
+
         <div id="uploads">
 
           <h3 class="heading-small">Claim form</h3>
@@ -45,7 +59,7 @@
             <label for="sched-upload" class="secondary-button">Add file</label>
             <input id="sched-upload" type="file" onchange="return upload('sched');"/>
           </div>
-          
+
           {% endif %}
 
 
@@ -58,7 +72,7 @@
             <label for="other-upload" class="secondary-button">Add file</label>
             <input id="other-upload" type="file" onchange="return upload('other');"/>
           </div>
-          
+
           {% endif %}
 
         </div>
@@ -92,14 +106,14 @@ input[type="file"] {
     if ( $( $('#uploads #' + docName + ' input')[0] ).val() ) {
 
       $('#uploads #' + docName + ' ol').append( '<li class="file"><a href="#">' + $('#uploads #' + docName + ' input')[0].files[0].name +'</a> <a href="#" class="remove">Remove</a></li>' );
-      $( $('#uploads #' + docName + ' input')[0] ).val(null); 
+      $( $('#uploads #' + docName + ' input')[0] ).val(null);
 
       $('#uploads #' + docName + ' .uploaded-files').show();
 
       if ( $('#uploads #poc ol li').length {% if documents.includes('Medical reports') %}&& $('#uploads #meds ol li').length{% endif %}{% if documents.includes('Schedule of loss') %} && $('#uploads #sched ol li').length {% endif %}{% if documents.includes('Other documents') %} && $('#uploads #other ol li').length {% endif %}) {
         $( '#submit').show();
       }
-      
+
     }
 
     return false;
