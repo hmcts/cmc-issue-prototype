@@ -1,4 +1,34 @@
-{% set action = "your-reference" %}
-{% set verb = "wish" %}
+{% extends "prototype-nov2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-{% extends "prototype-nov2-2017/response.html" %} {% block page_title %} Claim Issue {% endblock %} 
+	<h1 class="heading-large">
+	    <span class="form-hint">Defendant 1:</span>
+	    Goddard Plumbing
+	</h1>
+
+    <h2 class="heading-medium">What do you want to do?</h2>
+    <form action="your-reference" method="post">
+
+      <fieldset class="form-group">
+
+        <div class="multiple-choice">
+            <input id="defend-all" name="response" type="radio" value="defend all of the claim">
+            <label for="defend-all">Defend all of the claim</label>
+        </div>
+        <div class="multiple-choice">
+            <input id="defend-part" name="response" type="radio" value="defend part of the claim">
+            <label for="defend-part">Defend part of the claim</label>
+        </div>
+        <div class="multiple-choice">
+            <input id="admit" name="response" type="radio" value="admit all of the claim">
+            <label for="admit">Admit all of the claim</label>
+        </div>
+
+      </fieldset>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+
+    </form>
+
+{% endblock %}
