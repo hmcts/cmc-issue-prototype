@@ -738,54 +738,40 @@ module.exports = function(app){
         res.render('prototype-nov2-2017/certificateOfService', { defendant: defendant, claimants: claimants, documents: getDummyDocuments(), signerName: 'Robert Wagner', signerCompany: 'Wagner & Co Legal', signerRole: 'Senior solicitor', signerDate: '14 October 2017', serviceSentDate: serviceSentDate, serviceDate: defendant.serveDate, claimReferenceNumber: '123ML143' });
     });
 
-
-
-
-
     app.post('*/prototype-nov2-2017/acknowledgement/check-your-answers', function(req, res){
 
         if ( !req.session.data['intention'] ) {
-            req.session.data['rep_company_name'] = 'Smith & Co Solicitors';
-            req.session.data['rep_AddressLine1'] = '173 High Holborn';
-            req.session.data['rep_city'] = 'London';
-            req.session.data['rep_Postcode'] = 'WC1V 7AA';
-            req.session.data['rep_phone_number'] = '020 36258414';
-            req.session.data['rep_email'] = 'admin@smiths.co.uk';
-            req.session.data['rep_dx_number'] = 'CDE 823 London';
-            req.session.data['rep_dx_number'] = 'CDE 823 London';
-            req.session.data['name'] = 'Goddard Plumbing';
-            req.session.data['your-ref'] = 'PW1348-151117';
-            req.session.data['defendant-ref'] = 'JK/639127/134';
-            req.session.data['dob'] = '2 September 1982';
-            req.session.data['intention'] = 'defend all of this claim';
+            req = getResponseData(req);
         }
-
         res.render('prototype-nov2-2017/acknowledgement/check-your-answers', { data: req.session.data } );
     });
-
 
     app.get('*/prototype-nov2-2017/acknowledgement/check-your-answers', function(req, res){
 
         if ( !req.session.data['intention'] ) {
-            req.session.data['rep_company_name'] = 'Smith & Co Solicitors';
-            req.session.data['rep_AddressLine1'] = '173 High Holborn';
-            req.session.data['rep_city'] = 'London';
-            req.session.data['rep_Postcode'] = 'WC1V 7AA';
-            req.session.data['rep_phone_number'] = '020 36258414';
-            req.session.data['rep_email'] = 'admin@smiths.co.uk';
-            req.session.data['rep_dx_number'] = 'CDE 823 London';
-            req.session.data['rep_dx_number'] = 'CDE 823 London';
-            req.session.data['name'] = 'Goddard Plumbing';
-            req.session.data['your-ref'] = 'PW1348-151117';
-            req.session.data['defendant-ref'] = 'JK/639127/134';
-            req.session.data['dob'] = '2 September 1982';
-            req.session.data['intention'] = 'defend all of this claim';
+            req = getResponseData(req);
         }
-
         res.render('prototype-nov2-2017/acknowledgement/check-your-answers', { data: req.session.data } );
 
     });  
 
+    app.post('*/prototype-nov2-2017/respondent/check-your-answers', function(req, res){
+
+        if ( !req.session.data['intention'] ) {
+            req = getResponseData(req);
+        }
+        res.render('prototype-nov2-2017/respondent/check-your-answers', { data: req.session.data } );
+    });
+
+    app.get('*/prototype-nov2-2017/respondent/check-your-answers', function(req, res){
+
+        if ( !req.session.data['intention'] ) {
+            req = getResponseData(req);
+        }
+
+        res.render('prototype-nov2-2017/respondent/check-your-answers', { data: req.session.data } );
+
+    });  
 
 }
 
@@ -819,6 +805,26 @@ function updateDefendant( defendant, defendants ) {
         }
     }
     return defendants;
+}
+
+function getResponseData( req ) {
+    req.session.data['rep_company_name'] = 'Smith & Co Solicitors';
+    req.session.data['rep_AddressLine1'] = '173 High Holborn';
+    req.session.data['rep_city'] = 'London';
+    req.session.data['rep_Postcode'] = 'WC1V 7AA';
+    req.session.data['rep_phone_number'] = '020 36258414';
+    req.session.data['rep_email'] = 'admin@smiths.co.uk';
+    req.session.data['rep_dx_number'] = 'CDE 823 London';
+    req.session.data['rep_dx_number'] = 'CDE 823 London';
+    req.session.data['name'] = 'Goddard Plumbing';
+    req.session.data['your-ref'] = 'PW1348-151117';
+    req.session.data['defendant-ref'] = 'JK/639127/134';
+    req.session.data['dob'] = '2 September 1982';
+    req.session.data['intention'] = 'defend all of this claim';
+    req.session.data['uploaded-file'] = 'Goddard Plumbing Defence.pdf';
+//    req.session.data['text-defence'] = 'I do not agree because…';
+
+    return req;
 }
 
 function getMonth( intMonth ) {
