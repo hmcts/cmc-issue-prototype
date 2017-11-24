@@ -14,9 +14,8 @@
 
       <div class="form-group">
         <h2 class="heading-medium">Service address</h2>
-        <p class="form-hint">You can't use this page to change the service address.</p>
 
-          <p class="form-hint">You must have served to the service address on your claim form:</p>
+          <p class="form-hint">You can't confirm service online if the service address is different to the address on the claim form:</p>
         <p class="form-group-compound">
           {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
           {% for line in defendant.serviceAddress.split( '\n' ) %}
