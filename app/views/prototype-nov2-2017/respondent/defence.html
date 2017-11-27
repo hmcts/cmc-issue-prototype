@@ -11,13 +11,19 @@
       <h2 class="heading-medium">Upload your defence</h2>
 
       <div id="upload">
+
+        <p>We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpef, xls, xlsx, png.</p>
+
         <p>
           <input type="file" name="uploaded-file">
         </p>
 
+        <p style="margin-top: 15px">Or <a href="" onclick="$('#upload').hide();$('#enter-text').show();$('h2').text('Enter your defence');return false;">explain your defence in plain text</a>.</p>
+        
         <p>We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpef, xls, xlsx, png.</p>
 
-        <p style="margin-top: 15px">Or <a href="" onclick="$('#upload').hide();$('#enter-text').show();$('h2').text('Explain your defence');return false;">explain your defence in plain text</a>.</p>
+        <p style="margin-top: 15px">Or <a href="" onclick="$('#upload').hide();$('#enter-text').show();$('h2').text('Explain your defence');return false;">
+
       </div>
 
 
@@ -31,7 +37,6 @@
 
       </div>
 
-      <p class="form-hint">You can upload supporting documents later.</p>
 
       <div class="form-group" >
         <input type="submit" class="button" value="Save and continue" id="submit">
