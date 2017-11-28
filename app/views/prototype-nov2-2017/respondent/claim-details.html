@@ -1,52 +1,62 @@
 {% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large" style="font-size: 42px"><span class="heading-secondary">000LR095</span>
-	Michael Jones v Jan Clark
+	Tim Jones v Goddard Plumbing
 </h1>
 
 <h2 class="heading-large">
-    <span class="form-hint">Defendant 1:</span>
-    Goddard Plumbing
+    <span class="form-hint">Defendant 2:</span>
+    Jan Clark
 </h2>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 <h3 class="heading-medium">Service</h3>
 <p>
-	Date deemed served: 12 October 2017<br />
+	Date deemed served: {{ now | date("subtract", 10, "days") | date( "DD MMMM YYYY" ) }}<br />
 	Served by: Post
 </p>
 
 <h3 class="heading-medium">Response</h3>
 
-{% if data['claim-status'] == 1 %}
+{% if data['claim-status'] < 3 %}
 <p>
-	Response deadline: 26 October 2017
+	Response deadline: {{ now | date("add", 4, "days") | date( "DD MMMM YYYY" ) }}
 </p>
+
+{% elseif data['claim-status'] == 2 %}
 <p>
 	<a href='../acknowledgement/representative-name' class="button secondary-button" style="margin-top: 5px;">Acknowledge service</a>
 </p>
-{% else %}
+{% elseif data['claim-status'] == 3 %}
 <p>
-	Response deadline: 12 November 2017<br />
-	Service acknowledged on: 17 October 2017
+	Response deadline: {{ now | date("add", 4, "days") | date( "DD MMMM YYYY" ) }}<br />
+	Service acknowledged on: {{ now | date( "DD MMMM YYYY" ) }}
+</p>
+{% elseif data['claim-status'] == 4 %}
+<p>
+	Date responded: {{ now | date( "DD MMMM YYYY" ) }}<br />
+	<a href="view">View defence</a>
 </p>
 {% endif %}
+
+{% if data['claim-status'] != 4 %}
 <p>
 	<a href='representative-name' class="button secondary-button" style="margin-top: 5px;">Respond to claim</a>
 </p>
+{% endif %}
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
-	<li>Michael Jones</li>
+	<li>Tim Jones</li>
 </ul>
 
 <h3 class="heading-medium">Defendants </h3>
 <ul>
-	<li>1. Jan Clarke trading as Clarke Construction</li>
-	<li>2. Goddard Plumbing</li>
+	<li>1. Goddard Plumbing</li>
+	<li>2. Jan Clarke</li>
 	<li>3. Kingsley Building Ltd</li>
 </ul>
 
@@ -69,7 +79,7 @@
 	<p class="font-xsmall">PW1241/KU</p>
 
 	<p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
-	{% if data['claim-status'] > 1 %}
+	{% if data['claim-status'] == 3 %}
 	<p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
 	{% endif %}
 
@@ -91,8 +101,10 @@
 
 <form method="get" action="#" class="form" >
   <select id="claim-status" name="claim-status" onchange="this.form.submit()">
-    <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Served</option>
-    <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Acknowledged</option>
+    <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Served (no AoS)</option>
+    <option  value="2" {% if (data['claim-status'] == 2) %}selected{% endif %}>2. Served (with AoS)</option>
+    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Acknowledged</option>
+    <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>4. Responded</option>
   </select>
 </form>
 
