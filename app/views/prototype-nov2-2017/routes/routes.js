@@ -1,5 +1,6 @@
 module.exports = function(app){
 
+
     app.post('*/prototype-nov2-2017/representative-address', function(req, res){
         req.session.orgName = req.body['rep_company_name'];
 
@@ -755,17 +756,47 @@ module.exports = function(app){
 
     });  
 
+    app.post('*/prototype-nov2-2017/respondent/response', function(req, res){
+
+        if ( !req.body['response'] ) {
+            res.render('prototype-nov2-2017/respondent/response', { data: req.session.data } );
+        } else if ( req.session.data['response'] == 'defend all of the claim' ) {
+            res.redirect('your-reference' );
+        } else if ( req.session.data['response'] == 'defend part of the claim' ) {
+            res.redirect('part-defence' );
+        } else if ( req.session.data['response'] == 'admit all of the claim' ) {
+            res.redirect('admit' );
+        }
+
+    });
+
+
     app.post('*/prototype-nov2-2017/respondent/check-your-answers', function(req, res){
 
-        if ( !req.session.data['intention'] ) {
+        req.session.data['name'] = 'Jan Clarke';
+        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } else {
+            req.session.data['dob'] = '2 September 1982';
+        }
+
+        if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         }
         res.render('prototype-nov2-2017/respondent/check-your-answers', { data: req.session.data } );
     });
 
+
     app.get('*/prototype-nov2-2017/respondent/check-your-answers', function(req, res){
 
-        if ( !req.session.data['intention'] ) {
+        req.session.data['name'] = 'Jan Clarke';
+        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } else {
+            req.session.data['dob'] = '2 September 1982';
+        }
+
+        if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         }
 
@@ -815,13 +846,12 @@ function getResponseData( req ) {
     req.session.data['rep_phone_number'] = '020 36258414';
     req.session.data['rep_email'] = 'admin@smiths.co.uk';
     req.session.data['rep_dx_number'] = 'CDE 823 London';
-    req.session.data['rep_dx_number'] = 'CDE 823 London';
-    req.session.data['name'] = 'Goddard Plumbing';
+    req.session.data['name'] = 'Jan Clarke';
     req.session.data['your-ref'] = 'PW1348-151117';
     req.session.data['defendant-ref'] = 'JK/639127/134';
     req.session.data['dob'] = '2 September 1982';
     req.session.data['intention'] = 'defend all of this claim';
-    req.session.data['uploaded-file'] = 'Goddard Plumbing Defence.pdf';
+    req.session.data['uploaded-file'] = 'Jan Clarke Defence.pdf';
 //    req.session.data['text-defence'] = 'I do not agree because…';
 
     return req;

@@ -7,12 +7,12 @@
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 <h3 class="heading-medium">Service</h3>
 <p>
-	Date deemed served: 12 October 2017<br />
+	Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
 	Served by: Post
 </p>
 
@@ -43,7 +43,7 @@
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 
@@ -100,12 +100,12 @@
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 <h3 class="heading-medium">Serve by</h3>
 <p>
-	16 October 2017<br/>
+	{{ now | date("add", 1, "month") | date( "DD MMMM YYYY" ) }}<br/>
 	<a href='../certificate' class="button secondary-button" style="margin-top: 5px;">Tell the court you've served</a>
 </p>
 
