@@ -49,7 +49,7 @@
 
 <h3 class="heading-medium">Service</h3>
 <p>
-  Date deemed served: 12 to 14 October 2017<br />
+  Date deemed served: {{ now | date("subtract", 3, "days") | date( "DD" ) }} to {{ now | date("subtract", 1, "days") | date( "DD MMMM YYYY" ) }}<br />
 </p>
 
 <h3 class="heading-medium">Claimant </h3>
@@ -70,17 +70,17 @@
   <tbody>
   <tr class="no-border">
     <td>1. Jan Clarke trading as Clarke Construction</td>
-    <td>14 Oct 2017</td>
+    <td>{{ now | date("subtract", 3, "days") | date( "DD MMM YYYY" ) }}</td>
     <td>Post</td>
   </tr>
   <tr class="no-border">
     <td>2. Goddard Plumbing</td>
-    <td>14 Oct 2017</td>
+    <td>{{ now | date("subtract", 3, "days") | date( "DD MMM YYYY" ) }}</td>
     <td>Post</td>
   </tr>
   <tr class="no-border">
     <td>3. Kingsley Building Ltd</td>
-    <td>12 Oct 2017</td>
+    <td>{{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}</td>
     <td>Email</td>
   </tr>
   </tbody>
