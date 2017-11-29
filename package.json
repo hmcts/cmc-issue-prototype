@@ -5,7 +5,7 @@
   "license": "MIT",
   "version": "6.11.1",
   "engines": {
-    "node": ">=6.11.1 <7.0"
+    "node": ">=8.9.1 <9.0"
   },
   "scripts": {
     "start": "node start.js",
@@ -22,9 +22,9 @@
     "express": "4.13.3",
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
-    "govuk-elements-sass": "^3.1.0",
-    "govuk_frontend_toolkit": "6.0.4",
-    "govuk_template_jinja": "^0.22.2",
+    "govuk-elements-sass": "^3.1.1",
+    "govuk_frontend_toolkit": "7.0.0",
+    "govuk_template_jinja": "^0.22.3",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-mocha": "^3.0.1",
