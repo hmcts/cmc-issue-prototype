@@ -4,7 +4,7 @@
   <h1 class="bold-large">You've acknowledged service</h1>
   <br>
   <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
-  <p class="form-group-compound">New response deadline: 9 November 2017</p>
+  <p class="form-group-compound">New response deadline: {{ now | date("add", 14, "days") | date( "DD MMMM YYYY" ) }}</p>
 </div>
 <br>
 
