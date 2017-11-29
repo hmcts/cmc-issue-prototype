@@ -1,5 +1,6 @@
 module.exports = function(app){
 
+
     app.post('*/prototype-nov2-2017/representative-address', function(req, res){
         req.session.orgName = req.body['rep_company_name'];
 
@@ -115,7 +116,7 @@ module.exports = function(app){
 
 
 
-        if (req.session.data.defendant_service_country ) { 
+        if (req.session.data.defendant_service_country ) {
 
             if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
                 res.redirect('defendant-add')
@@ -127,7 +128,7 @@ module.exports = function(app){
 
 
         } else {
-             res.redirect('defendant-add')
+            res.redirect('defendant-add')
         }
 
 
@@ -147,20 +148,20 @@ module.exports = function(app){
         else {
 
 
-                if (req.session.data.defendant_country ) {
+            if (req.session.data.defendant_country ) {
 
-                    if ( req.session.data.defendant_country == 'England' || req.session.data.defendant_country == 'Wales' )  {
-                        res.redirect('defendant-add')
-                    } else if ( req.session.data.defendant_country == 'Scotland' || req.session.data.defendant_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_country.toLowerCase() == 'ni' ||  req.session.data.defendant_Postcode.toLowerCase().indexOf('bt') === 0 )  {
-                        res.redirect('jurisdiction-statements')
-                    } else {
-                        res.redirect('jurisdiction-statements-2')
-                    }
-
-
+                if ( req.session.data.defendant_country == 'England' || req.session.data.defendant_country == 'Wales' )  {
+                    res.redirect('defendant-add')
+                } else if ( req.session.data.defendant_country == 'Scotland' || req.session.data.defendant_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_country.toLowerCase() == 'ni' ||  req.session.data.defendant_Postcode.toLowerCase().indexOf('bt') === 0 )  {
+                    res.redirect('jurisdiction-statements')
                 } else {
-                     res.redirect('defendant-add')
+                    res.redirect('jurisdiction-statements-2')
                 }
+
+
+            } else {
+                res.redirect('defendant-add')
+            }
 
         }
     });
@@ -180,7 +181,7 @@ module.exports = function(app){
 
 
         } else {
-             res.redirect('defendant-add')
+            res.redirect('defendant-add')
         }
 
 
@@ -509,8 +510,8 @@ module.exports = function(app){
             }
         }
         if (defendants[0].defendantName == 'Jan Clarke' && defendants.length < 3) {
-                defendants = getDummyDefendants();
-                req.session.defendants = defendants;
+            defendants = getDummyDefendants();
+            req.session.defendants = defendants;
         }
 
 
@@ -559,7 +560,7 @@ module.exports = function(app){
 
     app.get('*/prototype-nov2-2017/certificate/who', function(req, res){
 
-        if ( req.session.defendant) { 
+        if ( req.session.defendant) {
             defendant = req.session.defendant;
         } else {
             arrDummyDefendants = getDummyDefendants();
@@ -592,7 +593,7 @@ module.exports = function(app){
     app.post('*/prototype-nov2-2017/certificate/how', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
         if (req.body['files']) {
-            req.session.files = req.body['files'].substring( 0, req.body['files'].length-1).split("|");            
+            req.session.files = req.body['files'].substring( 0, req.body['files'].length-1).split("|");
         } else {
             req.session.files = getDummyFiles();
         }
@@ -667,7 +668,7 @@ module.exports = function(app){
             blnShowTime = ( defendant.howServed == 'Email' || defendant.howServed == 'Fax' || defendant.howServed == 'Other electronic method' || defendant.howServed == 'Personally handed to or left with recipient');
             res.render('prototype-nov2-2017/certificate/when', { defendant: defendant, blnShowTime: blnShowTime, howServed: defendant.howServed });
         } else {
-            
+
             if ( req.body['day']) {
                 defendant.serveDay = req.body['day'];
                 defendant.serveMonth = req.body['month'];
@@ -690,7 +691,7 @@ module.exports = function(app){
 
             // last one
             if ( defendant.defendantNo == defendants[defendants.length-1].defendantNo ) {
-                    res.render('prototype-nov2-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
+                res.render('prototype-nov2-2017/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
             } else {
 
                 //find the next one and go again
@@ -711,7 +712,7 @@ module.exports = function(app){
                     }
                 }
 
-            }  
+            }
         }
     });
 
@@ -734,7 +735,7 @@ module.exports = function(app){
         var defendant = { defendantNo: 2, defendantName: 'Mr Bob Goddard', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceMethod: 'fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: '8', serveMonth: '10', serveMonthWord: 'October', serveYear: '2017', serveDate: '9 October 2017', serveHour: '6', serveMinutes: '23', serveAmPm: 'PM' };
 
         serviceSentDate = defendant.serveDay + ' ' + getMonth( defendant.serveMonth ) + ' ' + defendant.serveYear;
-        
+
         res.render('prototype-nov2-2017/certificateOfService', { defendant: defendant, claimants: claimants, documents: getDummyDocuments(), signerName: 'Robert Wagner', signerCompany: 'Wagner & Co Legal', signerRole: 'Senior solicitor', signerDate: '14 October 2017', serviceSentDate: serviceSentDate, serviceDate: defendant.serveDate, claimReferenceNumber: '123ML143' });
     });
 
@@ -753,25 +754,55 @@ module.exports = function(app){
         }
         res.render('prototype-nov2-2017/acknowledgement/check-your-answers', { data: req.session.data } );
 
-    });  
+    });
+
+    app.post('*/prototype-nov2-2017/respondent/response', function(req, res){
+
+        if ( !req.body['response'] ) {
+            res.render('prototype-nov2-2017/respondent/response', { data: req.session.data } );
+        } else if ( req.session.data['response'] == 'defend all of the claim' ) {
+            res.redirect('your-reference' );
+        } else if ( req.session.data['response'] == 'defend part of the claim' ) {
+            res.redirect('part-defence' );
+        } else if ( req.session.data['response'] == 'admit all of the claim' ) {
+            res.redirect('admit' );
+        }
+
+    });
+
 
     app.post('*/prototype-nov2-2017/respondent/check-your-answers', function(req, res){
 
-        if ( !req.session.data['intention'] ) {
+        req.session.data['name'] = 'Jan Clarke';
+        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } else {
+            req.session.data['dob'] = '2 September 1982';
+        }
+
+        if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         }
         res.render('prototype-nov2-2017/respondent/check-your-answers', { data: req.session.data } );
     });
 
+
     app.get('*/prototype-nov2-2017/respondent/check-your-answers', function(req, res){
 
-        if ( !req.session.data['intention'] ) {
+        req.session.data['name'] = 'Jan Clarke';
+        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } else {
+            req.session.data['dob'] = '2 September 1982';
+        }
+
+        if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         }
 
         res.render('prototype-nov2-2017/respondent/check-your-answers', { data: req.session.data } );
 
-    });  
+    });
 
 }
 
@@ -815,13 +846,12 @@ function getResponseData( req ) {
     req.session.data['rep_phone_number'] = '020 36258414';
     req.session.data['rep_email'] = 'admin@smiths.co.uk';
     req.session.data['rep_dx_number'] = 'CDE 823 London';
-    req.session.data['rep_dx_number'] = 'CDE 823 London';
-    req.session.data['name'] = 'Goddard Plumbing';
+    req.session.data['name'] = 'Jan Clarke';
     req.session.data['your-ref'] = 'PW1348-151117';
     req.session.data['defendant-ref'] = 'JK/639127/134';
     req.session.data['dob'] = '2 September 1982';
     req.session.data['intention'] = 'defend all of this claim';
-    req.session.data['uploaded-file'] = 'Goddard Plumbing Defence.pdf';
+    req.session.data['uploaded-file'] = 'Jan Clarke Defence.pdf';
 //    req.session.data['text-defence'] = 'I do not agree because…';
 
     return req;
