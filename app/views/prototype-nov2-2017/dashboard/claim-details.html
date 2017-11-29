@@ -3,122 +3,122 @@
 {% if data['claim-status'] == 2 %}
 
 <h1 class="heading-large"><span class="heading-secondary">000LR095</span>
-	Michael Jones v Jan Clark
+  Michael Jones v Jan Clark
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 <h3 class="heading-medium">Service</h3>
 <p>
-	Date deemed served: 12 October 2017<br />
-	Served by: Post
+  Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
+  Served by: Post
 </p>
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
-	<li>Michael Jones</li>
+  <li>Michael Jones</li>
 </ul>
 
 <h3 class="heading-medium">Defendants </h3>
 <ul>
-	<li>1. Jan Clarke trading as Clarke Construction</li>
-	<li>2. Goddard Plumbing</li>
-	<li>3. Kingsley Building Ltd</li>
+  <li>1. Jan Clarke trading as Clarke Construction</li>
+  <li>2. Goddard Plumbing</li>
+  <li>3. Kingsley Building Ltd</li>
 </ul>
 
 
 <h3 class="heading-medium">Documents uploaded </h3>
 <ul class="downloads">
-	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
-	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
-	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+  <li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+  <li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+  <li><a href="#">Medical report</a> (PDF, 123 KB)</li>
 </ul>
 
 {% elseif data['claim-status'] == 3 %}
 
 <h1 class="heading-large"><span class="heading-secondary">000LR095</span>
-	Michael Jones v Jan Clark
+  Michael Jones v Jan Clark
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 
 <h3 class="heading-medium">Service</h3>
 <p>
-	Date deemed served: 12 to 14 October 2017<br />
+  Date deemed served: 12 to 14 October 2017<br />
 </p>
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
-	<li>Michael Jones</li>
+  <li>Michael Jones</li>
 </ul>
 
 <h3 class="heading-medium">Defendants </h3>
 
 <table class="">
-	<thead>
-		<tr>
-			<th scope="col">Defendant</th>
-			<th scope="col">Deemed served</th>
-			<th scope="col">Served by</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="no-border">
-			<td>1. Jan Clarke trading as Clarke Construction</td>
-			<td>14 Oct 2017</td>
-			<td>Post</td>
-		</tr>
-		<tr class="no-border">
-			<td>2. Goddard Plumbing</td>
-			<td>14 Oct 2017</td>
-			<td>Post</td>
-		</tr>
-		<tr class="no-border">
-			<td>3. Kingsley Building Ltd</td>
-			<td>12 Oct 2017</td>
-			<td>Email</td>
-		</tr>
-	</tbody>
+  <thead>
+  <tr>
+    <th scope="col">Defendant</th>
+    <th scope="col">Deemed served</th>
+    <th scope="col">Served by</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="no-border">
+    <td>1. Jan Clarke trading as Clarke Construction</td>
+    <td>14 Oct 2017</td>
+    <td>Post</td>
+  </tr>
+  <tr class="no-border">
+    <td>2. Goddard Plumbing</td>
+    <td>14 Oct 2017</td>
+    <td>Post</td>
+  </tr>
+  <tr class="no-border">
+    <td>3. Kingsley Building Ltd</td>
+    <td>12 Oct 2017</td>
+    <td>Email</td>
+  </tr>
+  </tbody>
 </table>
 
 <h3 class="heading-medium">Documents uploaded </h3>
 <ul class="downloads">
-	<li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
-	<li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
-	<li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+  <li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+  <li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+  <li><a href="#">Medical report</a> (PDF, 123 KB)</li>
 </ul>
 
 {% else %}
 
 <h1 class="heading-large"><span class="heading-secondary">000LR095</span>
-	Michael Jones v Jan Clark
+  Michael Jones v Jan Clark
 </h1>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>16 June 2017</p>
+<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
 <h3 class="heading-medium">Serve by</h3>
 <p>
-	16 October 2017<br/>
-	<a href='../certificate' class="button secondary-button" style="margin-top: 5px;">Tell the court you've served</a>
+  {{ now | date("add", 1, "month") | date( "DD MMMM YYYY" ) }}<br/>
+  <a href='../certificate' class="button secondary-button" style="margin-top: 5px;">Tell the court you've served</a>
 </p>
 
 <h3 class="heading-medium">Claimant </h3>
 <ul>
-	<li>Michael Jones</li>
+  <li>Michael Jones</li>
 </ul>
 
 <h3 class="heading-medium">Defendants </h3>
 <ul>
-	<li>1. Jan Clarke trading as Clarke Construction</li>
-	<li>2. Goddard Plumbing</li>
-	<li>3. Kingsley Building Ltd</li>
+  <li>1. Jan Clarke trading as Clarke Construction</li>
+  <li>2. Goddard Plumbing</li>
+  <li>3. Kingsley Building Ltd</li>
 </ul>
 
 {% endif %}
@@ -130,23 +130,23 @@
 
 <aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
 
-	<h3 class="heading-small" style="margin-top:.42105em">Your reference</h3>
-	<p class="font-xsmall">PW1241/KU</p>
+  <h3 class="heading-small" style="margin-top:.42105em">Your reference</h3>
+  <p class="font-xsmall">PW1241/KU</p>
 
-	<p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
-	{% if data['claim-status'] > 1 %}
-	<p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
-	{% endif %}
+  <p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
+  {% if data['claim-status'] > 1 %}
+  <p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
+  {% endif %}
 
-<!--
-	<h3 class="heading-small" id="subsection-title">Claim options </h3>
-	<nav role="navigation" aria-labelledby="subsection-title">
-		<ul class="font-xsmall">
-			<li><a href="#">Download the sealed claim form</a> </li>
-			<li><a href="#">Apply to amend the claim</a> </li>
-		</ul>
-	</nav>
--->
+  <!--
+    <h3 class="heading-small" id="subsection-title">Claim options </h3>
+    <nav role="navigation" aria-labelledby="subsection-title">
+      <ul class="font-xsmall">
+        <li><a href="#">Download the sealed claim form</a> </li>
+        <li><a href="#">Apply to amend the claim</a> </li>
+      </ul>
+    </nav>
+  -->
 </aside>
 
 {% endblock %}
