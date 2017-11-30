@@ -10,7 +10,10 @@
 </h2>
 
 <h3 class="heading-medium">Date issued</h3>
-<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
+<p>
+  {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}<br />
+  <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
+</p>
 
 
 <h3 class="heading-medium">Service details</h3>
@@ -81,10 +84,18 @@
 
 <aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
 
+{% if data['claim-status'] > 2 %}
+  <h3 class="heading-small" style="margin-top:.42105em">Your reference</h3>
+  <p class="font-xsmall">PW1348-151117</p>
+{% endif %}
+
   <h3 class="heading-small" style="margin-top:.42105em">Claimant's reference</h3>
   <p class="font-xsmall">PW1241/KU</p>
 
-  <p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
+{% if data['claim-status'] > 2 %}
+  <h3 class="heading-small" style="margin-top:.42105em">Defendant's reference</h3>
+  <p class="font-xsmall">JK/639127/134</p>
+{% endif %}
 
 </aside>
 
