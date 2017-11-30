@@ -15,8 +15,9 @@
 
 <h3 class="heading-medium">Service details</h3>
 <p>
-  Date deemed served: {{ now | date("subtract", 10, "days") | date( "DD MMMM YYYY" ) }}<br />
-  Served by: Post
+  Deemed date of service: {{ now | date("subtract", 10, "days") | date( "DD MMMM YYYY" ) }}<br />
+  Served by: Post<br />
+  <a href="../certificate/view">View confirmation of service</a>
 </p>
 
 {% if data['claim-status'] < 4 %}

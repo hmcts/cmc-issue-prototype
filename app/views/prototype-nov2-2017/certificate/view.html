@@ -6,8 +6,8 @@
   Confirmation of service
 </h1>
 
-<h3 class="heading-medium">Date confirmed</h3>
-<p>{{ now | date( "DD MMMM YYYY" ) }}</p>
+<h3 class="heading-medium">Deemed date of service</h3>
+<p>{{ now | date("subtract", 1, "days") | date( "DD" ) }}-{{ now | date( "DD MMMM YYYY" ) }}</p>
 
   <form method="post" action="submitted" class="form">
 
