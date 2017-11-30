@@ -6,15 +6,15 @@
   Michael Jones v Jan Clark
 </h1>
 
-<h3 class="heading-medium">Date issued</h3>
-<p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
+<h3 class="heading-medium">Issue</h3>
+<p>Date issued: {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
-<h3 class="heading-medium">Service details</h3>
+<h3 class="heading-medium">Service</h3>
 <p>
   Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
   Served by: Post<br />
-  <a href="../certificate/view">Check or print confirmation of service</a>
+  <a href="../certificate/view">View confirmation of service</a>
 
 </p>
 
