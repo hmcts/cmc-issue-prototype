@@ -728,6 +728,14 @@ module.exports = function(app){
         res.render('prototype-nov2-2017/certificate/submitted', { defendants: defendants })
     });
 
+    app.get('*/prototype-nov2-2017/certificate/view', function(req, res){
+        var defendants = req.session.defendants || getDummyDefendants();
+        var documents = req.session.documents || getDummyDocuments();
+        var files = req.session.files || getDummyFiles();
+        var orgName = req.session.orgName || 'My Solicitor Firm';
+
+        res.render('prototype-nov2-2017/certificate/view', { documents: documents, defendants: defendants, files: files, orgName: orgName })
+    });
 
     app.get('*/prototype-nov2-2017/certificateOfService', function(req, res){
         //var claimants  = [{ name: 'Jimmy Smith1' },{ name: 'Jimmy Smith2' },{ name: 'Jimmy Smith3' },{ name: 'Jimmy Smith4' }];
@@ -754,6 +762,11 @@ module.exports = function(app){
         }
         res.render('prototype-nov2-2017/acknowledgement/check-your-answers', { data: req.session.data } );
 
+    });
+
+    app.get('*/prototype-nov2-2017/acknowledgement/view', function(req, res){
+        req = getResponseData(req);
+        res.render('prototype-nov2-2017/acknowledgement/view', { data: req.session.data } );
     });
 
     app.post('*/prototype-nov2-2017/respondent/response', function(req, res){
@@ -801,6 +814,23 @@ module.exports = function(app){
         }
 
         res.render('prototype-nov2-2017/respondent/check-your-answers', { data: req.session.data } );
+
+    });
+
+    app.get('*/prototype-nov2-2017/respondent/view', function(req, res){
+
+        req.session.data['name'] = 'Jan Clarke';
+        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } else {
+            req.session.data['dob'] = '2 September 1982';
+        }
+
+        if ( !req.session.data['response'] ) {
+            req = getResponseData(req);
+        }
+
+        res.render('prototype-nov2-2017/respondent/view', { data: req.session.data } );
 
     });
 

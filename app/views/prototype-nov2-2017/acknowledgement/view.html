@@ -1,0 +1,83 @@
+{% extends "prototype-nov-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<a href="#" class="button secondary-button" style="margin-top: 65px; float:right;" onclick="window.print(); return false;">Print</a>
+
+<h1 class="heading-large" style="margin-top: 20px;">
+  Acknowledgement of service
+</h1>
+
+<h3 class="heading-medium">Date acknowledged</h3>
+<p>{{ now | date( "DD MMMM YYYY" ) }}</p>
+
+<h2 class="heading-medium">Organisation details</h2>
+
+<table class="check-your-answers">
+  <tr>
+    <td>Name</td>
+    <td>{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</td>
+  </tr>
+  <tr>
+    <td>Address</td>
+    <td>
+      {% if data['rep_AddressLine1'] %} {{ data['rep_AddressLine1'] }}, {% endif %}
+      {% if data['rep_AddressLine2'] %} {{ data['rep_AddressLine2'] }},{% endif %}
+      {% if data['rep_city'] %} {{ data['rep_city'] }}, {% endif %}
+      {% if data['rep_Postcode'] %} {{ data['rep_Postcode'] }} {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>Phone number</td>
+    <td>{% if data['rep_phone_number'] %} {{ data['rep_phone_number'] }} {% endif %}</td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td>{% if data['rep_email'] %} {{ data['rep_email'] }} {% endif %}</td>
+  </tr>
+  <tr>
+    <td>DX address</td>
+    <td>{% if data['rep_dx_number'] %} {{ data['rep_dx_number'] }} {% endif %}</td>
+  </tr>
+
+</table>
+
+
+<h2 class="heading-medium">Claim details</h2>
+
+
+<table class="check-your-answers">
+  <tr>
+    <td>Your reference</td>
+    <td>{{ data['your-ref'] }}</td>
+  </tr>
+  <tr>
+    <td>Defendant's reference</td>
+    <td>{{ data['defendant-ref'] }}</td>
+  </tr>
+  <tr>
+    <td>Defendant's name</td>
+    <td>{{ data['name'] }}</td>
+  </tr>
+  <tr>
+    <td>Defendant's date of birth</td>
+    <td>{{ data['dob'] }}</td>
+  </tr>
+  <tr>
+    <td>Response</td>
+    <td>I intend to {{ data['intention'] }}</td>
+  </tr>
+</table>
+
+
+<div class="form-group column-two-thirds" style="padding-left: 0">
+
+  <h2 class="heading-medium">Signed</h2>
+
+  <p>
+    <span class="">Robert Johnson</span><br />
+    Solicitor, Smith &amp; Law Co LLP
+  </p>
+  <p>{{ now | date( "DD MMMM YYYY" ) }}</p>
+</div>
+
+
+  {% endblock %}

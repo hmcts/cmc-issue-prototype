@@ -6,23 +6,12 @@
   <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
   <p class="form-group-compound">New response deadline: {{ now | date("add", 14, "days") | date( "DD MMMM YYYY" ) }}</p>
 </div>
-<br>
 
-<p>
-You now have an extra 14 days to respond.
-</p>
+<p>You now have an extra 14 days to respond.</p>
 
-<p>We've sent a confirmation email to {%if data['username'] %}{{ data['username'] }}{%else%}yourname@example.com{%endif%}</p>
+<p>You can view or print your submission from the <a href='../respondent/claim-details?claim-status=3'>claim details</a> page.</p>
 
-<p class="download certificate">
-  <a target="_blank" href="/public/documents/Acknowledgement-of-service.pdf">Download acknowledgment of service form</a> (PDF, 123 KB)
-</p>
-
-<p>Download this document again at any time by logging into the <a href='../dashboard'>Manage your claims page</a>.</p>
-
-<div class="form-group">
-  <a class="button" href="../respondent/claim-details?claim-status=2" role="button">View this claim</a>
-</div>
+<p><a class="button" href="../respondent/claim-details?claim-status=3" role="button">View this claim</a></p>
 
 <style type="text/css">
 	.link-back{display: none}

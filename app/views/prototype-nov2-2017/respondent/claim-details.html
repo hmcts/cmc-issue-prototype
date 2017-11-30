@@ -19,21 +19,19 @@
   Served by: Post
 </p>
 
+{% if data['claim-status'] < 4 %}
 <h3 class="heading-medium">Respond by</h3>
-
-{% if data['claim-status'] < 3 %}
 <p>
   {{ now | date("add", 4, "days") | date( "DD MMMM YYYY" ) }}
 </p>
+{% else %}
+<h3 class="heading-medium">Response</h3>
 
-{% elseif data['claim-status'] == 2 %}
+{% endif %}
+
+{% if data['claim-status'] == 2 %}
 <p>
   <a href='../acknowledgement/representative-name' class="button secondary-button" style="margin-top: 5px;">Acknowledge service</a>
-</p>
-{% elseif data['claim-status'] == 3 %}
-<p>
-  Response deadline: {{ now | date("add", 4, "days") | date( "DD MMMM YYYY" ) }}<br />
-  Service acknowledged on: {{ now | date( "DD MMMM YYYY" ) }}
 </p>
 {% elseif data['claim-status'] == 4 %}
 <p>
@@ -45,6 +43,13 @@
 {% if data['claim-status'] != 4 %}
 <p>
   <a href='representative-name' class="button secondary-button" style="margin-top: 5px;">Respond to claim</a>
+</p>
+{% endif %}
+
+{% if data['claim-status'] == 3 %}
+<p>
+  Service acknowledged on: {{ now | date( "DD MMMM YYYY" ) }}<br />
+  <a href="../acknowledgement/view">View acknowledgement of service</a>
 </p>
 {% endif %}
 
@@ -79,19 +84,7 @@
   <p class="font-xsmall">PW1241/KU</p>
 
   <p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
-  {% if data['claim-status'] == 3 %}
-  <p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
-  {% endif %}
 
-  <!--
-    <h3 class="heading-small" id="subsection-title">Claim options </h3>
-    <nav role="navigation" aria-labelledby="subsection-title">
-      <ul class="font-xsmall">
-        <li><a href="#">Download the sealed claim form</a> </li>
-        <li><a href="#">Apply to amend the claim</a> </li>
-      </ul>
-    </nav>
-  -->
 </aside>
 
 {% endblock %}

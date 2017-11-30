@@ -13,7 +13,9 @@
 <h3 class="heading-medium">Service</h3>
 <p>
   Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
-  Served by: Post
+  Served by: Post<br />
+  <a href="../certificate/view">View confirmation of service</a>
+
 </p>
 
 <h3 class="heading-medium">Claimant </h3>
@@ -45,11 +47,10 @@
 <h3 class="heading-medium">Date issued</h3>
 <p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
-
-
 <h3 class="heading-medium">Service</h3>
 <p>
   Date deemed served: {{ now | date("subtract", 3, "days") | date( "DD" ) }} to {{ now | date("subtract", 1, "days") | date( "DD MMMM YYYY" ) }}<br />
+  <a href="../certificate/view">View confirmation of service</a>
 </p>
 
 <h3 class="heading-medium">Claimant </h3>
@@ -134,19 +135,7 @@
   <p class="font-xsmall">PW1241/KU</p>
 
   <p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
-  {% if data['claim-status'] > 1 %}
-  <p><a target="_blank" href="/public/documents/Certificates-of-service.pdf" class="download">Download certificate of service</a> </p>
-  {% endif %}
-
-  <!--
-    <h3 class="heading-small" id="subsection-title">Claim options </h3>
-    <nav role="navigation" aria-labelledby="subsection-title">
-      <ul class="font-xsmall">
-        <li><a href="#">Download the sealed claim form</a> </li>
-        <li><a href="#">Apply to amend the claim</a> </li>
-      </ul>
-    </nav>
-  -->
+  
 </aside>
 
 {% endblock %}

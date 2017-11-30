@@ -6,21 +6,10 @@
   <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
   <p class="form-group-compound">Issued: {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 </div>
-<br>
 
-<p>
-  We've sent a confirmation email to {%if data['username'] %}{{ data['username'] }}{%else%}yourname@example.com{%endif%}
+<p>You can view or print your submission from the <a href='../dashboard/claim-details?claim-status=2'>claim details</a> page.</p>
 
-  <h2 class="bold-medium"></h1>
-  <p class="download certificate">
-    <a target="_blank" href="/public/documents/Certificate-of-service.pdf">Download certificate of service</a> (PDF, 456 KB)
-  </p>
-
-<p>Download this document again at any time by logging into the <a href='../dashboard'>Manage your claims page</a>.</p>
-
-<div class="form-group">
-  <a class="button" href="../start" role="button">Issue a new claim</a>
-</div>
+<p><a class="button" href="../dashboard/claim-details?claim-status=2" role="button">View this claim</a></p>
 
 <style type="text/css">
 	.link-back{display: none}
