@@ -6,13 +6,13 @@
   Michael Jones v Jan Clark
 </h1>
 
-<h3 class="heading-medium">Date issued</h3>
+<h3 class="heading-medium">Issue</h3>
 <p>
-  {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}<br />
+  Date issued: {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}<br />
   <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
 </p>
 
-<h3 class="heading-medium">Service details</h3>
+<h3 class="heading-medium">Service</h3>
 <p>
   Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
   Served by: Post<br />

@@ -9,14 +9,14 @@
   Jan Clark
 </h2>
 
-<h3 class="heading-medium">Date issued</h3>
+<h3 class="heading-medium">Issue</h3>
 <p>
-  {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}<br />
+  Date issued: {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</br>
   <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
 </p>
 
 
-<h3 class="heading-medium">Service details</h3>
+<h3 class="heading-medium">Service</h3>
 <p>
   Deemed date of service: {{ now | date("subtract", 10, "days") | date( "DD MMMM YYYY" ) }}<br />
   Served by: Post<br />
@@ -24,9 +24,9 @@
 </p>
 
 {% if data['claim-status'] < 4 %}
-<h3 class="heading-medium">Respond by</h3>
+<h3 class="heading-medium">Response</h3>
 <p>
-  {{ now | date("add", 4, "days") | date( "DD MMMM YYYY" ) }}
+Respond by {{ now | date("add", 4, "days") | date( "DD MMMM YYYY" ) }}
 </p>
 {% else %}
 <h3 class="heading-medium">Response</h3>
