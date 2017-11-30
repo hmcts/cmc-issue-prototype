@@ -10,11 +10,11 @@
 <p>{{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}</p>
 
 
-<h3 class="heading-medium">Service</h3>
+<h3 class="heading-medium">Service details</h3>
 <p>
   Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
   Served by: Post<br />
-  <a href="../certificate/view">View confirmation of service</a>
+  <a href="../certificate/view">Check or print confirmation of service</a>
 
 </p>
 
@@ -135,7 +135,7 @@
   <p class="font-xsmall">PW1241/KU</p>
 
   <p><a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> </p>
-  
+
 </aside>
 
 {% endblock %}
