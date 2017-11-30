@@ -37,7 +37,7 @@
 {% elseif data['claim-status'] == 4 %}
 <p>
   Date responded: {{ now | date( "DD MMMM YYYY" ) }}<br />
-  <a href="view">View defence</a>
+  <a href="view">Check or print defence details</a>
 </p>
 {% endif %}
 
@@ -49,8 +49,8 @@
 
 {% if data['claim-status'] == 3 %}
 <p>
-  Service acknowledged on: {{ now | date( "DD MMMM YYYY" ) }}<br />
-  <a href="../acknowledgement/view">View acknowledgement of service</a>
+  Service acknowledged on {{ now | date( "DD MMMM YYYY" ) }}<br />
+  <a href="../acknowledgement/view">Check or print acknowledgement of service</a>
 </p>
 {% endif %}
 
