@@ -1,0 +1,41 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="other-docs" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant: Jan Clark</span>
+        <span id="sub">Upload your defence</span>
+      </h1>
+
+      <div id="upload">
+
+        <p>We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpeg, xls, xlsx, png.</p>
+
+        <p>
+          <input type="file" name="uploaded-file">
+        </p>
+
+        <p style="margin-top: 15px">Or <a href="" onclick="$('#upload').hide();$('#enter-text').show();$('h1 span#sub').text('Explain your defence');return false;">explain your defence in plain text</a>.</p>
+
+      </div>
+
+
+      <div id="enter-text" style="display:none">
+
+        <div id="defence">
+          <textarea name="text-defence" style="width: 100%; height: 400px; margin-bottom: 25px; resize: auto;"></textarea>
+        </div>
+
+        <p style="margin-top: 15px">Or <a href="" onclick="$('#upload').show();$('#enter-text').hide();$('h2').text('Upload your defence');return false;">upload a defence document</a>.</p>
+
+      </div>
+
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue" id="submit">
+      </div>
+
+    </form>
+
+
+    {% endblock %}

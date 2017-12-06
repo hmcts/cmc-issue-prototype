@@ -1,0 +1,173 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+  Michael Jones v Jan Clark
+</h1>
+
+
+
+<h3 class="heading-medium">Issue</h3>
+<p>
+  Date issued: {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}<br />
+  <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
+</p>
+
+
+
+
+<h3 class="heading-medium">Service</h3>
+
+{% if data['claim-status'] == 2 %}
+<p>
+  Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
+  Served by: Post<br />
+  <a href="../certificate/view">View confirmation of service</a>
+</p>
+
+{% elseif data['claim-status'] == 3 %}
+<p>
+  Date deemed served: {{ now | date("subtract", 3, "days") | date( "DD" ) }} to {{ now | date("subtract", 1, "days") | date( "DD MMMM YYYY" ) }}<br />
+  <a href="../certificate/view">View confirmation of service</a>
+</p>
+
+{% elseif ( data['claim-status'] == 4 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 6 ) %}
+<p>
+  Date deemed served: {{ now | date("subtract", 16, "days") | date( "DD MMMM YYYY" ) }}<br />
+  Served by: Post<br />
+  <a href="../certificate/view">View confirmation of service</a>
+</p>
+
+{% else %}
+<p>
+  Serve by: {{ now | date("add", 1, "month") | date( "DD MMMM YYYY" ) }}<br/>
+  <a href='../certificate' class="button secondary-button" style="margin-top: 5px;">Tell the court you've served</a>
+</p>
+
+{% endif %}
+
+
+
+
+{% if data['claim-status'] == 2 %}
+<h3 class="heading-medium">Response</h3>
+<p>
+  Claimant must respond by {{ now | date("add", 14, "days") | date( "DD MMMM YYYY" ) }}
+</p>
+
+{% elseif data['claim-status'] == 3 %}
+<h3 class="heading-medium">Response</h3>
+<p>
+  Claimants must respond by {{ now | date("add", 13, "days") | date( "DD MMMM YYYY" ) }}
+</p>
+
+{% elseif data['claim-status'] == 4 %}
+<h3 class="heading-medium">Response</h3>
+<p>
+  Claimant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMMM YYYY" ) }}<br />
+  <a href='../judgement/dob' class="button secondary-button" style="margin-top: 5px;">Request judgement</a>
+</p>
+
+{% elseif data['claim-status'] == 5 %}
+<h3 class="heading-medium">Response</h3>
+<p>
+  Claimant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMMM YYYY" ) }}<br />
+  <a href='../judgement' class="button secondary-button" style="margin-top: 5px;">Request judgement</a>
+</p>
+
+{% elseif data['claim-status'] == 6 %}
+<h3 class="heading-medium">Response</h3>
+<p>
+  Claimant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMMM YYYY" ) }}<br />
+  Date judgement requested: {{ now | date( "DD MMMM YYYY" ) }}<br />
+  <a href="../judgement/view">View confirmation of request for judgement</a><br />
+  <a target="_blank" href="#" class="download">Download the judgement order</a> (PDF, 234 KB)
+</p>
+
+{% endif %}
+
+
+
+
+<h3 class="heading-medium">Claimant</h3>
+<ul>
+  <li>Michael Jones</li>
+</ul>
+
+
+
+<h3 class="heading-medium">Defendants </h3>
+{% if data['claim-status'] == 3 %}
+<table class="">
+  <thead>
+  <tr>
+    <th scope="col">Defendant</th>
+    <th scope="col">Deemed served</th>
+    <th scope="col">Served by</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="no-border">
+    <td>1. Jan Clarke trading as Clarke Construction</td>
+    <td>{{ now | date("subtract", 3, "days") | date( "DD MMM YYYY" ) }}</td>
+    <td>Post</td>
+  </tr>
+  <tr class="no-border">
+    <td>2. Goddard Plumbing</td>
+    <td>{{ now | date("subtract", 3, "days") | date( "DD MMM YYYY" ) }}</td>
+    <td>Post</td>
+  </tr>
+  <tr class="no-border">
+    <td>3. Kingsley Building Ltd</td>
+    <td>{{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}</td>
+    <td>Email</td>
+  </tr>
+  </tbody>
+</table>
+
+{% else %}
+
+<ul>
+  <li>1. Jan Clarke trading as Clarke Construction</li>
+  <li>2. Goddard Plumbing</li>
+  <li>3. Kingsley Building Ltd</li>
+</ul>
+
+{% endif %}
+
+
+<h3 class="heading-medium">Documents uploaded </h3>
+<ul class="downloads">
+  <li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+  <li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+  <li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+</ul>
+
+
+{% endblock %}
+
+{% block side_content %}
+
+
+<aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
+
+  <h3 class="heading-small" style="margin-top:.42105em">Your reference</h3>
+  <p class="font-xsmall">PW1241/KU</p>
+</aside>
+
+{% endblock %}
+
+
+{% block body_end %}
+
+<form method="get" action="#" class="form" >
+  <select id="claim-status" name="claim-status" onchange="this.form.submit()">
+    <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Issued</option>
+    <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Served (single method)</option>
+    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served (mixed method)</option>
+    <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>4. Request judgement (single)</option>
+    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>5. Request judgement (multi)</option>
+    <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>6. Judgement requested</option>
+  </select>
+</form>
+
+{% endblock %}
