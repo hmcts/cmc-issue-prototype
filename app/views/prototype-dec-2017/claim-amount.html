@@ -1,0 +1,126 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+<h1 class="heading-large">Enter expected claim value</h1>
+
+<p class="bold-small">Your fee will be calculated based on the higher value.</p>
+<form action="claim-amount" method="post">
+  <div class="form-group">
+    <div class="column-one-half no-padding">
+      <span class="form-block">Lower value (optional)</span>
+      <input type="text" class="form-control form-control-3-4 pound" name="lower_value" id="lower_value" value="{{ data['lower_value'] }}">
+    </div>
+    <div class="column-one-half no-padding">
+      <span class="form-block">Higher value</span>
+      <input type="text" class="form-control form-control-3-4 pound" name="higher_value" id="higher_value" value="{{ data['higher_value'] }}">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="multiple-choice" data-target="max-fee">
+      <input id="card" name="claim_amount_checkbox" type="checkbox" value="cannot" {{ checked('claim_amount_checkbox','cannot') }}>
+      <label for="card">I don't want to state the value of the claim</label>
+    </div>
+    <div id="max-fee" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <p>You'll be charged the maximum fee of £10,000</p>
+    </div>
+  </div>
+
+
+  <details>
+    <summary style="margin-bottom: 30px;">View issue fees</summary>
+
+    <div class="panel">
+      <table class="expandable-demo">
+        <p>The fee is based on the value you're claiming, including any interest.
+        </p>
+        <thead>
+        <tr>
+          <th scope="col">Claim value</th>
+          <th scope="col">Issue fee</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£0.01 to £300</li>
+            </ul>
+          </td>
+          <td>£35</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£300.01 to £500</li>
+            </ul>
+          </td>
+          <td>£50</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£500.01 to £1,000</li>
+            </ul>
+          </td>
+          <td>£70</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£1,000.01 to £1,500</li>
+            </ul>
+          </td>
+          <td>£80</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£1,500.01 to £3,000</li>
+            </ul>
+          </td>
+          <td>£115</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£3,000.01 to £5,000</li>
+            </ul>
+          </td>
+          <td>£205</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£5,000.01 to £10,000</li>
+            </ul>
+          </td>
+          <td>£455</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>£10,000.01 to £200,000 </li>
+            </ul>
+          </td>
+          <td>5% of the claim value</td>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>Over £200,000</li>
+            </ul>
+          </td>
+          <td>£10,000</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+
+{% endblock %}

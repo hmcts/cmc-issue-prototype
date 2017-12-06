@@ -1,0 +1,25 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">
+  {% if claimants.length > 0 %}
+    <span class="form-hint">Claimant {{ claimants.length + 1 }}</span>
+  {% endif %}
+  Enter claimant name</h1>
+
+{% if claimants.length == 0 %}
+<p>You'll have a chance to add more claimants later.</p>
+{% endif %}
+
+<form action="claimant-address" id="form" method="post" class="form-group">
+    <fieldset class="form-group">
+
+        <div class="form-group">
+          <label class="form-label" for="claimant_name">Full name</label>
+          <textarea type="text" class="form-control" id="claimant_name" name="claimant_name" value="{{ data['claimant_name'] }}" style="height: 38px;">{{ data['claimant_name'] }}</textarea>
+        </div>
+    </fieldset>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Save and continue">
+    </div>
+</form>
+{% endblock %}

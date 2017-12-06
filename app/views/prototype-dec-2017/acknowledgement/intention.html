@@ -1,0 +1,33 @@
+{% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <h1 class="heading-large">
+        <span class="form-hint">Defendant: Goddard Plumbing</span>
+        What do you intend to do?
+    </h1>
+
+    <form action="check-your-answers" method="post">
+
+      <fieldset class="form-group">
+
+        <div class="multiple-choice">
+            <input id="defend-all" name="intention" type="radio" value="defend all of the claim" {{ checked('intention','defend all of the claim') }}>
+            <label for="defend-all">Defend all of the claim</label>
+        </div>
+        <div class="multiple-choice">
+            <input id="defend-part" name="intention" type="radio" value="defend part of the claim" {{ checked('intention','defend part of the claim') }}>
+            <label for="defend-part">Defend part of the claim</label>
+        </div>
+        <div class="multiple-choice">
+            <input id="contest" name="intention" type="radio" value="contest" {{ checked('intention','contest') }}>
+            <label for="contest">Contest jurisdiction</label>
+        </div>
+
+      </fieldset>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+
+    </form>
+
+{% endblock %}
