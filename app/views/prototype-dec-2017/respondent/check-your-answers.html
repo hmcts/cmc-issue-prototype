@@ -100,21 +100,10 @@
     <tr>
       <td>Defence</td>
       <td>
-        {% if data['text-defence'] %}{{ data['text-defence'] }}
-        {% elseif data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
+        {% if data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
       </td>
       <td class="change-answer">
         <a href="defence">Change</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Supporting documents</td>
-      <td>
-        <a href="">Medical report.pdf</a><br />
-        <a href="">Police report.pdf</a>
-      </td>
-      <td class="change-answer">
-        <a href="other-docs">Change</a>
       </td>
     </tr>
   </table>
