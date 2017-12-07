@@ -216,6 +216,10 @@ function showSelectAddress() {
       $('#uploads a.secondary-button').attr( 'disabled', 'disabled' );
 
     }
+
+    if ( $( '#submit').is(":visible") ) {
+         $( '#submit').hide();
+    }
     
     return false;
 
@@ -236,6 +240,7 @@ function showSelectAddress() {
       blnAllUploaded = false;
 
       for ( i=0; i < $('#uploads ol').length; i++ ) {
+
         if ( $( $('#uploads ol')[i] ).find( 'li').length ) {
           blnAllUploaded = true;
         } else {
