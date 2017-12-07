@@ -27,16 +27,9 @@
         {% elseif data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
       </td>
     </tr>
-    <tr>
-      <td>Supporting documents</td>
-      <td>
-        <a href="">Medical report.pdf</a><br />
-        <a href="">Police report.pdf</a>
-      </td>
-    </tr>
   </table>
 
-
+<!--
   <h2 class="heading-medium">Statement of truth</h2>
 
   <p>The defendant believes that the facts in this response are true.<br />I'm duly authorised by the defendant to sign this statement.</p>
@@ -46,7 +39,7 @@
     Solicitor, Smith &amp; Law Co LLP
   </p>
   <p>{{ now | date( "DD MMMM YYYY" ) }}</p>
-
+-->
 </form>
 
 {% endblock %}
