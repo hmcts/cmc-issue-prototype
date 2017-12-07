@@ -1,7 +1,7 @@
 {% extends "prototype-dec-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">
-  Check your answers
+  Check your response
 </h1>
 
 <form method="post" action="submitted" class="form">
@@ -109,25 +109,8 @@
   </table>
 
 
-  <div class="form-group column-two-thirds" style="padding-left: 0">
-
-    <h2 class="heading-medium">Statement of truth</h2>
-
-    <div class="form-group">
-      <label>The defendant believes that the facts in this response are true.<br />I'm duly authorised by the defendant to sign this statement.</label>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label" for="signer_name">Name</label>
-      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label" for="signer-role">Your role</label>
-      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
-    </div>
-
-    <button id="submit" class="button">Submit defence</button>
+  <div class="form-group column-two-thirds" style="padding-left: 0; margin-top: 30px;">
+    <button id="submit" class="button">Submit response</button>
   </div>
 
 </form>
