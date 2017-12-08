@@ -1,13 +1,13 @@
 {% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <div class="govuk-box-highlight">
-  <h1 class="bold-large">You've defended this claim</h1>
+  <h1 class="bold-large">You've responded to this claim</h1>
   <br>
-  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <h2 class="bold-medium form-group">Claim number: 000LR095</h2>
   <p>Date submitted: {{ now | date( "DD MMMM YYYY" ) }}</p>
 </div>
 
-<p><a href='../respondent/view'>Check or print the details of the defence</a>.</p>
+<p><a href='../respondent/view'>Check or print the details of the response</a>.</p>
 
 <div class="form-group">
   <a class="button" href="../respondent/claim-details?claim-status=4" role="button">View this claim</a>

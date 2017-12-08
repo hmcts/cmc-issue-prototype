@@ -12,19 +12,14 @@
 
 <form method="post" action="submitted" class="form">
 
-  <h2 class="heading-medium">Defence details</h2>
+  <h2 class="heading-medium">Response details</h2>
 
 
   <table class="check-your-answers">
     <tr>
       <td>Response</td>
-      <td>I want to defend all the claim</td>
-    </tr>
-    <tr>
-      <td>Defence</td>
       <td>
-        {% if data['text-defence'] %}{{ data['text-defence'] }}
-        {% elseif data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
+        {% if data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
       </td>
     </tr>
   </table>
