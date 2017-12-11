@@ -99,6 +99,22 @@
         <a href="defence">Change</a>
       </td>
     </tr>
+    <tr>
+      <td>Statement of truth</td>
+      <td>
+        {% if data['sot'] == 'yes' %}
+        Included in response document
+        {% else %}
+        Robert Johnson<br />
+        Smith & Law Solicitors<br />
+        Solicitor<br />
+        {{ now | date( "DD MMMM YYYY" ) }}
+        {% endif %}
+      </td>
+      <td class="change-answer">
+        <a href="defence">Change</a>
+      </td>
+    </tr>
   </table>
 
 
