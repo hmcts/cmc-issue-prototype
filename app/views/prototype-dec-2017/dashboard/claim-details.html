@@ -4,15 +4,11 @@
   Michael Jones v Jan Clark
 </h1>
 
-
-
 <h3 class="heading-medium">Issue</h3>
 <p>
   Date issued: {{ now | date("subtract", 3, "months") | date( "DD MMMM YYYY" ) }}<br />
   <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
 </p>
-
-
 
 
 <h3 class="heading-medium">Service</h3>
@@ -21,20 +17,20 @@
 <p>
   Date deemed served: {{ now | date( "DD MMMM YYYY" ) }}<br />
   Served by: Post<br />
-  <a href="../certificate/view">View confirmation of service</a>
+  <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
 </p>
 
 {% elseif data['claim-status'] == 3 %}
 <p>
   Date deemed served: {{ now | date("subtract", 3, "days") | date( "DD" ) }} to {{ now | date("subtract", 1, "days") | date( "DD MMMM YYYY" ) }}<br />
-  <a href="../certificate/view">View confirmation of service</a>
+  <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
 </p>
 
 {% elseif ( data['claim-status'] == 4 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 6 ) %}
 <p>
   Date deemed served: {{ now | date("subtract", 16, "days") | date( "DD MMMM YYYY" ) }}<br />
   Served by: Post<br />
-  <a href="../certificate/view">View confirmation of service</a>
+  <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
 </p>
 
 {% else %}
