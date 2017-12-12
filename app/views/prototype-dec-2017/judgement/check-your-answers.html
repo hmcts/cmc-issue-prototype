@@ -1,0 +1,46 @@
+{% extends "prototype-dec-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">
+  Check your request for judgement
+</h1>
+
+<form method="post" action="submitted" class="form">
+
+  <h2 class="heading-medium">Defendant's date of birth</h2>
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Jan Clarke</td>
+      <td>21 September 1978</td>
+      <td class="change-answer">
+        <a href="dob">Change</a>
+      </td>
+    </tr>
+  </table>
+
+
+  <div class="form-group">
+
+    <h2 class="heading-medium">Signed</h2>
+    <p>The defendant has not filed a defence to my claim and the time for doing so has expired.</p>
+    <p>I request judgment to be entered against the defendant for an amount to be decided by the court and costs.</p>
+
+    <div class="form-group column-two-thirds" style="padding-left: 0">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
+    </div>
+
+    <div class="form-group column-two-thirds" style="padding-left: 0">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
+    </div>
+
+    <div class="form-group column-two-thirds" style="padding-left: 0">
+      <button id="submit" class="button">Request judgement</button>
+    </div>
+
+  </div>
+
+</form>
+
+{% endblock %}

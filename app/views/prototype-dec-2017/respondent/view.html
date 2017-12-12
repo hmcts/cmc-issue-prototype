@@ -1,0 +1,40 @@
+{% extends "prototype-dec-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<a href="#" class="button secondary-button" style="margin-top: 65px; float:right;" onclick="window.print(); return false;">Print</a>
+
+<h1 class="heading-large" style="margin-top: 20px;">
+  Confirmation of response
+</h1>
+
+<h3 class="heading-medium">Date you responded</h3>
+<p>{{ now | date( "DD MMMM YYYY" ) }}</p>
+
+
+<form method="post" action="submitted" class="form">
+
+  <h2 class="heading-medium">Response details</h2>
+
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Response</td>
+      <td>
+        {% if data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
+      </td>
+    </tr>
+  </table>
+
+<!--
+  <h2 class="heading-medium">Statement of truth</h2>
+
+  <p>The defendant believes that the facts in this response are true.<br />I'm duly authorised by the defendant to sign this statement.</p>
+
+  <p>
+    <span class="">Robert Johnson</span><br />
+    Solicitor, Smith &amp; Law Co LLP
+  </p>
+  <p>{{ now | date( "DD MMMM YYYY" ) }}</p>
+-->
+</form>
+
+{% endblock %}

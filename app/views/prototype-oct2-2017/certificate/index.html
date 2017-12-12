@@ -1,0 +1,55 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+
+    <form method="post" action="certificate/upload" class="form">
+       <input id="claim-form" name="documents" type="hidden" value="Claim form">
+       <input id="claim-form" name="documents" type="hidden" value="Particulars of claim">
+
+      <div class="form-group">
+        <h1 class="heading-large">
+          Which documents did you serve?
+        </h1>
+
+         <div class="form-group" id="docs">
+           <div class="form-group">
+             <div class="multiple-choice">
+              <input id="claim-form" name="documents" type="checkbox" value="Claim form" checked="checked" disabled="disabled">
+              <label for="claim-form">Claim form</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="particulars" name="documents" type="checkbox" value="Particulars of claim" checked="checked" disabled="disabled">
+              <label for="particulars">Particulars of claim</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="response-pack" name="documents" type="checkbox" value="Response pack">
+              <label for="response-pack">Response pack</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="schedule-of-losses" name="documents" type="checkbox" value="Schedule of loss">
+              <label for="schedule-of-losses">Schedule of loss</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="medical-report" name="documents" type="checkbox" value="Medical reports">
+              <label for="medical-report">Medical reports</label>
+            </div>
+            <div class="multiple-choice" data-target="other-doc-box">
+              <input id="other" name="documents" type="checkbox" value="Other documents">
+              <label for="other">Other documents</label>
+            </div>
+              <div class="form-group js-hidden panel panel-border-narrow" id="other-doc-box">
+                <label class="form-label" for="other-doc" style="float: none;">List them here:</label>
+                <textarea class="form-control" id="other-doc" name="other-doc" cols="20" rows="4" style="width:400px;";></textarea>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}

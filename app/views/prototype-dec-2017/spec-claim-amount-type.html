@@ -1,0 +1,24 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Do you know the total interest amount?</h1>
+<form action="spec-claim-amount-type" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Do you know the total interest amount</legend>
+
+    <div class="multiple-choice">
+      <input id="company" name="interestTotal" type="radio" value="yes" {{ checked('interestTotal','yes') }}>
+      <label for="company">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="individual" name="interestTotal" type="radio" value="no" {{ checked('interestTotal','no') }}>
+      <label for="individual">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

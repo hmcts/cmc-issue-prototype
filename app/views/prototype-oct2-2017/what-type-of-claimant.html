@@ -1,0 +1,64 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">
+  {% if claimants.length > 0 %}
+    <span class="form-hint">Claimant {{ claimants.length + 1 }}</span>
+  {% endif %}
+  Choose claimant type</h1>
+
+{% if claimants.length == 0 %}
+<p>You'll have a chance to add more claimants later.</p>
+{% endif %}
+
+<form action="claimant-address" id="form" method="post" class="form-group">
+    <fieldset class="form-group">
+      <div class="multiple-choice" data-target="company-name">
+          <input id="company" name="claimantType" type="radio" value="company" {{ checked('claimantType','company') }}>
+          <label for="company">An organisation</label>
+      </div>
+
+      <div id="company-name" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="claimant_company_name">Organisation name</label>
+          <input class="form-control" type="text" id="claimant_company_name" name="claimant_company_name" value="{{ data['claimant_company_name'] }}">
+        </div>
+      </div>
+
+<!--
+      <div class="multiple-choice" data-target="trader-name">
+          <input id="trader" name="claimantType" type="radio" value="trader" {{ checked('claimantType','trader') }}>
+          <label for="trader">A sole trader</label>
+      </div>
+
+      <div id="trader-name" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="claimant_name">Full name</label>
+          <textarea type="text" class="form-control" id="claimant_name" name="claimant_name" value="{{ data['claimant_name'] }}" style="height: 38px;">{{ data['claimant_name'] }}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="claimant_company_name">Business name (optional)</label>
+          <input class="form-control" type="text" id="claimant_company_name" name="claimant_company_name" value="{{ data['claimant_company_name'] }}">
+        </div>
+      </div>
+-->
+      <div class="multiple-choice" data-target="individual-name">
+        <input id="individual" name="claimantType" type="radio" value="individual" {{ checked('claimantType','individual') }}>
+        <label for="individual">An individual</label>
+      </div>
+
+      <div id="individual-name" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="claimant_title">Title</label>
+          <input type="text" class="form-control form-control-1-4" id="claimant_title" name="claimant_title" value="{{ data['claimant_title'] }}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="claimant_name">Full name</label>
+          <textarea type="text" class="form-control" id="claimant_name" name="claimant_name" value="{{ data['claimant_name'] }}" style="height: 38px;">{{ data['claimant_name'] }}</textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Save and continue">
+    </div>
+</form>
+{% endblock %}

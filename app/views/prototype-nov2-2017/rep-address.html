@@ -1,0 +1,23 @@
+{% extends "prototype-nov2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} 
+{% import "prototype-nov2-2017/address.html" as address%}
+{% block main_content %}
+
+<form action="{{action}}" method="post" class="postcode">
+
+	<h1 class="heading-large">
+		<span class="form-hint">Defendant: Jan Clark</span>
+		Your organisation address
+	</h1>
+
+	<fieldset class="form-group">
+		<legend class="visually-hidden">Address</legend>
+		{{ address.lookup('rep') }}
+	</fieldset>
+	
+	<div class="form-group">
+		<input type="submit" class="button" id="continue-button" value="Save and continue">
+	</div>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "prototype-nov2-2017/index.html" %}
+
+{% block main_content %}
+
+    <h1 class="heading-large">
+        <span class="form-hint">Defendant: Jan Clark</span>
+        Enter claim references
+    </h1>
+
+  <form action="{{ action }}" method="post">
+
+    <div class="form-group">
+      <label class="form-label" for="your-ref">Your reference (optional)</label>
+      <input id="your-ref" name="your-ref" type="text" class="form-control" value="{{ data['your-ref'] }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="defendant-ref">Defendant's reference (optional)</label>
+      <input id="defendant-ref" name="defendant-ref" type="text" class="form-control" value="{{ data['defendant-ref'] }}">
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Save and continue">
+    </div>
+  </form>
+
+{% endblock %}

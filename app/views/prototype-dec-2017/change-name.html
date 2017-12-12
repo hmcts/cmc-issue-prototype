@@ -1,0 +1,20 @@
+{% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Correct the defendant's name</h1>
+<p>
+  Use this page to tell the claimant if the defendant's name was incorrect on the claim form.
+</p>
+<p>
+  It's up to the claimant to decide whether to make an application to correct it.</p>
+<form action="check-your-answers" method="post">
+  <div class="form-group">
+    <label for="name" class="form-label">Correct defendant name</label>
+    <input id="name" name="name" type="text" class="name" value="Jan Clarke">
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

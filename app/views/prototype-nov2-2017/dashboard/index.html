@@ -1,0 +1,47 @@
+{% extends "prototype-nov2-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<div class="column-two-thirds" id="dashboard">
+
+	<h1 class="heading-large">
+	Manage your claims
+	</h1>
+
+	<h1 class="heading-medium" style="margin-bottom: 0">Find a claim</h2>
+
+	<p>Once you've found a claim you can:</p>
+
+	<ul class="list list-bullet">
+		<li>confirm you've served the claim form on the defendant</li>
+		<li>download documents related to the claim</li>
+	</ul>
+
+
+	<h1 class="heading-small">Search by claim number</h2>
+
+	<form id="singular" action="dashboard/claim-details" class="searchfield" method="post">
+	  <input type="search" name="search" id="search" class="search-input">
+	  <button type="submit" class="search-submit" title="search">Search</button>
+	</form>
+
+</div>
+
+
+<div class="column-third" style="padding-right: 0;">
+	<aside class="govuk-related-items" role="complementary">
+        <nav role="navigation" aria-labelledby="subsection-title">
+			<a href="start" class="secondary-button" id="new-claim">Issue a new claim</a>
+        </nav>
+    </aside>
+</div>
+
+{% endblock %}
+
+{% block extra_js_1 %}
+
+<script>
+$(function(){
+    $("#search").focus();
+});
+</script>
+
+{% endblock %}

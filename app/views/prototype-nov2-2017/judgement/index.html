@@ -1,0 +1,25 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <form method="post" action="dob" class="form">
+
+    <h1 class="heading-large">Who would you like to request judgement on?</h1>
+
+    <div class="form-group" id="defendants">
+     <div class="form-group">
+      <div class="multiple-choice">
+        <input id="def1" name="defendants" type="checkbox" value="Goddard Plumbing">
+        <label for="def1">Jan Clarke</label>
+      </div>
+      <div class="multiple-choice">
+        <input id="def2" name="defendants" type="checkbox" value="Kingsley Building Ltd">
+        <label for="def2">Kingsley Building Ltd</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Save and continue">
+    </div>
+
+  </form>
+
+  {% endblock %}

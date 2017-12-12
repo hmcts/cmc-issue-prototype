@@ -11,6 +11,8 @@ $path: "/public/images/";
 @import 'patterns/task-list';
 @import 'patterns/timeline';
 @import 'patterns/secondary_button';
+@import 'patterns/dropzone';
+@import 'patterns/lists';
 
 // Related items
 // (These styles will be moved to GOV.UK elements, duplicating here for now.)
@@ -246,34 +248,20 @@ img.card-image {
     width: 15%;
   }
   tr td:nth-child(2) {
-    width: 26%;
+    width: 21%;
   }
   th:nth-child(3) {
-    width: 16%;
+    width: 18%;
   }
   th:nth-child(4) {
-    width: 29%;
+    width: 35%;
   }
   th:nth-child(5) {
-    width: 10%;
+    width: 12%;
   }
 
 }
 
-.claim-dashboard2 .due {
- background-color: #949494;
- border-radius:    4px;
- color:            #FFF;
- display:          inline-block;
- height:           14px;
- font-size:        14px;
- width:            60px;
- padding:          5px; 
-}
-
-.claim-dashboard2 .due.soon {
-  background-color: #CC3300;
-}
 
 ol.tabs {
   border-bottom: 1px solid grey;
@@ -380,15 +368,13 @@ a.change {
 .searchfield {
   width: 400px;
   border: 1px solid #bfc1c3;
-  float: right
-
 }
 
-.search-bar .searchfield {
+.searchfield {
   position: relative;
 }
 
-.search-bar .search-input {
+.search-input {
   margin: 0;
   padding: 0 0 0 10px;
   display: block;
@@ -400,10 +386,10 @@ a.change {
   line-height: 1.31579;
   font-weight: 400;
   border: none;
-  width: 92%;
+  width: 390px;
 }
 
-.search-bar .search-submit {
+.search-submit {
   bottom: 0;
   right: 0;
   height: 50px;
@@ -419,6 +405,7 @@ a.change {
   background-position: -12.5% 50%;
   border: none;
 }
+
 
 .center {
   text-align: center;
@@ -560,4 +547,136 @@ input.postcode {
 
 #manual-address.abroad #country-group {
   display: block;
+}
+
+div.form-group.form-group-hour {
+  margin-right: 10px;
+}
+
+div.form-group.form-group-minutes {
+  margin-right: 30px;
+}
+
+div.form-group.form-group-colon {
+  width: 16px;
+  margin-right: 0px;
+  margin-top: 34px;
+}
+
+#am-pm {
+  margin-top: 4px;
+  width:      66px;
+}
+
+.claim-dashboard2 .secondary-button {
+    top: -3px;
+    position: relative;
+}
+
+table th {
+  font-weight: 700;
+}
+
+h3.heading-medium {
+  margin-bottom: 5px;
+}
+
+div.dz-error-message, div.dz-error-mark, div.dz-success-mark {
+  display: none !important;
+}
+
+ul.docs li {
+  list-style:           disc;
+  list-style-position:  outside;
+  margin-left:          20px;
+}
+
+.steps {
+    padding-left: 0;
+    margin-left: 0;
+    overflow: hidden
+}
+
+.steps>li {
+    background-position: 0 0.75em;
+    background-repeat: no-repeat;
+    list-style-type: decimal;
+    margin-left: 0;
+    padding: 0.75em 0 0.75em 2.2em
+}
+
+.steps>li:nth-child(1) {
+    background-image: url(/public/images/icon-step-1.png)
+}
+
+.steps>li:nth-child(2) {
+    background-image: url(/public/images/icon-step-2.png)
+}
+
+.steps>li:nth-child(3) {
+    background-image: url(/public/images/icon-step-3.png)
+}
+
+.downloads li, a.download {
+    background-image: url(/public/images/download-bullet.png);
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    line-height: 32px;
+    background-position-y: center;
+}
+
+table a.download {
+    line-height: unset;
+}
+
+.downloads.certificates li:last-child {
+  margin-top: 10px;
+}
+
+p.download {
+    background-image: url(/public/images/download.png);
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    height: 40px;
+    line-height: 40px;
+    background-color: #DEE0E2;
+    padding: 15px 15px 15px 60px;
+}
+
+#dashboard .list {
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+
+#dashboard .list li {
+  margin-left: 20px;
+}
+
+#dashboard {
+  padding: 0;
+}
+
+.column-third aside.govuk-related-items {
+  margin-top: 45px;
+  padding-top: 15px;
+}
+
+#docs .multiple-choice input:disabled + label {
+  opacity: 1;
+}
+
+#docs .multiple-choice [type=checkbox]:disabled + label::before {
+  border: none;
+}
+
+#uploads h3 {
+  margin-top: 45px;
+}
+
+#uploads .form-group, .uploaded-files, #submit.upload {
+  display: none;
+}
+
+#uploads {
+  margin-bottom: 45px;
 }

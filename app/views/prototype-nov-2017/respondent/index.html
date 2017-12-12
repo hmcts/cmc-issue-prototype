@@ -1,0 +1,37 @@
+{% extends "prototype-nov-2017/dashboard-layout.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} {% block main_content %}
+
+<div class="column-two-thirds" id="dashboard">
+
+	<h1 class="heading-large">
+		Respond to a claim
+	</h1>
+
+	<h1 class="heading-small">Enter claim number</h2>
+
+	<form>
+	 	<input type="text" style="height: 45px; width: 300px; margin-bottom: 20px;"><br />
+		<a class="button button-start" href="respondent/pin" role="button">Start now</a>
+	</form>
+
+</div>
+
+
+<div class="column-third" style="padding-right: 0;">
+	<aside class="govuk-related-items" role="complementary">
+        <nav role="navigation" aria-labelledby="subsection-title">
+			<a href="respondent/review-my-details">Amend my details</a>
+        </nav>
+    </aside>
+</div>
+
+{% endblock %}
+
+{% block extra_js_1 %}
+
+<script>
+$(function(){
+    $("#search").focus();
+});
+</script>
+
+{% endblock %}

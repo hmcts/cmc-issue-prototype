@@ -1,0 +1,195 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+
+    <form method="post" action="when" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        {{ defendant.defendantName }}
+      </h1>
+
+      {% if (defendant.howServed == 'First class post or other next-day service') or (defendant.howServed == 'Delivered or left at a permitted place') or (defendant.howServed == 'Personally handed to or left with recipient')%}
+
+      <div class="form-group">
+        <h2 class="heading-medium">Service address</h2>
+        <p class="form-hint">You must have served to the service address on your claim form:</p>
+        <p class="form-group-compound">
+          {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
+          {% for line in defendant.serviceAddress.split( '\n' ) %}
+            {{line}}<br />
+          {% endfor %}
+        </p>
+
+      </div>
+
+      {% elseif defendant.howServed == 'Document Exchange' %}
+      <div class="form-group">
+        <h2 class="heading-medium">DX address</h2>
+        <input class="form-control" type="text" id="dx-address" name="dx-address">
+      </div>
+
+      {% elseif defendant.howServed == 'Email' %}
+      <div class="form-group">
+        <h2 class="heading-medium">Email address</h2>
+        <input class="form-control" type="text" id="email-address" name="email-address">
+      </div>
+
+      {% elseif defendant.howServed == 'Other electronic method' %}
+      <div class="form-group">        
+        <h2 class="heading-medium">Electronic address/identifier</h2>
+        <input class="form-control" type="text" id="other-electronic-address" name="other-electronic-address">
+      </div>
+
+      {% elseif defendant.howServed == 'Fax' %}
+      <div class="form-group">
+        <h2 class="heading-medium">Fax number</h2>
+        <input class="form-control" type="text" id="fax-number" name="fax-number" value="">
+      </div>
+
+      {% endif %}
+
+
+      {% if (defendant.howServed != 'Email' ) and ( defendant.howServed != 'Other electronic method' ) %}
+
+      <div class="form-group" id="destination-type">
+        <h2 class="heading-medium">
+          I served to the defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
+        </h2>
+
+        {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) %}
+         <div class="multiple-choice">
+          <input id="usual-res" name="destination" type="radio" value="usual residence">
+          <label for="usual-res">Usual residence</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="last-res" name="destination" type="radio" value="last known residence">
+          <label for="last-res">Last known residence</label>
+        </div>
+          {% if defendant.defendantType == 'individual' %}
+          <div class="multiple-choice" data-target="other-dest-box">
+            <input id="other-dest" name="destination" type="radio" value="other">
+            <label for="other-dest">Other</label>
+          </div>
+          <div class="form-group js-hidden multiple-choice" id="other-dest-box">
+            <label class="form-label" for="other-dest-value" style="float: none;">Please specify:</label>
+            <textarea class="form-control" id="other-dest-value" name="other-dest-value" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
+          </div>
+          {% endif %}
+        {% endif %}
+
+        {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'trader' ) %}
+
+        {% if defendant.defendantType == 'company' %}
+        <div class="multiple-choice">
+          <input id="registered-office" name="destination" type="radio" value="registered office">
+          <label for="registered-office">Registered office address</label>
+        </div>
+        {% endif %}
+         <div class="multiple-choice">
+          <input id="bus" name="destination" type="radio" value="place of business">
+          <label for="bus">Place of business</label>
+        </div>
+
+
+        {% if defendant.defendantType == 'company' %}
+         <div class="multiple-choice">
+          <input id="princ-bus" name="destination" type="radio" value="principal place of business">
+          <label for="princ-bus">Principal place of business</label>
+        </div>
+         <div class="multiple-choice">
+          <input id="last-bus" name="destination" type="radio" value="last known place of business">
+          <label for="last-bus">Last known place of business</label>
+        </div>
+        {% endif %}
+        <div class="form-group">
+          <details role="group">
+            <summary role="button" aria-controls="details-content-0" aria-expanded="false" style="margin-left: 16px;"><span class="summary" style="padding-left: 16px;">More options</span></summary>
+            <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
+
+
+            {% if defendant.defendantType == 'trader' %}
+             <div class="multiple-choice">
+              <input id="princ-bus" name="destination" type="radio" value="principal place of business">
+              <label for="princ-bus">Principal place of business</label>
+            </div>
+             <div class="multiple-choice">
+              <input id="last-bus" name="destination" type="radio" value="last known place of business">
+              <label for="last-bus">Last known place of business</label>
+            </div>
+            {% endif %}
+
+             <div class="multiple-choice">
+              <input id="last-princ" name="destination" type="radio" value="last known principal place of business">
+              <label for="last-princ">Last known principal place of business</label>
+            </div>
+            {% if defendant.defendantType == 'company' %}
+             <div class="multiple-choice">
+              <input id="princ-office" name="destination" type="radio" value="principal office of the partnership">
+              <label for="princ-office">Principal office (for a partnership)</label>
+            </div>
+             <div class="multiple-choice">
+              <input id="princ-corp" name="destination" type="radio" value="principal office of the corporation">
+              <label for="princ-corp">Principal office (for a corporation)</label>
+            </div>
+             <div class="multiple-choice">
+              <input id="princ-comp" name="destination" type="radio" value="principal office of the company">
+              <label for="princ-comp">Principal office (for a company)</label>
+            </div>
+             <div class="multiple-choice">
+              <input id="jurisdiction" name="destination" type="radio" value="place of business of the partnership/company/corporation within the jurisdiction with a connection to claim">
+              <label for="jurisdiction">Place of business of a partnership, company or corporation within the jurisdiction with a connection to claim</label>
+            </div>
+            {% endif %}
+
+            <div class="multiple-choice" data-target="other-dest-box">
+              <input id="other-dest" name="destination" type="radio" value="other">
+              <label for="other-dest">Other</label>
+            </div>
+            <div class="form-group js-hidden multiple-choice" id="other-dest-box">
+              <label class="form-label" for="other-dest-value" style="float: none;">Please specify:</label>
+              <textarea class="form-control" id="other-dest-value" name="other-dest-value" cols="20" rows="4" style="width:400px; margin-left: 12px;";></textarea>
+            </div>
+
+            </div>
+          </details>
+        </div>
+
+
+        {% endif %}
+
+
+      </div>
+
+
+
+      {% endif %}
+
+
+        {% if defendant.howServed == 'Personally handed to or left with recipient' %}
+      <div class="form-group">
+        <h2 class="heading-medium">Who did you leave it with?</h2>
+        <input class="form-control" type="text" id="left-with" name="left-with" value="">
+      </div>
+        {% endif %}
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}
+
+    {% block page_scripts %}
+    <script>
+    $('input[name="how-served"]').change(function() {
+      strHow = $('input[name="how-served"]:checked').val();
+      if (strHow == 'Email' || strHow == 'Other electronic method') {
+        $('#destination-type').hide();
+      } else {
+        $('#destination-type').show();
+      }
+    });
+    </script>
+    {% endblock %}

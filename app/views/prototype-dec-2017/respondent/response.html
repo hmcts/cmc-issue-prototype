@@ -1,0 +1,33 @@
+{% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <h1 class="heading-large">
+        <span class="form-hint">Defendant: Jan Clark</span>
+        What do you want to do?
+    </h1>
+    
+    <form action="response" method="post">
+
+      <fieldset class="form-group">
+
+        <div class="multiple-choice">
+            <input id="defend-all" name="response" type="radio" value="defend all of the claim">
+            <label for="defend-all">Defend all of the claim</label>
+        </div>
+        <div class="multiple-choice">
+            <input id="defend-part" name="response" type="radio" value="defend part of the claim">
+            <label for="defend-part">Defend part of the claim</label>
+        </div>
+        <div class="multiple-choice">
+            <input id="admit" name="response" type="radio" value="admit all of the claim">
+            <label for="admit">Admit all of the claim</label>
+        </div>
+
+      </fieldset>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+
+    </form>
+
+{% endblock %}
