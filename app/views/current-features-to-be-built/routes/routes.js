@@ -1,17 +1,16 @@
 module.exports = function(app){
 
-
-    app.get('*/current-features-to-be-built/what-type-of-claimant', function(req, res){
+    app.get('*/prototype-dec-2017/claimant-name', function(req, res){
         var claimants = req.session.claimants || [];
 
-        res.render('current-features-to-be-built/what-type-of-claimant', { claimants: claimants })
+        res.render('prototype-dec-2017/claimant-name', { claimants: claimants })
     });
 
-    app.post('*/current-features-to-be-built/what-type-of-claimant', function(req, res){
+    app.post('*/current-features-to-be-built/claimant-name', function(req, res){
         var claimants = req.session.claimants || [];
 
-        if (!req.body.claimantType) {
-            res.render('current-features-to-be-built/what-type-of-claimant', { claimants: claimants })
+        if (!req.session.data['claimant_name'] ) {
+            res.render('current-features-to-be-built/claimant-name', { claimants: claimants })
         }
         else {
             res.redirect('claimant-address')
@@ -45,7 +44,7 @@ module.exports = function(app){
             req.session.data['claimant_name'] = req.session.data['claimant_rep_company'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
             req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = req.session.data['claimantType'] = req.session.data['claimant_title'] = undefined
 
-            res.redirect('what-type-of-claimant')
+            res.redirect('claimant-name')
         } else {
             res.redirect('defendant-type');
         }
@@ -79,10 +78,10 @@ module.exports = function(app){
     });
 
     app.post('*/current-features-to-be-built/preferred-court', function(req, res){
-        res.redirect('what-type-of-claimant')
+        res.redirect('claimant-name')
     });
 
-    app.post('*/current-features-to-be-built/what-type-of-claimant', function(req, res){
+    app.post('*/current-features-to-be-built/claimant-name', function(req, res){
         res.redirect('claimant-address')
     });
 
@@ -111,7 +110,7 @@ module.exports = function(app){
             req.session.data['claimant_name'] = req.session.data['claimant_title'] = req.session.data['claimant_company_name'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
             req.session.data['claimant_town'] = req.session.data['claimant_postcode'] = req.session.data['claimantType'] = undefined
 
-            res.redirect('what-type-of-claimant')
+            res.redirect('claimant-name')
         }
         else {
             res.redirect('defendant-type')
