@@ -60,23 +60,23 @@
 <h3 class="heading-medium">Response</h3>
 <p>
   Claimant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMMM YYYY" ) }}<br />
-  <a href='../judgement/dob' class="button secondary-button" style="margin-top: 5px;">Request judgement</a>
+  <a href='../judgment/dob' class="button secondary-button" style="margin-top: 5px;">Request judgment</a>
 </p>
 
 {% elseif data['claim-status'] == 5 %}
 <h3 class="heading-medium">Response</h3>
 <p>
   Claimant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMMM YYYY" ) }}<br />
-  <a href='../judgement' class="button secondary-button" style="margin-top: 5px;">Request judgement</a>
+  <a href='../judgment' class="button secondary-button" style="margin-top: 5px;">Request judgment</a>
 </p>
 
 {% elseif data['claim-status'] == 6 %}
 <h3 class="heading-medium">Response</h3>
 <p>
   Claimant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMMM YYYY" ) }}<br />
-  Date judgement requested: {{ now | date( "DD MMMM YYYY" ) }}<br />
-  <a href="../judgement/view">View confirmation of request for judgement</a><br />
-  <a target="_blank" href="#" class="download">Download the judgement order</a> (PDF, 234 KB)
+  Date judgment requested: {{ now | date( "DD MMMM YYYY" ) }}<br />
+  <a href="../judgment/view">View confirmation of request for judgment</a><br />
+  <a target="_blank" href="#" class="download">Download the judgment order</a> (PDF, 234 KB)
 </p>
 
 {% endif %}
@@ -160,9 +160,9 @@
     <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>1. Issued</option>
     <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>2. Served (single method)</option>
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>3. Served (mixed method)</option>
-    <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>4. Request judgement (single)</option>
-    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>5. Request judgement (multi)</option>
-    <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>6. Judgement requested</option>
+    <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>4. Request judgment (single)</option>
+    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>5. Request judgment (multi)</option>
+    <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>6. Judgment requested</option>
   </select>
 </form>
 
