@@ -8,7 +8,11 @@
   <p>Date submitted: {{ now | date( "DD MMMM YYYY" ) }}</p>
 </div>
 
+{% if data['judgment-type'] == 2 %}
+<p>This case will not be transferred to the court until {{ now | date('add', 13, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendants' response period has elapsed.</p>
+{% else %}
 <p>We'll check if the defendant has responded by paper and contact you in 5 days.</p>
+{% endif %}
 
 <p><a href='../judgment/view'>Check or print the details</a> you gave us to request judgment.</p>
 
