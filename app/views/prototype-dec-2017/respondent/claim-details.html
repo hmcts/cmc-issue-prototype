@@ -141,7 +141,7 @@
       </div>
 
 
-      {% if data['claim-status'] >= 4  %}
+      {% if data['claim-status'] > 4  %}
       <div class="subsection js-subsection">
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Judgment</h2>
@@ -208,6 +208,7 @@
     accordion = new GOVUK.Modules.AccordionWithDescriptions();
     $element = $('#accordian');
     accordion.start($element);
+    accordion.openLastItem($element);
 </script>
 
 <form method="get" action="#" class="form" >

@@ -244,7 +244,17 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
         return $subsectionContent.hasClass('js-hidden');
       }
 
+
     }
+
+
+
+    this.openLastItem = function($element) {
+
+        var subsectionView = new SubsectionView( $element.find('.subsection:last-child'));
+        subsectionView.open();
+      }
+
 
     function SubsectionView ($subsectionElement) {
       var that = this;
