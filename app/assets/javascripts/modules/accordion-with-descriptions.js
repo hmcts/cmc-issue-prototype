@@ -251,10 +251,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
     this.openLastItem = function($element) {
 
-        var $subsectionContent = $element.find('.subsection__content');
-
-        var $subsection = $( $subsectionContent[ $subsectionContent.length-1 ] ).parent('.js-subsection');
-        var subsectionView = new SubsectionView($subsection);
+        var subsectionView = new SubsectionView( $element.find('.subsection:last-child'));
         subsectionView.open();
       }
 
