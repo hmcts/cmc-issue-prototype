@@ -12,16 +12,23 @@
 
 <p><a href='../judgment/view'>Check or print the details</a> you gave us to request judgment.</p>
 
-
-<h2 class="bold-medium"></h1>
-<p class="download certificate">
-	<a target="_blank" href="/public/documents/Judgment-order.pdf">Download judgment order</a> (PDF, 456 KB)
-</p>
-
-
 <p><a class="button" href="../dashboard/claim-details?claim-status=6" role="button">View this claim</a></p>
+
+
+{% endblock %}
+
+
+{% block page_scripts %}
+
+<form method="get" action="#" class="form" >
+  <select id="judgment-type" name="judgment-type" onchange="this.form.submit()">
+    <option  value="1" {% if (data['judgment-type'] == 1) or (data['judgment-type']) < 0 %}selected{% endif %}>Single / all</option>
+    <option value="2" {% if data['judgment-type'] == 2 %}selected{% endif %}>One of X</option>
+  </select>
+</form>
 
 <style type="text/css">
 	.link-back{display: none}
 </style>
+
 {% endblock %}
