@@ -68,6 +68,9 @@
             {% elseif ( data['claim-status'] == 4 ) or ( data['claim-status'] == 6 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 7 ) %}
             <span>Deemed served: {{ now | date("subtract", 16, "days") | date( "DD MMM YYYY" ) }}</span>
 
+            {% elseif ( data['claim-status'] == 6.2 ) %}
+            <span>Deemed served: {{ now | date("subtract", 29, "days") | date( "DD MMM YYYY" ) }}</span>
+
             {% elseif ( data['claim-status'] == 5 ) or ( data['claim-status'] == 5.1) %}
             <span>Deemed served: {{ now | date("subtract", 18, "days") | date( "DD" ) }} to {{ now | date("subtract", 16, "days") | date( "DD MMM YYYY" ) }}</span>
 
@@ -136,7 +139,7 @@
             <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
           </p>
 
-          {% elseif ( data['claim-status'] == 3 ) or ( data['claim-status'] == 3.2 ) or ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 3.4 ) or ( data['claim-status'] == 4 ) or ( data['claim-status'] == 6 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 7 ) %}
+          {% elseif ( data['claim-status'] == 3 ) or ( data['claim-status'] == 3.2 ) or ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 3.4 ) or ( data['claim-status'] == 4 ) or ( data['claim-status'] == 6 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2 ) or ( data['claim-status'] == 7 ) %}
           <p>
             Served by: Post<br />
             <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
@@ -180,9 +183,24 @@
               Received: {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}
             </span>
 
-            {% elseif ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) %}
+            {% elseif ( data['claim-status'] == 3.3 ) %}
             <span>
               Responses due: {{ now | date("add", 20, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 5.1 ) %}
+            <span>
+              Responses due: {{ now | date("add", 10, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 6.1 ) %}
+            <span>
+              Responses due: {{ now | date("add", 12, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 6.2 ) %}
+            <span>
+              Responses due: {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3.4 %}
@@ -258,7 +276,7 @@
               <a href="../respondent/view">View response</a>
             </p>
 
-            {% elseif ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) %}
+            {% elseif ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2) %}
             <h3 class="heading-small">Responses received</h3>
 
             <table>
@@ -297,21 +315,27 @@
               <tbody>
               <tr class="no-border">
                 <td>2. Goddard Plumbing</td>
-                {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) %}
+                {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2 ) %}
                 <td>Acknowledged</td>
                 {% else %}
                 <td>No response</td>
                 {% endif %}
                 <td>
-                {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) %}
+                {% if ( data['claim-status'] == 3.3 ) %}
                    {{ now | date("add", 20, "days") | date( "DD MMM YYYY" ) }}
+                   {% elseif ( data['claim-status'] == 5.1 ) %}
+                   {{ now | date("add", 10, "days") | date( "DD MMM YYYY" ) }}
+                   {% elseif ( data['claim-status'] == 6.1 ) %}
+                   {{ now | date("add", 12, "days") | date( "DD MMM YYYY" ) }}
+                   {% elseif ( data['claim-status'] == 6.2 ) %}
+                   {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}
                    {% else %}
                    {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}
                    {% endif %}
                 </td>
               </tr>
 
-              {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) %}
+              {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2 ) %}
               <tr class="download no-border">
                 <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
               </tr>
@@ -322,6 +346,8 @@
                 <td>
                    {% if data['claim-status'] == 3.3 %}
                    {{ now | date("add", 6, "days") | date( "DD MMM YYYY" ) }}
+                   {% elseif data['claim-status'] == 6.2 %}
+                   {{ now | date("subtract", 15, "days") | date( "DD MMM YYYY" ) }}
                    {% else %}
                    {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}
                    {% endif %}
@@ -398,6 +424,8 @@
 
           {% if ( data['claim-status'] == 4 ) or ( data['claim-status'] == 5 )or ( data['claim-status'] == 5.1 )  %}
           <span>Available from: {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}</span>
+          {% elseif data['claim-status'] == 6.2 %}
+          <span>Available from: {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}</span>
           {% elseif data['claim-status'] < 6 %}
           <span>Available from: {{ now | date("subtract", 5, "days") | date( "DD MMM YYYY" ) }}</span>
           {% else %}
@@ -448,7 +476,7 @@
           </p>
 
           <p>
-            The following defendant has until {{ now | date("add", 20, "days") | date( "DD MMM YYYY" ) }} to respond, after which judgment may be requested.
+            The following defendant has until {{ now | date("add", 10, "days") | date( "DD MMM YYYY" ) }} to respond, after which judgment may be requested and the case transferred to the court.
           </p>
 
           <ul>
@@ -491,10 +519,43 @@
             <a href="../judgment/view">View confirmation of request for judgment</a>
           </p>
           <p>
-            This case will not be transferred to the court until {{ now | date('add', 13, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendants' response period has elapsed.
+            This case will not be transferred to the court until {{ now | date('add', 12, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendants' response period has elapsed.
           </p>
 
 
+          {% elseif ( data['claim-status'] == 6.2 ) %}
+          <p>
+            The following defendant did not respond by {{ now | date("subtract", 15, "days") | date( "DD MMM YYYY" ) }}.
+          </p>
+
+          <ul>
+            <li>3. Kingsley Building Ltd </li>
+          </ul>
+
+          <p style="margin-top: 10px;">
+            Judgement was requested on {{ now | date("subtract", 12, "days" ) | date( "DD MMM YYYY" ) }}.
+          </p>
+          <p>
+            <a href="../judgment/view">View confirmation of request for judgment</a>
+          </p>
+
+          <p>
+            The following defendant did not respond by {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}.
+          </p>
+
+          <ul>
+            <li>2. Goddard Plumbing</li>
+          </ul>
+
+          <p>
+            You can now request judgement and transfer the case to the court.
+          </p>
+          <p>
+            <a href='../judgment' class="button secondary-button" style="margin-top: 5px;">Request judgment</a>
+          </p>
+          <p>
+            <a href='../judgment' class="button secondary-button" style="margin-top: 5px;">Transfer to court</a>
+          </p>
 
           {% elseif data['claim-status'] == 7 %}
           <p>
@@ -562,7 +623,8 @@
     <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Request judgment (multi)</option>
     <option value="5.1" {% if data['claim-status'] == 5.1 %}selected{% endif %}>Request judgment (not all ready)</option>
     <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>Judgment requested</option>
-    <option value="X" {% if data['claim-status'] == 6.1 %}selected{% endif %}>TODO Judgment requested - not all ready</option>
+    <option value="6.1" {% if data['claim-status'] == 6.1 %}selected{% endif %}>Judgment requested - not all ready</option>
+    <option value="6.2" {% if data['claim-status'] == 6.2 %}selected{% endif %}>Judgment requested - second ready</option>
     <option value="7" {% if data['claim-status'] == 7 %}selected{% endif %}>Order available</option>
   </select>
 </form>
