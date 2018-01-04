@@ -834,6 +834,15 @@ module.exports = function(app){
 
     });
 
+    app.post('*/prototype-dec-2017/judgment/transfer', function(req, res){
+
+        if ( req.session.data['transfer'] === 'yes' ) {
+            res.redirect('business')
+        } else {
+            res.redirect('transferred')
+        }
+    });
+
 }
 
 
