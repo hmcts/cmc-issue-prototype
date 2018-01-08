@@ -1,0 +1,16 @@
+{% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've approved an extension</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <p class="form-group-compound">New response deadline: {{ now | date("add", 32, "days" ) | date( "DD MMMM YYYY" ) }}</p>
+</div>
+
+<p><a class="button" href="../dashboard/claim-details?claim-status=3.11" role="button">View this claim</a></p>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+
+{% endblock %}

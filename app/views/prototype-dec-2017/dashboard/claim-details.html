@@ -53,7 +53,7 @@
       <div class="subsection js-subsection">
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Service</h2>
-            {% if data['claim-status'] == 2 %}
+            {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 )  or ( data['claim-status'] == 3.11 )  or ( data['claim-status'] == 3.12 ) %}
             <span>Deemed served: {{ now | date( "DD MMM YYYY" ) }}</span>
 
             {% elseif data['claim-status'] == 3 %}
@@ -81,7 +81,7 @@
         <div class="subsection__content js-subsection-content" id="subsection_content_0">
           
 
-          {% if data['claim-status'] == 2 %}
+          {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.11 )  or ( data['claim-status'] == 3.12 ) %}
           <p>
             Served by: Post<br />
             <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
@@ -168,7 +168,7 @@
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Response</h2>
 
-            {% if data['claim-status'] == 2 %}
+            {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.12 ) %}
             <span>
               Responses due: {{ now | date("add", 14, "days") | date( "DD MMM YYYY" ) }}
             </span>
@@ -176,6 +176,11 @@
             {% elseif data['claim-status'] == 3 %}
             <span>
               Responses due: {{ now | date("add", 13, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif data['claim-status'] == 3.11 %}
+            <span>
+              Responses due: {{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3.2 %}
@@ -267,6 +272,52 @@
               </tr>
               </tbody>
             </table>
+
+
+            {% elseif ( data['claim-status'] == 3.11 ) %}
+
+            <table>
+              <thead>
+              <tr>
+                <th scope="col">Defendant</th>
+                <th scope="col">Status</th>
+                <th scope="col">Response due</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr class="no-border">
+                <td>1. Jan Clarke trading as<br />&nbsp;&nbsp;&nbsp;&nbsp;Clarke Construction</td>
+                <td>Acknowledged</td>
+                <td>{{ now | date("add", 14, "days") | date( "DD MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="download no-border">
+                <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+              </tr>
+
+              <tr class="no-border">
+                <td>2. Goddard Plumbing</td>
+                <td>Extended</td>
+                <td>{{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}</td>
+              </tr>
+
+              <tr class="no-border">
+                <td>3. Kingsley Building Ltd</td>
+                <td>No response</td>
+                <td>{{ now | date("add", 14, "days") | date( "DD MMM YYYY" ) }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+
+            {% elseif ( data['claim-status'] == 3.12 ) %}
+            <p>
+              No responses recevied.<br />
+              A request by Goddard Plumbing for an extension to {{ now | date("add", 22, "days") | date( "DD MMM YYYY" ) }} was rejected on {{ now | date( "DD MMM YYYY" ) }}.
+            </p>
+
+
+
 
 
             {% elseif data['claim-status'] == 3.2 %}
@@ -400,6 +451,14 @@
                 </tr>
               </tbody>
             </table>
+
+
+            {% elseif data['claim-status'] == 3.1 %}
+
+            Goddard Plumbing has requested the response deadline be extended to {{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}.
+            <p>
+              <a href='../extension/respond' class="button secondary-button">Respond to extension request</a>
+            </p>
 
 
             {% else %}
@@ -661,6 +720,9 @@
     <option  value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>Issued</option>
     <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>Served (single method)</option>
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Served (mixed method)</option>
+    <option value="3.1" {% if data['claim-status'] == 3.1 %}selected{% endif %}>Extension requested</option>
+    <option value="3.11" {% if data['claim-status'] == 3.11 %}selected{% endif %}>Extension approved</option>
+    <option value="3.12" {% if data['claim-status'] == 3.12 %}selected{% endif %}>Extension rejected</option>
     <option value="3.2" {% if data['claim-status'] == 3.2 %}selected{% endif %}>Response - received (single def)</option>
     <option value="3.3" {% if data['claim-status'] == 3.3 %}selected{% endif %}>Responses - awaiting some (multi def)</option>
     <option value="3.4" {% if data['claim-status'] == 3.4 %}selected{% endif %}>Responses - received all (multi def)</option>

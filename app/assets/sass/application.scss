@@ -688,7 +688,14 @@ p.download {
     position: relative;
     top: -50px;
 
+    td {
+      vertical-align: top;
+    }
 
+    table thead th, table thead td {
+      border-bottom: 1px solid #DEE0E2;
+    }
+    
   // Wrapper for 'open all / close all' button
   .subsection-controls {
     @extend %contain-floats;
@@ -703,6 +710,7 @@ p.download {
       color: $link-colour;
       padding: 0.5em 0;
     }
+
   }
 
   // Wrapper for subsections

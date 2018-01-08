@@ -843,6 +843,17 @@ module.exports = function(app){
         }
     });
 
+    app.post('*/prototype-dec-2017/extension/respond', function(req, res){
+
+        if ( req.session.data['extension'] === 'yes' ) {
+            res.redirect('approved')
+        } else {
+            res.redirect('rejected')
+        }
+    });
+
+
+
 }
 
 
