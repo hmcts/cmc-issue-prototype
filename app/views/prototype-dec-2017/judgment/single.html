@@ -1,24 +1,35 @@
 {% extends "prototype-dec-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-<h1 class="heading-large">
-  Check your request for judgment
-</h1>
+  <h1 class="heading-large">
+    <span class="form-hint">Defendant 2:</span>
+    Jan Clarke
+  </h1>
 
-<form method="post" action="submitted" class="form">
+  <div class="form-group">
+    <h2 class="heading-medium">
+    Enter defendant's date of birth
+  </h2>
 
-  <h2 class="heading-medium">Defendants</h2>
+  <p>You must enter this if known.</p>
 
-  <table class="check-your-answers">
-    <tr>
-      <td>Jan Clarke</td>
-      <td>Date of birth: 21 September 1978</td>
-      <td><a href="dob">Change</a></td>
-    </tr>
-      <td>Kingsley Building Ltd</td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
+  <form action="submitted" method="post">
+
+    <div class="form-group" id="when-served">
+      <div class="form-date">
+        <div class="form-group form-group-day">
+          <label for="day">Day</label>
+          <input  class="form-control" name="day" id="day" type="number" pattern="[0-9]*" min="0" max="31" value="">
+        </div>
+        <div class="form-group form-group-month">
+          <label for="month">Month</label>
+          <input class="form-control" name="month" id="month" type="number" pattern="[0-9]*" min="0" max="12" value="">
+        </div>
+        <div class="form-group form-group-year">
+          <label for="year">Year</label>
+          <input class="form-control" name="year" id="year" type="number" pattern="[0-9]*" min="0" max="2018" value="">
+        </div>
+      </div>
+    </div>
 
 
   <div class="form-group">
