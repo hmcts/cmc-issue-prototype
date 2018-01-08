@@ -1,0 +1,31 @@
+{% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="respond" class="form">
+
+      <h1 class="heading-large">
+        Request for extension
+      </h1>
+
+      <p>Goddard Plumbing has asked for an additional 28 days to respond.</p> 
+
+      <h2 class="heading-medium">Do you wish to extend the response deadline to {{ now | date( "add", 28, "days" ) | date("DD MMM YYYY") }}?</h2>
+      
+      <div class="form-group inline">
+        <div class="multiple-choice">
+          <input id="extension-yes" name="extension" type="radio" value="yes" {{ checked('extension','yes') }}>
+          <label for="extension-yes">Yes</label>
+        </div>
+
+        <div class="multiple-choice">
+          <input id="extension-no" name="extension" type="radio" value="no" {{ checked('extension','no') }}>
+          <label for="extension-no">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Respond to request">
+      </div>
+
+    </form>
+
+    {% endblock %}

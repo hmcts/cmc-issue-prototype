@@ -81,9 +81,14 @@
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Response</h2>
 
-            {% if ( data['claim-status'] == 1 ) or ( data['claim-status'] == 2 ) %}
+            {% if ( data['claim-status'] == 1 ) or ( data['claim-status'] == 1.1 ) or ( data['claim-status'] == 1.2 ) or ( data['claim-status'] == 1.4 ) or ( data['claim-status'] == 2 ) %}
             <span>
               Response due: {{ now | date("add", 4, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif data['claim-status'] == 1.3 %}
+            <span>
+              Response due: {{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3 %}
@@ -116,6 +121,28 @@
           {% if ( data['claim-status'] != 4 ) and ( data['claim-status'] != 5 ) %}
           <p>
             <a href='representative-name' class="button secondary-button">Upload your response</a>
+          </p>
+          {% endif %}
+
+          {% if data['claim-status'] == 1.1 %}
+          <p>
+            <a href='../extension' class="button secondary-button">Request an extension</a>
+          </p>
+          {% elseif data['claim-status'] == 1.2 %}
+          <p>
+            A request to extend the response deadline to {{ now | date( "add", 28, "days" ) | date( "DD MMMM YYYY" ) }} was made on {{ now | date( "DD MMM YYYY") }}. The claimant has not yet responded.
+          </p>
+          {% elseif data['claim-status'] == 1.3 %}
+          <p>
+            Your request for an extension was accepted.<br />
+            The response deadline is now {{ now | date( "add", 32, "days" ) | date( "DD MMMM YYYY" ) }}.
+          </p>
+          {% elseif data['claim-status'] == 1.4 %}
+          <p>
+            Your request for an extension was rejected by the claimant.
+          </p>
+          <p>
+            <a href='../extension' class="button secondary-button">Propose a new extension</a>
           </p>
           {% endif %}
 
@@ -213,7 +240,11 @@
 
 <form method="get" action="#" class="form" >
   <select id="claim-status" name="claim-status" onchange="this.form.submit()">
-    <option value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>Served (no AoS)</option>
+    <option value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>Served</option>
+    <option value="1.1" {% if (data['claim-status'] == 1.1)%}selected{% endif %}>Served - request extension</option>
+    <option value="1.2" {% if (data['claim-status'] == 1.2)%}selected{% endif %}>Served - extension requested</option>
+    <option value="1.3" {% if (data['claim-status'] == 1.3)%}selected{% endif %}>Served - extension accepted</option>
+    <option value="1.4" {% if (data['claim-status'] == 1.4)%}selected{% endif %}>Served - extension rejected</option>
     <option value="2" {% if (data['claim-status'] == 2) %}selected{% endif %}>Served (with AoS)</option>
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Acknowledged</option>
     <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>Responded</option>
