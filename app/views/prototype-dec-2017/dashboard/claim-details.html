@@ -35,7 +35,7 @@
 </ul>
 {% endif %}
 
-<h2 class="heading-medium">Case history</h2>
+<h2 class="heading-medium">Case timeline</h2>
 
 <div class="js-hidden" data-module="accordion-with-descriptions" id="accordian">
   <div class="subsection-wrapper">
@@ -79,7 +79,7 @@
             {% endif %}
         </div>
         <div class="subsection__content js-subsection-content" id="subsection_content_0">
-          
+
 
           {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.11 )  or ( data['claim-status'] == 3.12 ) %}
           <p>
@@ -462,7 +462,7 @@
 
 
             {% else %}
-              
+
               <p style="margin-bottom: 0;">
                 No responses received.
               </p>
@@ -495,7 +495,7 @@
 
         </div>
         <div class="subsection__content js-subsection-content" id="subsection_content_0">
-         
+
           {% if ( data['claim-status'] == 4 ) %}
           <p>
             The following defendant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
