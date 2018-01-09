@@ -1,14 +1,11 @@
 {% extends "prototype-dec-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 	<h1 class="heading-large">
-		Request an extension
+		Enter proposed extension date
 	</h1>
 
 	<div class="form-group">
-		<h2 class="heading-medium">
-	 	Enter proposed extension date
-	</h2>
-    
+	
       <p class="form-hint">This can be no later than {{ now | date("add", 32, "days" ) | date( "DD MMM YYYY" ) }}, 28 days from the current response deadline.</p>
 
       <form action="extension/submitted" method="post">
