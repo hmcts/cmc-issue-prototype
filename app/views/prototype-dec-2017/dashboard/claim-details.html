@@ -23,7 +23,7 @@
 {% if ( data['claim-status'] == 3.2 ) %}
 <h2 class="heading-small">Defendant</h2>
 <ul>
-  <li><a href="defendant">Jan Clarke trading as Clarke Construction</li>
+  <li><a href="defendant">Jan Clarke trading as Clarke Construction</a></li>
 </ul>
 
 {% else %}
@@ -241,7 +241,7 @@
                 <td>{{ now | date("subtract", 7, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
               <tr class="download no-border">
-                <td colspan="3"><a href="../respondent/view">View response</a></td>
+                <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
               </tr>
               <tr class="no-border">
                 <td>3. Kingsley Building Ltd</td>
@@ -249,7 +249,7 @@
                 <td>{{ now | date("subtract", 8, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
               <tr class="download no-border">
-                <td colspan="3"><a href="../respondent/view">View response</a></td>
+                <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
               </tr>
               </tbody>
             </table>
@@ -323,8 +323,8 @@
             {% elseif data['claim-status'] == 3.2 %}
 
             <p>
+              <a href="#" class="download">Download the response</a> (PDF, 234 KB)<br />
               <a href="../acknowledgement/view">View acknowledgement of service</a><br />
-              <a href="../respondent/view">View response</a>
             </p>
 
             {% elseif ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2) or ( data['claim-status'] == 6.3 ) %}
@@ -345,10 +345,10 @@
                 <td>{{ now | date("subtract", 3, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
               <tr class="download no-border">
-                <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
               </tr>
               <tr class="download no-border">
-                <td colspan="3"><a href="../respondent/view">View response</a></td>
+                <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
               </tr>
               </tbody>
             </table>
@@ -425,10 +425,10 @@
                   <td>{{ now | date("subtract", 6, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
                 <tr class="download no-border">
-                  <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                  <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
                 </tr>
                 <tr class="download no-border">
-                  <td colspan="3"><a href="../respondent/view">View response</a></td>
+                  <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
                 </tr>
                 <tr class="no-border">
                   <td>2. Goddard Plumbing</td>
@@ -436,10 +436,10 @@
                   <td>{{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
                 <tr class="download no-border">
-                  <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                  <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
                 </tr>
                 <tr class="download no-border">
-                  <td colspan="3"><a href="../respondent/view">View response</a></td>
+                  <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
                 </tr>
                 <tr class="no-border">
                   <td>3. Kingsley Building Ltd</td>
@@ -447,7 +447,7 @@
                   <td>{{ now | date("subtract", 5, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
                 <tr class="download no-border">
-                  <td colspan="3"><a href="../respondent/view">View response</a></td>
+                  <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
                 </tr>
               </tbody>
             </table>
@@ -498,7 +498,7 @@
 
           {% if ( data['claim-status'] == 4 ) %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
+            We've not received a response from the following defendant.
           </p>
 
           <ul>
@@ -511,7 +511,7 @@
 
           {% elseif data['claim-status'] == 5 %}
           <p>
-            The following defendants did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
+            We've not received a response from the following defendants.
           </p>
 
           <ul>
@@ -525,7 +525,7 @@
 
           {% elseif data['claim-status'] == 5.1 %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
+            We've not received a response from the following defendants.
           </p>
 
           <ul>
@@ -537,7 +537,7 @@
           </p>
 
           <p>
-            The following defendant has until {{ now | date("add", 10, "days") | date( "DD MMM YYYY" ) }} to respond, after which judgment may be requested and the case transferred to the court.
+            The following defendant has until {{ now | date("add", 10, "days") | date( "DD MMM YYYY" ) }} to respond, after which judgment may be requested.
           </p>
 
           <ul>
@@ -548,7 +548,8 @@
 
           {% elseif ( data['claim-status'] == 6 ) %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
+            We've not received a response from the following defendant.
+
           </p>
 
           <ul>
@@ -566,7 +567,7 @@
 
           {% elseif ( data['claim-status'] == 6.1 ) %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
+            We've not received a response from the following defendant.
           </p>
 
           <ul>
@@ -582,13 +583,13 @@
 
           <br/>
           <p>
-            This case cannot be transferred to the court until {{ now | date('add', 12, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendants' response period has elapsed.
+            This case cannot proceed until {{ now | date('add', 12, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendants' response period has elapsed.
           </p>
 
 
           {% elseif ( data['claim-status'] == 6.2 ) %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 15, "days") | date( "DD MMM YYYY" ) }}.
+              We've not received a response from the following defendants.
           </p>
 
           <ul>
@@ -602,31 +603,25 @@
             <a href="../judgment/view">View confirmation of request for judgment</a>
           </p>
           <br />
-
-          <p>
-            The following defendant did not respond by {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}.
-          </p>
 
           <ul>
             <li>2. Goddard Plumbing</li>
           </ul>
 
           <p>
-            You can now request judgment and transfer the case to the court.
+            Chose how to deal with this defendant so the case can proceed.
           </p>
           <p>
-            <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Request judgment</a>
+            <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Request judgment</a> <span style="line-height: 50px; position: inherit; padding: 0 10px;">or</span> <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Discontinue defendant</a>
           </p>
+
           <br />
 
-          <p>
-            <a href='../judgment/transfer' class="button secondary-button" style="margin-top: 5px;">Transfer case to court</a>
-          </p>
 
 
           {% elseif ( data['claim-status'] == 6.3 ) %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 15, "days") | date( "DD MMM YYYY" ) }}.
+            We've not received a response from the following defendants.
           </p>
 
           <ul>
@@ -640,10 +635,6 @@
             <a href="../judgment/view">View confirmation of request for judgment</a>
           </p>
           <br />
-
-          <p>
-            The following defendant did not respond by {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}.
-          </p>
 
           <ul>
             <li>2. Goddard Plumbing</li>
@@ -657,13 +648,9 @@
           </p>
           <br />
 
-          <p>
-            A request to transfer the case to the court was made on {{ now | date( "DD MMM YYYY" ) }}
-          </p>
-
           {% elseif data['claim-status'] == 7 %}
           <p>
-            The following defendant did not respond by {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}.
+            The following defendant did not respond to the claim.
           </p>
 
           <ul>
@@ -732,7 +719,7 @@
     <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>Judgment requested</option>
     <option value="6.1" {% if data['claim-status'] == 6.1 %}selected{% endif %}>Judgment requested - not all ready</option>
     <option value="6.2" {% if data['claim-status'] == 6.2 %}selected{% endif %}>Judgment requested - second ready</option>
-    <option value="6.3" {% if data['claim-status'] == 6.3 %}selected{% endif %}>Judgment requested - transfer requested</option>
+    <option value="6.3" {% if data['claim-status'] == 6.3 %}selected{% endif %}>Judgment requested - all done</option>
     <option value="7" {% if data['claim-status'] == 7 %}selected{% endif %}>Order available</option>
   </select>
 </form>
