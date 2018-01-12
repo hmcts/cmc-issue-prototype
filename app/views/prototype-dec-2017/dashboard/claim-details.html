@@ -224,51 +224,35 @@
         <div class="subsection__content js-subsection-content" id="subsection_content_0">
 
             {% if ( data['claim-status'] == 4 ) or ( data['claim-status'] == 6 ) or ( data['claim-status'] == 7 ) %}
-            <h3 class="heading-small">Responses received</h3>
-
             <table>
               <thead>
               <tr>
                 <th scope="col">Defendant</th>
                 <th scope="col">Status</th>
-                <th scope="col">Received</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr class="no-border">
-                <td>2. Goddard Plumbing</td>
-                <td>Defended</td>
-                <td>{{ now | date("subtract", 7, "days") | date( "DD MMM YYYY" ) }}</td>
-              </tr>
-              <tr class="download no-border">
-                <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
-              </tr>
-              <tr class="no-border">
-                <td>3. Kingsley Building Ltd</td>
-                <td>Admitted</td>
-                <td>{{ now | date("subtract", 8, "days") | date( "DD MMM YYYY" ) }}</td>
-              </tr>
-              <tr class="download no-border">
-                <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
-              </tr>
-              </tbody>
-            </table>
-
-            <h3 class="heading-small">Responses outstanding</h3>
-
-            <table>
-              <thead>
-              <tr>
-                <th scope="col">Defendant</th>
-                <th scope="col">Status</th>
-                <th scope="col">Due</th>
+                <th scope="col">Date</th>
               </tr>
               </thead>
               <tbody>
               <tr class="no-border">
                 <td>1. Jan Clarke trading as Clarke Construction</td>
-                <td>No response</td>
+                <td>Response due</td>
                 <td>{{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border spaced">
+                <td colspan="3">2. Goddard Plumbing</td>
+              </tr>
+              <tr class="no-border sub">
+                <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                <td>Received on</td>
+                <td>{{ now | date("subtract", 7, "days") | date( "DD MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border spaced">
+                <td colspan="3">3. Kingsley Building Ltd</td>
+              </tr>
+              <tr class="no-border sub">
+                <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                <td>Received on</td>
+                <td>{{ now | date("subtract", 8, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
               </tbody>
             </table>
@@ -281,29 +265,35 @@
               <tr>
                 <th scope="col">Defendant</th>
                 <th scope="col">Status</th>
-                <th scope="col">Response due</th>
+                <th scope="col">Date</th>
               </tr>
               </thead>
               <tbody>
 
               <tr class="no-border">
-                <td>1. Jan Clarke trading as<br />&nbsp;&nbsp;&nbsp;&nbsp;Clarke Construction</td>
-                <td>Acknowledged</td>
-                <td>{{ now | date("add", 14, "days") | date( "DD MMM YYYY" ) }}</td>
+                <td>1. Jan Clarke trading as Clarke Construction</td>
+                <td>Response due</td>
+                <td>{{ now | date("add", 28, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
-              <tr class="download no-border">
-                <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+              <tr class="no-border sub">
+                <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td>Received on</td>
+                <td>{{ now | date( "DD MMM YYYY" ) }}</td>
               </tr>
 
-              <tr class="no-border">
+              <tr class="no-border spaced">
                 <td>2. Goddard Plumbing</td>
-                <td>Extended</td>
-                <td>{{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}</td>
+                <td>Response due</td>
+                <td>{{ now | date("add", 42, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
-
-              <tr class="no-border">
+              <tr class="no-border sub">
+                <td>28 day extension requested</td>
+                <td>Approved on</td>
+                <td>{{ now | date( "DD MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border spaced">
                 <td>3. Kingsley Building Ltd</td>
-                <td>No response</td>
+                <td>Response due</td>
                 <td>{{ now | date("add", 14, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
               </tbody>
@@ -312,7 +302,9 @@
 
             {% elseif ( data['claim-status'] == 3.12 ) %}
             <p>
-              No responses recevied.<br />
+              No responses recevied.
+            </p>
+            <p>
               A request by Goddard Plumbing for an extension to {{ now | date("add", 22, "days") | date( "DD MMM YYYY" ) }} was rejected on {{ now | date( "DD MMM YYYY" ) }}.
             </p>
 
@@ -328,51 +320,34 @@
             </p>
 
             {% elseif ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2) or ( data['claim-status'] == 6.3 ) %}
-            <h3 class="heading-small">Responses received</h3>
 
             <table>
               <thead>
               <tr>
                 <th scope="col">Defendant</th>
                 <th scope="col">Status</th>
-                <th scope="col">Received</th>
+                <th scope="col">Date</th>
               </tr>
               </thead>
               <tbody>
               <tr class="no-border">
-                <td>1. Jan Clarke trading as Clarke Construction</td>
-                <td>Defended</td>
+                <td colspan="3">1. Jan Clarke trading as Clarke Construction</td>
+              </tr>
+              <tr class="no-border sub">
+                <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                <td>Received on</td>
                 <td>{{ now | date("subtract", 3, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
-              <tr class="download no-border">
-                <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+              <tr class="no-border sub">
+                <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td>Received on</td>
+                <td>{{ now | date("subtract", 13, "days") | date( "DD MMM YYYY" ) }}</td>
               </tr>
-              <tr class="download no-border">
-                <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
-              </tr>
-              </tbody>
-            </table>
-
-            <h3 class="heading-small">Responses outstanding</h3>
-
-            <table>
-              <thead>
-              <tr>
-                <th scope="col">Defendant</th>
-                <th scope="col">Status</th>
-                <th scope="col">Response due</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr class="no-border">
+              <tr class="no-border spaced">
                 <td>2. Goddard Plumbing</td>
-                {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2 )  or ( data['claim-status'] == 6.3 ) %}
-                <td>Acknowledged</td>
-                {% else %}
-                <td>No response</td>
-                {% endif %}
+                <td>Response due</td>
                 <td>
-                {% if ( data['claim-status'] == 3.3 ) %}
+                  {% if ( data['claim-status'] == 3.3 ) %}
                    {{ now | date("add", 20, "days") | date( "DD MMM YYYY" ) }}
                    {% elseif ( data['claim-status'] == 5.1 ) %}
                    {{ now | date("add", 10, "days") | date( "DD MMM YYYY" ) }}
@@ -382,18 +357,26 @@
                    {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}
                    {% else %}
                    {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}
-                   {% endif %}
+                {% endif %}
                 </td>
               </tr>
 
               {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2 ) or ( data['claim-status'] == 6.3 ) %}
-              <tr class="download no-border">
-                <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+              <tr class="no-border sub">
+                <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td>Received on</td>
+                <td>
+                  {% if ( data['claim-status'] == 6.2 ) or ( data['claim-status'] == 6.3 ) %}
+                  {{ now | date("subtract", 20, "days") | date( "DD MMM YYYY" ) }}
+                  {% else %}
+                  {{ now | date("subtract", 4, "days") | date( "DD MMM YYYY" ) }}
+                  {% endif %}
+                </td>
               </tr>
               {% endif %}
-              <tr class="no-border">
+              <tr class="no-border spaced">
                 <td>3. Kingsley Building Ltd</td>
-                <td>No response</td>
+                <td>Response due</td>
                 <td>
                    {% if data['claim-status'] == 3.3 %}
                    {{ now | date("add", 6, "days") | date( "DD MMM YYYY" ) }}
@@ -415,39 +398,43 @@
               <tr>
                 <th scope="col">Defendant</th>
                 <th scope="col">Status</th>
-                <th scope="col">Received</th>
+                <th scope="col">Date</th>
               </tr>
               </thead>
               <tbody>
                 <tr class="no-border">
-                  <td>1. Jan Clarke trading as Clarke Construction</td>
-                  <td>Defended</td>
+                  <td colspan="3">1. Jan Clarke trading as Clarke Construction</td>
+                </tr>
+                <tr class="no-border sub">
+                  <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                  <td>Received on</td>
                   <td>{{ now | date("subtract", 6, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
-                <tr class="download no-border">
-                  <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                <tr class="no-border sub">
+                  <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                  <td>Received on</td>
+                  <td>{{ now | date("subtract", 14, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
-                <tr class="download no-border">
-                  <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
-                </tr>
-                <tr class="no-border">
-                  <td>2. Goddard Plumbing</td>
-                  <td>Admitted</td>
+                <tr class="no-border spaced">
+                  <td colspan="3">2. Goddard Plumbing</td>
+                </tr>                
+                <tr class="no-border sub">
+                  <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                  <td>Received on</td>
                   <td>{{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
-                <tr class="download no-border">
-                  <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                <tr class="no-border sub">
+                  <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                  <td>Received on</td>
+                  <td>{{ now | date("subtract", 10, "days") | date( "DD MMM YYYY" ) }}</td>
                 </tr>
-                <tr class="download no-border">
-                  <td colspan="3"><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <tr class="no-border spaced">
+                  <td colspan="3">3. Kingsley Building Ltd</td>
                 </tr>
-                <tr class="no-border">
-                  <td>3. Kingsley Building Ltd</td>
-                  <td>Defended</td>
+                <tr class="no-border sub">
+                  <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
+                  <td>Received on</td>
                   <td>{{ now | date("subtract", 5, "days") | date( "DD MMM YYYY" ) }}</td>
-                </tr>
-                <tr class="download no-border">
-                  <td colspan="3"><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
                 </tr>
               </tbody>
             </table>
@@ -455,7 +442,7 @@
 
             {% elseif data['claim-status'] == 3.1 %}
 
-            Goddard Plumbing has requested the response deadline be extended to {{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}.
+            Goddard Plumbing has requested the response deadline be extended to {{ now | date("add", 42, "days") | date( "DD MMM YYYY" ) }}.
             <p>
               <a href='../extension/respond' class="button secondary-button">Respond to extension request</a>
             </p>
@@ -486,7 +473,7 @@
           {% elseif ( data['claim-status'] == 6.2 ) %}
           <span>Available from: {{ now | date("subtract", 1, "days") | date( "DD MMM YYYY" ) }}</span>
           {% elseif ( data['claim-status'] == 6.3 ) %}
-          <span>Transferred: {{ now | date( "DD MMM YYYY" ) }}</span>
+          <span>Requested: {{ now | date( "DD MMM YYYY" ) }}</span>
           {% elseif data['claim-status'] < 6 %}
           <span>Available from: {{ now | date("subtract", 5, "days") | date( "DD MMM YYYY" ) }}</span>
           {% else %}
@@ -529,11 +516,11 @@
           </p>
 
           <ul>
-            <li>1. Jan Clarke</li>
+            <li>1. Kingsley Building Ltd</li>
           </ul>
 
           <p>
-            <a href='../judgment/single' class="button secondary-button" style="margin-top: 5px;">Request judgment</a>
+            <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Request judgment</a>
           </p>
 
           <p>
@@ -571,7 +558,7 @@
           </p>
 
           <ul>
-            <li>2. Jan Clarke</li>
+            <li>3. Kingsley Building Ltd</li>
           </ul>
 
           <p style="margin-top: 10px;">
@@ -583,7 +570,7 @@
 
           <br/>
           <p>
-            This case cannot proceed until {{ now | date('add', 12, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendants' response period has elapsed.
+            This case cannot proceed until {{ now | date('add', 12, 'days') | date( "DD MMMM YYYY" ) }} when the remaining defendant's response period has elapsed.
           </p>
 
 
@@ -612,7 +599,7 @@
             Chose how to deal with this defendant so the case can proceed.
           </p>
           <p>
-            <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Request judgment</a> <span style="line-height: 50px; position: inherit; padding: 0 10px;">or</span> <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Discontinue defendant</a>
+            <a href='../judgment/business' class="button secondary-button" style="margin-top: 5px;">Request judgment</a> <span style="line-height: 50px; position: inherit; padding: 0 10px;">or</span> <a href='#' class="button secondary-button" style="margin-top: 5px;">Discontinue defendant</a>
           </p>
 
           <br />
