@@ -681,6 +681,21 @@ p.download {
   margin-bottom: 45px;
 }
 
+.spaced td {
+  padding-top: 30px;
+}
+
+.sub td {
+  padding-top: 6px;
+}
+
+.sub td:first-child {
+    padding-left: 20px;
+}
+
+.sub a.download {
+  padding-left: 23px;  
+}
 
 // When JavaScript is enabled, create accordion
 .js-accordion-with-descriptions {
@@ -733,7 +748,7 @@ p.download {
     line-height: 1;
   }
 
-  td:last-child, th:last-child {
+  td:last-child:not([colspan]), th:last-child {
     text-align: right;
   }
 
