@@ -30,7 +30,7 @@
 <h2 class="heading-small">Defendants</h2>
 <ul>
   <li>1. <a href="defendant">Jan Clarke trading as Clarke Construction</a></li>
-  <li>2. <a href="defendant">Goddard Plumbing</a></li>
+  <li>2. <a href="defendant">Goddard Plumbing</a>{% if data['claim-status'] == 8 %} - discontinued on {{ now | date( "D MMM YYYY" ) }} {% endif %}</li>
   <li>3. <a href="defendant">Kingsley Building Ltd</a></li>
 </ul>
 {% endif %}
@@ -607,7 +607,7 @@
             An order will be made on {{ now | date("add", 5, "days") | date( "D MMMM YYYY" ) }}.
           </p>
 
-          {% elseif data['claim-status'] == 7 %}
+          {% elseif ( data['claim-status'] == 7 ) or  ( data['claim-status'] == 8 )%}
           <p>
             Jan Clarke did not respond to the claim.
           </p>
@@ -676,6 +676,7 @@
     <option value="6.2" {% if data['claim-status'] == 6.2 %}selected{% endif %}>Judgment requested - second ready</option>
     <option value="6.3" {% if data['claim-status'] == 6.3 %}selected{% endif %}>Judgment requested - all done</option>
     <option value="7" {% if data['claim-status'] == 7 %}selected{% endif %}>Order available</option>
+    <option value="8" {% if data['claim-status'] == 8 %}selected{% endif %}>Defendant discontinued</option>
   </select>
 </form>
 
