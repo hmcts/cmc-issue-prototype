@@ -9,7 +9,7 @@
 </div>
 
 {% if data['judgment-type'] == 2 %}
-<p>Judgment has been requested but the case cannot be transferred to the court until the remaining defendants have responded or their response deadline elapses on {{ now | date('add', 13, 'days') | date( "D MMMM YYYY" ) }}.</p>
+<p>Judgment has been requested but cannot be entered until the remaining defendants have responded or their response deadline elapses on {{ now | date('add', 13, 'days') | date( "D MMMM YYYY" ) }}.</p>
 {% elseif data['judgment-type'] == 3 %}
 <p>Judgment has been requested against all defendants.</p>
 <p>We'll check if the defendant has responded by paper and contact you in 5 days, after which the case will be transferred to the court.</p>

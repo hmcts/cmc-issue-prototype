@@ -1,0 +1,17 @@
+{% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've discontinued Goddard Plumbing</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <p class="form-group-compound">Date: {{ now | date( "D MMMM YYYY" ) }}</p>
+</div>
+
+<p>Judgment will now be entered on Jan Clark as per your previous request.</p>
+
+<p><a class="button" href="../dashboard/claim-details?claim-status=8" role="button">View this claim</a></p>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}
