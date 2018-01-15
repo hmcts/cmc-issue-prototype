@@ -1,0 +1,43 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="check-your-answers" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant 2: Jan Clark</span>
+        <span id="sub"><a href="check-your-answers" class="secret-link">Upload your response</a></span>
+      </h1>
+
+      <div id="uploads">
+
+        <p>You must include a statement of truth in the document you upload.</p>
+
+        <p class="form-hint">Use this page to upload a defence or admission, not applications or questions about the claim.</p>
+
+        <p class="form-hint">We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpeg, xls, xlsx, png.</p>
+
+        <div id="defence">
+          <ol class="list uploaded-files" style="margin-bottom: 15px;">
+          </ol>
+
+          <div class="form-group" >
+            <p>
+              <input type="file" />
+            </p>
+            <a href="#" class="button" value="Upload file" onclick="return upload('defence');">Upload file</a>
+          </div>
+
+          <a href="#" class="secondary-button" onclick="return showForm('defence');">Add file</a>
+        </div>
+
+      </div>
+
+      <div class="form-group" >
+        <input type="submit" class="button upload" value="Save and continue" id="submit">
+      </div>
+
+
+
+    </form>
+
+
+    {% endblock %}

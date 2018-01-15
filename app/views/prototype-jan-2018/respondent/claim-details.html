@@ -1,0 +1,258 @@
+{% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large"><span class="heading-secondary">000LR095</span>
+  Michael Jones v Goddard Plumbing
+</h1>
+
+<h2 class="heading-large">
+  <span class="form-hint">Defendant 1:</span>
+  Jan Clarke
+</h2>
+
+<h2 class="heading-medium">Claim form</h2>
+
+<p class="download certificate">
+  <a target="_blank" href="/public/documents/N1-form-sealed.pdf">Download the sealed claim form</a> (PDF, 456 KB)
+</p>
+
+
+<h2 class="heading-medium" style="margin-bottom: 5px">Parties</h2>
+<hr style="margin-top: 0;"/>
+
+<h3 class="heading-small">Claimant</h3>
+<ul>
+  <li><a href="claimant">Michael Jones</a></li>
+</ul>
+
+<h2 class="heading-small">Defendants</h2>
+<ul>
+  <li>1. <a href="../dashboard/defendant">Jan Clarke trading as Clarke Construction</a></li>
+  <li>2. <a href="../dashboard/defendant">Goddard Plumbing</a></li>
+  <li>3. <a href="../dashboard/defendant">Kingsley Building Ltd</a></li>
+</ul>
+
+<h2 class="heading-medium">Case timeline</h2>
+
+<div class="js-hidden" data-module="accordion-with-descriptions" id="accordian">
+  <div class="subsection-wrapper">
+
+      <div class="subsection js-subsection">
+        <div class="subsection__header">
+          <h2 class="subsection__title" id="designing-government-services">Issue</h2>
+          <span>Issued: {{ now | date("subtract", 3, "months") | date( "DD MMM YYYY" ) }}</span>
+        </div>
+        <div class="subsection__content js-subsection-content" id="subsection_content_0">
+          <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
+        </div>
+      </div>
+
+      <div class="subsection js-subsection">
+        <div class="subsection__header">
+          <h2 class="subsection__title" id="designing-government-services">Service</h2>
+
+            {% if data['claim-status'] == 5 %}
+            <span>
+              Deemed served: {{ now | date("subtract", 18, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+            {% else %}
+            <span>Deemed served: {{ now | date("subtract", 10, "days") | date( "DD MMMM YYYY" ) }}</span>
+            {% endif %}
+
+        </div>
+        <div class="subsection__content js-subsection-content" id="subsection_content_0">
+          
+
+          <p>
+            Served by: Post<br />
+            <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
+          </p>
+
+          <h3 class="heading-small">Documents served</h3>
+          <ul class="downloads">
+            <li><a href="#">Particulars of claim</a> (PDF, 123 KB)</li>
+            <li><a href="#">Schedule of loss</a> (PDF, 123 KB)</li>
+            <li><a href="#">Medical report</a> (PDF, 123 KB)</li>
+          </ul>
+          
+        </div>
+      </div>
+
+      <div class="subsection js-subsection">
+        <div class="subsection__header">
+          <h2 class="subsection__title" id="designing-government-services">Response</h2>
+
+            {% if ( data['claim-status'] == 1 ) or ( data['claim-status'] == 1.1 ) or ( data['claim-status'] == 1.11 ) or ( data['claim-status'] == 1.2 ) or ( data['claim-status'] == 1.4 ) or ( data['claim-status'] == 2 ) %}
+            <span>
+              Response due: {{ now | date("add", 4, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif data['claim-status'] == 1.3 %}
+            <span>
+              Response due: {{ now | date("add", 32, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif data['claim-status'] == 3 %}
+            <span>
+              Response due: {{ now | date("add", 18, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 4) %}
+            <span>
+              Responded on: {{ now | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 5) %}
+            <span>
+              Response due: {{ now | date("subtract", 4, "days") | date( "DD MMM YYYY" ) }}
+            </span>
+
+            {% endif %}
+
+        </div>
+        <div class="subsection__content js-subsection-content" id="subsection_content_0">
+
+
+          {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 1.11 ) %}
+          <p>
+            <a href='../acknowledgement/representative-name' class="button secondary-button">Acknowledge service</a>
+          </p>
+          {% endif %}
+
+          {% if ( data['claim-status'] == 1.1 ) or ( data['claim-status'] == 1.11 ) %}
+          <p>
+            <a href='../extension' class="button secondary-button">Request an extension</a>
+          </p>
+          {% elseif data['claim-status'] == 1.2 %}
+          <p>
+            A request to extend the response deadline to {{ now | date( "add", 28, "days" ) | date( "DD MMMM YYYY" ) }} was made on {{ now | date( "DD MMM YYYY") }}. The claimant has not yet responded.
+          </p>
+          {% elseif data['claim-status'] == 1.3 %}
+          <p>
+            Your request for an extension was accepted.<br />
+            The response deadline is now {{ now | date( "add", 32, "days" ) | date( "DD MMMM YYYY" ) }}.
+          </p>
+          {% elseif data['claim-status'] == 1.4 %}
+          <p>
+            Your request for an extension was rejected by the claimant.
+          </p>
+          <p>
+            <a href='../extension' class="button secondary-button">Propose a new extension</a>
+          </p>
+          {% endif %}
+
+
+          {% if ( data['claim-status'] != 4 ) and ( data['claim-status'] != 5 ) %}
+          <p>
+            <a href='representative-name' class="button secondary-button">Upload your response</a>
+          </p>
+          {% endif %}
+
+          {% if data['claim-status'] == 3 %}
+          <p>
+            Service acknowledged on {{ now | date( "DD MMMM YYYY" ) }}<br />
+            <a href="../acknowledgement/view">View acknowledgement of service</a>
+          </p>
+
+          {% elseif data['claim-status'] == 4 %}
+          <p>
+            <a href="view">View confirmation of response</a>
+          </p>
+
+          {% elseif data['claim-status'] == 5 %}
+          <p>
+            No response submitted.
+          </p>
+          {% endif %}
+
+
+        </div>
+      </div>
+
+
+      {% if data['claim-status'] > 4  %}
+      <div class="subsection js-subsection">
+        <div class="subsection__header">
+          <h2 class="subsection__title" id="designing-government-services">Judgment</h2>
+
+          <span>Entered on: {{ now | date( "DD MMM YYYY" ) }}</span>
+
+        </div>
+        <div class="subsection__content js-subsection-content" id="subsection_content_0">
+         
+          <p>
+            No response was received by {{ now | date("subtract", 4, "days") | date( "DD MMM YYYY" ) }}.<br />
+            A judgment was entered on {{ now | date( "DD MMM YYYY" ) }}.
+          </p>
+
+          <p style="margin-top: 10px">
+            <a href="../judgment/view">View confirmation of request for judgment</a><br />
+            <a target="_blank" href="/public/documents/Judgement-order.pdf" class="download">Download the judgment order</a> (PDF, 234 KB)
+          </p>
+
+        </div>
+      </div>
+      {% endif %}
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block side_content %}
+
+<aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
+
+{% if data['claim-status'] > 2 %}
+  <h3 class="heading-small" style="margin-top:.42105em">Your reference</h3>
+  <p class="font-xsmall">PW1348-151117</p>
+{% endif %}
+
+  <h3 class="heading-small" style="margin-top:.42105em">Claimant's reference</h3>
+  <p class="font-xsmall">PW1241/KU</p>
+
+{% if data['claim-status'] > 2 %}
+  <h3 class="heading-small" style="margin-top:.42105em">Defendant's reference</h3>
+  <p class="font-xsmall">JK/639127/134</p>
+{% endif %}
+
+</aside>
+
+
+{% endblock %}
+
+
+{% block page_scripts %}
+
+<script src="/public/javascripts/module_loader.js"></script>
+<script src="/public/javascripts/modules/accordion-with-descriptions.js"></script>
+<script>
+    accordion = new GOVUK.Modules.AccordionWithDescriptions();
+    $element = $('#accordian');
+    accordion.start($element);
+    accordion.openLastItem($element);
+</script>
+
+<form method="get" action="#" class="form" >
+  <select id="claim-status" name="claim-status" onchange="this.form.submit()">
+    <option value="1" {% if (data['claim-status'] == 1) or (data['claim-status']) < 0 %}selected{% endif %}>Served</option>
+    <option value="2" {% if (data['claim-status'] == 2) %}selected{% endif %}>Served (with AoS)</option>
+    <option value="1.1" {% if (data['claim-status'] == 1.1)%}selected{% endif %}>Served - request extension</option>
+    <option value="1.11" {% if (data['claim-status'] == 1.11)%}selected{% endif %}>Served - request extension (with AoS)</option>
+    <option value="1.2" {% if (data['claim-status'] == 1.2)%}selected{% endif %}>Served - extension requested</option>
+    <option value="1.3" {% if (data['claim-status'] == 1.3)%}selected{% endif %}>Served - extension accepted</option>
+    <option value="1.4" {% if (data['claim-status'] == 1.4)%}selected{% endif %}>Served - extension rejected</option>
+    <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Acknowledged</option>
+    <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>Responded</option>
+    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Judgment received</option>
+  </select>
+</form>
+
+
+{% endblock %}

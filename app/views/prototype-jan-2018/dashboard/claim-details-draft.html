@@ -1,0 +1,44 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+
+<h1 class="heading-large"><span class="heading-secondary">Claim number </span>
+	Draft
+</h1>
+
+
+      <p>This claim has not been submitted.</p>
+      <div class="form-group">
+       <p> <a class="button" href="task-list">Continue with claim  </a></p>
+     </div>
+
+
+<h3 class="heading-medium">Claimant </h3>
+<ul>
+	<li>John Barnes</li>
+</ul>
+<h3 class="heading-medium">Defendants </h3>
+
+
+<ul>
+	<li>James Smith</li>
+</ul>
+
+{% endblock %}
+
+
+
+{% block side_content %}
+
+
+<aside class="govuk-related-items" role="complementary"  style="margin-top: 100px">
+	<h3 class="heading-small" id="subsection-title">Claim options </h3>
+	<nav role="navigation" aria-labelledby="subsection-title">
+		<ul class="font-xsmall">
+			<li><a href="#">Cancel this claim</a> </li>
+
+
+		</ul>
+	</nav>
+</aside>
+{% endblock %}

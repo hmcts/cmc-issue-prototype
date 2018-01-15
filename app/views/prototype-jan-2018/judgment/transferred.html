@@ -1,0 +1,23 @@
+{% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've requested the case be transferred to the court</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+
+  <p>Date requested: {{ now | date( "DD MMMM YYYY" ) }}</p>
+</div>
+
+<p>We'll check if the defendants have responded by paper and contact you in 5 days, after which the case will be transferred to the court.</p>
+
+<p><a class="button" href="../dashboard/claim-details?claim-status=6.3" role="button">View this claim</a></p>
+
+{% endblock %}
+
+{% block page_scripts %}
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+
+{% endblock %}

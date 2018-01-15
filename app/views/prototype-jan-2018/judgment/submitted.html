@@ -1,0 +1,43 @@
+{% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've requested judgment</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+
+  <p>Date submitted: {{ now | date( "DD MMMM YYYY" ) }}</p>
+</div>
+
+{% if data['judgment-type'] == 2 %}
+<p>Judgment has been requested but the case cannot be transferred to the court until the remaining defendants have responded or their response deadline elapses on {{ now | date('add', 13, 'days') | date( "DD MMMM YYYY" ) }}.</p>
+{% elseif data['judgment-type'] == 3 %}
+<p>Judgment has been requested against all defendants.</p>
+<p>We'll check if the defendant has responded by paper and contact you in 5 days, after which the case will be transferred to the court.</p>
+
+{% else %}
+<p>We'll check if the defendant has responded by paper and contact you in 5 days.</p>
+{% endif %}
+
+<p><a href='../judgment/view'>Check or print the details</a> you gave us to request judgment.</p>
+
+<p><a class="button" href="../dashboard/claim-details?claim-status=6" role="button">View this claim</a></p>
+
+
+{% endblock %}
+
+
+{% block page_scripts %}
+
+<form method="get" action="#" class="form" >
+  <select id="judgment-type" name="judgment-type" onchange="this.form.submit()">
+    <option  value="1" {% if (data['judgment-type'] == 1) or (data['judgment-type']) < 0 %}selected{% endif %}>Single / all</option>
+    <option value="2" {% if data['judgment-type'] == 2 %}selected{% endif %}>One of X</option>
+    <option value="3" {% if data['judgment-type'] == 3 %}selected{% endif %}>All done</option>
+  </select>
+</form>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+
+{% endblock %}
