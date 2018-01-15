@@ -6,7 +6,7 @@
 
 	<div class="form-group">
 	
-      <p class="form-hint">This can be no later than {{ now | date("add", 32, "days" ) | date( "DD MMM YYYY" ) }}, 28 days from the current response deadline.</p>
+      <p class="form-hint">This can be no later than {{ now | date("add", 32, "days" ) | date( "D MMM YYYY" ) }}, 28 days from the current response deadline.</p>
 
       <form action="extension/submitted" method="post">
 
