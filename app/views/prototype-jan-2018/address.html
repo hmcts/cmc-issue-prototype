@@ -1,0 +1,63 @@
+{% macro lookup(prefix) %}
+  <div id="postcode-finder">
+    <label class="form-label" for="postcode">Enter a UK postcode</label>
+    <input class="form-control postcode" id="postcode" name="postcodeFinder" type="text" value="">
+    <a id="find-button" class="button button-secondary">Find address</a>
+  </div>
+
+    <div class="form-group error" id="postcode-seach-error" style="display:none; margin-top: 20px;">
+          <span class="error-message">
+            We can't find an address for that postcode. Try again or enter the address manually.
+          </span>
+    </div>
+    <div class="form-group error" id="postcode-seach-ni-error" style="display:none; margin-top: 20px;">
+          <span class="error-message">
+            We can't find Northern Irish addresses by postcode - enter the address manually instead.
+          </span>
+    </div>
+
+    <div id="select-address" class="form-group" style="display: none;">
+      <label class="form-label">
+        Pick an address
+      </label>
+      <select id="addressList" class="form-control" name="addressSelect" onchange="updateAddress(this.value)" title="Pick an address">
+        <option value="">Select an address </option>
+
+      </select>
+
+    </div>
+
+    <div id="manual-address" style="display: none;" class="">
+      <div class="form-group">
+        <label class="form-label" for="street-1" id="street-label">Address</label>
+        <input class="form-control" id="street-1" name="{{ prefix }}_AddressLine1" type="text" value="{{ data['{{ prefix }}_AddressLine1'] }}">
+        <input class="form-control second-text-input" id="street-2" name="{{ prefix }}_AddressLine2" type="text"
+                value="{{ data['{{ prefix }}_AddressLine2'] }}" title="Street line 2">
+        <input class="form-control second-text-input" id="street-3" name="{{ prefix }}_AddressLine3" type="text"
+                value="{{ data['{{ prefix }}_AddressLine3'] }}" title="Street line 3">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="town" id="town-label">Town or city</label>
+        <input class="form-control" id="town" name="{{ prefix }}_city" type="text"  value="{{ data['{{ prefix }}_city'] }}">
+      </div>
+      <div class="form-group" id="county-group">
+        <label class="form-label" for="county">County</label>
+        <input class="form-control" id="county" name="{{ prefix }}_county" type="text"  value="{{ data['{{ prefix }}_county'] }}">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="postcode-full" id="postcode-label">Postcode</label>
+        <input class="form-control" id="postcode-full" name="{{ prefix }}_Postcode" type="text"  value="{{ data['{{ prefix }}_Postcode'] }}">
+      </div>
+      <div class="form-group" id="country-group">
+        <label class="form-label" for="country">Country</label>
+        <input class="form-control" id="country" name="{{ prefix }}_country" type="hidden"  value="{{ data['{{ prefix }}_country'] }}">
+      </div>
+    </div>
+
+
+      <div id="enter-manually">
+        <a class="link" href="#" onclick="return showAbroadAddress();">I need to enter an address outside the UK</a>
+      </div>
+
+
+{% endmacro %}

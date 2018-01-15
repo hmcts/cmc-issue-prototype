@@ -1,0 +1,111 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+
+
+    <form method="post" action="where" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        {{ defendant.defendantName }}
+      </h1>
+
+      <div class="form-group">
+        <h2 class="heading-medium">
+          How did you serve the documents?
+        </h2>
+
+        <p>Choose one method only - we'll use this to calculate date of service.
+
+         <div class="form-group">
+           <div class="form-group">
+             <div class="multiple-choice">
+              <input id="post" name="how-served" type="radio" value="First class post">
+              <label for="post">First class post</label>
+            </div>
+
+            {% if ( defendant.defendantType == 'company' ) or ( defendant.solicitor != '-' ) %}
+            <div class="multiple-choice" data-target="dx-address-panel">
+              <input id="dx" name="how-served" type="radio" value="Document Exchange">
+              <label for="dx">Document Exchange</label>
+            </div>
+            {% endif %}
+
+            <div class="multiple-choice" data-target="fax-panel">
+              <input id="fax" name="how-served" type="radio" value="Fax">
+              <label for="fax">Fax</label>
+            </div>
+
+
+            <div class="form-group">
+              <details role="group">
+                <summary role="button" aria-controls="details-content-0" aria-expanded="false" style="margin-left: 16px;"><span class="summary" style="padding-left: 16px;">More options</span></summary>
+                <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
+
+               <div class="multiple-choice">
+                <input id="next-day" name="how-served" type="radio" value="Other next-day delivery service">
+                <label for="next-day">Other next-day delivery service</label>
+              </div>
+
+
+              {% if ( defendant.defendantType == 'trader' ) %}
+              <div class="multiple-choice" data-target="dx-address-panel">
+                <input id="dx" name="how-served" type="radio" value="Document Exchange">
+                <label for="dx">Document Exchange</label>
+              </div>
+              {% endif %}
+
+                <div class="multiple-choice">
+                  <input id="delivering" name="how-served" type="radio" value="Delivered or left at a permitted place">
+                  <label for="delivering">Delivered or left at a permitted place</label>
+                </div>
+
+                <div class="multiple-choice">
+                  <input id="handed" name="how-served" type="radio" value="Personally handed to or left with recipient">
+                  <label for="handed">Personally handed to or left with recipient</label>
+                </div>
+
+                <div class="multiple-choice" data-target="email-address-panel">
+                  <input id="email" name="how-served" type="radio" value="Email">
+                  <label for="email">Email</label>
+                </div>
+
+                <div class="multiple-choice" data-target="other-electronic-panel">
+                  <input id="other-electronic" name="how-served" type="radio" value="Other electronic method">
+                  <label for="other-electronic">Other electronic method</label>
+                </div>
+                <div id="other-electronic-panel" class="panel-border-narrow js-hidden form-group" aria-hidden="true">
+                  <div class="form-group" style="padding-left: 50px;">
+                    <label class="form-label" for="other-electronic-method">Enter the method</label>
+                    <input class="form-control" type="text" id="other-electronic-method" name="other-electronic-method" value="" style="width: 75%;">
+                  </div>
+                </div>
+
+                <div class="multiple-choice" data-target="other-dest-box">
+                  <input id="other-dest" name="how-served" type="radio" value="other">
+                  <label for="other-dest">Other</label>
+                </div>
+                <div id="other-dest-box" class="panel-border-narrow js-hidden form-group" aria-hidden="true">
+                  <div class="form-group" style="padding-left: 50px;">
+                    <label class="form-label" for="other-dest-value" style="float: none;">Enter the method</label>
+                    <input class="form-control" type="text" id="other-dest-value" name="other-dest-value" value="" style="width: 75%;">
+                  </div>
+                </div>
+
+                </div>
+              </details>
+            </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}

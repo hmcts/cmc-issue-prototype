@@ -1,0 +1,24 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %} 
+{% import "prototype-sept2-2017/address.html" as address%}
+{% block main_content %}
+
+<h1 class="heading-large">Your organisation address</h1>
+
+<form action="representative-contact" method="post" class="postcode">
+
+
+  <fieldset class="form-group">
+    <legend class="visually-hidden">Address</legend>
+    
+    {{ address.lookup('rep') }}
+
+  </fieldset>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" id="continue-button" value="Save and continue">
+  </div>
+</form>
+
+
+{% endblock %}

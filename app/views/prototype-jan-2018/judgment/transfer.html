@@ -1,0 +1,28 @@
+{% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+    <form method="post" action="transfer" class="form">
+
+      <h1 class="heading-large">Transfer case to court</h1>
+
+      <h2 class="heading-medium">Do you wish to request judgment on Goddard Plumbing before you transfer the case to court?</h2>
+      
+      <div class="form-group inline">
+        <div class="multiple-choice">
+          <input id="transfer-yes" name="transfer" type="radio" value="yes">
+          <label for="transfer-yes">Yes</label>
+        </div>
+
+        <div class="multiple-choice">
+          <input id="transfer-no" name="transfer" type="radio" value="no">
+          <label for="transfer-no">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+
+    </form>
+
+    {% endblock %}
