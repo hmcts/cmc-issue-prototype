@@ -59,7 +59,7 @@
             {% elseif data['claim-status'] == 3 %}
             <span>Deemed served on {{ now | date("subtract", 3, "days") | date( "DD" ) }} to {{ now | date("subtract", 1, "days") | date( "D MMM YYYY" ) }}</span>
 
-            {% elseif ( data['claim-status'] == 3.2 ) or ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 3.4 ) %}
+            {% elseif ( data['claim-status'] == 3.2 ) or ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 3.4 ) or ( data['claim-status'] == 3.5 ) %}
             <span>Deemed served on {{ now | date("subtract", 8, "days") | date( "D MMM YYYY" ) }}</span>
 
             {% elseif data['claim-status'] == 3 %}
@@ -416,7 +416,7 @@
             </table>
 
 
-            {% elseif data['claim-status'] == 3.4 %}
+            {% elseif ( data['claim-status'] == 3.4 ) or ( data['claim-status'] == 3.5 ) %}
 
             <table>
               <thead>
@@ -441,11 +441,17 @@
                   <td>{{ now | date("subtract", 6, "days") | date( "D MMM YYYY" ) }}</td>
                 </tr>
                 <tr class="no-border sub">
+                  {% if ( data['claim-status'] == 3.4 ) %}
                   <td colspan="3">
                     <p>
                       <a href='../reply' class="button secondary-button">Reply to defence</a>
                     </p>
                   </td>
+                  {% else %}
+                  <td><a href="#" class="download">Download your reply</a> (PDF, 234 KB)</td>
+                  <td>Received on</td>
+                  <td>{{ now | date( "D MMM YYYY" ) }}</td>
+                  {% endif %}
                 </tr>
                 <tr class="no-border spaced">
                   <td colspan="3">2. Goddard Plumbing</td>
@@ -714,6 +720,7 @@
     <option value="3.2" {% if data['claim-status'] == 3.2 %}selected{% endif %}>Response - received (single def)</option>
     <option value="3.3" {% if data['claim-status'] == 3.3 %}selected{% endif %}>Responses - awaiting some (multi def)</option>
     <option value="3.4" {% if data['claim-status'] == 3.4 %}selected{% endif %}>Responses - received all (multi def)</option>
+    <option value="3.5" {% if data['claim-status'] == 3.5 %}selected{% endif %}>Responses - replied</option>
     <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>Request judgment (single)</option>
     <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Request judgment (multi)</option>
     <option value="5.1" {% if data['claim-status'] == 5.1 %}selected{% endif %}>Request judgment (not all ready)</option>
