@@ -150,7 +150,7 @@
           {% if data['claim-status'] == 3 %}
           <p>
             Service acknowledged on {{ now | date( "D MMMM YYYY" ) }}<br />
-            <a href="../acknowledgement/view">View acknowledgement of service</a>
+            <a href="../acknowledgement/view">View the acknowledgement of service</a>
           </p>
 
           {% elseif data['claim-status'] == 4 %}
@@ -181,7 +181,7 @@
          
           <p>
             No response was received by {{ now | date("subtract", 4, "days") | date( "D MMMM YYYY" ) }}.<br />
-            <a href="../judgment/view">View confirmation of request for judgment</a>
+            <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
 
           <p style="margin-top: 10px">

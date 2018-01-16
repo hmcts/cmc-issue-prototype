@@ -276,7 +276,7 @@
                 <td>{{ now | date("add", 28, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
               <tr class="no-border sub">
-                <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
                 <td>Received on</td>
                 <td>{{ now | date( "D MMM YYYY" ) }}</td>
               </tr>
@@ -316,7 +316,7 @@
 
             <p>
               <a href="#" class="download">Download the response</a> (PDF, 234 KB)<br />
-              <a href="../acknowledgement/view">View acknowledgement of service</a><br />
+              <a href="../acknowledgement/view">View the acknowledgement of service</a><br />
             </p>
 
             {% elseif ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2) or ( data['claim-status'] == 6.3 ) %}
@@ -339,7 +339,7 @@
                 <td>{{ now | date("subtract", 3, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
               <tr class="no-border sub">
-                <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
                 <td>Received on</td>
                 <td>{{ now | date("subtract", 13, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
@@ -363,7 +363,7 @@
 
               {% if ( data['claim-status'] == 3.3 ) or ( data['claim-status'] == 5.1 ) or ( data['claim-status'] == 6.1 ) or ( data['claim-status'] == 6.2 ) or ( data['claim-status'] == 6.3 ) %}
               <tr class="no-border sub">
-                <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
                 <td>Received on</td>
                 <td>
                   {% if ( data['claim-status'] == 6.2 ) or ( data['claim-status'] == 6.3 ) %}
@@ -411,7 +411,7 @@
                   <td>{{ now | date("subtract", 6, "days") | date( "D MMM YYYY" ) }}</td>
                 </tr>
                 <tr class="no-border sub">
-                  <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                  <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
                   <td>Received on</td>
                   <td>{{ now | date("subtract", 14, "days") | date( "D MMM YYYY" ) }}</td>
                 </tr>
@@ -424,7 +424,7 @@
                   <td>{{ now | date("subtract", 2, "days") | date( "D MMM YYYY" ) }}</td>
                 </tr>
                 <tr class="no-border sub">
-                  <td><a href="../acknowledgement/view">View acknowledgement of service</a></td>
+                  <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
                   <td>Received on</td>
                   <td>{{ now | date("subtract", 10, "days") | date( "D MMM YYYY" ) }}</td>
                 </tr>
@@ -528,7 +528,7 @@
 
           <p style="margin-top: 10px;">
             Judgment was requested on {{ now | date( "D MMMM YYYY" ) }}.<br />
-            <a href="../judgment/view">View confirmation of request for judgment</a>
+            <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
           <p>
             An order will be made on {{ now | date("add", 5, "days") | date( "D MMMM YYYY" ) }}.
@@ -541,7 +541,7 @@
 
           <p style="margin-top: 10px;">
             Judgment was requested on {{ now | date( "D MMMM YYYY" ) }}.<br />
-            <a href="../judgment/view">View confirmation of request for judgment</a>
+            <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
 
           <p>
@@ -560,7 +560,7 @@
 
           <p style="margin-top: 10px;">
             Judgment was requested on {{ now | date("subtract", 12, "days" ) | date( "D MMMM YYYY" ) }}.<br />
-            <a href="../judgment/view">View confirmation of request for judgment</a>
+            <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
           <br />
 
@@ -589,7 +589,7 @@
 
           <p style="margin-top: 10px;">
             Judgment was requested on {{ now | date("subtract", 12, "days" ) | date( "D MMMM YYYY" ) }}.<br />
-            <a href="../judgment/view">View confirmation of request for judgment</a>
+            <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
           <br />
 
@@ -599,7 +599,7 @@
 
           <p>
             Judgment was requested on {{ now | date( "D MMMM YYYY" ) }}.<br />
-            <a href="../judgment/view">View confirmation of request for judgment</a>
+            <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
           <br />
 
@@ -613,7 +613,7 @@
           </p>
 
           <p style="margin-top: 10px">
-            <a href="../judgment/view">View confirmation of request for judgment</a><br />
+            <a href="../judgment/view">View the confirmation of request for judgment</a><br />
             <a target="_blank" href="/public/documents/Judgement-order.pdf" class="download">Download the judgment order</a> (PDF, 234 KB)
           </p>
 
