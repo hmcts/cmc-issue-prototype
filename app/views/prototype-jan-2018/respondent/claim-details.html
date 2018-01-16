@@ -39,7 +39,7 @@
       <div class="subsection js-subsection">
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Issue</h2>
-          <span>Issued {{ now | date("subtract", 3, "months") | date( "D MMM YYYY" ) }}</span>
+          <span>Issued on {{ now | date("subtract", 3, "months") | date( "D MMM YYYY" ) }}</span>
         </div>
         <div class="subsection__content js-subsection-content" id="subsection_content_0">
           <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download">Download the sealed claim form</a> (PDF, 234 KB)
@@ -52,10 +52,10 @@
 
             {% if data['claim-status'] == 5 %}
             <span>
-              Deemed served {{ now | date("subtract", 18, "days") | date( "D MMM YYYY" ) }}
+              Deemed served on {{ now | date("subtract", 18, "days") | date( "D MMM YYYY" ) }}
             </span>
             {% else %}
-            <span>Deemed served {{ now | date("subtract", 10, "days") | date( "D MMM YYYY" ) }}</span>
+            <span>Deemed served on {{ now | date("subtract", 10, "days") | date( "D MMM YYYY" ) }}</span>
             {% endif %}
 
         </div>
