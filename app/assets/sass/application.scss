@@ -110,6 +110,10 @@ $path: "/public/images/";
   margin-left: 5rem;
 }
 
+.no-indent li {
+  margin-left: 0;
+}
+
 .error-min-height {
   min-height: 25px;
 }
