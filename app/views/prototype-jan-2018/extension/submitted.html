@@ -5,7 +5,7 @@
   <br>
   <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
   <p class="form-group-compound">Proposed date: {{ now | date("add", 32, "days" ) | date( "D MMMM YYYY" ) }}</p>
-  <p class="form-group-compound">Requested on: {{ now | date("subtract", 3, "months") | date( "D MMMM YYYY" ) }}</p>
+  <p class="form-group-compound">Requested on: {{ now | date( "D MMMM YYYY" ) }}</p>
 </div>
 
 <p>We will let you know via email whether the claimant accepts or rejects your extension request.</p>

@@ -124,7 +124,7 @@
           </p>
           {% elseif data['claim-status'] == 1.2 %}
           <p>
-            A request to extend the response deadline to {{ now | date( "add", 28, "days" ) | date( "D MMMM YYYY" ) }} was made on {{ now | date( "D MMMM YYYY") }}. The claimant has not yet responded.
+            A request to extend the response deadline to {{ now | date( "add", 32, "days" ) | date( "D MMMM YYYY" ) }} was made on {{ now | date( "D MMMM YYYY") }}. The claimant has not yet responded.
           </p>
           {% elseif data['claim-status'] == 1.3 %}
           <p>
@@ -134,7 +134,7 @@
           {% elseif data['claim-status'] == 1.4 %}
           <p>
             Your request for an extension was rejected by the claimant.</br >
-            The claimant added: "22 days is excessive. You can have 14."
+            The claimant added: "28 days is excessive. You can have 14."
           </p>
           <p>
             <a href='../extension' class="button secondary-button">Propose a new extension</a>

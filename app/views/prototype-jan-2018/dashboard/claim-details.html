@@ -53,8 +53,11 @@
       <div class="subsection js-subsection">
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Service</h2>
-            {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 )  or ( data['claim-status'] == 3.11 )  or ( data['claim-status'] == 3.12 ) %}
+            {% if ( data['claim-status'] == 2 ) %}
             <span>Deemed served on {{ now | date( "D MMM YYYY" ) }}</span>
+
+            {% elseif ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.11 ) or ( data['claim-status'] == 3.12 ) %}
+            <span>Deemed served on {{ now | date("subtract", 10, "days") | date( "D MMM YYYY" ) }}</span>
 
             {% elseif data['claim-status'] == 3 %}
             <span>Deemed served on {{ now | date("subtract", 3, "days") | date( "DD" ) }} to {{ now | date("subtract", 1, "days") | date( "D MMM YYYY" ) }}</span>
@@ -168,7 +171,7 @@
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Response</h2>
 
-            {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.12 ) %}
+            {% if ( data['claim-status'] == 2 ) %}
             <span>
               Responses due by {{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}
             </span>
@@ -178,9 +181,14 @@
               Responses due by {{ now | date("add", 13, "days") | date( "D MMM YYYY" ) }}
             </span>
 
-            {% elseif data['claim-status'] == 3.11 %}
+            {% elseif ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.12 ) %}
             <span>
-              Next response due by {{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}
+              Responses due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 3.11 ) %}
+            <span>
+              Next response due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3.2 %}
@@ -287,7 +295,7 @@
               <tr class="no-border">
                 <td>1. Jan Clarke trading as Clarke Construction</td>
                 <td>Response due</td>
-                <td>{{ now | date("add", 28, "days") | date( "D MMM YYYY" ) }}</td>
+                <td>{{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
               <tr class="no-border sub">
                 <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
@@ -298,7 +306,7 @@
               <tr class="no-border spaced">
                 <td>2. Goddard Plumbing</td>
                 <td>Response due</td>
-                <td>{{ now | date("add", 42, "days") | date( "D MMM YYYY" ) }}</td>
+                <td>{{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
               <tr class="no-border sub">
                 <td>28 day extension requested</td>
@@ -308,7 +316,7 @@
               <tr class="no-border spaced">
                 <td>3. Kingsley Building Ltd</td>
                 <td>Response due</td>
-                <td>{{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}</td>
+                <td>{{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
               </tbody>
             </table>
@@ -319,7 +327,7 @@
               No responses received.
             </p>
             <p>
-              A request by Goddard Plumbing for an extension to {{ now | date("add", 22, "days") | date( "D MMM YYYY" ) }} was rejected on {{ now | date( "D MMM YYYY" ) }}.
+              A request by Goddard Plumbing for an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }} was rejected on {{ now | date( "D MMM YYYY" ) }}.
             </p>
 
 
@@ -494,7 +502,7 @@
 
             {% elseif data['claim-status'] == 3.1 %}
 
-            Goddard Plumbing has asked you to extend the response deadline to {{ now | date("add", 42, "days") | date( "D MMMM YYYY" ) }}.
+            Goddard Plumbing has asked you to extend the response deadline to {{ now | date("add", 32, "days") | date( "D MMMM YYYY" ) }}.
             <p>
               <a href='../extension/respond' class="button secondary-button">Respond to extension request</a>
             </p>
