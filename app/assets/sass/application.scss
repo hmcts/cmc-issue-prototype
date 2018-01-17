@@ -32,6 +32,11 @@ $path: "/public/images/";
   }
 }
 
+.column-three-quarters {
+    float: left;
+    width: 75%;
+}
+
 .form-control-large {
   height: 15em;
   width: 100%;
@@ -103,6 +108,10 @@ $path: "/public/images/";
 
 .list-bullet li {
   margin-left: 5rem;
+}
+
+.no-indent li {
+  margin-left: 0;
 }
 
 .error-min-height {

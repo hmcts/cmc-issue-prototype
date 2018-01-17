@@ -96,7 +96,7 @@
               Response due {{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}
             </span>
 
-            {% elseif ( data['claim-status'] == 4) %}
+            {% elseif ( data['claim-status'] == 4) or ( data['claim-status'] == 6) %}
             <span>
               Responded on {{ now | date( "D MMM YYYY" ) }}
             </span>
@@ -141,7 +141,7 @@
           {% endif %}
 
 
-          {% if ( data['claim-status'] != 4 ) and ( data['claim-status'] != 5 ) %}
+          {% if ( data['claim-status'] != 4 ) and ( data['claim-status'] != 5 ) and ( data['claim-status'] != 6 ) %}
           <p>
             <a href='representative-name' class="button secondary-button">Upload your response</a>
           </p>
@@ -153,7 +153,7 @@
             <a href="../acknowledgement/view">View the acknowledgement of service</a>
           </p>
 
-          {% elseif data['claim-status'] == 4 %}
+          {% elseif ( data['claim-status'] == 4 ) or ( data['claim-status'] == 6 ) %}
           <p>
             <a href="#" class="download">Download your response</a> (PDF, 234 KB)
           </p>
@@ -169,7 +169,7 @@
       </div>
 
 
-      {% if data['claim-status'] > 4  %}
+      {% if data['claim-status'] == 5  %}
       <div class="subsection js-subsection">
         <div class="subsection__header">
           <h2 class="subsection__title" id="designing-government-services">Judgment</h2>
@@ -187,6 +187,24 @@
           <p style="margin-top: 10px">
             A judgment was entered on {{ now | date( "D MMMM YYYY" ) }}.<br />
             <a target="_blank" href="/public/documents/Judgement-order.pdf" class="download">Download the judgment order</a> (PDF, 234 KB)
+          </p>
+
+        </div>
+      </div>
+
+
+      {% elseif data['claim-status'] == 6  %}
+      <div class="subsection js-subsection">
+        <div class="subsection__header">
+          <h2 class="subsection__title" id="designing-government-services">Reply</h2>
+          <span>Received on {{ now | date( "D MMMM YYYY" ) }}</span>
+        </div>
+
+        <div class="subsection__content js-subsection-content" id="subsection_content_0"> 
+
+          <p style="margin-top: 10px">
+            The claimant replied on {{ now | date( "D MMMM YYYY" ) }}.<br />
+            <a target="_blank" href="#" class="download">Download the reply</a> (PDF, 234 KB)
           </p>
 
         </div>
@@ -251,6 +269,7 @@
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Acknowledged</option>
     <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>Responded</option>
     <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Judgment received</option>
+    <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>Reply received</option>
   </select>
 </form>
 
