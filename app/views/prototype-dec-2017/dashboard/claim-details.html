@@ -215,7 +215,7 @@
 
             {% elseif ( data['claim-status'] >= 4) %}
             <span>
-              No response by: {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}
+              Response was due {{ now | date("subtract", 2, "days") | date( "DD MMM YYYY" ) }}
             </span>
 
             {% endif %}
@@ -302,7 +302,7 @@
 
             {% elseif ( data['claim-status'] == 3.12 ) %}
             <p>
-              No responses recevied.
+              No responses received.
             </p>
             <p>
               A request by Goddard Plumbing for an extension to {{ now | date("add", 22, "days") | date( "DD MMM YYYY" ) }} was rejected on {{ now | date( "DD MMM YYYY" ) }}.
@@ -417,7 +417,7 @@
                 </tr>
                 <tr class="no-border spaced">
                   <td colspan="3">2. Goddard Plumbing</td>
-                </tr>                
+                </tr>
                 <tr class="no-border sub">
                   <td><a href="#" class="download">Download the response</a> (PDF, 234 KB)</td>
                   <td>Received on</td>
