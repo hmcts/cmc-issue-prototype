@@ -170,17 +170,17 @@
 
             {% if ( data['claim-status'] == 2 ) or ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.12 ) %}
             <span>
-              Responses due {{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}
+              Responses due by {{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3 %}
             <span>
-              Responses due {{ now | date("add", 13, "days") | date( "D MMM YYYY" ) }}
+              Responses due by {{ now | date("add", 13, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3.11 %}
             <span>
-              Next response due {{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}
+              Next response due by {{ now | date("add", 14, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3.2 %}
@@ -190,17 +190,17 @@
 
             {% elseif ( data['claim-status'] == 3.3 ) %}
             <span>
-              Next response due {{ now | date("add", 6, "days") | date( "D MMM YYYY" ) }}
+              Next response due by {{ now | date("add", 6, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif ( data['claim-status'] == 5.1 ) %}
             <span>
-              Next response due {{ now | date("add", 10, "days") | date( "D MMM YYYY" ) }}
+              Next response due by {{ now | date("add", 10, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif ( data['claim-status'] == 6.1 ) %}
             <span>
-              Next response due {{ now | date("add", 12, "days") | date( "D MMM YYYY" ) }}
+              Next response due by {{ now | date("add", 12, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif ( data['claim-status'] == 6.2 ) or ( data['claim-status'] == 6.3 ) %}
@@ -215,7 +215,7 @@
 
             {% elseif ( data['claim-status'] >= 4) %}
             <span>
-              No response by {{ now | date("subtract", 2, "days") | date( "D MMM YYYY" ) }}
+              Response was due by {{ now | date("subtract", 2, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% endif %}
@@ -316,7 +316,7 @@
 
             {% elseif ( data['claim-status'] == 3.12 ) %}
             <p>
-              No responses recevied.
+              No responses received.
             </p>
             <p>
               A request by Goddard Plumbing for an extension to {{ now | date("add", 22, "days") | date( "D MMM YYYY" ) }} was rejected on {{ now | date( "D MMM YYYY" ) }}.

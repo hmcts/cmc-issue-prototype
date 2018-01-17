@@ -1,25 +1,42 @@
 {% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-    <form method="post" action="respond" class="form">
+  <form method="post" action="respond" class="form">
 
-      <h1 class="heading-large">Do you agree to extend the response deadline to {{ now | date( "add", 28, "days" ) | date("D MMM YYYY") }}?</h1>
-      
+    <h1 class="heading-large">Respond to extension request</h1>
+
+    <h3 class="heading-medium">Proposed date</h3>
+    <p>{{ now | date( "add", 28, "days" ) | date("D MMM YYYY") }}</p>
+
+    <h3 class="heading-medium">Defendant's notes</h3>
+    <p>"Awaiting medical reports. Should be ready by end of month"</p>
+
+    <div class="form-group">
+
+      <p class="heading-medium">Do you agree to extend the response deadline to {{ now | date( "add", 28, "days" ) | date("D MMM YYYY") }}?</p>
       <div class="form-group inline">
         <div class="multiple-choice">
           <input id="extension-yes" name="extension" type="radio" value="yes">
           <label for="extension-yes">Yes</label>
         </div>
 
-        <div class="multiple-choice">
+        <div class="multiple-choice" data-target="response">
           <input id="extension-no" name="extension" type="radio" value="no">
           <label for="extension-no">No</label>
         </div>
       </div>
+    </div>
 
+    <div class="panel panel-border-narrow js-hidden" aria-hidden="true" id="response">
       <div class="form-group">
-        <input type="submit" class="button" value="Respond to request">
+        <label class="form-label" for="addressed-to">Add optional response</label>
+        <textarea class="form-control form-control-medium" id="extension-notes" rows="3" name="extension-notes" type="text" style="height: 5em;"></textarea>
       </div>
+    </div>
 
-    </form>
+    <div class="form-group">
+      <input type="submit" class="button" value="Respond to request">
+    </div>
 
-    {% endblock %}
+  </form>
+
+{% endblock %}

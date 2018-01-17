@@ -83,17 +83,17 @@
 
             {% if ( data['claim-status'] == 1 ) or ( data['claim-status'] == 1.1 ) or ( data['claim-status'] == 1.11 ) or ( data['claim-status'] == 1.2 ) or ( data['claim-status'] == 1.4 ) or ( data['claim-status'] == 2 ) %}
             <span>
-              Response due {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
+              Response due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 1.3 %}
             <span>
-              Response due {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}
+              Response due by {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3 %}
             <span>
-              Response due {{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}
+              Response due by {{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif ( data['claim-status'] == 4) or ( data['claim-status'] == 6) %}
@@ -103,7 +103,7 @@
 
             {% elseif ( data['claim-status'] == 5) %}
             <span>
-              Response due {{ now | date("subtract", 4, "days") | date( "D MMM YYYY" ) }}
+              Response due by {{ now | date("subtract", 4, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% endif %}
@@ -133,7 +133,8 @@
           </p>
           {% elseif data['claim-status'] == 1.4 %}
           <p>
-            Your request for an extension was rejected by the claimant.
+            Your request for an extension was rejected by the claimant.</br >
+            The claimant added: "22 days is excessive. You can have 14."
           </p>
           <p>
             <a href='../extension' class="button secondary-button">Propose a new extension</a>
