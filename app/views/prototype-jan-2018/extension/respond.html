@@ -5,14 +5,14 @@
     <h1 class="heading-large">Respond to extension request</h1>
 
     <h3 class="heading-medium">Proposed date</h3>
-    <p>{{ now | date( "add", 28, "days" ) | date("D MMM YYYY") }}</p>
+    <p>{{ now | date( "add", 32, "days" ) | date("D MMMM YYYY") }}</p>
 
     <h3 class="heading-medium">Defendant's notes</h3>
     <p>"Awaiting medical reports. Should be ready by end of month"</p>
 
     <div class="form-group">
 
-      <p class="heading-medium">Do you agree to extend the response deadline to {{ now | date( "add", 28, "days" ) | date("D MMM YYYY") }}?</p>
+      <p class="heading-medium">Do you agree to extend the response deadline to {{ now | date( "add", 32, "days" ) | date("D MMMM YYYY") }}?</p>
       <div class="form-group inline">
         <div class="multiple-choice">
           <input id="extension-yes" name="extension" type="radio" value="yes">
