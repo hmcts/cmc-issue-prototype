@@ -210,7 +210,7 @@
 
             {% elseif data['claim-status'] == 3.4 %}
             <span>
-              Received by {{ now | date("subtract", 2, "days") | date( "D MMM YYYY" ) }}
+              Defences received by {{ now | date("subtract", 2, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif ( data['claim-status'] >= 4) %}
@@ -494,7 +494,7 @@
 
             {% elseif data['claim-status'] == 3.1 %}
 
-            Goddard Plumbing has requested the response deadline be extended to {{ now | date("add", 42, "days") | date( "D MMMM YYYY" ) }}.
+            Goddard Plumbing has asked you to extend the response deadline to {{ now | date("add", 42, "days") | date( "D MMMM YYYY" ) }}.
             <p>
               <a href='../extension/respond' class="button secondary-button">Respond to extension request</a>
             </p>
@@ -537,7 +537,7 @@
 
           {% if ( data['claim-status'] == 4 ) %}
           <p>
-            We've not received a response from Jan Clarke.
+            We haven't received a response from Jan Clarke.
           </p>
 
           <p>
@@ -546,7 +546,7 @@
 
           {% elseif data['claim-status'] == 5 %}
           <p>
-            We've not received a response from the following defendants.
+            We haven't received a response from the following defendants.
           </p>
 
           <ul>
@@ -560,7 +560,7 @@
 
           {% elseif data['claim-status'] == 5.1 %}
           <p>
-            We've not received a response from Kingsley Building Ltd.
+            We haven't received a response from Kingsley Building Ltd.
           </p>
 
           <p>
@@ -568,13 +568,13 @@
           </p>
 
           <p>
-            Goddard Plumbing has until {{ now | date("add", 10, "days") | date( "D MMMM YYYY" ) }} to respond, after which judgment may be requested.
+            Goddard Plumbing has until {{ now | date("add", 10, "days") | date( "D MMMM YYYY" ) }} to respond, you can request judgment after that date.
           </p>
 
 
           {% elseif ( data['claim-status'] == 6 ) %}
           <p>
-            We've not received a response from Jan Clarke.
+            We haven't received a response from Jan Clarke.
           </p>
 
 
@@ -588,7 +588,7 @@
 
           {% elseif ( data['claim-status'] == 6.1 ) %}
           <p>
-            We've not received a response from Kingsley Building Ltd.
+            We haven't received a response from Kingsley Building Ltd.
           </p>
 
           <p style="margin-top: 10px;">
@@ -603,12 +603,12 @@
 
           {% elseif ( data['claim-status'] == 6.2 ) %}
           <p>
-              We've not received a response from the following defendants.
+              We haven't received a response from these defendants:
           </p>
 
           <h2 class="heading-small">Kingsley Building Ltd</h2>
           <p>
-            Judgment was requested on {{ now | date("subtract", 12, "days" ) | date( "D MMMM YYYY" ) }}.<br />
+            You requested judgement on {{ now | date("subtract", 12, "days" ) | date( "D MMMM YYYY" ) }}.<br />
             <a href="../judgment/view">View the confirmation of request for judgment</a>
           </p>
 
@@ -623,7 +623,7 @@
 
           {% elseif ( data['claim-status'] == 6.3 ) %}
           <p>
-            We've not received a response from the following defendants.
+            We haven't received a response from the following defendants.
           </p>
 
           <h2 class="heading-small">Kingsley Building Ltd</h2>
