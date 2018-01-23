@@ -2,7 +2,7 @@
 {% import "prototype-sept2-2017/address.html" as address%}
 {% block main_content %}
 <h1 class="heading-large"><span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %} representative</span>
-  Address for service
+  <a href="defendant-reps-address" class="secret-link">Address for service</a>
 </h1>
 <form action="defendant-reps-address" method="post">
 
