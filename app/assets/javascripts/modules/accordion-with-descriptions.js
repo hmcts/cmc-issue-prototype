@@ -248,6 +248,11 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
     }
 
 
+    this.openItem = function( $subsection ) {
+
+        var subsectionView = new SubsectionView( $subsection );
+        subsectionView.open();
+      }
 
     this.openLastItem = function($element) {
 
