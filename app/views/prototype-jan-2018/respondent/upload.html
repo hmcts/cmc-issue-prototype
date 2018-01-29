@@ -4,14 +4,12 @@
 
       <h1 class="heading-large">
         <span class="form-hint">Defendant 2: Jan Clark</span>
-        <span id="sub"><a href="check-your-answers" class="secret-link">Upload your response</a></span>
+        <span id="sub"><a href="check-your-answers" class="secret-link">Upload your <span style="text-transform: lowercase;">{{ ( data['response'] ) or ( 'defence' ) }}</span></a></span>
       </h1>
 
       <div id="uploads">
 
-        <p>You must include a statement of truth in the document you upload.</p>
-
-        <p class="form-hint">Use this page to upload a defence or admission, not applications or questions about the claim.</p>
+        <p>You must include a statement of truth in your <span style="text-transform: lowercase;">{{ ( data['response'] ) or ( 'defence' ) }}</span> document.</p>
 
         <p class="form-hint">We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpeg, xls, xlsx, png.</p>
 

@@ -1,7 +1,7 @@
 {% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <div class="govuk-box-highlight">
-  <h1 class="bold-large">You've responded to this claim</h1>
+  <h1 class="bold-large">You've submitted a{% if data['response'] == 'Admission' %}n {% endif %} <span style="text-transform: lowercase;">{{ ( data['response'] ) or ( 'defence' ) }}</span></h1>
   <br>
   <h2 class="bold-medium form-group">Claim number: 000LR095</h2>
   <p>Submitted: {{ now | date( "D MMMM YYYY" ) }}</p>
