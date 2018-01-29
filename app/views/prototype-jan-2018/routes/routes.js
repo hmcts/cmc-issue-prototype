@@ -769,24 +769,39 @@ module.exports = function(app){
         res.render('prototype-jan-2018/acknowledgement/view', { data: req.session.data } );
     });
 
+    app.get('*/prototype-jan-2018/respondent/start-defence', function(req, res){
+        req.session.data['response'] = 'Defence';
+        res.render('prototype-jan-2018/respondent/representative-name', { data: req.session.data } );
+    });
+
+    app.get('*/prototype-jan-2018/respondent/start-admission', function(req, res){
+        req.session.data['response'] = 'Admission';
+        res.render('prototype-jan-2018/respondent/representative-name', { data: req.session.data } );
+    });
+
     app.post('*/prototype-jan-2018/respondent/response', function(req, res){
 
-        if ( !req.body['response'] ) {
-            res.render('prototype-jan-2018/respondent/response', { data: req.session.data } );
-        } else if ( req.session.data['response'] == 'defend all of the claim' ) {
-            res.redirect('your-reference' );
-        } else if ( req.session.data['response'] == 'defend part of the claim' ) {
-            res.redirect('part-defence' );
-        } else if ( req.session.data['response'] == 'admit all of the claim' ) {
-            res.redirect('admit' );
+        if ( req.session.data['response'] == 'Admission' ) {
+            res.render('prototype-jan-2018/respondent/admission', { data: req.session.data } );            
+        } else {
+            res.render('prototype-jan-2018/respondent/upload', { data: req.session.data } );
         }
+    });
+
+    app.post('*/prototype-jan-2018/respondent/upload-admission', function(req, res){
+//        req.session.data['response'] = 'Admission';
+        res.redirect('upload');
 
     });
+
+    
 
 
     app.post('*/prototype-jan-2018/respondent/check-your-answers', function(req, res){
 
         req.session.data['name'] = 'Jan Clarke';
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf1';
+
         if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
             req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         } else {
@@ -803,6 +818,7 @@ module.exports = function(app){
     app.get('*/prototype-jan-2018/respondent/check-your-answers', function(req, res){
 
         req.session.data['name'] = 'Jan Clarke';
+
         if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
             req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         } else {
@@ -812,6 +828,8 @@ module.exports = function(app){
         if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         }
+
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf';
 
         res.render('prototype-jan-2018/respondent/check-your-answers', { data: req.session.data } );
 
@@ -820,6 +838,7 @@ module.exports = function(app){
     app.get('*/prototype-jan-2018/respondent/view', function(req, res){
 
         req.session.data['name'] = 'Jan Clarke';
+
         if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
             req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         } else {
@@ -829,6 +848,8 @@ module.exports = function(app){
         if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         }
+
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf';
 
         res.render('prototype-jan-2018/respondent/view', { data: req.session.data } );
 
@@ -904,7 +925,7 @@ function getResponseData( req ) {
     req.session.data['your-ref'] = 'PW1348-151117';
     req.session.data['defendant-ref'] = 'JK/639127/134';
     req.session.data['dob'] = '2 September 1982';
-    req.session.data['intention'] = 'defend all of this claim';
+    req.session.data['response'] = 'Defence';
     req.session.data['uploaded-file'] = 'Jan Clarke Defence.pdf';
 //    req.session.data['text-defence'] = 'I do not agree because…';
 

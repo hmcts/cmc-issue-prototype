@@ -70,13 +70,6 @@
       </td>
     </tr>
     <tr>
-      <td>Defendant's reference</td>
-      <td>{{ data['defendant-ref'] }}</td>
-      <td class="change-answer">
-        <a href="your-reference">Change</a>
-      </td>
-    </tr>
-    <tr>
       <td>Defendant's name</td>
       <td>{{ data['name'] }}</td>
       <td class="change-answer">
@@ -92,11 +85,18 @@
     </tr>
     <tr>
       <td>Response</td>
+      <td>{{ ( data['response'] | capitalize ) or ( 'Defence' ) }}</td>
+      <td class="change-answer">
+        <a href="response">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>{{ ( data['response'] | capitalize ) or ( 'Defence' ) }} document</td>
       <td>
         {% if data['uploaded-file'] %}<a href="">{{ data['uploaded-file'] }}</a>{% endif %}
       </td>
       <td class="change-answer">
-        <a href="defence">Change</a>
+        <a href="upload">Change</a>
       </td>
     </tr>
   </table>

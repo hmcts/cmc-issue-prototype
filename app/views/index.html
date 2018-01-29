@@ -6,7 +6,7 @@
   <div class="grid-row">
     <div class="column-two-thirds">
       {% block main_content %}
-      <h1 class="heading-large">Civil Money Claims</h1>
+      <h1 class="heading-xlarge">Civil Money Claims</h1>
 
 
       <details class="form-group">
@@ -74,10 +74,10 @@
 
 
 
-      <h2 class="heading-medium">Beta Sprint 13 - Prototype Jan 2018</h1>
+      <h2 class="heading-large">Beta Sprint 13 - Prototype Jan 2018</h1>
 
 
-        <h3 class="heading-small">Claimant journeys</h3>
+        <h3 class="heading-medium">Claimant journeys</h3>
 
         <p><a href="prototype-jan-2018/email-registration" role="button">Current registration journey</a></p>
 
@@ -237,7 +237,7 @@
         </details>
 
 
-      <h3 class="heading-small">Defendant journeys</h3>
+      <h3 class="heading-medium">Defendant journeys</h3>
 
         
         <div><a href="prototype-jan-2018/login?journey=respondent" role="button">Accepting a case (on hold)</a></div>
@@ -260,17 +260,17 @@
             <span class="summary">Pages</span>
           </summary>
           <ul class="list-bullet">
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1" role="button">Claim details - served</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=2" role="button">Claim details - served (with AoS)</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.1" role="button">Claim details - request extension</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.11" role="button">Claim details - request extension (with AoS)</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.2" role="button">Claim details - extension requested</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.3" role="button">Claim details - extension accepted</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.4" role="button">Claim details - extension rejected</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=3" role="button">Claim details - acknowledged</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=4" role="button">Claim details - responded</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=5" role="button">Claim details - judgment received</a></li>
-            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=6" role="button">Claim details - reply received</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1" role="button">Served - AoS filed</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=2" role="button">Served - No AoS filed</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.1" role="button">Request extension</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.11" role="button">Request extension (with AoS)</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.2" role="button">Extension requested</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.3" role="button">Extension accepted</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1.4" role="button">Extension rejected</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=3" role="button">Acknowledged</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=4" role="button">Responded</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=5" role="button">Judgment received</a></li>
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=6" role="button">Reply received</a></li>
           </ul>
         </details>
 
@@ -312,22 +312,20 @@
         </details>
 
 
-        <div><a href="prototype-jan-2018/respondent/representative-name" role="button">Response journey</a></div>
+        <div><a href="prototype-jan-2018/respondent/claim-details?claim-status=1" role="button">Response journey</a></div>
         <details class="form-group">
           <summary>
             <span class="summary">Pages</span>
           </summary>
           <ul class="list-bullet">
+            <li><a href="prototype-jan-2018/respondent/claim-details?claim-status=1" role="button">Case details</a></li>
             <li><a href="prototype-jan-2018/respondent/representative-name" role="button">Organisation name</a></li>
             <li><a href="prototype-jan-2018/respondent/representative-address" role="button">Your organisation address</a></li>
             <li><a href="prototype-jan-2018/respondent/representative-contact" role="button">Your organisation details</a></li>
-            <li><a href="prototype-jan-2018/respondent/response" role="button">What do you want to do?</a></li>
             <li><a href="prototype-jan-2018/respondent/your-reference" role="button">Your reference</a></li>
             <li><a href="prototype-jan-2018/respondent/dob" role="button">Date of birth</a></li>
-            <li><a href="prototype-jan-2018/respondent/defence" role="button">Defence</a></li>
-            <li><a href="prototype-jan-2018/respondent/sot" role="button">SoT incldued?</a></li>
-            <li><a href="prototype-jan-2018/respondent/part-defence" role="button">Part defend - END</a></li>
-            <li><a href="prototype-jan-2018/respondent/admit" role="button">Admit - END</a></li>
+            <li><a href="prototype-jan-2018/respondent/admission" role="button">Admission type</a></li>
+            <li><a href="prototype-jan-2018/respondent/upload" role="button">Upload</a></li>
             <li><a href="prototype-jan-2018/respondent/check-your-answers" role="button">Review and sign</a></li>
             <li><a href="prototype-jan-2018/respondent/name" role="button">Defendant's name</a></li>
             <li><a href="prototype-jan-2018/respondent/submitted" role="button">Confirmation</a></li>
@@ -336,23 +334,27 @@
         </details>
 
 
-        <h3 class="heading-small">Main changes this sprint</h3>
-        <p style="margin-top: 20px; margin-bottom: 10px;">New features:</p>
+        <h3 class="heading-medium">Main changes this sprint</h3>
+
+        <h4 class="heading-small">New features</h4>
         <ul class="list-bullet no-indent">
           <li>Added discontinuation of defendant</li>
           <li>Reply to defence</li>
         </ul>
 
-        <p style="margin-top: 20px; margin-bottom: 10px;">Iteration from research:</p>
-        <ul class="list-bullet no-indent">
-          <li>
-            <a href="https://tools.hmcts.net/confluence/display/ROC/Sprint+16%3A+10+January+2018+research+findings">Finding</a>: Solicitors want extension request to replace their existing phone calls rather than just confirm/formalist it.<br />
-            Action: Added free-text request and reply to extension request.
-          </li>
-          <li>
-            <a href="https://tools.hmcts.net/confluence/display/ROC/Sprint+16%3A+10+January+2018+research+findings">Finding</a>: Most solicitors don't understand the concept of the claimant themselves having a reference, and those that do don't want to share it as the court should be communicating via them.<br />
-            Action: Removed field
-        </ul>
+        <h4 class="heading-small">Iteration from research</h4>
+        <p>
+          <span class="bold">Finding</span>: Solicitors want extension request to replace their existing phone calls rather than just confirm/formalist it. (<a href="https://tools.hmcts.net/confluence/display/ROC/Sprint+16%3A+10+January+2018+research+findings">Source</a>)<br />
+          <span class="bold">Action</span>: Added free-text request and reply to extension request.
+        </p>
+        <p>
+          <span class="bold">Finding</span>:Most solicitors don't understand the concept of the claimant themselves having a reference, and those that do don't want to share it as the court should be communicating via them. (<a href="https://tools.hmcts.net/confluence/display/ROC/Sprint+16%3A+10+January+2018+research+findings">Source</a>)<br />
+          <span class="bold">Action</span>: Removed field
+        </p>
+        <p>
+          <span class="bold">Finding</span>: 'Response' label unclear to defendants, they expect AoS and Defence to be seperate entities (<a href="https://tools.hmcts.net/confluence/display/ROC/Sprint+16%3A+10+January+2018+research+findings">Source</a>)<br />
+          <span class="bold">Action</span>: Split out AoS and Defence from 'Response' section in case view.
+        </p>
 
       <hr class="form-group">
 
@@ -363,7 +365,6 @@
 
 
       <h2 class="heading-medium">Beta Sprint 12 - Prototype Dec 2017</h1>
-
 
         <h3 class="heading-small">Claimant journeys</h3>
 
