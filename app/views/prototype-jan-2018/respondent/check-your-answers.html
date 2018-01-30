@@ -1,7 +1,7 @@
 {% extends "prototype-jan-2018/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 <h1 class="heading-large">
-  Check your response
+  Check your {{ ( data['response'] | lower ) or ( 'defence' ) }}
 </h1>
 
 <form method="post" action="submitted" class="form">
@@ -53,7 +53,7 @@
   </table>
 
 
-  <h2 class="heading-medium">Response details</h2>
+  <h2 class="heading-medium">{{ ( data['response'] | capitalize ) or ( 'Defence' ) }} details</h2>
 
 
   <table class="check-your-answers">
@@ -103,7 +103,7 @@
 
 
   <div class="form-group column-two-thirds" style="padding-left: 0; margin-top: 30px;">
-    <button id="submit" class="button">Submit response</button>
+    <button id="submit" class="button">Submit {{ ( data['response'] | lower ) or ( 'defence' ) }}</button>
   </div>
 
 </form>
