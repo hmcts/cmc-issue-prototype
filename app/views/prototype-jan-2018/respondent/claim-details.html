@@ -6,8 +6,10 @@
 
 <h2 class="heading-large">
   <span class="form-hint">Defendant 1:</span>
-  Jan Clarke
+  Jan Clarke{% if data['claim-status'] == 7 %} - discontinued{% endif %}
 </h2>
+
+{% if data['claim-status'] == 7 %}<p>The claimant discontinued against Jan Clarke on {{ now | date( "D MMM YYYY" ) }}.</p>{% endif %}
 
 <h2 class="heading-medium">Claim form</h2>
 
@@ -26,7 +28,7 @@
 
 <h2 class="heading-small">Defendants</h2>
 <ul>
-  <li>1. <a href="../dashboard/defendant">Jan Clarke trading as Clarke Construction</a></li>
+  <li>1. <a href="../dashboard/defendant">Jan Clarke trading as Clarke Construction</a> {% if data['claim-status'] == 7 %} - discontinued{% endif %}</li>
   <li>2. <a href="../dashboard/defendant">Goddard Plumbing</a></li>
   <li>3. <a href="../dashboard/defendant">Kingsley Building Ltd</a></li>
 </ul>
@@ -324,8 +326,9 @@
     <option value="1.31" {% if (data['claim-status'] == 1.31)%}selected{% endif %}>Served - extension accepted - allow more</option>
     <option value="1.4" {% if (data['claim-status'] == 1.4)%}selected{% endif %}>Served - extension rejected</option>
     <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>Responded</option>
-    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Judgment received</option>
+<!-- MANUAL PROCESS FOR NOW    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Judgment received</option> -->
     <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>Reply received</option>
+    <option value="7" {% if data['claim-status'] == 7 %}selected{% endif %}>Discontinued</option>
   </select>
 </form>
 

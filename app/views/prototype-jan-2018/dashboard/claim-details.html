@@ -623,7 +623,7 @@
           <h2 class="heading-small">Goddard Plumbing</h2>
           <p>
             Choose how to deal with this defendant so the case can proceed.<br />
-            <a href='../judgment/business' class="button secondary-button" style="margin-top: 10px;">Request judgment</a> <span style="line-height: 60px; position: inherit; padding: 0 10px; margin-top: 10px;">or</span> <a href='../discontinue' class="button secondary-button" style="margin-top: 10px;">Discontinue defendant</a>
+            <a href='../judgment/business' class="button secondary-button" style="margin-top: 10px;">Request judgment</a> <span style="line-height: 60px; position: inherit; padding: 0 10px; margin-top: 10px;">or</span> <a href='../discontinue' class="button secondary-button" style="margin-top: 10px;">Discontinue against defendant</a>
           </p>
 
           <br />
@@ -719,7 +719,7 @@
     <option value="6.1" {% if data['claim-status'] == 6.1 %}selected{% endif %}>Judgment requested - not all ready</option>
     <option value="6.2" {% if data['claim-status'] == 6.2 %}selected{% endif %}>Judgment requested - second ready</option>
     <option value="6.3" {% if data['claim-status'] == 6.3 %}selected{% endif %}>Judgment requested - all done</option>
-    <option value="7" {% if data['claim-status'] == 7 %}selected{% endif %}>Order available</option>
+<!-- MANUAL PROCESS FOR NOW    <option value="7" {% if data['claim-status'] == 7 %}selected{% endif %}>Order available</option> -->
     <option value="8" {% if data['claim-status'] == 8 %}selected{% endif %}>Defendant discontinued</option>
   </select>
 </form>
