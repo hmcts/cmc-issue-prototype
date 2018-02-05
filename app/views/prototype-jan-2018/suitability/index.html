@@ -1,0 +1,39 @@
+{% extends "prototype-jan-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <h1 class="heading-large">
+        <span class="form-hint">Defendant 2: Jan Clarke</span>
+        Certificate of suitability of litigation friend
+    </h1>
+
+    <h1 class="heading-medium">I believe that Jan Clarke is a</h1>
+
+    <form action="check-your-answers" method="post">
+
+      <fieldset class="form-group">
+
+        <div class="multiple-choice">
+            <input id="child" name="party-type" type="radio" value="child">
+            <label for="child">child</label>
+        </div>
+        <div class="multiple-choice" data-target="protected-reason">
+            <input id="protected" name="party-type" type="radio" value="protected party">
+            <label for="protected">protected party</label>
+        </div>
+
+        <div id="protected-reason" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+            <div class="form-group">
+              <label class="form-label" for="defendant_name">Give your reasoning</label>
+              <textarea type="text" class="form-control" id="defendant_name" name="defendant_name" value="" style="height: 38px;"></textarea>
+            </div>
+        </div>
+
+
+      </fieldset>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Continue">
+      </div>
+
+    </form>
+
+{% endblock %}
