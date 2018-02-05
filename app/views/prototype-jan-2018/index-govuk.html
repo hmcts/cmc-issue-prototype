@@ -1,0 +1,17 @@
+{% extends "../layout.html" %} {% block service_name %}{% endblock %}{% block page_title %} Claim Issue {% endblock %} {% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-three-quarters">
+
+      {% block main_content %}
+      {% endblock %}
+    </div>
+    <div class="column-one-quarter">
+      {% block side_content %}
+      {% endblock %}
+    </div>
+  </div>
+</main>
+
+{% endblock %}
