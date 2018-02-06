@@ -136,8 +136,6 @@ module.exports = function(app){
     
     app.post('*/prototype-jan-2018/jurisdiction-domiciled', function(req, res){
 
-//console.log( req.session.defendantCountry );
-
         if ( req.session.data['domiciled'] == 'yes' && isUK( req.session.defendantCountry ) ) {
             res.render('prototype-jan-2018/jurisdiction-statements-1a', { strCountry: req.session.defendantCountry } );
         } else if ( req.session.data['domiciled'] == 'no' && isUK( req.session.defendantCountry ) ) {
@@ -151,9 +149,6 @@ module.exports = function(app){
     });
 
 
-
-
-
     app.get('*/prototype-jan-2018/defendants-service-address', function(req, res){
         var defendants = req.session.defendants || [];
 
@@ -163,46 +158,44 @@ module.exports = function(app){
     app.post('*/prototype-jan-2018/defendants-service-address', function(req, res){
         if (req.body.defendantService === 'other') {
             res.redirect('defendants-service-address-other')
-        }
-        else {
+        } else if (req.session.data.defendant_country ) {
 
+            req.session.defendantCountry = req.session.data.defendant_country;
 
-            if (req.session.data.defendant_country ) {
+            if ( req.session.defendantCountry == 'England' || req.session.defendantCountry == 'Wales' )  {
+                res.redirect('defendant-add');
 
-                if ( req.session.data.defendant_country == 'England' || req.session.data.defendant_country == 'Wales' )  {
-                    res.redirect('defendant-add')
-                } else if ( req.session.data.defendant_country == 'Scotland' || req.session.data.defendant_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_country.toLowerCase() == 'ni' ||  req.session.data.defendant_Postcode.toLowerCase().indexOf('bt') === 0 )  {
-                    res.redirect('jurisdiction-statements')
-                } else {
-                    res.redirect('jurisdiction-statements-2')
-                }
-
-
+            } else if ( isConventionTerritory( req.session.defendantCountry ) || isUK( req.session.defendantCountry ) )  {
+                res.redirect('jurisdiction-proceedings');
             } else {
-                res.redirect('defendant-add')
+                res.redirect('jurisdiction-statements-2'); 
             }
-
-        }
-    });
-
-
-    app.post('*/prototype-jan-2018/defendants-service-address-other', function(req, res){
-
-        if (req.session.data.defendant_service_country ) {
-
-            if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
-                res.redirect('defendant-add')
-            } else if ( req.session.data.defendant_service_country == 'Scotland' || req.session.data.defendant_service_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_service_country.toLowerCase() == 'ni' ||  req.session.data.defendant_service_Postcode.toLowerCase().indexOf('bt') === 0 )  {
-                res.redirect('jurisdiction-statements')
-            } else {
-                res.redirect('jurisdiction-statements-2')
-            }
-
 
         } else {
             res.redirect('defendant-add')
         }
 
+    });
+
+
+    app.post('*/prototype-jan-2018/defendants-service-address-other', function(req, res){
+
+        if ( req.session.data.defendant_service_country ) {
+
+            req.session.defendantCountry = req.session.data.defendant_service_country;
+
+            if ( req.session.defendantCountry == 'England' || req.session.defendantCountry == 'Wales' )  {
+                res.redirect('defendant-add');
+
+            } else if ( isConventionTerritory( req.session.defendantCountry ) || isUK( req.session.defendantCountry ) )  {
+                res.redirect('jurisdiction-proceedings');
+            } else {
+                res.redirect('jurisdiction-statements-2'); 
+            }
+
+        } else {
+            res.redirect('defendant-add')
+        }
 
     });
 
