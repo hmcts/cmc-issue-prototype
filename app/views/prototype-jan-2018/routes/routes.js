@@ -95,17 +95,6 @@ module.exports = function(app){
         res.render('prototype-jan-2018/defendant-details', { defendants: defendants })
     });
 
-    app.post('*/prototype-jan-2018/defendant-represented', function(req, res){
-        if (req.body.defendantRepresented === undefined) {
-            res.render('prototype-jan-2018/defendant-represented')
-        } else if (req.body.defendantRepresented.toString() === 'yes') {
-            res.redirect('defendant-reps-address')
-        }
-        else {
-            res.redirect('defendants-service-address')
-        }
-    });
-
     app.get('*/prototype-jan-2018/defendant-reps-address', function(req, res){
         var defendants = req.session.defendants || [];
 
@@ -114,26 +103,56 @@ module.exports = function(app){
 
     app.post('*/prototype-jan-2018/defendant-reps-address', function(req, res){
 
-
-
         if (req.session.data.defendant_service_country ) {
 
-            if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
-                res.redirect('defendant-add')
-            } else if ( req.session.data.defendant_service_country == 'Scotland' || req.session.data.defendant_service_country.toLowerCase() == 'northern ireland' || req.session.data.defendant_service_country.toLowerCase() == 'ni' ||  req.session.data.defendant_service_country.toLowerCase().indexOf('bt') === 0 )  {
-                res.redirect('jurisdiction-statements')
-            } else {
-                res.redirect('jurisdiction-statements-2')
-            }
+            req.session.defendantCountry = req.session.data.defendant_service_country;
 
+            if ( req.session.data.defendant_service_country == 'England' || req.session.data.defendant_service_country == 'Wales' )  {
+                res.redirect('defendant-add');
+
+            } else if ( isConventionTerritory( req.session.data.defendant_service_country ) || isUK( req.session.data.defendant_service_country ) )  {
+                res.redirect('jurisdiction-proceedings');
+            } else {
+                res.redirect('jurisdiction-statements-2'); 
+            }
 
         } else {
             res.redirect('defendant-add')
         }
+    });
 
+    app.post('*/prototype-jan-2018/jurisdiction-proceedings', function(req, res){
 
+        if ( req.session.data['proceedings'] == 'no' ) {
+            res.render('prototype-jan-2018/jurisdiction-domiciled', { strCountry: req.session.defendantCountry } );
+        } else if ( isConventionTerritory( req.session.defendantCountry ) ) {
+            res.redirect('jurisdiction-statements-2');
+        } else if ( isUK( req.session.defendantCountry ) ) {
+            res.redirect('jurisdiction-statements');
+        }
 
     });
+
+    
+    app.post('*/prototype-jan-2018/jurisdiction-domiciled', function(req, res){
+
+//console.log( req.session.defendantCountry );
+
+        if ( req.session.data['domiciled'] == 'yes' && isUK( req.session.defendantCountry ) ) {
+            res.render('prototype-jan-2018/jurisdiction-statements-1a', { strCountry: req.session.defendantCountry } );
+        } else if ( req.session.data['domiciled'] == 'no' && isUK( req.session.defendantCountry ) ) {
+           res.render('prototype-jan-2018/jurisdiction-statements', { strCountry: req.session.defendantCountry } );
+        } else if ( req.session.data['domiciled'] == 'yes' && isConventionTerritory( req.session.defendantCountry ) ) {
+            res.render('prototype-jan-2018/jurisdiction-statements-2a', { strCountry: req.session.defendantCountry } );
+        } else if ( req.session.data['domiciled'] == 'no' && isConventionTerritory( req.session.defendantCountry ) ) {
+            res.render('prototype-jan-2018/jurisdiction-statements-2', { strCountry: req.session.defendantCountry } );
+        }
+
+    });
+
+
+
+
 
     app.get('*/prototype-jan-2018/defendants-service-address', function(req, res){
         var defendants = req.session.defendants || [];
@@ -256,18 +275,6 @@ module.exports = function(app){
         }
     });
 
-    // REPEATED BLOCK - delete?
-    app.post('*/prototype-jan-2018/defendant-represented', function(req, res){
-        if (req.body.defendantRepresented === undefined) {
-            res.render('prototype-jan-2018/defendant-represented')
-        } else if (req.body.defendantRepresented.toString() === 'yes') {
-            res.redirect('defendant-reps-address')
-        }
-        else {
-            res.redirect('defendants-service-address')
-        }
-    });
-
     app.post('*/prototype-jan-2018/spec-claim-amount-type', function(req, res){
         if (!req.body.interestTotal) {
             res.render('prototype-jan-2018/spec-claim-amount-type')
@@ -297,12 +304,10 @@ module.exports = function(app){
         }
     });
 
-    // REPEATED BLOCK - delete?
     app.post('*/prototype-jan-2018/defendant-represented', function(req, res){
-        if (!req.body.defendantRepresented) {
+        if (req.body.defendantRepresented === undefined) {
             res.render('prototype-jan-2018/defendant-represented')
-        }
-        else if (req.body.defendantRepresented.toString() === 'yes') {
+        } else if (req.body.defendantRepresented.toString() === 'yes') {
             res.redirect('defendant-reps-address')
         }
         else {
@@ -936,3 +941,14 @@ function getMonth( intMonth ) {
     var arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
     return arrMonths[ parseInt(intMonth, 10) ];
 }
+
+function isUK( strCountry ) {
+//    console.log( 'isUK ' + strCountry );
+    return ( strCountry == 'Scotland' || strCountry.toLowerCase() == 'northern ireland' || strCountry.toLowerCase() == 'ni' ||  strCountry.toLowerCase().indexOf('bt') === 0 );
+}
+
+function isConventionTerritory( strCountry ) {
+    arrTerritories = ['Aland Islands', 'Åland Islands', 'Austria', 'Azores', 'Balgariya', 'Bǎlgariya', 'Belgie', 'België', 'Belgien', 'Belgique', 'Belgium', 'Bulgaria', 'Canary Islands', 'Cesko', 'Česko', 'Ceuta', 'Croatia', 'Cyprus', 'Czech Republic', 'Danmark', 'Denmark', 'Deutschland', 'Deyrnas Unedig', 'Eesti', 'Eire', 'Éire', 'Ellada', 'Elláda', 'Espana', 'España', 'Estonia', 'Finland', 'France', 'Germany', 'Gibraltar', 'Greece', 'Guadeloupe', 'Hrvatska', 'Hungary', 'Ireland', 'Italia', 'Italy', 'Kibris', 'Kipros', 'Kípros', 'Kıbrıs', 'Latvia', 'Latvija', 'Letzebuerg', 'Lëtzebuerg', 'Lietuva', 'Lithuania', 'Luxembourg', 'Luxemburg', 'Madeira', 'Magyarorszag', 'Magyarország', 'Malta', 'Martinique', 'Mayotte', 'Melilla', 'Nederland', 'Netherlands', 'Osterreich', 'Österreich', 'Plazas de soberania', 'Plazas de soberanía', 'Poland', 'Polska', 'Portugal', 'Reunion', 'Réunion', 'Romania', 'România', 'Saint Martin', 'Slovakia', 'Slovenia', 'Slovenija', 'Slovensko', 'Spain', 'Suomi', 'Sverige', 'Sweden', 'United Kingdom', 'Ελλάδα', 'Κύπρος', 'България', 'Iceland', 'Norway', 'Switzerland', 'Denmark'];
+    return (arrTerritories.indexOf( strCountry ) >= 0 );
+}
+
