@@ -15,14 +15,19 @@
 
         <p>I also state:</p>
 
-    <div class="multiple-choice">
-      <input id="statement1" name="jurisdictionStatement" type="radio" value="statement1" {{ checked('jurisdictionStatement','statement1') }}>
-      <label for="statement1">
-        <p>The defendant is domiciled in the United Kingdom or in a Convention territory, namely (state which).</p>
-      </label>
+        <div class="multiple-choice">
+          <input id="statement1" name="jurisdictionStatement" type="radio" value="statement1" {{ checked('jurisdictionStatement','statement1') }}>
+          <label for="statement1">
+            <p>The defendant is domiciled in the United Kingdom.</p>
+          </label>
+        </div>
 
-    </div>
-
+        <div class="multiple-choice">
+          <input id="statement1b" name="jurisdictionStatement" type="radio" value="statement1b" {{ checked('jurisdictionStatement','statement1b') }}>
+          <label for="statement1b">
+            <p>The defendant is domiciled in a Convention territory.</p>
+          </label>
+        </div>
 
     <div class="multiple-choice">
       <input id="statement2" name="jurisdictionStatement" type="radio" value="statement2" {{ checked('jurisdictionStatement','istatement2') }}>
@@ -55,7 +60,14 @@
     <div class="multiple-choice">
       <input id="statement4" name="jurisdictionStatement" type="radio" value="statement4" {{ checked('jurisdictionStatement','statement4') }}>
       <label for="statement4">
-        <p>The defendant is domiciled [in the United Kingdom] or [in another member state, namely (state which)].</p>
+        <p>The defendant is domiciled in the United Kingdom.</p>
+      </label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="statement4b" name="jurisdictionStatement" type="radio" value="statement4b" {{ checked('jurisdictionStatement','statement4b') }}>
+      <label for="statement4b">
+        <p>The defendant is domiciled in a member state.</p>
       </label>
     </div>
 
@@ -120,8 +132,13 @@
     <div class="multiple-choice">
       <input id="statement10" name="jurisdictionStatement" type="radio" value="statement10" {{ checked('jurisdictionStatement','statement10') }}>
       <label for="statement10">
-        <p>I state that each claim made against the defendant is to be served and included in the claim form is a claim which the court has power to determine other than under the Civil Jurisdiction and Judgments Act 1982 or the Lugano Convention or the Judgments Regulation, namely (state the provisions of the enactment or convention relied on to confer the power) notwithstanding that:</p>
-
+        <p>I state that each claim made against the defendant is to be served and included in the claim form is a claim which the court has power to determine other than under the Civil Jurisdiction and Judgments Act 1982 or the Lugano Convention or the Judgments Regulation, namely:
+        </p>
+        <p>State the provisions of the enactment relied on to confer the power:</p>
+        <p>
+          <textarea type="text" class="form-control" id="v" name="power" value="" style="height: 90px; width: 100%"></textarea>
+        </p>
+        <p>Notwithstanding that:</p>
         <p>(a) the defendant is not within the jurisdiction; or</p>
         <p>(b) the facts giving rise to the claim did not occur within the jurisdiction.</p>
       </label>
