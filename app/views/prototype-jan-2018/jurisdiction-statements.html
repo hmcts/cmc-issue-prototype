@@ -47,14 +47,24 @@
       <fieldset>
 
 
-
     <div class="multiple-choice">
 
     </div>
 
     <div class="multiple-choice">
       <input id="statement4" name="jurisdictionStatement" type="radio" value="statement4" {{ checked('jurisdictionStatement','statement4') }}>
-      <label for="statement4">I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under an enactment other than the <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">Civil Jurisdiction and Judgments Act 1982</a> namely (state the provisions of the enactment relied on to confer the power below) notwithstanding that the defendant is not within the jurisdiction; or the facts giving rise to the claim did not occur within the jurisdiction.</label>
+      <label for="statement4">
+        <p>
+          I state that each claim made against the defendant to be served and included in the claim form is a claim which the court has power to determine under an enactment other than the <a href="http://www.legislation.gov.uk/ukpga/1982/27/contents">Civil Jurisdiction and Judgments Act 1982</a> namely:
+        </p>
+        <p>State the provisions of the enactment relied on to confer the power:</p>
+        <p>
+          <textarea type="text" class="form-control" id="power" name="power" value="" style="height: 90px; width: 100%"></textarea>
+        </p>
+        <p>
+          Notwithstanding that the defendant is not within the jurisdiction; or the facts giving rise to the claim did not occur within the jurisdiction.
+        </p>
+       </label>
     </div>
 
   </fieldset>
