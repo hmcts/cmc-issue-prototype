@@ -2,13 +2,12 @@
 {% import "prototype-sept2-2017/address.html" as address%}
 {% block main_content %}
 
-<h1 class="heading-large"><span class="form-hint">Claimant: {% if data['claimant_name'] %} {{ data['claimant_title'] }} {{ data['claimant_name'] }} {% else %} {{ data['claimant_company_name'] }} {% endif %}</span>Address</h1>
+  <h1 class="heading-large"><span class="form-hint">Claimant: {% if data['claimant_name'] %} {{ data['claimant_title'] }} {{ data['claimant_name'] }} {% else %} {{ data['claimant_company_name'] }} {% endif %}</span>Litigation friend's address</h1>
 
-<form method="post" action="claimant-suitability" class="form">
-
+<form method="post" action="claimant-add" class="form">
 
   <fieldset class="form-group">
-    {{ address.lookup('claimant') }}
+    {{ address.lookup('friend') }}
   </fieldset>
 
   <div class="form-group">
