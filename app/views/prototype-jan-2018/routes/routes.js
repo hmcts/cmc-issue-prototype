@@ -26,12 +26,53 @@ module.exports = function(app){
 
     app.get('*/prototype-jan-2018/claimant-address', function(req, res){
         var claimants = req.session.claimants || [];
-
         res.render('prototype-jan-2018/claimant-address', { claimants: claimants })
     });
 
+    app.post('*/prototype-jan-2018/claimant-suitability', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        if ( req.body['claimant_protected'] ) {
+
+            if ( req.body['claimant_protected'] == 'yes' ) {
+                res.redirect('litigation-friend-name');
+            } else {
+                res.redirect('claimant-add');
+            }
+
+        } else {
+            res.render('prototype-jan-2018/claimant-suitability', { claimants: claimants })
+        }
+
+    });
+
+    app.post('*/prototype-jan-2018/litigation-friend-address-same', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        if ( req.body['friend_address_same'] ) {
+
+            if ( req.body['friend_address_same'] == 'yes' ) {
+                res.redirect('claimant-add');
+            } else {
+                res.redirect('litigation-friend-address');
+            }
+
+        } else {
+            res.render('prototype-jan-2018/litigation-friend-address-same', { claimants: claimants })
+        }
+
+    });
+
+
+    app.get('*/prototype-jan-2018/claimant-add', function(req, res){
+        checkClaimantAdd( req, res );
+    });
 
     app.post('*/prototype-jan-2018/claimant-add', function(req, res){
+        checkClaimantAdd( req, res );
+    });
+
+    function checkClaimantAdd( req, res ) {
 
         if (req.body.addClaimant === undefined) {
             var claimants = req.session.claimants || [];
@@ -42,20 +83,35 @@ module.exports = function(app){
             var claimantTown = (req.session.data['claimant_city']) ? req.session.data['claimant_city'] : ''
             var claimantPostcode = (req.session.data['claimant_Postcode']) ? req.session.data['claimant_Postcode'] : ''
             var claimantAddress = claimantAddress1 + ' ' + claimantAddress2 + ' ' + claimantTown + ' ' + claimantPostcode
-            claimants.push({'claimantNo': claimantNo, 'claimantName': claimantName, 'claimantAddress': claimantAddress})
+            var friendName = (req.session.data['friend_name']) ? req.session.data['friend_name'] : ''
+
+            if ( req.session.data['friend_address_same'] == 'yes' ) {
+                var friendAddress = claimantAddress;
+            } else {
+
+                var friendAddress1 = (req.session.data['friend_AddressLine1']) ? req.session.data['friend_AddressLine1'] : '-'
+                var friendAddress2 = (req.session.data['friend_AddressLine2']) ? req.session.data['friend_AddressLine2'] : ''
+                var friendTown = (req.session.data['friend_city']) ? req.session.data['friend_city'] : ''
+                var friendPostcode = (req.session.data['friend_Postcode']) ? req.session.data['friend_Postcode'] : ''
+                var friendAddress = (req.session.data['friend_AddressLine1']) ? friendAddress1 + ' ' + friendAddress2 + ' ' + friendTown + ' ' + friendPostcode : ''
+            }
+
+            claimants.push({'claimantNo': claimantNo, 'claimantName': claimantName, 'claimantAddress': claimantAddress, 'friendName': friendName, 'friendAddress': friendAddress})
 
             req.session.claimants = claimants
             res.render('prototype-jan-2018/claimant-add', { claimants: claimants })
         } else if (req.body.addClaimant && req.body.addClaimant.toString() === 'yes') {
             req.session.data['claimant_name'] = req.session.data['claimant_rep_company'] = req.session.data['claimant_AddressLine1'] = req.session.data['claimant_AddressLine2'] = undefined
             req.session.data['claimant_city'] = req.session.data['claimant_Postcode'] = req.session.data['claimant_company_name'] = undefined
+            req.session.data['friend_name'] = req.session.data['friend_rep_company'] = req.session.data['friend_Address'] = req.session.data['friend_AddressLine1'] = req.session.data['friend_AddressLine2'] = undefined
+            req.session.data['friend_city'] = req.session.data['friend_Postcode'] = req.session.data['friend_company_name'] = undefined
 
             res.redirect('claimant-name')
         } else {
             res.redirect('defendant-type');
         }
 
-    });
+    }
 
     app.post('*/prototype-jan-2018/representation', function(req, res){
         if (req.body.representativeType.toString() === 'represent') {
@@ -455,7 +511,21 @@ module.exports = function(app){
         var objDueDate = moment().add('4', 'months');
         var objConfirmDueDate = moment().add('21', 'days');
 
-        res.render('prototype-jan-2018/claim-submitted', {today: moment().format('D MMMM YYYY'), dueDate: objDueDate.format('D MMMM YYYY'), confirmDueDate: objConfirmDueDate.format('D MMMM YYYY'), claimType: req.session.data.typeOfClaim, issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeAmount: formatter.format(req.session.data.issueFeeAmount), value: formatter.format(req.session.data.value)  })
+
+        var blnNeedsLitigationFriend = false;
+
+        if ( req.session.claimants ) {
+            for ( i=0; i<req.session.claimants.length; i++ ) {
+
+                if (req.session.claimants[i].friendName ) {
+                    blnNeedsLitigationFriend = true;
+                    break;
+                }
+
+            }
+        }
+        
+        res.render('prototype-jan-2018/claim-submitted', {today: moment().format('D MMMM YYYY'), dueDate: objDueDate.format('D MMMM YYYY'), confirmDueDate: objConfirmDueDate.format('D MMMM YYYY'), claimType: req.session.data.typeOfClaim, issueDate: moment(issueDate).format('D MMMM YYYY'), issueFeeAmount: formatter.format(req.session.data.issueFeeAmount), value: formatter.format(req.session.data.value), 'blnNeedsLitigationFriend': blnNeedsLitigationFriend })
     })
 
     app.get('*/prototype-jan-2018/pay-by-card', function (req, res) {
@@ -871,9 +941,14 @@ module.exports = function(app){
         }
     });
 
-
+    app.get('*/prototype-admin/view-data', function(req, res){
+        res.render('prototype-admin/view-data', { data: JSON.stringify( req.session, null, 2) } )
+    });
 
 }
+
+
+
 
 
 function getDummyDefendants() {
@@ -937,11 +1012,11 @@ function getMonth( intMonth ) {
 
 function isUK( strCountry ) {
 //    console.log( 'isUK ' + strCountry );
-    return ( strCountry == 'Scotland' || strCountry.toLowerCase() == 'northern ireland' || strCountry.toLowerCase() == 'ni' ||  strCountry.toLowerCase().indexOf('bt') === 0 );
+    return ( strCountry.toLowerCase() == 'scotland' || strCountry.toLowerCase() == 'northern ireland' || strCountry.toLowerCase() == 'ni' ||  strCountry.toLowerCase().indexOf('bt') === 0 );
 }
 
 function isConventionTerritory( strCountry ) {
-    arrTerritories = ['Aland Islands', 'Åland Islands', 'Austria', 'Azores', 'Balgariya', 'Bǎlgariya', 'Belgie', 'België', 'Belgien', 'Belgique', 'Belgium', 'Bulgaria', 'Canary Islands', 'Cesko', 'Česko', 'Ceuta', 'Croatia', 'Cyprus', 'Czech Republic', 'Danmark', 'Denmark', 'Deutschland', 'Deyrnas Unedig', 'Eesti', 'Eire', 'Éire', 'Ellada', 'Elláda', 'Espana', 'España', 'Estonia', 'Finland', 'France', 'Germany', 'Gibraltar', 'Greece', 'Guadeloupe', 'Hrvatska', 'Hungary', 'Ireland', 'Italia', 'Italy', 'Kibris', 'Kipros', 'Kípros', 'Kıbrıs', 'Latvia', 'Latvija', 'Letzebuerg', 'Lëtzebuerg', 'Lietuva', 'Lithuania', 'Luxembourg', 'Luxemburg', 'Madeira', 'Magyarorszag', 'Magyarország', 'Malta', 'Martinique', 'Mayotte', 'Melilla', 'Nederland', 'Netherlands', 'Osterreich', 'Österreich', 'Plazas de soberania', 'Plazas de soberanía', 'Poland', 'Polska', 'Portugal', 'Reunion', 'Réunion', 'Romania', 'România', 'Saint Martin', 'Slovakia', 'Slovenia', 'Slovenija', 'Slovensko', 'Spain', 'Suomi', 'Sverige', 'Sweden', 'United Kingdom', 'Ελλάδα', 'Κύπρος', 'България', 'Iceland', 'Norway', 'Switzerland', 'Denmark'];
-    return (arrTerritories.indexOf( strCountry ) >= 0 );
+    arrTerritories = ['aland islands', 'åland islands', 'austria', 'azores', 'balgariya', 'bǎlgariya', 'belgie', 'belgië', 'belgien', 'belgique', 'belgium', 'bulgaria', 'canary islands', 'cesko', 'česko', 'ceuta', 'croatia', 'cyprus', 'czech republic', 'danmark', 'denmark', 'deutschland', 'deyrnas unedig', 'eesti', 'eire', 'éire', 'ellada', 'elláda', 'espana', 'españa', 'estonia', 'finland', 'france', 'germany', 'gibraltar', 'greece', 'guadeloupe', 'hrvatska', 'hungary', 'ireland', 'italia', 'italy', 'kibris', 'kipros', 'kípros', 'kıbrıs', 'latvia', 'latvija', 'letzebuerg', 'lëtzebuerg', 'lietuva', 'lithuania', 'luxembourg', 'luxemburg', 'madeira', 'magyarorszag', 'magyarország', 'malta', 'martinique', 'mayotte', 'melilla', 'nederland', 'netherlands', 'osterreich', 'österreich', 'plazas de soberania', 'plazas de soberanía', 'poland', 'polska', 'portugal', 'reunion', 'réunion', 'romania', 'românia', 'saint martin', 'slovakia', 'slovenia', 'slovenija', 'slovensko', 'spain', 'suomi', 'sverige', 'sweden', 'united kingdom', 'ελλάδα', 'κύπρος', 'българия', 'iceland', 'norway', 'switzerland', 'denmark'];
+    return (arrTerritories.indexOf( strCountry.toLowerCase() ) >= 0 );
 }
 

@@ -632,6 +632,10 @@ ul.docs li {
     background-image: url(/public/images/icon-step-3.png)
 }
 
+.steps>li:nth-child(4) {
+    background-image: url(/public/images/icon-step-4.png)
+}
+
 .downloads li, a.download {
     background-image: url(/public/images/download-bullet.png);
     background-repeat: no-repeat;

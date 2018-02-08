@@ -19,7 +19,10 @@
   <li>Download the sealed claim form<br />
     <a target="_blank" href="/public/documents/N1-form-sealed.pdf" class="download" style="margin-top:8px; display: inline-block">Sealed claim form</a> (PDF, 123 KB)
   </li>
-  <li>Send the form, particulars of claim and <a target="_blank" href="https://formfinder.hmctsformfinder.justice.gov.uk/n9-eng.pdf">a response pack</a> (PDF, 266 KB) to the defendant by {{ dueDate }}.</li>
+  <li>Send the form, particulars of claim{% if blnNeedsLitigationFriend %}, a <a target="_blank" href="http://formfinder.hmctsformfinder.justice.gov.uk/n235-eng.pdf">certificate of suitability</a> (PDF, 706 KB){% endif %} and <a target="_blank" href="https://formfinder.hmctsformfinder.justice.gov.uk/n9-eng.pdf">a response pack</a> (PDF, 266 KB) to the defendant by {{ dueDate }}.</li>
+  {% if blnNeedsLitigationFriend %}
+  <li>You also need to send the certificate of suitability to the claimant's parent, guardian or attorney as appropriate. Completing the online confrimation of service is sufficient for serving to the court.</li>
+  {% endif %}
   <li><a href="certificate">Confirm service online</a> by {{ confirmDueDate }}</li>
 </ol>
 

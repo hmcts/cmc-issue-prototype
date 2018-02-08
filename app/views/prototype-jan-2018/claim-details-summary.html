@@ -65,7 +65,30 @@
       </div>
       <div class="column-one-quarter"><a class="right" href="claimant-address">Change</a></div>
     </div>
+
+    {% if claimant.friendName %}
+    <div class="task-list-item">
+      <div class="column-one-quarter form-hint">Litigation friend name</div>
+      <div class="column-one-half if-empty">
+        {{ claimant.friendName }}
+      </div>
+      <div class="column-one-quarter"><a class="right" href="litigation-friend-name">Change</a></div>
+    </div>
+      {% if claimant.friendAddress %} 
+      <div class="task-list-item">
+        <div class="column-one-quarter form-hint">Litigation friend address</div>
+        <div class="column-one-half if-empty">
+          {{ claimant.friendAddress }} 
+        </div>
+        <div class="column-one-quarter"><a class="right" href="claimant-litigation-address-same">Change</a></div>
+      </div>
+      {% endif %}
+      
+    {% endif %}
+
   {% endif %}
+
+
   {% endfor %}
 
 
