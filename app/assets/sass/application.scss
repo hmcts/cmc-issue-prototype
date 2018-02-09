@@ -35,6 +35,8 @@ $path: "/public/images/";
 .column-three-quarters {
     float: left;
     width: 75%;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
 .form-control-large {

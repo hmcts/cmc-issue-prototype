@@ -3,22 +3,37 @@
     <form method="post" action="when" class="form">
 
       <h1 class="heading-large">
-        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        <span class="form-hint">
+          {% if defendant.defendantType == 'friend' %}
+            Litigation friend for Michael Jones:
+          {% else %}
+            Defendant {{ defendant.defendantNo }}:
+          {% endif %}
+        </span>
         {{ defendant.defendantName }}
       </h1>
 
       <div class="form-group">
         <h2 class="heading-medium">
-          Did you
-          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}post the documents to
-          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver the documents to
-          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave the documents with
-          {% elseif defendant.howServed == 'Document Exchange' %}DX the documents to
-          {% elseif defendant.howServed == 'Fax' %}fax the documents to
-          {% elseif defendant.howServed == 'Email' %}email the documents to
-          {% else %}send the documents to
+
+          {% if defendant.defendantType == 'friend' %}
+          {% set doc = "certificate of suitability" %}
+          {% set person = "litigation friend" %}
+          {% else %}
+          {% set doc = "documents" %}
+          {% set person = "defendant" %}
           {% endif %}
-           the defendant{% if defendant.solicitor != '-' %}'s solicitor{% endif %} today?
+
+          Did you
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}post the {{ doc }} to
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver the {{ doc }} to
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave the {{ doc }} with
+          {% elseif defendant.howServed == 'Document Exchange' %}DX the {{ doc }} to
+          {% elseif defendant.howServed == 'Fax' %}fax the {{ doc }} to
+          {% elseif defendant.howServed == 'Email' %}email the {{ doc }} to
+          {% else %}send the {{ doc }} to
+          {% endif %}
+           the {{person}}{% if defendant.solicitor != '-' %}'s solicitor{% endif %} today?
         </h2>
 
        <div class="form-group">

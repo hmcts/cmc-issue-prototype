@@ -59,12 +59,21 @@
 
     {% for defendant in defendants %}
     {% if defendant.howServed %}
+
     <table class="check-your-answers">
       <thead>
         <tr>
           <th colspan="2">
             <h2 class="heading-medium" id="name">
+            {% if defendant.defendantType == 'friend' %}
+              Litigation friend for Michael Jones
+              {% set doc = "certificate of suitability" %}
+              {% set person = "Litigation friend" %}
+            {% else %}
               Defendant {{ defendant.defendantNo }}
+              {% set doc = "documents" %}
+              {% set person = "Defendant" %}
+            {% endif %}
             </h2>
           </th>
           <th>
@@ -116,7 +125,7 @@
             {% endif %}
 
             {% if not defendant.serviceEmail %}
-            Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {{person}}'s{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
             {% endif %}
 
             {% if (defendant.leftWith) and ( defendant.howServed == 'Personally handed to or left with with recipient') %}
@@ -127,12 +136,13 @@
         </tr>
         <tr>
           <td>When you
-          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}posted the documents
-          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the documents
-          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the documents
-          {% elseif defendant.howServed == 'Fax' %}faxed the documents
-          {% elseif defendant.howServed == 'Email' %}emailed the documents
-          {% else %}sent the documents
+
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}posted the {{doc}}
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the {{doc}}
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the {{doc}}
+          {% elseif defendant.howServed == 'Fax' %}faxed the {{doc}}
+          {% elseif defendant.howServed == 'Email' %}emailed the {{doc}}
+          {% else %}sent the {{doc}}
           {% endif %}
           </td>
           <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.amPm }}{% endif %}</td>

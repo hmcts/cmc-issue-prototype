@@ -85,6 +85,29 @@
           {% endif %}
 
 
+          {% if documents.includes('Certificate of suitability') %}
+          <div id="suit">
+            <h3 class="heading-small">Certificate of suitability</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <p>
+                <a href="#" class="button" value="Upload file" onclick="return upload('suit');">Upload file</a>
+              </p>
+              <p>
+                <a href="#" style="display: none" onclick="return hideForm('suit');">Cancel file upload</a>
+              </p>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('suit');">Add file</a>
+          </div>
+          {% endif %}
+
+
           {% if documents.includes('Other documents') %}
           <div id="other">
             <h3 class="heading-small">Other documents:</h3>

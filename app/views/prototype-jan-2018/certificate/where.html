@@ -1,11 +1,16 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 
-
     <form method="post" action="when" class="form">
-
+ 
       <h1 class="heading-large">
-        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        <span class="form-hint">
+          {% if defendant.defendantType == 'friend' %}
+            Litigation friend for Michael Jones:
+          {% else %}
+            Defendant {{ defendant.defendantNo }}:
+          {% endif %}
+        </span>
         {{ defendant.defendantName }}
       </h1>
 
@@ -15,7 +20,10 @@
       <div class="form-group">
         <h2 class="heading-medium">Service address</h2>
 
+
+          {% if defendant.defendantType != 'friend' %}
           <p class="form-hint">You can't confirm service online if the service address is different to the address on the claim form:</p>
+          {% endif %}
         <p class="form-group-compound">
           {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
           {% for line in defendant.serviceAddress.split( '\n' ) %}
@@ -51,23 +59,26 @@
 
       {% endif %}
 
-
       {% if (defendant.howServed != 'Email' ) and ( defendant.howServed != 'Other electronic method' ) %}
 
       <div class="form-group" id="destination-type">
         <h2 class="heading-medium">
-          I served to the defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
+          I served to the {% if defendant.defendantType == 'friend' %}litigation friend{% else %}defendant{% endif %}'s{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
         </h2>
 
-        {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) %}
+        {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) or ( defendant.defendantType == 'friend' ) %}
          <div class="multiple-choice">
           <input id="usual-res" name="destination" type="radio" value="usual residence">
           <label for="usual-res">Usual residence</label>
         </div>
+
+         {% if defendant.defendantType != 'friend' %}
          <div class="multiple-choice">
           <input id="last-res" name="destination" type="radio" value="last known residence">
           <label for="last-res">Last known residence</label>
         </div>
+        {% endif %}
+
           {% if defendant.defendantType == 'individual' %}
           <div class="multiple-choice" data-target="other-dest-box">
             <input id="other-dest" name="destination" type="radio" value="other">
@@ -81,11 +92,11 @@
             </div>
           </div>
 
-
           {% endif %}
+
         {% endif %}
 
-        {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'trader' ) %}
+        {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'trader' ) or ( defendant.defendantType == 'friend' ) %}
 
         {% if defendant.defendantType == 'company' %}
         <div class="multiple-choice">
@@ -109,6 +120,23 @@
           <label for="last-bus">Last known place of business</label>
         </div>
         {% endif %}
+
+
+        {% if defendant.defendantType == 'friend' %}
+        <div class="multiple-choice" data-target="other-dest-box">
+          <input id="other-dest" name="destination" type="radio" value="other">
+          <label for="other-dest">Other</label>
+        </div>
+
+        <div id="other-dest-box" class="panel-border-narrow js-hidden form-group" aria-hidden="true">
+          <div class="form-group" style="padding-left: 50px;">
+            <label class="form-label" for="other-dest-value" style="float: none;">Enter the destination type</label>
+            <input class="form-control" type="text" id="other-dest-value" name="other-dest-value" value="" style="width: 75%;">
+          </div>
+        </div>
+
+        {% else %}
+
         <div class="form-group">
           <details role="group">
             <summary role="button" aria-controls="details-content-0" aria-expanded="false" style="margin-left: 16px;"><span class="summary" style="padding-left: 16px;">More options</span></summary>
@@ -165,6 +193,7 @@
           </details>
         </div>
 
+        {% endif %}
 
         {% endif %}
 

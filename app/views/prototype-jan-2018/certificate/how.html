@@ -1,18 +1,22 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
 
-
-
     <form method="post" action="where" class="form">
 
       <h1 class="heading-large">
-        <span class="form-hint">Defendant {{ defendant.defendantNo }}:</span>
+        <span class="form-hint">
+          {% if defendant.defendantType == 'friend' %}
+            Litigation friend for Michael Jones:
+          {% else %}
+            Defendant {{ defendant.defendantNo }}:
+          {% endif %}
+        </span>
         {{ defendant.defendantName }}
       </h1>
 
       <div class="form-group">
         <h2 class="heading-medium">
-          How did you serve the documents?
+          How did you serve the {% if defendant.defendantType == 'friend' %}certificate of suitability{% else %}documents{% endif %}?
         </h2>
 
         <p>Choose one method only - we'll use this to calculate date of service.
@@ -24,7 +28,7 @@
               <label for="post">First class post</label>
             </div>
 
-            {% if ( defendant.defendantType == 'company' ) or ( defendant.solicitor != '-' ) %}
+            {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'friend' ) or ( defendant.solicitor != '-' ) %}
             <div class="multiple-choice" data-target="dx-address-panel">
               <input id="dx" name="how-served" type="radio" value="Document Exchange">
               <label for="dx">Document Exchange</label>
