@@ -25,7 +25,6 @@
           <h3 class="heading-small">Response pack</h3>
           <p class="form-hint">Not required</p>
 
-
           {% if documents.includes('Medical reports') %}
 
           <div id="meds">
@@ -37,7 +36,6 @@
 
           {% endif %}
 
-
           {% if documents.includes('Schedule of loss') %}
 
           <div id="sched">
@@ -45,6 +43,17 @@
             <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
             <label for="sched-upload" class="secondary-button">Add file</label>
             <input id="sched-upload" type="file" onchange="return upload('sched');"/>
+          </div>
+
+          {% endif %}
+
+          {% if documents.includes('Certificate of suitability') %}
+
+          <div id="suit">
+            <h3 class="heading-small">Certificate of suitability</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;"></ol>
+            <label for="suit-upload" class="secondary-button">Add file</label>
+            <input id="suit-upload" type="file" onchange="return upload('suit');"/>
           </div>
 
           {% endif %}
