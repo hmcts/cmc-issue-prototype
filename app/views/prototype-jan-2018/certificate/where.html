@@ -7,6 +7,8 @@
         <span class="form-hint">
           {% if defendant.defendantType == 'friend' %}
             Litigation friend for Michael Jones:
+          {% elseif defendant.defendantType == 'authority' %}
+            Parent, guardian, or attorney for Michael Jones:
           {% else %}
             Defendant {{ defendant.defendantNo }}:
           {% endif %}
@@ -21,7 +23,7 @@
         <h2 class="heading-medium">Service address</h2>
 
 
-          {% if defendant.defendantType != 'friend' %}
+          {% if defendant.defendantType != 'friend' and defendant.defendantType != 'authority' %}
           <p class="form-hint">You can't confirm service online if the service address is different to the address on the claim form:</p>
           {% endif %}
         <p class="form-group-compound">
@@ -63,16 +65,16 @@
 
       <div class="form-group" id="destination-type">
         <h2 class="heading-medium">
-          I served to the {% if defendant.defendantType == 'friend' %}litigation friend{% else %}defendant{% endif %}'s{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
+          I served to {% if defendant.defendantType == 'friend' %}the litigation friend's{% elseif defendant.defendantType == 'authority' %}their{% else %}the defendant's{% endif %}{% if defendant.solicitor != '-' %} solicitor's{% endif %}:
         </h2>
 
-        {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) or ( defendant.defendantType == 'friend' ) %}
+        {% if ( defendant.defendantType == 'individual' ) or ( defendant.defendantType == 'trader' ) or ( defendant.defendantType == 'friend' ) or ( defendant.defendantType == 'authority' ) %}
          <div class="multiple-choice">
           <input id="usual-res" name="destination" type="radio" value="usual residence">
           <label for="usual-res">Usual residence</label>
         </div>
 
-         {% if defendant.defendantType != 'friend' %}
+         {% if ( defendant.defendantType != 'friend' ) and ( defendant.defendantType != 'authority' ) %}
          <div class="multiple-choice">
           <input id="last-res" name="destination" type="radio" value="last known residence">
           <label for="last-res">Last known residence</label>
@@ -96,7 +98,7 @@
 
         {% endif %}
 
-        {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'trader' ) or ( defendant.defendantType == 'friend' ) %}
+        {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'trader' ) or ( defendant.defendantType == 'friend' ) or ( defendant.defendantType == 'authority' ) %}
 
         {% if defendant.defendantType == 'company' %}
         <div class="multiple-choice">
@@ -122,7 +124,7 @@
         {% endif %}
 
 
-        {% if defendant.defendantType == 'friend' %}
+        {% if ( defendant.defendantType == 'friend' ) or ( defendant.defendantType == 'authority' ) %}
         <div class="multiple-choice" data-target="other-dest-box">
           <input id="other-dest" name="destination" type="radio" value="other">
           <label for="other-dest">Other</label>

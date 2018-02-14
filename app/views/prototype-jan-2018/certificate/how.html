@@ -5,8 +5,10 @@
 
       <h1 class="heading-large">
         <span class="form-hint">
-          {% if defendant.defendantType == 'friend' %}
+          {% if defendant.defendantType == '  ' %}
             Litigation friend for Michael Jones:
+          {% elseif defendant.defendantType == 'authority' %}
+            Parent, guardian, or attorney for Michael Jones:
           {% else %}
             Defendant {{ defendant.defendantNo }}:
           {% endif %}
@@ -16,7 +18,7 @@
 
       <div class="form-group">
         <h2 class="heading-medium">
-          How did you serve the {% if defendant.defendantType == 'friend' %}certificate of suitability{% else %}documents{% endif %}?
+          How did you serve the {% if ( defendant.defendantType == 'friend' ) or ( defendant.defendantType == 'authority' ) %}certificate of suitability{% else %}documents{% endif %}?
         </h2>
 
         <p>Choose one method only - we'll use this to calculate date of service.
@@ -28,7 +30,7 @@
               <label for="post">First class post</label>
             </div>
 
-            {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'friend' ) or ( defendant.solicitor != '-' ) %}
+            {% if ( defendant.defendantType == 'company' ) or ( defendant.defendantType == 'friend' ) or ( defendant.defendantType == 'authority' ) or ( defendant.solicitor != '-' ) %}
             <div class="multiple-choice" data-target="dx-address-panel">
               <input id="dx" name="how-served" type="radio" value="Document Exchange">
               <label for="dx">Document Exchange</label>
