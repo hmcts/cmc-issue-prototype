@@ -609,6 +609,8 @@ module.exports = function(app){
             res.render('prototype-jan-2018/certificate/upload', { defendant: defendant, documents: req.session.documents, others: req.body['other-doc'] });
         } else if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
             res.render('prototype-jan-2018/certificate/who', { defendant: defendant })
+        } else if ( defendant.defendantType == 'friend' ) {
+            res.render('prototype-jan-2018/certificate/litigation-friend', { defendant: defendant })
         } else {
             res.render('prototype-jan-2018/certificate/how', { defendant: defendant })
         }
@@ -652,6 +654,22 @@ module.exports = function(app){
     });
 
 
+    app.post('*/prototype-jan-2018/certificate/litigation-friend', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        if ( req.body['served-friend'] == 'no' ) {
+            defendant.defendantName =  req.body['served-to'];
+            defendant.defendantType =  'authority';
+            req.session.defendants = updateDefendant(defendant, defendants);
+            req.session.defendant = defendant;
+        }
+
+        res.render('prototype-jan-2018/certificate/how', { defendant: defendant })
+
+    });
+
+
     app.get('*/prototype-jan-2018/certificate/how', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
 
@@ -688,6 +706,22 @@ module.exports = function(app){
         res.render('prototype-jan-2018/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName })
     });
 
+    app.post('*/prototype-jan-2018/certificate/friend-address', function(req, res){
+        var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
+
+        var friendServiceAddress1 = (req.session.data['friend_AddressLine1']) ? req.session.data['friend_AddressLine1'] : '-'
+        var friendServiceAddress2 = (req.session.data['friend_AddressLine2']) ? req.session.data['friend_AddressLine2'] : ''
+        var friendServiceTown = (req.session.data['friend_city']) ? req.session.data['friend_city'] : ''
+        var friendServicePostcode = (req.session.data['friend_Postcode']) ? req.session.data['friend_Postcode'] : ''
+        defendant.serviceAddress = friendServiceAddress1 + ' ' + friendServiceAddress2 + ' ' + friendServiceTown + ' ' + friendServicePostcode
+
+        req.session.defendants = updateDefendant(defendant, defendants);
+        req.session.defendant = defendant;
+
+        res.render('prototype-jan-2018/certificate/where', { defendant: defendant })
+
+    });
 
     app.post('*/prototype-jan-2018/certificate/where', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
@@ -696,10 +730,16 @@ module.exports = function(app){
         if ( req.body['how-served']) {
             defendant.howServed = req.body['how-served'];
             req.session.defendants = updateDefendant(defendant, defendants);
-            res.render('prototype-jan-2018/certificate/where', { defendant: defendant, howServed: req.body['how-served'] });
+        }
+
+        if ( defendant.howServed && defendant.defendantType == 'authority' ) {
+            res.render('prototype-jan-2018/certificate/friend-address', { defendant: defendant });
+        } else {
+            res.render('prototype-jan-2018/certificate/where', { defendant: defendant, howServed: defendant.howServed });
         }
 
     });
+
     app.get('*/prototype-jan-2018/certificate/where', function(req, res){
         var defendants = req.session.defendants || getDummyDefendants();
         var defendant = req.session.defendant || defendants[0];
