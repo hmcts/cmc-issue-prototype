@@ -675,9 +675,11 @@ module.exports = function(app){
             defendant.defendantType =  'authority';
             req.session.defendants = updateDefendant(defendant, defendants);
             req.session.defendant = defendant;
+            res.render('prototype-feb-2018/certificate/friend-address', { defendant: defendant })
+        } else {
+            res.render('prototype-feb-2018/certificate/how', { defendant: defendant })
         }
 
-        res.render('prototype-feb-2018/certificate/how', { defendant: defendant })
 
     });
 
