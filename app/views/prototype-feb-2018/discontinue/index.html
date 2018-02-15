@@ -1,0 +1,38 @@
+{% extends "prototype-feb-2018/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <h1 class="heading-large">
+    <span class="form-hint">Defendant 2:</span>
+    Goddard Plumbing
+  </h1>
+
+<form method="post" action="discontinue/submitted" class="form">
+
+  <div class="form-group">
+  
+    <h1 class="heading-medium">
+      Notice of discontinuance
+    </h1>
+
+    <p>The claimant discontinues this claim against Goddard Plumbing. </p>
+
+    <h2 class="heading-medium">Signed</h2>
+    
+    <div class="form-group column-two-thirds" style="padding-left: 0">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
+    </div>
+
+    <div class="form-group column-two-thirds" style="padding-left: 0">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
+    </div>
+
+    <div class="form-group column-two-thirds" style="padding-left: 0">
+      <button id="submit" class="button">Discontinue against defendant</button>
+    </div>
+
+  </div>
+
+</form>
+
+{% endblock %}

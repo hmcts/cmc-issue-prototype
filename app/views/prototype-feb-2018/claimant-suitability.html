@@ -1,0 +1,28 @@
+{% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <form method="post" action="claimant-suitability" class="form">
+
+    <h1 class="heading-large"><span class="form-hint">Claimant: {% if data['claimant_name'] %} {{ data['claimant_title'] }} {{ data['claimant_name'] }} {% else %} {{ data['claimant_company_name'] }} {% endif %}</span>Is the claimant under 18 or a protected party?</h1>
+
+    <div class="form-group">
+
+      <div class="form-group inline">
+        <div class="multiple-choice">
+          <input id="protected-yes" name="claimant_protected" type="radio" value="yes">
+          <label for="protected-yes">Yes</label>
+        </div>
+
+        <div class="multiple-choice" data-target="response">
+          <input id="protected-no" name="claimant_protected" type="radio" value="no">
+          <label for="protected-no">No</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Save and continue">
+    </div>
+
+  </form>
+
+{% endblock %}

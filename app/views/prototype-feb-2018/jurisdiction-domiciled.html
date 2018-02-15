@@ -1,0 +1,25 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Jurisdiction statement {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Is the defendant domiciled in {{ strCountry or 'Spain' }}?</h1>
+
+<form action="jurisdiction-domiciled" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+
+    <div class="multiple-choice">
+      <input id="domiciled-yes" name="domiciled" type="radio" value="yes">
+      <label for="domiciled-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="domiciled-no" name="domiciled" type="radio" value="no">
+      <label for="domiciled-no">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

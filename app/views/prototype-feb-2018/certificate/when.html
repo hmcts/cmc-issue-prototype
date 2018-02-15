@@ -1,0 +1,188 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="when" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">
+          {% if defendant.defendantType == 'friend' %}
+            Litigation friend for Michael Jones:
+          {% elseif defendant.defendantType == 'authority' %}
+            Parent, guardian, or attorney for Michael Jones:
+          {% else %}
+            Defendant {{ defendant.defendantNo }}:
+          {% endif %}
+        </span>
+        {{ defendant.defendantName }}
+      </h1>
+
+
+      <div class="form-group">
+        <h2 class="heading-medium">
+
+          {% if defendant.defendantType == 'authority' %}
+          {% set doc = "certificate of suitability" %}
+          {% set person = "recipient" %}
+          {% elseif defendant.defendantType == 'friend' %}
+          {% set doc = "certificate of suitability" %}
+          {% set person = "litigation friend" %}
+          {% else %}
+          {% set doc = "documents" %}
+          {% set person = "defendant" %}
+          {% endif %}
+
+          Did you
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}post the {{ doc }} to
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}deliver the {{ doc }} to
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}leave the {{ doc }} with
+          {% elseif defendant.howServed == 'Document Exchange' %}DX the {{ doc }} to
+          {% elseif defendant.howServed == 'Fax' %}fax the {{ doc }} to
+          {% elseif defendant.howServed == 'Email' %}email the {{ doc }} to
+          {% else %}send the {{ doc }} to
+          {% endif %}
+           the {{person}}{% if defendant.solicitor != '-' %}'s solicitor{% endif %} today?
+        </h2>
+
+       <div class="form-group">
+         <div class="multiple-choice">
+          <input id="today-yes" name="served-today" type="radio" value="yes" onclick="$('#day').val( objDateToday.getDate() ); $('#month').val( objDateToday.getMonth()+1 ); updateServiceDate();">
+          <label for="today-yes">Yes</label>
+        </div>
+
+       <div class="form-group">
+         <div class="multiple-choice" data-target="when-served">
+          <input id="today-no" name="served-today" type="radio" value="no" onclick="$('#day').val( '' ); updateServiceDate(); $('#day').focus();">
+          <label for="today-no">No</label>
+         </div>
+        </div>
+
+        <div class="form-group js-hidden" id="when-served">
+          <h2 class="heading-medium" style="margin-bottom: 3px">When did you serve?</h2>
+          <span class="form-hint">For example, 17 11 2017</span>
+          <div class="form-date">
+            <div class="form-group form-group-day">
+              <label for="day">Day</label>
+              <input  class="form-control" name="day" id="day" type="number" pattern="[0-9]*" min="0" max="31" value="">
+            </div>
+            <div class="form-group form-group-month">
+              <label for="month">Month</label>
+              <input class="form-control" name="month" id="month" type="number" pattern="[0-9]*" min="0" max="12" value="">
+            </div>
+            <div class="form-group form-group-year">
+              <label for="year">Year</label>
+              <input class="form-control" name="year" id="year" type="number" pattern="[0-9]*" min="0" max="2018" value="">
+            </div>
+          </div>
+        </div>
+
+        {% if blnShowTime %}
+        <div class="form-group">
+          <h2 class="heading-medium">At what time?</h2>
+          <p class="form-hint">For example, 3:24 PM</p>
+
+          <div class="form-date">
+            <div class="form-group form-group-hour">
+              <label for="hour">Hour</label>
+              <input class="form-control" name="hour" id="hour" type="number" pattern="[0-9]*" min="0" max="12" value="">
+            </div>
+            <div class="form-group form-group-colon">
+              :
+            </div>
+            <div class="form-group form-group-minutes">
+              <label for="minutes">Minutes</label>
+              <input class="form-control" name="minutes" id="minutes" type="number" pattern="[0-9]*" min="0" max="60" value="">
+            </div>
+            <div class="form-group form-group-am-pm">
+              <label for="am-pm">AM/PM</label>
+              <select class="form-control" name="am-pm" id="am-pm" onchange="updateServiceDate();">
+                  <option></option>
+                  <option>AM</option>
+                  <option>PM</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      <div id="service-block" class="js-hidden">
+        <p class="heading-medium">
+          Deemed date of service
+        </p>
+        <p id="service-value"></p>
+        <input type="hidden" id="service-value-field" name="service-value-field" />
+      </div>
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}
+
+
+    {% block page_scripts %}
+    <script>
+
+      var objDateToday;
+
+      $(document).ready(function () {
+
+        objDateToday = new Date();
+        $('#year').val( objDateToday.getFullYear());
+
+        if ( objDateToday.getDate() > 4 ) {
+          $('#month').val( objDateToday.getMonth() + 1);
+        }
+
+        $(' form input').on('keyup', updateServiceDate);
+
+      });
+
+      function updateServiceDate() {
+
+
+        if ( $('#day').val() && ( $('#month').val() || $('#today-yes').is(':checked') ) && (!$('#am-pm').length || ( $('#am-pm').length && $('#am-pm').val() ) ) ) {
+
+            intMonth = ( $('#month').val() > 0 ) ? $('#month').val()-1 : objDateToday.getMonth();
+            var objDate = new Date( $('#year').val(), intMonth, $('#day').val() );
+            
+            {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) or ( defendant.howServed == 'Document Exchange' ) %}
+              objDate.setDate(objDate.getDate() + 2);
+            {% endif %}
+
+            {% if blnShowTime %}
+
+              if ( $('#minutes').val() && $('#hour').val() ) {
+                intHours = $('#hour').val();
+
+                if ( $('#am-pm').val() == 'PM') {
+                  intHours = parseInt( intHours ) + 12;
+                }
+                objDate.setHours( intHours );
+                objDate.setMinutes( $('#minutes').val() );
+
+                objDateAfternoon = new Date( $('#year').val(), intMonth, $('#day').val(), 16 );
+                if ( objDate >= objDateAfternoon ) {
+                  objDate.setDate( objDate.getDate() + 1 );
+                }
+
+              }
+            {% endif %}
+
+            arrMonths = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+            strMonth = arrMonths[objDate.getMonth()];
+            strDate = objDate.getDate() + ' ' + strMonth + ' ' + objDate.getFullYear()
+            $('#service-block').removeClass('js-hidden');
+        } else {
+            strDate = '';
+            $('#service-block').addClass('js-hidden');
+        }
+
+        $('#service-value').html( strDate );
+        $('#service-value-field').val( strDate );
+
+      }
+
+
+    </script>
+    {% endblock %}

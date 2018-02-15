@@ -1,0 +1,145 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="upload" class="form">
+
+      <div class="form-group">
+        <h1 class="heading-large">
+          <a href="how" style="text-decoration:none; color: #000; cursor: default;">Upload your documents</a>
+        </h1>
+
+        <p>Use this page to send the County Court the documents you've served on the defendant.</p>
+        <p>We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpeg, xls, xlsx, png.</p>
+
+        <div id="uploads">
+
+          <h3 class="heading-small">Claim form</h3>
+          <p class="form-hint">Not required</p>
+
+          <div id="poc">
+            <h3 class="heading-small">Particulars of claim</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <p>
+                <a href="#" class="button" value="Upload file" onclick="return upload('poc');">Upload file</a>
+              </p>
+              <p>
+                <a href="#" style="display: none" onclick="return hideForm('poc');">Cancel file upload</a>
+              </p>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('poc');">Add file</a>
+          </div>
+
+          <h3 class="heading-small">Response pack</h3>
+          <p class="form-hint">Not required</p>
+
+
+          {% if documents.includes('Medical reports') %}
+          <div id="meds">
+            <h3 class="heading-small">Medical reports</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <p>
+                <a href="#" class="button" value="Upload file" onclick="return upload('meds');">Upload file</a>
+              </p>
+              <p>
+                <a href="#" style="display: none" onclick="return hideForm('meds');">Cancel file upload</a>
+              </p>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('meds');">Add file</a>
+          </div>
+          {% endif %}
+
+
+          {% if documents.includes('Schedule of loss') %}
+          <div id="sched">
+            <h3 class="heading-small">Schedule of loss</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <p>
+                <a href="#" class="button" value="Upload file" onclick="return upload('sched');">Upload file</a>
+              </p>
+              <p>
+                <a href="#" style="display: none" onclick="return hideForm('sched');">Cancel file upload</a>
+              </p>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('sched');">Add file</a>
+          </div>
+          {% endif %}
+
+
+          {% if documents.includes('Certificate of suitability') %}
+          <div id="suit">
+            <h3 class="heading-small">Certificate of suitability</h3>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <p>
+                <a href="#" class="button" value="Upload file" onclick="return upload('suit');">Upload file</a>
+              </p>
+              <p>
+                <a href="#" style="display: none" onclick="return hideForm('suit');">Cancel file upload</a>
+              </p>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('suit');">Add file</a>
+          </div>
+          {% endif %}
+
+
+          {% if documents.includes('Other documents') %}
+          <div id="other">
+            <h3 class="heading-small">Other documents:</h3>
+            <p>{{others}}</p>
+            <ol class="list uploaded-files" style="margin-bottom: 15px;">
+            </ol>
+
+            <div class="form-group" >
+              <p>
+                <input type="file" />
+              </p>
+              <p>
+                <a href="#" class="button" value="Upload file" onclick="return upload('other');">Upload file</a>
+              </p>
+              <p>
+                <a href="#" style="display: none" onclick="return hideForm('other');">Cancel file upload</a>
+              </p>
+            </div>
+
+            <a href="#" class="secondary-button" onclick="return showForm('other');">Add file</a>
+          </div>
+          {% endif %}
+
+        </div>
+
+        <div class="form-group" >
+          <input type="submit" class="button upload" value="Save and continue" id="submit">
+        </div>
+
+
+      </div>
+    </form>
+
+
+    {% endblock %}

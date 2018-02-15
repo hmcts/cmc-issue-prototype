@@ -1,0 +1,25 @@
+{% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+	<h1 class="heading-large">
+		Explain why you want more time
+  </h1>
+
+  <p class="form-hint">This is optional - the claimant will see your answer.</p>
+
+	<div class="form-group">
+
+    <form action="submitted" method="post">
+
+      <div class="form-group">
+        <textarea class="form-control form-control-medium" id="extension-notes" rows="3" name="extension-notes" type="text"></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Send request">
+      </div>
+
+    </form>
+
+  </div>
+
+  {% endblock %}

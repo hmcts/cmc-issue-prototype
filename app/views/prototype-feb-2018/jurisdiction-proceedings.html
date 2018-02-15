@@ -1,0 +1,25 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Jurisdiction statement {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Are proceedings pending between these parties for this claim in the UK or another Convention territory?</h1>
+
+<form action="jurisdiction-proceedings" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+
+    <div class="multiple-choice">
+      <input id="proceedings-yes" name="proceedings" type="radio" value="yes">
+      <label for="proceedings-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="proceedings-no" name="proceedings" type="radio" value="no">
+      <label for="proceedings-no">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

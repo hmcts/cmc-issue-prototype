@@ -1,0 +1,40 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="litigation-friend" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Claimant: Michael Jones</span>
+        Certificate of suitability
+      </h1>
+
+      <div class="form-group">
+        <h2 class="heading-medium">Did you serve the certificate of suitability to Stanley Jones?</h2>
+
+       <div class="form-group">
+         <div class="multiple-choice">
+          <input id="served-friend-yes" name="served-friend" type="radio" value="yes">
+          <label for="served-friend-yes">Yes</label>
+        </div>
+
+       <div class="form-group">
+         <div class="multiple-choice" data-target="who-served">
+          <input id="served-friend-no" name="served-friend" type="radio" value="no">
+          <label for="served-friend-no">No. To someone else.</label>
+         </div>
+        </div>
+
+      <div id="who-served" class="panel panel-border-narrow js-hidden form-group" aria-hidden="true">
+        <div>
+          <label class="form-label" for="served-to">To whom?</label>
+          <input class="form-control" type="text" id="served-to" name="served-to" value="">
+        </div>
+      </div>
+
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}
