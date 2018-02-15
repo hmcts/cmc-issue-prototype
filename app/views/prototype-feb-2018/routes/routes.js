@@ -811,8 +811,10 @@ module.exports = function(app){
 
             // last one
             if ( defendant.defendantNo == defendants[defendants.length-1].defendantNo ) {
+
                 res.render('prototype-feb-2018/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
             } else {
+
 
                 //find the next one and go again
                 var defendants = req.session.defendants || getDummyDefendants();
@@ -824,6 +826,8 @@ module.exports = function(app){
 
                         if ( req.session.defendant.defendantType == 'company' && req.session.defendant.solicitor == '-' ) {
                             res.render('prototype-feb-2018/certificate/who', { defendant: req.session.defendant })
+                        } else if ( req.session.defendant.defendantType == 'friend') {
+                            res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: req.session.defendant })
                         } else {
                             res.render('prototype-feb-2018/certificate/how', { defendant: req.session.defendant })
                         }
