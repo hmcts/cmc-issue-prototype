@@ -602,12 +602,28 @@ module.exports = function(app){
     });
 
 
+    app.get('*/prototype-feb-2018/certificate/upload-suitability', function(req, res){
+
+        var defs = getDummyDefendants();
+        var defendant = defs[defs.length-1];
+        req.session.defendants = [defendant];
+        req.session.defendant = defendant;
+
+        req.session.documents = 'Certificate of suitability';
+        documents = req.session.documents;
+
+        res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: req.session.defendants, documents: documents, uploads: req.session.uploads });
+
+    });
+
+
     app.get('*/prototype-feb-2018/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
         req.session.documents = req.body.documents || getDummyDocuments();
         documents = req.session.documents;
 
-        res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, documents: documents, uploads: req.session.uploads });
+        res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: defendants, documents: documents, uploads: req.session.uploads });
 
     });
 
@@ -622,7 +638,7 @@ module.exports = function(app){
         } else if ( defendant.defendantType == 'company' && defendant.solicitor == '-' ) {
             res.render('prototype-feb-2018/certificate/who', { defendant: defendant })
         } else if ( defendant.defendantType == 'friend' ) {
-            res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: defendant })
+            res.render('prototype-feb-2018/certificate/litigation-friend-name', { defendant: defendant })
         } else {
             res.render('prototype-feb-2018/certificate/how', { defendant: defendant })
         }
@@ -666,6 +682,15 @@ module.exports = function(app){
     });
 
 
+    app.get('*/prototype-feb-2018/certificate/litigation-friend', function(req, res){
+        var defs = getDummyDefendants();
+        var defendant = defs[defs.length-1];
+        req.session.defendants = [defendant];
+        req.session.defendant = defendant;
+
+        res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: defendant })
+    });
+
     app.post('*/prototype-feb-2018/certificate/litigation-friend', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
@@ -681,6 +706,15 @@ module.exports = function(app){
         }
 
 
+    });
+
+    app.get('*/prototype-feb-2018/certificate/litigation-friend-name', function(req, res){
+        var defs = getDummyDefendants();
+        var defendant = defs[defs.length-1];
+        req.session.defendants = [defendant];
+        req.session.defendant = defendant;
+
+        res.render('prototype-feb-2018/certificate/litigation-friend-name', { defendant: defendant })
     });
 
 
@@ -829,6 +863,7 @@ module.exports = function(app){
                         if ( req.session.defendant.defendantType == 'company' && req.session.defendant.solicitor == '-' ) {
                             res.render('prototype-feb-2018/certificate/who', { defendant: req.session.defendant })
                         } else if ( req.session.defendant.defendantType == 'friend') {
+                            console.log( defendant );
                             res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: req.session.defendant })
                         } else {
                             res.render('prototype-feb-2018/certificate/how', { defendant: req.session.defendant })

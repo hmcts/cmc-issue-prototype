@@ -27,9 +27,13 @@
           </td>
           <td>
             <ul>
+              {% if defendants.length > 1 %}
               {% for document in documents %}
               <li>{{ document }}</li>
               {% endfor %}
+              {% else %}
+                <li>Certificate of suitability</li>
+              {% endif %}
             </ul>
           </td>
           <td class="change-answer">
@@ -44,9 +48,13 @@
           </td>
           <td>
             <ul>
+              {% if defendants.length > 1 %}
               {% for file in files %}
               <li><a href="#">{{ file }}</a></li>
               {% endfor %}
+              {% else %}
+              <li><a href="#">Certificate of suitability.pdf</a></li>
+              {% endif %}
             </ul></td>
           <td class="change-answer">
          <a href="upload">
@@ -69,6 +77,10 @@
               Litigation friend for Michael Jones
               {% set doc = "certificate of suitability" %}
               {% set person = "Litigation friend" %}
+            {% elseif defendant.defendantType == 'authority' %}
+              Recipient
+              {% set doc = "certificate of suitability" %}
+              {% set person = "Recipient" %}
             {% else %}
               Defendant {{ defendant.defendantNo }}
               {% set doc = "documents" %}
