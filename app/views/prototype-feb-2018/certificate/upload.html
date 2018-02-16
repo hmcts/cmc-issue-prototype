@@ -1,16 +1,18 @@
-{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
     <form method="post" action="upload" class="form">
 
       <div class="form-group">
         <h1 class="heading-large">
-          <a href="how" style="text-decoration:none; color: #000; cursor: default;">Upload your documents</a>
+          <a href="how" style="text-decoration:none; color: #000; cursor: default;">Upload your {% if defendants.length == 1 %}certificate of suitability{% else %}documents{% endif %}</a>
         </h1>
 
-        <p>Use this page to send the County Court the documents you've served on the defendant.</p>
+        <p>Use this page to send the County Court the document{% if defendants.length > 1 %}s{% endif %} you've served.</p>
         <p>We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpeg, xls, xlsx, png.</p>
 
         <div id="uploads">
+
+          {% if defendants.length > 1 %}
 
           <h3 class="heading-small">Claim form</h3>
           <p class="form-hint">Not required</p>
@@ -38,6 +40,7 @@
           <h3 class="heading-small">Response pack</h3>
           <p class="form-hint">Not required</p>
 
+          {% endif %}
 
           {% if documents.includes('Medical reports') %}
           <div id="meds">
@@ -140,6 +143,19 @@
 
       </div>
     </form>
-
-
     {% endblock %}
+
+{% block extra_js_1 %}
+{% if defendants.length == 1 %}
+<script>
+
+$( document ).ready(function() {
+  showForm('suit');
+  $($('#uploads #suit .form-group a:last-child')[1]).hide();
+});
+</script>
+
+{% endif %}
+{% endblock %}
+    
+
