@@ -1,8 +1,9 @@
 {% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-    <form method="post" action="upload" class="form">
+    <form method="post" action="{% if defendants.length == 1 %}../certificate/litigation-friend{% else %}upload{% endif %}" class="form">
 
       <div class="form-group">
+
         <h1 class="heading-large">
           <a href="how" style="text-decoration:none; color: #000; cursor: default;">Upload your {% if defendants.length == 1 %}certificate of suitability{% else %}documents{% endif %}</a>
         </h1>

@@ -1,20 +1,4 @@
-{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% set action = "litigation-friend-address-same" %}
+{% set person = "Claimant" %}
 
-  <h1 class="heading-large"><span class="form-hint">Claimant: {% if data['claimant_name'] %} {{ data['claimant_title'] }} {{ data['claimant_name'] }} {% else %} {{ data['claimant_company_name'] }} {% endif %}</span>Enter litigation friend's full name</h1>
-
-  <!--  <p>As the claimant is under 18 or a protected party, a litigation friend will be required</p> -->
-
-  <form action="litigation-friend-address-same" id="form" method="post" class="form-group">
-    <fieldset class="form-group">
-
-        <div class="form-group">
-          <textarea type="text" class="form-control" id="friend_name" name="friend_name" value="{{ data['friend_name'] }}" style="height: 38px;">{{ data['friend_name'] }}</textarea>
-        </div>
-    </fieldset>
-
-    <div class="form-group">
-      <input type="submit" class="button" value="Save and continue">
-    </div>
-  </form>
-
-{% endblock %}
+{% extends "prototype-feb-2018/common-litigation-friend-name.html" %} {% block page_title %} Claim Issue {% endblock %} 
