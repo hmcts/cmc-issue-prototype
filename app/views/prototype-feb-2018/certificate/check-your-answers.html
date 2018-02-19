@@ -7,8 +7,66 @@
   <form method="post" action="submitted" class="form">
 
 
+    {% if documents == 'Certificate of suitability' %}
+
     <table class="check-your-answers">
 
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Litigation friend
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Defendant
+          </td>
+          <td>
+              {{ defendant.defendantNameMinor }}
+          </td>
+          <td class="change-answer">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Litigation friend
+          </td>
+          <td>
+           {{ defendant.defendantName }}
+          </td>
+          <td class="change-answer">
+           <a href="#">
+            Change
+          </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Litigation friend address
+          </td>
+          <td>
+           {{ defendant.defendantAddress }}
+          </td>
+          <td class="change-answer">
+           <a href="#">
+            Change
+          </a>
+          </td>
+        </tr>
+      </tbody>
+    <table>
+
+
+
+    {% endif %}
+
+    <table class="check-your-answers">
       <thead>
         <tr>
           <th colspan="2">

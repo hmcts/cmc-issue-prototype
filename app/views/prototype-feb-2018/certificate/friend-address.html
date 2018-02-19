@@ -6,9 +6,9 @@
       <h1 class="heading-large">
         <span class="form-hint">
           {% if defendant.defendantType == 'friend' %}
-            Litigation friend for Michael Jones:
+            Litigation friend for {{defendant.defendantNameMinor}}:
           {% elseif defendant.defendantType == 'authority' %}
-            Parent, guardian, or attorney for Michael Jones:
+            Parent, guardian, or attorney for {{defendant.defendantNameMinor}}:
           {% else %}
             Defendant {{ defendant.defendantNo }}:
           {% endif %}

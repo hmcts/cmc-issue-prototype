@@ -602,28 +602,11 @@ module.exports = function(app){
     });
 
 
-    app.get('*/prototype-feb-2018/certificate/upload-suitability', function(req, res){
-
-        var defs = getDummyDefendants();
-        var defendant = defs[defs.length-1];
-        req.session.defendants = [defendant];
-        req.session.defendant = defendant;
-
-        req.session.documents = 'Certificate of suitability';
-        documents = req.session.documents;
-
-        res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: req.session.defendants, documents: documents, uploads: req.session.uploads });
-
-    });
-
-
     app.get('*/prototype-feb-2018/certificate/upload', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
         var defendants = req.session.defendants || getDummyDefendants();
         req.session.documents = req.body.documents || getDummyDocuments();
         documents = req.session.documents;
-
-console.log(defendants);
 
         res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: defendants, documents: documents, uploads: req.session.uploads });
 
@@ -686,12 +669,7 @@ console.log(defendants);
 
 
     app.get('*/prototype-feb-2018/certificate/litigation-friend', function(req, res){
-        var defs = getDummyDefendants();
-        var defendant = defs[defs.length-1];
-        req.session.defendants = [defendant];
-        req.session.defendant = defendant;
-
-        res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: defendant })
+        res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: req.session.defendant })
     });
 
     app.post('*/prototype-feb-2018/certificate/litigation-friend', function(req, res){
@@ -704,8 +682,13 @@ console.log(defendants);
             req.session.defendants = updateDefendant(defendant, defendants);
             req.session.defendant = defendant;
             res.render('prototype-feb-2018/certificate/friend-address', { defendant: defendant })
+        } else if ( req.body['friend_Postcode'] ) {
+
+            req.session.documents = 'Certificate of suitability';
+            res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: req.session.defendants, documents: req.session.documents, uploads: req.session.uploads });
+
         } else {
-            res.render('prototype-feb-2018/certificate/how', { defendant: defendant })
+            res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: defendant })
         }
 
 
@@ -750,11 +733,12 @@ console.log(defendants);
 
     app.get('*/prototype-feb-2018/certificate/check-your-answers', function(req, res){
         var defendants = req.session.defendants || getDummyDefendants();
+        var defendant = req.session.defendant || defendants[0];
         var documents = req.session.documents || getDummyDocuments();
         var files = req.session.files || getDummyFiles();
         var orgName = req.session.orgName || 'My Solicitor Firm';
-
-        res.render('prototype-feb-2018/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName })
+console.log( defendant );
+        res.render('prototype-feb-2018/certificate/check-your-answers', { documents: documents, defendant: defendant, defendants: defendants, files: files, orgName: orgName })
     });
 
     app.post('*/prototype-feb-2018/certificate/friend-address', function(req, res){
@@ -851,7 +835,7 @@ console.log(defendants);
             // last one
             if ( defendant.defendantNo == defendants[defendants.length-1].defendantNo ) {
 
-                res.render('prototype-feb-2018/certificate/check-your-answers', { documents: documents, defendants: defendants, files: files, orgName: orgName });
+                res.render('prototype-feb-2018/certificate/check-your-answers', { documents: documents, defendant: defendant, defendants: defendants, files: files, orgName: orgName });
             } else {
 
 
@@ -866,7 +850,6 @@ console.log(defendants);
                         if ( req.session.defendant.defendantType == 'company' && req.session.defendant.solicitor == '-' ) {
                             res.render('prototype-feb-2018/certificate/who', { defendant: req.session.defendant })
                         } else if ( req.session.defendant.defendantType == 'friend') {
-                            console.log( defendant );
                             res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: req.session.defendant })
                         } else {
                             res.render('prototype-feb-2018/certificate/how', { defendant: req.session.defendant })
@@ -910,6 +893,74 @@ console.log(defendants);
 
         res.render('prototype-feb-2018/certificateOfService', { defendant: defendant, claimants: claimants, documents: getDummyDocuments(), signerName: 'Robert Wagner', signerCompany: 'Wagner & Co Legal', signerRole: 'Senior solicitor', signerDate: '14 October 2017', serviceSentDate: serviceSentDate, serviceDate: defendant.serveDate, claimReferenceNumber: '123ML143' });
     });
+
+
+
+    app.post('*/prototype-feb-2018/respondent/litigation-friend-name', function(req, res){
+        var defs = getDummyDefendants();
+        var defendant = defs[0];
+        req.session.defendants = [defendant];
+        defendant.defendantName = 'Jan Clarke';
+        req.session.defendant = defendant;
+        res.render('prototype-feb-2018/respondent/litigation-friend-name', { defendant: defendant })
+    });
+
+    app.get('*/prototype-feb-2018/respondent/litigation-friend-name', function(req, res){
+        var defs = getDummyDefendants();
+        var defendant = defs[0];
+        req.session.defendants = [defendant];
+        defendant.defendantName = 'Jan Clarke';
+        req.session.defendant = defendant;
+        res.render('prototype-feb-2018/respondent/litigation-friend-name', { defendant: defendant })
+    });
+
+    app.post('*/prototype-feb-2018/respondent/litigation-friend-address-same', function(req, res){
+
+        var defendants = req.session.defendants || getDummyDefendants();
+        var defendant = req.session.defendant || defendants[0];
+        var documents = req.session.documents || getDummyDocuments();
+
+        if ( req.body['friend_address_same'] ) {
+
+            if ( req.body['friend_address_same'] == 'yes' ) {
+                req.session.documents = 'Certificate of suitability';
+                res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: req.session.defendants, documents: req.session.documents, uploads: req.session.uploads });
+
+            } else {
+                res.redirect('litigation-friend-address');
+            }
+
+        } else {
+
+//            var defs = getDummyDefendants();
+  //          var defendant = defs[0];
+
+            defendant.defendantNameMinor = 'Jan Clarke';
+            defendant.defendantName = req.body['friend_name'];
+            req.session.defendants = [defendant];
+            req.session.defendant = defendant;
+
+            res.render('prototype-feb-2018/respondent/litigation-friend-address-same', { defendant: defendant })
+        }
+
+    });
+
+    app.get('*/prototype-feb-2018/respondent/litigation-friend-address-same', function(req, res){
+        var defs = getDummyDefendants();
+        var defendant = defs[0];
+        req.session.defendants = [defendant];
+        defendant.defendantName = 'Jan Clarke';
+        req.session.defendant = defendant;
+        res.render('prototype-feb-2018/respondent/litigation-friend-address-same', { defendant: defendant })
+    });
+
+    app.get('*/prototype-feb-2018/respondent/litigation-friend-address', function(req, res){
+
+        
+        res.render('prototype-feb-2018/respondent/litigation-friend-address', { defendant: req.session.defendant })
+    });
+
+
 
     app.post('*/prototype-feb-2018/acknowledgement/check-your-answers', function(req, res){
 
@@ -1052,7 +1103,7 @@ function getDummyDefendants() {
     var moment = require('moment');
     var today = moment();
 
-    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().subtract(1, 'days').format('DD MMMM YYYY'), serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('D MMMM YYYY') }, { defendantNo:4, defendantType: 'friend', defendantName: 'Stanley Jones', defendantAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', serviceAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', solicitor: '-', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') } ];
+    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().subtract(1, 'days').format('DD MMMM YYYY'), serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('D MMMM YYYY') }, { defendantNo:4, defendantType: 'friend', defendantName: 'Stanley Jones', defendantNameMinor: 'Michael Jones', defendantAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', serviceAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', solicitor: '-', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') } ];
 }
 
 function getDummyDefendant() {
