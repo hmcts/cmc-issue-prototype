@@ -37,10 +37,17 @@
       <div class="column-one-half if-empty">{% if data['rep_dx_number'] %} {{ data['rep_dx_number'] }} {% endif %}</div>
     </div>
     <div class="task-list-item">
-      <div class="column-one-quarter form-hint">Your reference number</div>
+      <div class="column-one-quarter form-hint">Your reference</div>
       <div class="column-one-half if-empty">{% if data['claimant_individual_reference'] %} {{ data['claimant_individual_reference'] }} {% endif %}</div>
       <div class="column-one-quarter"><a class="right" href="claimant-individual-reference">Change</a></div>
     </div>
+    {% if data['defendant_reference'] %}
+    <div class="task-list-item">
+      <div class="column-one-quarter form-hint">Defendant's reference</div>
+      <div class="column-one-half if-empty">{{ data['defendant_reference'] }}</div>
+      <div class="column-one-quarter"><a class="right" href="claimant-individual-reference">Change</a></div>
+    </div>
+    {% endif %}
     <div class="task-list-item">
       <div class="column-one-quarter form-hint">Preferred court</div>
       <div class="column-one-half if-empty">{% if data['county_court'] %} {{ data['county_court'] }} {% endif %}</div>
