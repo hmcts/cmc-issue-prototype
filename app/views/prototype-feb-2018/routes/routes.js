@@ -936,6 +936,7 @@ console.log( defendant );
   //          var defendant = defs[0];
 
             defendant.defendantNameMinor = 'Jan Clarke';
+            defendant.friendName = req.body['friend_name'];
             defendant.defendantName = req.body['friend_name'];
             req.session.defendants = [defendant];
             req.session.defendant = defendant;
