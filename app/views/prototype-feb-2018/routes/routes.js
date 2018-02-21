@@ -737,7 +737,7 @@ module.exports = function(app){
         var documents = req.session.documents || getDummyDocuments();
         var files = req.session.files || getDummyFiles();
         var orgName = req.session.orgName || 'My Solicitor Firm';
-console.log( defendant );
+
         res.render('prototype-feb-2018/certificate/check-your-answers', { documents: documents, defendant: defendant, defendants: defendants, files: files, orgName: orgName })
     });
 
@@ -956,18 +956,42 @@ console.log( defendant );
     });
 
     app.get('*/prototype-feb-2018/respondent/litigation-friend-address', function(req, res){
-
-        
         res.render('prototype-feb-2018/respondent/litigation-friend-address', { defendant: req.session.defendant })
     });
 
+
+    app.get('*/prototype-feb-2018/acknowledgement/name', function(req, res){
+        req.session.data['name'] = 'Jan Clarke';
+        res.render('prototype-feb-2018/acknowledgement/name' );
+
+    });
+
+    app.post('*/prototype-feb-2018/acknowledgement/name', function(req, res){
+        if ( req.body['correct-name'] ) {
+            if ( req.body['correct-name'] == 'yes') {
+                 req.session.data['name'] = 'Jan Clarke';   
+            }
+            res.redirect('dob');
+        } else {
+            res.render('prototype-feb-2018/acknowledgement/name' );
+        }
+    });
+
+    app.get('*/prototype-feb-2018/acknowledgement/representative-name', function(req, res){
+        req.session.data['name'] = 'Jan Clarke';
+        res.render('prototype-feb-2018/acknowledgement/representative-name' );
+
+    });
 
 
     app.post('*/prototype-feb-2018/acknowledgement/check-your-answers', function(req, res){
 
         if ( !req.session.data['intention'] ) {
             req = getResponseData(req);
-        }
+        } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } 
+
         res.render('prototype-feb-2018/acknowledgement/check-your-answers', { data: req.session.data } );
     });
 
@@ -975,7 +999,10 @@ console.log( defendant );
 
         if ( !req.session.data['intention'] ) {
             req = getResponseData(req);
-        }
+        } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
+        } 
+
         res.render('prototype-feb-2018/acknowledgement/check-your-answers', { data: req.session.data } );
 
     });
@@ -994,6 +1021,19 @@ console.log( defendant );
         req.session.data['response'] = 'Admission';
         res.render('prototype-feb-2018/respondent/representative-name', { data: req.session.data } );
     });
+
+    app.post('*/prototype-feb-2018/respondent/name', function(req, res){
+        if ( req.body['correct-name'] ) {
+
+            if ( req.body['correct-name'] == 'yes') {
+                 req.session.data['name'] = 'Jan Clarke';   
+            }
+            res.redirect('dob');
+        } else {
+            res.render('prototype-feb-2018/acknowledgement/name' );
+        }
+    });
+
 
     app.post('*/prototype-feb-2018/respondent/response', function(req, res){
 
@@ -1015,37 +1055,28 @@ console.log( defendant );
 
     app.post('*/prototype-feb-2018/respondent/check-your-answers', function(req, res){
 
-        req.session.data['name'] = 'Jan Clarke';
-        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf1';
-
-        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
-            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
-        } else {
-            req.session.data['dob'] = '2 September 1982';
-        }
-
         if ( !req.session.data['response'] ) {
             req = getResponseData(req);
+        } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         }
+
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf1';
+
         res.render('prototype-feb-2018/respondent/check-your-answers', { data: req.session.data } );
     });
 
 
     app.get('*/prototype-feb-2018/respondent/check-your-answers', function(req, res){
 
-        req.session.data['name'] = 'Jan Clarke';
-
-        if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
-            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
-        } else {
-            req.session.data['dob'] = '2 September 1982';
-        }
 
         if ( !req.session.data['response'] ) {
             req = getResponseData(req);
+        } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
+            req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         }
 
-        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf';
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf1';
 
         res.render('prototype-feb-2018/respondent/check-your-answers', { data: req.session.data } );
 
