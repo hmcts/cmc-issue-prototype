@@ -1,0 +1,61 @@
+{% extends "prototype-feb-2018/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">
+  Confirm your organisation details
+</h1>
+
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Name</td>
+      <td>{% if data['rep_company_name'] %} {{ data['rep_company_name'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-name">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>
+        {% if data['rep_AddressLine1'] %} {{ data['rep_AddressLine1'] }}, {% endif %}
+        {% if data['rep_AddressLine2'] %} {{ data['rep_AddressLine2'] }},{% endif %}
+        {% if data['rep_city'] %} {{ data['rep_city'] }}, {% endif %}
+        {% if data['rep_Postcode'] %} {{ data['rep_Postcode'] }} {% endif %}
+      </td>
+      <td class="change-answer">
+        <a href="representative-address">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Phone number</td>
+      <td>{% if data['rep_phone_number'] %} {{ data['rep_phone_number'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-contact">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{% if data['rep_email'] %} {{ data['rep_email'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-contact">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>DX address</td>
+      <td>{% if data['rep_dx_number'] %} {{ data['rep_dx_number'] }} {% endif %}</td>
+      <td class="change-answer">
+        <a href="representative-contact">Change</a>
+      </td>
+    </tr>
+
+  </table>
+
+	<form method="post" action="your-reference" class="form">
+	  <div class="form-group" style="margin-top: 30px">
+	    <input type="submit" class="button" value="Continue">
+	  </div>
+	</form>
+
+
+</form>
+
+{% endblock %}
