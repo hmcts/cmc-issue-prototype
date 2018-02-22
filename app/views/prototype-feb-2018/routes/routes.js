@@ -1,6 +1,5 @@
 module.exports = function(app){
 
-
     app.post('*/prototype-feb-2018/representative-address', function(req, res){
         req.session.orgName = req.body['rep_company_name'];
 
@@ -1115,6 +1114,27 @@ module.exports = function(app){
 
         if ( req.session.data['extension'] === 'yes' ) {
             res.redirect('approved')
+        } else {
+            res.redirect('counter-extend')
+        }
+    });
+
+    app.post('*/prototype-feb-2018/extension/counter-extend', function(req, res){
+
+        if ( req.session.data['counter-extension'] === 'yes' ) {
+            req.session.data['date'] = req.session.data['day'] +' '+ req.session.data['month'] +' '+ req.session.data['year'];
+        }
+        
+        res.redirect('response')
+
+    });
+
+
+
+    app.post('*/prototype-feb-2018/extension/response', function(req, res){
+
+        if ( req.session.data['counter-extension'] === 'yes' ) {
+            res.redirect('extended')
         } else {
             res.redirect('rejected')
         }

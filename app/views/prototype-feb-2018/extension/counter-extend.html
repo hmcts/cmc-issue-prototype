@@ -1,0 +1,57 @@
+{% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+  <form method="post" action="counter-extend" class="form">
+
+    <h1 class="heading-large">Would you like to set a different extended deadline?</h1>
+
+    <div class="form-group">
+
+      <div class="form-group inline">
+        <div class="multiple-choice" data-target="deadline">
+          <input id="counter-extension-yes" name="counter-extension" type="radio" value="yes">
+          <label for="counter-extension-yes">Yes</label>
+        </div>
+
+        <div class="multiple-choice">
+          <input id="counter-extension-no" name="counter-extension" type="radio" value="no">
+          <label for="counter-extension-no">No</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-border-narrow js-hidden" aria-hidden="true" id="deadline">
+      <p>Enter new deadline</p>
+      <p class="form-hint">The date can't be later than {{ now | date("add", 32, "days" ) | date( "D MMMM YYYY" ) }} (28 days from the current response deadline).</p>
+        <div class="form-date">
+          <div class="form-group form-group-day">
+            <label for="day">Day</label>
+            <input  class="form-control" name="day" id="day" type="number" pattern="[0-9]*" min="0" max="31" value="">
+          </div>
+          <div class="form-group form-group-month">
+            <label for="month">Month</label>
+            <input class="form-control" name="month" id="month" type="number" pattern="[0-9]*" min="0" max="12" value="">
+          </div>
+          <div class="form-group form-group-year">
+            <label for="year">Year</label>
+            <input class="form-control" name="year" id="year" type="number" pattern="[0-9]*" min="0" max="2018" value="">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="button" value="Continue">
+      </div>
+
+    </form>
+
+    <div class="panel panel-border-narrow js-hidden" aria-hidden="true" id="response">
+      <div class="form-group">
+        <label class="form-label" for="addressed-to">Add optional response</label>
+        <textarea class="form-control form-control-medium" id="extension-notes" rows="3" name="extension-notes" type="text" style="height: 5em;"></textarea>
+      </div>
+    </div>
+
+  </form>
+
+{% endblock %}
