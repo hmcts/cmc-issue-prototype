@@ -344,9 +344,9 @@ module.exports = function(app){
     app.post('*/prototype-feb-2018/help-with-fees', function (req, res) {
 
         if (req.body.helpFees == 'yes') {
-            res.render('prototype-feb-2018/choose-how-to-pay', { blnHelpFees: true });
+            res.render('prototype-feb-2018/pay-by-account', { blnHelpFees: true });
         } else if (req.body.helpFees == 'no') {
-            res.render('prototype-feb-2018/choose-how-to-pay');
+            res.render('prototype-feb-2018/pay-by-account');
         } else {
             res.render('prototype-feb-2018/help-with-fees')
         }
@@ -1013,12 +1013,12 @@ module.exports = function(app){
 
     app.get('*/prototype-feb-2018/respondent/start-defence', function(req, res){
         req.session.data['response'] = 'Defence';
-        res.render('prototype-feb-2018/respondent/representative-name', { data: req.session.data } );
+        res.render('prototype-feb-2018/respondent/your-reference', { data: req.session.data } );
     });
 
     app.get('*/prototype-feb-2018/respondent/start-admission', function(req, res){
         req.session.data['response'] = 'Admission';
-        res.render('prototype-feb-2018/respondent/representative-name', { data: req.session.data } );
+        res.render('prototype-feb-2018/respondent/your-reference', { data: req.session.data } );
     });
 
     app.post('*/prototype-feb-2018/respondent/name', function(req, res){
