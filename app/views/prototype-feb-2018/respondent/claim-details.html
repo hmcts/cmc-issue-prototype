@@ -151,6 +151,11 @@
               Response due by {{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}
             </span>
 
+            {% elseif data['claim-status'] == 1.5 %}
+            <span>
+              Response due by {{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}
+            </span>
+
             {% elseif ( data['claim-status'] == 4) or ( data['claim-status'] == 6) %}
             <span>
               Responded on {{ now | date( "D MMM YYYY" ) }}
@@ -190,6 +195,14 @@
           {% elseif data['claim-status'] == 1.4 %}
           <p>
             The claimant rejected your request to extend the deadline for your response.</br >
+            The claimant said: "28 days is excessive. You can have 14."
+          </p>
+          <p>
+            <a href='../extension' class="button secondary-button">Propose a different deadline</a>
+          </p>
+          {% elseif data['claim-status'] == 1.5 %}
+          <p>
+            The claimant rejected your request to extend until {{ now | date( "add", 32, "days" ) | date( "D MMMM YYYY" ) }} but has allowed an extension until {{ now | date( "add", 18, "days" ) | date( "D MMMM YYYY" ) }}.</br >
             The claimant said: "28 days is excessive. You can have 14."
           </p>
           <p>
@@ -326,6 +339,7 @@
     <option value="1.3" {% if (data['claim-status'] == 1.3)%}selected{% endif %}>Served - extension accepted</option>
     <option value="1.31" {% if (data['claim-status'] == 1.31)%}selected{% endif %}>Served - extension accepted - allow more</option>
     <option value="1.4" {% if (data['claim-status'] == 1.4)%}selected{% endif %}>Served - extension rejected</option>
+    <option value="1.5" {% if (data['claim-status'] == 1.5)%}selected{% endif %}>Served - extension countered</option>
     <option value="4" {% if data['claim-status'] == 4 %}selected{% endif %}>Responded</option>
 <!-- MANUAL PROCESS FOR NOW    <option value="5" {% if data['claim-status'] == 5 %}selected{% endif %}>Judgment received</option> -->
     <option value="6" {% if data['claim-status'] == 6 %}selected{% endif %}>Reply received</option>
