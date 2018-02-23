@@ -332,6 +332,54 @@
 
 
 
+            {% elseif ( data['claim-status'] == 3.13 ) %}
+
+            <table>
+              <thead>
+              <tr>
+                <th scope="col">Defendant</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr class="no-border">
+                <td>1. Jan Clarke trading as Clarke Construction</td>
+                <td>Response due</td>
+                <td>{{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border sub">
+                <td><a href="../acknowledgement/view">View the acknowledgement of service</a></td>
+                <td>Received on</td>
+                <td>{{ now | date( "D MMM YYYY" ) }}</td>
+              </tr>
+
+              <tr class="no-border spaced">
+                <td>2. Goddard Plumbing</td>
+                <td>Response due</td>
+                <td>{{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border sub">
+                <td>28 day extension requested</td>
+                <td>Rejected on</td>
+                <td>{{ now | date( "D MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border sub">
+                <td>14 day extension requested</td>
+                <td>Approved on</td>
+                <td>{{ now | date( "D MMM YYYY" ) }}</td>
+              </tr>
+              <tr class="no-border spaced">
+                <td>3. Kingsley Building Ltd</td>
+                <td>Response due</td>
+                <td>{{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+
+
 
 
             {% elseif data['claim-status'] == 3.2 %}
@@ -706,8 +754,9 @@
     <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>Served (single method)</option>
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Served (mixed method)</option>
     <option value="3.1" {% if data['claim-status'] == 3.1 %}selected{% endif %}>Extension requested</option>
-    <option value="3.11" {% if data['claim-status'] == 3.11 %}selected{% endif %}>Extension approved</option>
+    <option value="3.11" {% if data['claim-status'] == 3.11 %}selected{% endif %}>Extension approved (multi defs)</option>
     <option value="3.12" {% if data['claim-status'] == 3.12 %}selected{% endif %}>Extension rejected</option>
+    <option value="3.13" {% if data['claim-status'] == 3.13 %}selected{% endif %}>Extension countered (multi defs)</option>
     <option value="3.2" {% if data['claim-status'] == 3.2 %}selected{% endif %}>Response - received (single def)</option>
     <option value="3.3" {% if data['claim-status'] == 3.3 %}selected{% endif %}>Responses - awaiting some (multi def)</option>
     <option value="3.4" {% if data['claim-status'] == 3.4 %}selected{% endif %}>Responses - received all (multi def)</option>
