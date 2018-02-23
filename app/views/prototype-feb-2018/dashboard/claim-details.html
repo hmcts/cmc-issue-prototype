@@ -181,7 +181,12 @@
               Responses due by {{ now | date("add", 13, "days") | date( "D MMM YYYY" ) }}
             </span>
 
-            {% elseif ( data['claim-status'] == 3.1 ) or ( data['claim-status'] == 3.12 ) %}
+            {% elseif ( data['claim-status'] == 3.1 ) %}
+            <span>
+              Response due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 3.12 ) %}
             <span>
               Responses due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
             </span>
@@ -189,6 +194,11 @@
             {% elseif ( data['claim-status'] == 3.11 ) %}
             <span>
               Next response due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
+            </span>
+
+            {% elseif ( data['claim-status'] == 3.111 ) %}
+            <span>
+              Response due by {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}
             </span>
 
             {% elseif data['claim-status'] == 3.2 %}
@@ -320,6 +330,16 @@
               </tr>
               </tbody>
             </table>
+
+
+            {% elseif ( data['claim-status'] == 3.111 ) %}
+            <p>
+              No responses received.
+            </p>
+            <p>
+              A request by Goddard Plumbing for an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }} was acepted on {{ now | date( "D MMM YYYY" ) }}.
+            </p>
+
 
 
             {% elseif ( data['claim-status'] == 3.12 ) %}
@@ -754,6 +774,7 @@
     <option value="2" {% if data['claim-status'] == 2 %}selected{% endif %}>Served (single method)</option>
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Served (mixed method)</option>
     <option value="3.1" {% if data['claim-status'] == 3.1 %}selected{% endif %}>Extension requested</option>
+    <option value="3.111" {% if data['claim-status'] == 3.111 %}selected{% endif %}>Extension approved (single def)</option>
     <option value="3.11" {% if data['claim-status'] == 3.11 %}selected{% endif %}>Extension approved (multi defs)</option>
     <option value="3.12" {% if data['claim-status'] == 3.12 %}selected{% endif %}>Extension rejected</option>
     <option value="3.13" {% if data['claim-status'] == 3.13 %}selected{% endif %}>Extension countered (multi defs)</option>
