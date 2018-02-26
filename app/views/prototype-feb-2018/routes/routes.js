@@ -699,7 +699,11 @@ module.exports = function(app){
             req.session.documents = 'Certificate of suitability';
             res.render('prototype-feb-2018/certificate/upload', { defendant: defendant, defendants: req.session.defendants, documents: req.session.documents, uploads: req.session.uploads });
 
+        } else if ( req.body['served-friend'] == 'yes' ) {
+            res.render('prototype-feb-2018/certificate/where', { defendant: defendant })
+
         } else {
+
             res.render('prototype-feb-2018/certificate/litigation-friend', { defendant: defendant })
         }
 
