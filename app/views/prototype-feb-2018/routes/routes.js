@@ -1108,6 +1108,17 @@ module.exports = function(app){
         } else {
             res.redirect('transferred')
         }
+    }); 
+
+    app.post('*/prototype-feb-2018/extension/agreed', function(req, res){
+
+        if ( req.body['agreed'] === 'yes' ) {
+            res.redirect('confirmed')
+        } else if ( req.body['agreed'] === 'no' ) {
+            res.redirect('reason')
+        } else {
+            res.render('prototype-feb-2018/extension/agreed', { data: req.session.data } );
+        }
     });
 
     app.post('*/prototype-feb-2018/extension/respond', function(req, res){

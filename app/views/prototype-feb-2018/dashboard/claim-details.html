@@ -196,7 +196,7 @@
               Next response due by {{ now | date("add", 4, "days") | date( "D MMM YYYY" ) }}
             </span>
 
-            {% elseif ( data['claim-status'] == 3.111 ) %}
+            {% elseif ( data['claim-status'] == 3.111 ) or ( data['claim-status'] == 3.112 ) %}
             <span>
               Response due by {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}
             </span>
@@ -338,6 +338,15 @@
             </p>
             <p>
               A request by Goddard Plumbing for an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }} was acepted on {{ now | date( "D MMM YYYY" ) }}.
+            </p>
+
+
+            {% elseif ( data['claim-status'] == 3.112 ) %}
+            <p>
+              No responses received.
+            </p>
+            <p>
+              Goddard Plumbing has confirmed that you agreed an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}, on {{ now | date( "D MMM YYYY" ) }}.
             </p>
 
 
@@ -775,6 +784,7 @@
     <option value="3" {% if data['claim-status'] == 3 %}selected{% endif %}>Served (mixed method)</option>
     <option value="3.1" {% if data['claim-status'] == 3.1 %}selected{% endif %}>Extension requested</option>
     <option value="3.111" {% if data['claim-status'] == 3.111 %}selected{% endif %}>Extension approved (single def)</option>
+    <option value="3.112" {% if data['claim-status'] == 3.112 %}selected{% endif %}>Extension confirmed (single def)</option>
     <option value="3.11" {% if data['claim-status'] == 3.11 %}selected{% endif %}>Extension approved (multi defs)</option>
     <option value="3.12" {% if data['claim-status'] == 3.12 %}selected{% endif %}>Extension rejected</option>
     <option value="3.13" {% if data['claim-status'] == 3.13 %}selected{% endif %}>Extension countered (multi defs)</option>
