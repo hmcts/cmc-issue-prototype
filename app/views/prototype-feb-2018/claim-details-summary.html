@@ -125,6 +125,33 @@
       <div class="column-one-quarter form-hint">Service address</div>
       <div class="column-one-half if-empty">{{ defendant.serviceAddress }}</div>
     </div>
+
+  {% if ( defendant.defendantNo == 1 ) and ( jursidiction ) %}
+
+    {% if jursidiction == 'abroad' %}
+      <div class="task-list-item">
+        <div class="column-one-quarter form-hint">Jurisdiction statement</div>
+        <div class="column-one-half if-empty">
+          <p>I state that each claim made against the defendant to be served and included in the claim form is a claim which the Court has power to determine under the Civil Jurisdiction and Judgments Act 1982 or the Lugano Convention.</p>
+          <p>And no proceedings are pending between these parties for this claim in the United Kingdom or another Convention territory.</p>
+          <p>And the defendant is domiciled in Spain.</p>
+        </div>
+      </div>
+    {% else %}
+      <div class="task-list-item">
+        <div class="column-one-quarter form-hint">Jurisdiction statement</div>
+        <div class="column-one-half if-empty">
+          <p>I state that each claim made against the defendant to be served and included in the claim form is a claim which the Court has power to determine under the Civil Jurisdiction and Judgments Act 1982.</p>
+          <p>And no proceedings are pending between these parties for this claim in the United Kingdom.</p>
+          <p>And the defendant is domiciled in the United Kingdom.</p>
+        </div>
+      </div>
+    {% endif %}
+
+
+  {% endif %}
+
+
   {% endfor %}
 
   <div class="heading-medium">About this claim</div>

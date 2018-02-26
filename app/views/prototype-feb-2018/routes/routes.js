@@ -191,6 +191,10 @@ module.exports = function(app){
     
     app.post('*/prototype-feb-2018/jurisdiction-domiciled', function(req, res){
 
+        if (!req.session.defendantCountry) {
+            req.session.defendantCountry = 'Spain';
+        }
+
         if ( req.session.data['domiciled'] == 'yes' && isUK( req.session.defendantCountry ) ) {
             res.render('prototype-feb-2018/jurisdiction-statements-1a', { strCountry: req.session.defendantCountry } );
         } else if ( req.session.data['domiciled'] == 'no' && isUK( req.session.defendantCountry ) ) {
@@ -496,7 +500,16 @@ module.exports = function(app){
             currency: 'GBP',
             minimumFractionDigits: 2, /* this might not be necessary */
         });
-        res.render('prototype-feb-2018/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, claimants: claimants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim })
+        if ( req.session.data['domiciled'] ) {
+            if ( req.session.defendantCountry == 'Scotland' || req.session.defendantCountry == 'Northern Ireland' ) {
+                jursidiction = "uk";
+            } else {
+                jursidiction = "abroad";
+            }
+        } 
+        if ( req.session.defendantCountry )
+
+        res.render('prototype-feb-2018/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, claimants: claimants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim, jursidiction: jursidiction })
     })
 
     app.get('*/prototype-feb-2018/claim-submitted', function (req, res) {
