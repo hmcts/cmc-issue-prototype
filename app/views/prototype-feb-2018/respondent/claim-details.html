@@ -70,7 +70,15 @@
 
 
           <p>
-            Served by: Post<br />
+            Served by post on
+            {% if data['claim-status'] == 5 %}{{ now | date("subtract", 20, "days") | date( "D MMM YYYY" ) }}
+            {% elseif ( data['claim-status'] == 2 ) or ( data['claim-status'] == 1.11 )  %}
+            {{ now | date("subtract", 12, "days") | date( "D MMM YYYY" ) }}
+            {% else %}
+            {{ now | date("subtract", 27, "days") | date( "D MMM YYYY" ) }}
+            {% endif %}
+
+            <br />
             <a target="_blank" href="/public/documents/Certificate-of-service.pdf" class="download">Download the certificate of service</a> (PDF, 234 KB)
           </p>
 
