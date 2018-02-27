@@ -493,13 +493,18 @@ module.exports = function(app){
     })
 
     app.get('*/prototype-feb-2018/claim-details-summary', function (req, res) {
+console.log('1');
+
         var defendants = req.session.defendants || [];
         var claimants = req.session.claimants || [];
+        var jursidiction;
         var formatter = new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
             minimumFractionDigits: 2, /* this might not be necessary */
         });
+console.log('2');
+
         if ( req.session.data['domiciled'] ) {
             if ( req.session.defendantCountry == 'Scotland' || req.session.defendantCountry == 'Northern Ireland' ) {
                 jursidiction = "uk";
@@ -508,7 +513,7 @@ module.exports = function(app){
             }
         } 
         if ( req.session.defendantCountry )
-
+console.log('3');
         res.render('prototype-feb-2018/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, claimants: claimants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim, jursidiction: jursidiction })
     })
 
