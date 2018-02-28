@@ -1,6 +1,6 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-  <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint"> {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
+  <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
     Enter litigation friend's full name
   </h1>
 

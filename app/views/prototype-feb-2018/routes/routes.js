@@ -510,7 +510,9 @@ module.exports = function(app){
                 jursidiction = "abroad";
             }
         } 
-        if ( req.session.defendantCountry )
+
+        req.session.data.jursidiction = jursidiction;
+        
         res.render('prototype-feb-2018/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, claimants: claimants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim, jursidiction: jursidiction })
     })
 
@@ -535,8 +537,11 @@ module.exports = function(app){
         });
 
         var objDueDate = moment().add('4', 'months');
-        var objConfirmDueDate = moment().add('21', 'days');
+        if ( req.session.data.jursidiction ) {
+            var objDueDate = moment().add('2', 'months');
+        }
 
+        var objConfirmDueDate = moment().add('21', 'days');
 
         var blnNeedsLitigationFriend = false;
 

@@ -319,7 +319,7 @@
                 <td>{{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
               <tr class="no-border sub">
-                <td>28 day extension requested</td>
+                <td><a href="../extension/view">28 day extension</a></td>
                 <td>Approved on</td>
                 <td>{{ now | date( "D MMM YYYY" ) }}</td>
               </tr>
@@ -337,7 +337,7 @@
               No responses received.
             </p>
             <p>
-              A request by Goddard Plumbing for an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }} was acepted on {{ now | date( "D MMM YYYY" ) }}.
+              <a href="../extension/view">Extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}</a> accepted on {{ now | date( "D MMM YYYY" ) }}.
             </p>
 
 
@@ -346,7 +346,7 @@
               No responses received.
             </p>
             <p>
-              Goddard Plumbing has confirmed that you agreed an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}, on {{ now | date( "D MMM YYYY" ) }}.
+              <a href="../extension/view">Extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}</a> confirmed by Goddard Plumbing on {{ now | date( "D MMM YYYY" ) }}.
             </p>
 
 
@@ -356,7 +356,7 @@
               No responses received.
             </p>
             <p>
-              A request by Goddard Plumbing for an extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }} was rejected on {{ now | date( "D MMM YYYY" ) }}.
+              <a href="../extension/view">Extension to {{ now | date("add", 32, "days") | date( "D MMM YYYY" ) }}</a> rejected on {{ now | date( "D MMM YYYY" ) }}.
             </p>
 
 
@@ -389,13 +389,15 @@
                 <td>Response due</td>
                 <td>{{ now | date("add", 18, "days") | date( "D MMM YYYY" ) }}</td>
               </tr>
+              <!--
               <tr class="no-border sub">
                 <td>28 day extension requested</td>
                 <td>Rejected on</td>
                 <td>{{ now | date( "D MMM YYYY" ) }}</td>
               </tr>
+              -->
               <tr class="no-border sub">
-                <td>14 day extension requested</td>
+                <td><a href="../extension/view">14 day extension</a></td>
                 <td>Approved on</td>
                 <td>{{ now | date( "D MMM YYYY" ) }}</td>
               </tr>
