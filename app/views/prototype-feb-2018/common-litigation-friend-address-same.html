@@ -2,7 +2,7 @@
 
   <form method="post" action="{{action}}" class="form">
 
-    <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint"> {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
+    <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
       Does the litigation friend live at the same address as the {{ person | lower }}?
     </h1>
 

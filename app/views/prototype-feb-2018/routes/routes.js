@@ -493,7 +493,6 @@ module.exports = function(app){
     })
 
     app.get('*/prototype-feb-2018/claim-details-summary', function (req, res) {
-console.log('1');
 
         var defendants = req.session.defendants || [];
         var claimants = req.session.claimants || [];
@@ -503,7 +502,6 @@ console.log('1');
             currency: 'GBP',
             minimumFractionDigits: 2, /* this might not be necessary */
         });
-console.log('2');
 
         if ( req.session.data['domiciled'] ) {
             if ( req.session.defendantCountry == 'Scotland' || req.session.defendantCountry == 'Northern Ireland' ) {
@@ -512,8 +510,9 @@ console.log('2');
                 jursidiction = "abroad";
             }
         } 
-        if ( req.session.defendantCountry )
-console.log('3');
+
+        req.session.data.jursidiction = jursidiction;
+        
         res.render('prototype-feb-2018/claim-details-summary', { issueFeeAmount: req.session.data.issueFeeAmount, defendants: defendants, claimants: claimants, value: formatter.format(req.session.data.value), claimType: req.session.data.typeOfClaim, jursidiction: jursidiction })
     })
 
@@ -538,8 +537,11 @@ console.log('3');
         });
 
         var objDueDate = moment().add('4', 'months');
-        var objConfirmDueDate = moment().add('21', 'days');
+        if ( req.session.data.jursidiction ) {
+            var objDueDate = moment().add('2', 'months');
+        }
 
+        var objConfirmDueDate = moment().add('21', 'days');
 
         var blnNeedsLitigationFriend = false;
 
@@ -1188,7 +1190,11 @@ function getDummyDefendants() {
     var moment = require('moment');
     var today = moment();
 
-    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().subtract(1, 'days').format('DD MMMM YYYY'), serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('D MMMM YYYY') }, { defendantNo:4, defendantType: 'friend', defendantName: 'Stanley Jones', defendantNameMinor: 'Michael Jones', defendantAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', serviceAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', solicitor: '-', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') } ];
+    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().subtract(1, 'days').format('DD MMMM YYYY'), serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('D MMMM YYYY') } ];
+
+//  old version with certificate of suitability service in
+//    return [ { defendantNo: 1, defendantType: 'trader', defendantName: 'Jan Clarke trading as Clarke Construction', defendantAddress: '115 EASTWICK PARK AVENUE LEATHERHEAD KT23 3NW', solicitor: '-', serviceAddress: '115 EASTWICK PARK AVENUE\nLEATHERHEAD\nKT23 3NW', defendantCountry: 'England', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') }, { defendantNo: 2,  defendantType: 'company', defendantName: 'Goddard Plumbing', defendantAddress: '30 LONGBRIDGE ROAD\n HORLEY\n RH6 7EL', solicitor: 'Keoghs LLP', serviceAddress: '2 COLCHESTER STREET\n COVENTRY\n CV1 5NZ', defendantCountry: 'England', howServed: 'Fax', serviceFax: '01483 562742', destination: 'place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().subtract(1, 'days').format('DD MMMM YYYY'), serveHour: '6', serveMinutes: '23', amPm: 'PM' }, { defendantNo: 3,  defendantType: 'company', defendantName: 'Kingsley Building Ltd', defendantAddress: '31 TANGLEY LANE GUILDFORD GU3 3JU', solicitor: '-', serviceAddress: '31 TANGLEY LANE\n GUILDFORD\n GU3 3JU', defendantCountry: 'England', howServed: 'Personally handed to or left with with recipient', addressedTo: 'Jimmy Smith', addressedRole: 'Director', leftWith: 'Dave Smith', destination: 'principal place of business', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('D MMMM YYYY') }, { defendantNo:4, defendantType: 'friend', defendantName: 'Stanley Jones', defendantNameMinor: 'Michael Jones', defendantAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', serviceAddress: '48A LONGBRIDGE ROAD HORLEY RH6 7EL', solicitor: '-', howServed: 'First class post', destination: 'usual residence', serveDay: today.clone().subtract(2, 'days').format('D'), serveMonth: today.clone().subtract(2, 'days').format('MM'), serveMonthWord: today.clone().subtract(2, 'days').format('MMMM'), serveYear: today.clone().subtract(2, 'days').format('YYYY'), serveDate: today.clone().format('DD MMMM YYYY') } ];
+
 }
 
 function getDummyDefendant() {
