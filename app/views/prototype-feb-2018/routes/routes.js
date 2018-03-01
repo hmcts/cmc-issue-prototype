@@ -489,7 +489,7 @@ module.exports = function(app){
     });
 
     app.post('*/prototype-feb-2018/claim-total', function (req, res) {
-        res.redirect('claim-details-summary')
+        res.redirect('help-with-fees')
     })
 
     app.get('*/prototype-feb-2018/claim-details-summary', function (req, res) {
