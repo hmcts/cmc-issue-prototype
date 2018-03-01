@@ -4,7 +4,7 @@
 
 {% if blnHelpFees %}<p>This will only be used if the help with fees application is not accepted.</p>{% endif %}
 
-<form action="claim-submitted" method="post">
+<form action="claim-details-summary" method="post">
   <div class="form-group">
     <div class="task-list-item form-group">
       <div class="column-half bold">Total cost</div>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="form-group">
-    <input type="submit" class="button" value="Pay and issue">
+    <input type="submit" class="button" value="Continue">
   </div>
 </form>
 {% endblock %}
