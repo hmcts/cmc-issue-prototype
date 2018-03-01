@@ -76,8 +76,16 @@
         <a href="your-reference">Change</a>
       </td>
     </tr>
+    {% if data['correct-name'] == 'no' %}
     <tr>
-      <td>Defendant's name</td>
+      <td>Defendant name in claim</td>
+      <td>Jan Clarke</td>
+      <td class="change-answer">
+        <a href="name">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Updated defendant name</td>
       <td>
         {{ data['name'] }}
       </td>
@@ -85,6 +93,18 @@
         <a href="name">Change</a>
       </td>
     </tr>
+
+    {% else %}
+    <tr>
+      <td>{{data['correct-name']}}Defendant's name</td>
+      <td>
+        {{ data['name'] }}
+      </td>
+      <td class="change-answer">
+        <a href="name">Change</a>
+      </td>
+    </tr>
+    {% endif %}
     <tr>
       <td>Defendant's date of birth</td>
       <td>{{ data['dob'] }}</td>
