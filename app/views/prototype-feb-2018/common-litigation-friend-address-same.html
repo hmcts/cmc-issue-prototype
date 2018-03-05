@@ -4,7 +4,7 @@
 
     <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['name'] or data['claimant_name'] }}{% endif %}</span>
     </span>
-      Does the litigation friend live at the same address as the {{ person | lower }}?
+      Does the litigation friend live at the same address as the {{ ( personType or person ) | lower }}?
     </h1>
 
     <div class="form-group">
