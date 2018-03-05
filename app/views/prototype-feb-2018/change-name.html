@@ -1,7 +1,9 @@
 {% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
+<h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">Defendant 2: {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
+  Do you agree 'Jan Clarke' is the defendant's correct and full name?
+</h1>
 
-<h1 class="heading-large">Do you agree 'Jan Clarke' is the defendant's correct and full name?</h1>
 <form action="name" id="form" method="post" class="form-group">
   <fieldset class="form-group inline">
 
