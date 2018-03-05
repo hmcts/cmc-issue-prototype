@@ -983,7 +983,7 @@ module.exports = function(app){
     });
 
 
-    app.get('*/prototype-feb-2018/acknowledgement/name', function(req, res){
+    app.get('*/prototype-feb-2018/fledgement/name', function(req, res){
         req.session.data['name'] = 'Jan Clarke';
         res.render('prototype-feb-2018/acknowledgement/name' );
 
@@ -1006,6 +1006,76 @@ module.exports = function(app){
 
     });
 
+
+    app.post('*/prototype-feb-2018/acknowledgement/dob', function(req, res){
+
+        if ( req.body['year'] == '' ) {
+            res.render('prototype-feb-2018/acknowledgement/intention' );
+        } else {
+
+            //work out age
+            objDateOfBirth = new Date( req.session.data['year'] );
+
+            if (req.session.data['month']) {
+                objDateOfBirth.setMonth( req.session.data['month'] -1);
+            }
+            if (req.session.data['day']) {
+                objDateOfBirth.setDate( req.session.data['day'] );
+            }
+
+            console.log(objDateOfBirth.toString());
+
+            var ageDifMs = Date.now() - objDateOfBirth.getTime();
+            var ageDate = new Date(ageDifMs); // miliseconds from epoch
+            intAge = ageDate.getUTCFullYear() - 1970;
+
+            if ( intAge >= 18 ) {
+                res.redirect('protected' );
+            } else {
+            req.session.data['claimant_name'] = 'Jan Clarke';
+                res.redirect('friend' );
+            }
+
+        }
+
+    });
+
+
+    app.post('*/prototype-feb-2018/acknowledgement/protected', function(req, res){
+
+        if ( req.body['protected'] == 'yes' ) {
+            req.session.data['claimant_name'] = 'Jan Clarke';
+            res.redirect('friend' ); 
+        } else {
+            res.redirect('intention' ); 
+        }
+
+    });
+
+
+
+    app.post('*/prototype-feb-2018/acknowledgement/litigation-friend-address-same', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        if ( req.body['friend_address_same'] ) {
+
+            if ( req.body['friend_address_same'] == 'yes' ) {
+                res.redirect('intention');
+            } else {
+                res.redirect('litigation-friend-address');
+            }
+
+        } else {
+            res.render('prototype-feb-2018/acknowledgement/litigation-friend-address-same', { claimants: claimants })
+        }
+
+    });
+
+
+    app.get('*/prototype-feb-2018/acknowledgement/name', function(req, res){
+        req.session.data['claimant_name'] = req.session.data['name'];
+        res.render('prototype-feb-2018/acknowledgement/name' );
+    });
 
     app.post('*/prototype-feb-2018/acknowledgement/check-your-answers', function(req, res){
 

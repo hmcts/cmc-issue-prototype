@@ -69,13 +69,6 @@
         <a href="your-reference">Change</a>
       </td>
     </tr>
-    <tr>
-      <td>Defendant's reference</td>
-      <td>{{ data['defendant-ref'] }}</td>
-      <td class="change-answer">
-        <a href="your-reference">Change</a>
-      </td>
-    </tr>
     {% if data['correct-name'] == 'no' %}
     <tr>
       <td>Defendant name in claim</td>
@@ -96,7 +89,7 @@
 
     {% else %}
     <tr>
-      <td>{{data['correct-name']}}Defendant's name</td>
+      <td>Defendant's name</td>
       <td>
         {{ data['name'] }}
       </td>
@@ -120,6 +113,34 @@
       </td>
     </tr>
   </table>
+
+
+    {% if data['friend_name'] %}
+  <h2 class="heading-medium">Litigation friend</h2>
+
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Name</td>
+      <td>{{data['friend_name']}}</td>
+      <td class="change-answer">
+        <a href="your-reference">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>
+      {% if data['friend_Postcode'] %}
+        {{ data['friend_AddressLine1'] }}, {{ data['friend_AddressLine2'] }}, {{ data['friend_city'] }}, {{ data['friend_Postcode'] }}
+      {% endif %}
+      </td>
+      <td class="change-answer">
+        <a href="your-reference">Change</a>
+      </td>
+    </tr>
+  </table>
+
+    {% endif %}
 
 
   <div class="form-group column-two-thirds" style="padding-left: 0">

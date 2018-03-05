@@ -9,7 +9,14 @@
 
 <p><a href='../acknowledgement/view'>Check or print the details</a> you gave us to acknowledge service.</p>
 
+
+{% if data['friend_name'] %}
+<p><a class="button" href="../certificate/how" role="button">Confirm service of certifcate of suitability</a></p>
+
+{% else %}
 <p><a class="button" href="../respondent/claim-details?claim-status=1.1" role="button">View this claim</a></p>
+
+{% endif %}
 
 <style type="text/css">
 	.link-back{display: none}
