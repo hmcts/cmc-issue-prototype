@@ -69,13 +69,35 @@
         <a href="your-reference">Change</a>
       </td>
     </tr>
+    {% if data['correct-name'] == 'no' %}
     <tr>
-      <td>Defendant's name</td>
-      <td>{{ data['name'] }}</td>
+      <td>Defendant name in claim</td>
+      <td>Jan Clarke</td>
       <td class="change-answer">
         <a href="name">Change</a>
       </td>
     </tr>
+    <tr>
+      <td>Updated defendant name</td>
+      <td>
+        {{ data['name'] }}
+      </td>
+      <td class="change-answer">
+        <a href="name">Change</a>
+      </td>
+    </tr>
+
+    {% else %}
+    <tr>
+      <td>Defendant's name</td>
+      <td>
+        {{ data['name'] }}
+      </td>
+      <td class="change-answer">
+        <a href="name">Change</a>
+      </td>
+    </tr>
+    {% endif %}
     <tr>
       <td>Defendant's date of birth</td>
       <td>{{ data['dob'] }}</td>
@@ -100,6 +122,38 @@
       </td>
     </tr>
   </table>
+
+  
+
+    {% if data['friend_name'] %}
+  <h2 class="heading-medium">Litigation friend</h2>
+
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Name</td>
+      <td>{{data['friend_name']}}</td>
+      <td class="change-answer">
+        <a href="your-reference">Change</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>
+      {% if data['friend_Postcode'] %}
+        {{ data['friend_AddressLine1'] }}, {{ data['friend_AddressLine2'] }}, {{ data['friend_city'] }}, {{ data['friend_Postcode'] }}
+      {% else %}
+        482 Clements Road, Ilford, IG1 2BE
+      {% endif %}
+      </td>
+      <td class="change-answer">
+        <a href="your-reference">Change</a>
+      </td>
+    </tr>
+  </table>
+
+    {% endif %}
+
 
 
   <div class="form-group column-two-thirds" style="padding-left: 0; margin-top: 30px;">

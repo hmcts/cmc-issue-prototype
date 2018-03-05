@@ -1,13 +1,13 @@
 {% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
 
-  <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
+  <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['name'] or data['claimant_name'] }}{% endif %}</span>
     Enter litigation friend's full name
   </h1>
 
   <form action="{{action}}" id="form" method="post" class="form-group">
     <fieldset class="form-group">
 
-        <div class="form-group">
+        <div>
           <textarea type="text" class="form-control" id="friend_name" name="friend_name" value="{{ data['friend_name'] }}" style="height: 38px;">{{ data['friend_name'] }}</textarea>
         </div>
     </fieldset>

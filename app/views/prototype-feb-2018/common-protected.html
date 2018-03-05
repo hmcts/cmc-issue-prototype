@@ -1,0 +1,28 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+
+<h1 class="heading-large">
+    <span class="form-hint">Defendant 2: {{ data['name'] or 'Jan Clarke' }}</span>
+    Is the defendant a protected party?
+</h1>
+
+<form action="{{action}}" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+
+    <div class="multiple-choice">
+      <input id="protected-yes" name="protected" type="radio" value="yes" {{ checked('protected','yes') }}>
+      <label for="protected-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="protected-no" name="protected" type="radio" value="no" {{ checked('protected','no') }}>
+      <label for="protected-no">No</label>
+    </div>
+    
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

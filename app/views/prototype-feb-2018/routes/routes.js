@@ -919,25 +919,94 @@ module.exports = function(app){
 
 
 
-    app.post('*/prototype-feb-2018/respondent/litigation-friend-name', function(req, res){
-        var defs = getDummyDefendants();
-        var defendant = defs[0];
-        req.session.defendants = [defendant];
-        defendant.defendantName = 'Jan Clarke';
-        req.session.defendant = defendant;
-        res.render('prototype-feb-2018/respondent/litigation-friend-name', { defendant: defendant })
+    app.post('*/prototype-feb-2018/respondent/dob', function(req, res){
+
+        if ( req.body['year'] == '' ) {
+                
+            if ( req.session.data['response'] == 'Admission' ) {
+                res.render('prototype-feb-2018/respondent/admission', { data: req.session.data } );            
+            } else {
+                res.render('prototype-feb-2018/respondent/upload', { data: req.session.data } );
+            }
+
+        } else {
+
+            intAge = getAge( req.session.data );
+            
+            if ( intAge >= 18 ) {
+                res.redirect('protected' );
+            } else {
+                req.session.data['claimant_name'] = 'Jan Clarke';
+                res.redirect('litigation-friend-name' );
+            }
+
+        }
+
     });
 
-    app.get('*/prototype-feb-2018/respondent/litigation-friend-name', function(req, res){
+    app.post('*/prototype-feb-2018/respondent/protected', function(req, res){
+
+        if ( req.body['protected'] == 'yes' ) {
+            req.session.data['claimant_name'] = 'Jan Clarke';
+            res.redirect('litigation-friend-name' ); 
+        } else if ( req.session.data['response'] == 'Admission' ) {
+            res.render('prototype-feb-2018/respondent/admission', { data: req.session.data } );            
+        } else {
+            res.render('prototype-feb-2018/respondent/upload', { data: req.session.data } );
+        }
+
+    });
+
+    app.get('*/prototype-feb-2018/respondent/litigation-friend-address', function(req, res){
+        res.render('prototype-feb-2018/respondent/litigation-friend-address', { defendant: req.session.defendant })
+    });
+
+    app.post('*/prototype-feb-2018/respondent/litigation-friend-address', function(req, res){
+        
+        if ( req.session.data['response'] == 'Admission' ) {
+            res.render('prototype-feb-2018/respondent/admission', { data: req.session.data } );            
+        } else {
+            res.render('prototype-feb-2018/respondent/upload', { data: req.session.data } );
+        }
+    });
+
+    app.get('*/prototype-feb-2018/respondent/litigation-friend-address-same', function(req, res){
         var defs = getDummyDefendants();
         var defendant = defs[0];
         req.session.defendants = [defendant];
         defendant.defendantName = 'Jan Clarke';
         req.session.defendant = defendant;
-        res.render('prototype-feb-2018/respondent/litigation-friend-name', { defendant: defendant })
+        res.render('prototype-feb-2018/respondent/litigation-friend-address-same', { defendant: defendant })
     });
 
     app.post('*/prototype-feb-2018/respondent/litigation-friend-address-same', function(req, res){
+        var claimants = req.session.claimants || [];
+
+        if ( req.body['friend_address_same'] ) {
+
+            if ( req.body['friend_address_same'] == 'yes' ) {
+
+                if ( req.session.data['response'] == 'Admission' ) {
+                    res.render('prototype-feb-2018/respondent/admission', { data: req.session.data } );            
+                } else {
+                    res.render('prototype-feb-2018/respondent/upload', { data: req.session.data } );
+                }
+
+            } else {
+                res.redirect('litigation-friend-address');
+            }
+
+        } else {
+            res.render('prototype-feb-2018/respondent/litigation-friend-address-same', { claimants: claimants })
+        }
+
+    });
+
+
+//original - don't think this stuff is required any more , but not quite sure…
+/*
+
+    app.post('*XXX/prototype-feb-2018/respondent/litigation-friend-address-same', function(req, res){
 
         var defendants = req.session.defendants || getDummyDefendants();
         var defendant = req.session.defendant || defendants[0];
@@ -969,21 +1038,35 @@ module.exports = function(app){
 
     });
 
-    app.get('*/prototype-feb-2018/respondent/litigation-friend-address-same', function(req, res){
+*/
+
+
+
+
+
+
+    app.post('*/prototype-feb-2018/respondent/litigation-friend-name', function(req, res){
         var defs = getDummyDefendants();
         var defendant = defs[0];
         req.session.defendants = [defendant];
         defendant.defendantName = 'Jan Clarke';
         req.session.defendant = defendant;
-        res.render('prototype-feb-2018/respondent/litigation-friend-address-same', { defendant: defendant })
+        res.render('prototype-feb-2018/respondent/litigation-friend-name', { defendant: defendant })
     });
 
-    app.get('*/prototype-feb-2018/respondent/litigation-friend-address', function(req, res){
-        res.render('prototype-feb-2018/respondent/litigation-friend-address', { defendant: req.session.defendant })
+    app.get('*/prototype-feb-2018/respondent/litigation-friend-name', function(req, res){
+        var defs = getDummyDefendants();
+        var defendant = defs[0];
+        req.session.defendants = [defendant];
+        defendant.defendantName = 'Jan Clarke';
+        req.session.defendant = defendant;
+        res.render('prototype-feb-2018/respondent/litigation-friend-name', { defendant: defendant })
     });
 
 
-    app.get('*/prototype-feb-2018/fledgement/name', function(req, res){
+
+
+    app.get('*/prototype-feb-2018/acknowledgement/name', function(req, res){
         req.session.data['name'] = 'Jan Clarke';
         res.render('prototype-feb-2018/acknowledgement/name' );
 
@@ -1006,28 +1089,13 @@ module.exports = function(app){
 
     });
 
-
     app.post('*/prototype-feb-2018/acknowledgement/dob', function(req, res){
 
         if ( req.body['year'] == '' ) {
             res.render('prototype-feb-2018/acknowledgement/intention' );
         } else {
 
-            //work out age
-            objDateOfBirth = new Date( req.session.data['year'] );
-
-            if (req.session.data['month']) {
-                objDateOfBirth.setMonth( req.session.data['month'] -1);
-            }
-            if (req.session.data['day']) {
-                objDateOfBirth.setDate( req.session.data['day'] );
-            }
-
-            console.log(objDateOfBirth.toString());
-
-            var ageDifMs = Date.now() - objDateOfBirth.getTime();
-            var ageDate = new Date(ageDifMs); // miliseconds from epoch
-            intAge = ageDate.getUTCFullYear() - 1970;
+            intAge = getAge( req.session.data );
 
             if ( intAge >= 18 ) {
                 res.redirect('protected' );
@@ -1079,6 +1147,7 @@ module.exports = function(app){
 
     app.post('*/prototype-feb-2018/acknowledgement/check-your-answers', function(req, res){
 
+        req = getRepData(req);
         if ( !req.session.data['intention'] ) {
             req = getResponseData(req);
         } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
@@ -1090,6 +1159,7 @@ module.exports = function(app){
 
     app.get('*/prototype-feb-2018/acknowledgement/check-your-answers', function(req, res){
 
+        req = getRepData(req);
         if ( !req.session.data['intention'] ) {
             req = getResponseData(req);
         } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
@@ -1127,16 +1197,6 @@ module.exports = function(app){
         }
     });
 
-
-    app.post('*/prototype-feb-2018/respondent/response', function(req, res){
-
-        if ( req.session.data['response'] == 'Admission' ) {
-            res.render('prototype-feb-2018/respondent/admission', { data: req.session.data } );            
-        } else {
-            res.render('prototype-feb-2018/respondent/upload', { data: req.session.data } );
-        }
-    });
-
     app.post('*/prototype-feb-2018/respondent/upload-admission', function(req, res){
 //        req.session.data['response'] = 'Admission';
         res.redirect('upload');
@@ -1148,28 +1208,29 @@ module.exports = function(app){
 
     app.post('*/prototype-feb-2018/respondent/check-your-answers', function(req, res){
 
+        req = getRepData(req);
         if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
             req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         }
 
-        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf1';
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf';
 
         res.render('prototype-feb-2018/respondent/check-your-answers', { data: req.session.data } );
     });
 
 
-    app.get('*/prototype-feb-2018/respondent/check-your-answers', function(req, res){
+    app.get('*/prototype-feb-2018/respondent/check-your-answers', function(req, res){   
 
-
+        req = getRepData(req);
         if ( !req.session.data['response'] ) {
             req = getResponseData(req);
         } else if ( req.session.data['day'] && req.session.data['month'] && req.session.data['year'] ) {
             req.session.data['dob'] = req.session.data['day'] + ' ' + getMonth( req.session.data['month']) + ' ' + req.session.data['year'];
         }
 
-        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf1';
+        req.session.data['uploaded-file'] = req.session.data['name'] + ' ' + ( req.session.data['response'] || 'Defence' ) + '.pdf';
 
         res.render('prototype-feb-2018/respondent/check-your-answers', { data: req.session.data } );
 
@@ -1294,6 +1355,18 @@ function updateDefendant( defendant, defendants ) {
 }
 
 function getResponseData( req ) {
+
+    req.session.data['name'] = 'Jan Clarke';
+    req.session.data['your-ref'] = 'PW1348-151117';
+    req.session.data['dob'] = '2 September 1982';
+    req.session.data['response'] = 'Defence';
+    req.session.data['uploaded-file'] = 'Jan Clarke Defence.pdf';
+
+    return req;
+}
+
+function getRepData( req ) {
+
     req.session.data['rep_company_name'] = 'Smith & Co Solicitors';
     req.session.data['rep_AddressLine1'] = '173 High Holborn';
     req.session.data['rep_city'] = 'London';
@@ -1301,14 +1374,8 @@ function getResponseData( req ) {
     req.session.data['rep_phone_number'] = '020 36258414';
     req.session.data['rep_email'] = 'admin@smiths.co.uk';
     req.session.data['rep_dx_number'] = 'CDE 823 London';
-    req.session.data['name'] = 'Jan Clarke';
-    req.session.data['your-ref'] = 'PW1348-151117';
-    req.session.data['defendant-ref'] = 'JK/639127/134';
-    req.session.data['dob'] = '2 September 1982';
-    req.session.data['response'] = 'Defence';
-    req.session.data['uploaded-file'] = 'Jan Clarke Defence.pdf';
-
     return req;
+
 }
 
 function getMonth( intMonth ) {
@@ -1325,3 +1392,20 @@ function isConventionTerritory( strCountry ) {
     return (arrTerritories.indexOf( strCountry.toLowerCase() ) >= 0 );
 }
 
+function getAge( objData ) {
+
+    objDateOfBirth = new Date( objData['year'] );
+
+    if (objData['month']) {
+        objDateOfBirth.setMonth( objData['month'] -1);
+    }
+    if (objData['day']) {
+        objDateOfBirth.setDate( objData['day'] );
+    }
+
+    var ageDifMs = Date.now() - objDateOfBirth.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return ( ageDate.getUTCFullYear() - 1970 );
+
+}
+    
