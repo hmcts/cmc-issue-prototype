@@ -1,0 +1,25 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <h1 class="heading-large">View request for more time</h1>
+
+  <h3 class="heading-medium">Defendant's request</h3>
+  <p>
+    Proposed deadline: {{ now | date( "add", 32, "days" ) | date("D MMMM YYYY") }}<br />
+    "Awaiting medical reports. Should be ready by end of month"
+  </p>
+
+  <h3 class="heading-medium">Claimant's response</h3>
+  <p>
+    Response: Rejected, with new deadline set.<br />
+    "28 days is excessive. You can have 14"
+  </p>
+
+
+  <h3 class="heading-medium">New deadline</h3>
+  <p>
+    {{ now | date( "add", 14, "days" ) | date("D MMMM YYYY") }}
+  </p>
+
+    
+
+{% endblock %}

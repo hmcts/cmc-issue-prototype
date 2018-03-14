@@ -1,0 +1,20 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large"><span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %} representative</span>
+  Enter email address, if known
+</h1>
+
+
+<form action="defendant-reps-email" id="form" method="post" class="form-group">
+
+  <div class="form-group">
+    <input  type="text" class="form-control" id="defendant_rep_email" name="defendant_rep_email" value="{{ data['defendant_rep_email'] }}">
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+
+</form>
+
+{% endblock %}

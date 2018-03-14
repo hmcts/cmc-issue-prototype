@@ -1,0 +1,31 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Does the claimant qualify for help with fees?</h1>
+<form action="help-with-fees" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+
+    <div class="multiple-choice" data-target="help-fees-ref">
+      <input id="help-fees-yes" name="helpFees" type="radio" value="yes" {{ checked('help-fees','yes') }}>
+      <label for="help-fees-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="help-fees-no" name="helpFees" type="radio" value="no" {{ checked('help-fees','no') }}>
+      <label for="help-fees-no">No</label>
+    </div>
+
+    <div id="help-fees-ref" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <div class="form-group">
+        <label for="help_fees_rep" class="form-label">Enter help with fees reference number</label>
+        <input  type="text" class="form-control" id="help_fees_rep" name="helpFeesRef" value="{{ data['helpFeesRef'] }}">
+        <p>The claimant can <a href="https://www.gov.uk/get-help-with-court-fees" target="_blank">apply for help with fees online</a></p>
+      </div>
+    </div>
+    
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

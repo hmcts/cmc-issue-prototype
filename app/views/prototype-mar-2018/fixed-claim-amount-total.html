@@ -1,0 +1,19 @@
+<!-- PAGE REMOVED FROM FLOW IN ROC-3350. KEEP FOR WHEN WE DO SPEC CLAIMS -->
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Enter claim total and interest</h1>
+
+<form method="post" action="fixed-claim-amount-total" class="form">
+  <div class="form-group">
+    <label class="form-label" for="spec_claim_total_amount">Claim total</label>
+    <input type="text" class="form-control pound" id="spec_claim_total_amount" name="spec_claim_total_amount" value="{{ data['spec_claim_total_amount'] }}">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="spec_claim_total_interest">Interest total</label>
+    <input class="form-control pound column-one-half" id="spec_claim_total_interest" name="spec_claim_total_interest" type="text" value="{{ data['spec_claim_total_interest'] }}">
+  </div>
+
+  <input type="submit" id="submit" class="button" value="Save and continue">
+</form>
+
+{% endblock %}

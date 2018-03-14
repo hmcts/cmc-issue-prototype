@@ -1,0 +1,32 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+{% import "prototype-sept2-2017/address.html" as address%}
+
+    <form method="post" action="friend-address" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">
+          {% if defendant.defendantType == 'friend' %}
+            Litigation friend for {{defendant.defendantNameMinor}}:
+          {% elseif defendant.defendantType == 'authority' %}
+            Parent, guardian, or attorney for {{defendant.defendantNameMinor}}:
+          {% else %}
+            Defendant {{ defendant.defendantNo }}:
+          {% endif %}
+        </span>
+        {{ defendant.defendantName }}
+      </h1>
+
+      <div class="form-group">
+        <h2 class="heading-medium">What address did you send the certificate of suitability to?</h2>
+
+        <fieldset class="form-group">
+          {{ address.lookup('friend') }}
+        </fieldset>
+
+        <div class="form-group" >
+          <input type="submit" class="button" id="continue-button" value="Save and continue">
+        </div>
+
+    </form>
+
+{% endblock %}

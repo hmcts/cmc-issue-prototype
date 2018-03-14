@@ -1,0 +1,19 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've confirmed service</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <p class="form-group-compound">Issued: {{ now | date("subtract", 3, "months") | date( "D MMMM YYYY" ) }}</p>
+</div>
+
+<p class="download certificate">
+	<a target="_blank" href="/public/documents/Certificate-of-service.pdf">Download certificate of service</a> (PDF, 456 KB)
+</p>
+
+<p><a class="button" href="../dashboard/claim-details?claim-status=2" role="button">View this claim</a></p>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}

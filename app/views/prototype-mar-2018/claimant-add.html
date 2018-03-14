@@ -1,0 +1,62 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Do you want to add another claimant?</h1>
+<form action="claimant-add" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Do you want to add another claimant?</legend>
+    <p>You can add up to 20 claimants in this service.</p>
+
+    <div class="multiple-choice" data-target="add-claimant-yes">
+      <input id="company" name="addClaimant" type="radio" value="yes" {{ checked('addclaimant','yes') }}>
+      <label for="company">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="individual" name="addClaimant" type="radio" value="no" {{ checked('addclaimant','no') }}>
+      <label for="individual">No</label>
+    </div>
+
+  </fieldset>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+<form>
+{% if claimants.length > 1 %}
+  <h1 class="heading-medium">
+    Already added
+  </h1>
+  <div class="column-full">
+    <div class="column-one-third bold">Claimant</div>
+    <div class="column-one-third bold">Address</div>
+  </div>
+  <hr class="column-full">
+  {% for claimant in claimants %}
+  <div class="column-full">
+    <div class="column-one-third">
+      {{ claimant.claimantNo}}. {{ claimant.claimantName }}
+      {% if claimant.friendName %}
+        <span class="form-hint">Litigation friend:<br />{{ claimant.friendName }}</span>
+      {% endif %}
+    </div>
+    <div class="column-one-third">{{ claimant.claimantAddress }}</div>
+    <div class="column-one-third"><a class="change link" href="claimant-name">Change</a> <a class="link" onclick="delete_item(this)">Remove</a></div>
+    <hr class="column-full">
+  </div>
+
+  {% endfor %}
+{% endif %}
+
+
+</form>
+
+<script type='text/javascript'>
+    function delete_item(el) {
+        el.parentNode.parentNode.parentNode.removeChild(el.parentNode.parentNode);
+    }
+
+</script>
+{% endblock %}

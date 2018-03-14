@@ -1,0 +1,27 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've submitted a{% if data['response'] == 'Admission' %}n {% endif %} {{ ( data['response'] | lower ) or ( 'defence' ) }}</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095</h2>
+  <p>Submitted: {{ now | date( "D MMMM YYYY" ) }}</p>
+  <p>Filed: {{ now | date( "D MMMM YYYY" ) }}</p>
+</div>
+
+<!--
+<p><a href='../respondent/view'>Check or print the details of the response</a>.</p>
+-->
+
+
+{% if data['friend_name'] %}
+<p><a class="button" href="../certificate/how" role="button">Confirm service of certificate of suitability</a></p>
+
+{% else %}
+<p><a class="button" href="../respondent/claim-details?claim-status=4" role="button">View this claim</a></p>
+
+{% endif %}
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}

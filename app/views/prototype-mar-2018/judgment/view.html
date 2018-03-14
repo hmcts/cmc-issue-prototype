@@ -1,0 +1,39 @@
+{% extends "prototype-mar-2018/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<a href="#" class="button secondary-button" style="margin-top: 65px; float:right;" onclick="window.print(); return false;">Print</a>
+
+<h1 class="heading-large" style="margin-top: 20px;">
+  Confirmation of request for judgment
+</h1>
+
+<h3 class="heading-medium">Date you requested judgment</h3>
+<p>{{ now | date( "D MMMM YYYY" ) }}</p>
+
+
+<form method="post" action="submitted" class="form">
+
+  <h2 class="heading-medium">Defendant's date of birth</h2>
+
+
+  <table class="check-your-answers">
+    <tr>
+      <td>Jan Clarke</td>
+      <td>21 September 1978</td>
+    </tr>
+  </table>
+
+
+  <h2 class="heading-medium">Signed</h2>
+
+  <p>The defendant has not filed a defence to my claim and the time for doing so has expired.</p>
+  <p>I request judgment to be entered against the defendant for an amount to be decided by the court and costs.</p>
+
+  <p>
+    <span class="">James Smith</span><br />
+    Solicitor, Jones &amp; Williams LLP
+  </p>
+  <p>{{ now | date( "D MMMM YYYY" ) }}</p>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "prototype-sept2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="litigation-friend" class="form">
+
+      <h1 class="heading-large">
+        <span class="form-hint">Defendant: Michael Jones</span>
+        Certificate of suitability
+      </h1>
+
+      <div class="form-group">
+        <h2 class="heading-medium">Who did you serve the Certificate of suitability to?</h2>
+        <p class="help-text">In addition to the other party, you must serve the certificate to the defendant's parent, guardian, or attorney.</p>
+
+       <div class="form-group">
+        <div>
+          <input type="hidden" name="served-friend" value="no" />
+          <input class="form-control" type="text" id="served-to" name="served-to" value="">
+        </div>
+      </div>
+
+
+      <div class="form-group" >
+        <input type="submit" class="button" value="Save and continue">
+      </div>
+    </form>
+
+
+    {% endblock %}
