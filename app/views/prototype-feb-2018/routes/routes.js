@@ -138,8 +138,7 @@ module.exports = function(app){
 
         if (!req.body.defendantType) {
             res.render('prototype-feb-2018/defendant-type', { defendants: defendants })
-        }
-        else {
+        } else {
             res.redirect('defendant-details')
         }
     });
@@ -156,9 +155,49 @@ module.exports = function(app){
         res.render('prototype-feb-2018/defendant-reps-address', { defendants: defendants })
     });
 
+
+    app.post('*/prototype-feb-2018/defendant-reps-email', function(req, res){
+
+        if ( req.session.data['defendant_rep_email'].length ) {
+            res.redirect('defendant-reps-email-service');
+        } else {
+            res.redirect('defendant-add')
+        }
+
+    });
+
+
+    app.post('*/prototype-feb-2018/confirm-rep', function(req, res){
+
+        if ( req.body['defendant_rep_details'] == 'yes' ) {
+            req.session.data['defendant_rep_email'] = 'service@123law.co.uk';
+            req.session.data['defendant_email_service'] = 'admin@123law.co.uk';
+            req.session.data['defendant_service_AddressLine1'] = '2';
+            req.session.data['defendant_service_AddressLine2'] = 'The Parklands';
+            req.session.data['defendant_service_city'] = 'Bolton';
+            req.session.data['defendant_service_Postcode'] = 'BL6 4SE';
+
+            res.redirect('defendant-add');
+        } else {
+            res.redirect('defendant-reps-address');
+        }
+
+    });
+
+
+
+    app.post('*/prototype-feb-2018/defendant-reps-email-service', function(req, res){
+        res.redirect('defendant-add');
+    });
+
+
+
     app.post('*/prototype-feb-2018/defendant-reps-address', function(req, res){
 
-        if (req.session.data.defendant_service_country ) {
+        if ( req.session.data['service'] == 'digital' ) {
+                res.redirect('defendant-reps-email'); 
+
+        } else if (req.session.data.defendant_service_country ) {
 
             req.session.defendantCountry = req.session.data.defendant_service_country;
 
@@ -207,12 +246,6 @@ module.exports = function(app){
 
     });
 
-
-    app.get('*/prototype-feb-2018/defendants-service-address', function(req, res){
-        var defendants = req.session.defendants || [];
-
-        res.render('prototype-feb-2018/defendants-service-address', { defendants: defendants })
-    });
 
     app.post('*/prototype-feb-2018/defendants-service-address', function(req, res){
         if (req.body.defendantService === 'other') {
@@ -371,11 +404,31 @@ module.exports = function(app){
     app.post('*/prototype-feb-2018/defendant-represented', function(req, res){
         if (req.body.defendantRepresented === undefined) {
             res.render('prototype-feb-2018/defendant-represented')
+        } else if (req.body.defendantRepresented.toString() === 'yes' && req.session.data['service'] == 'digital' ) {
+            res.redirect('defendant-rep-search');
         } else if (req.body.defendantRepresented.toString() === 'yes') {
             res.redirect('defendant-reps-address')
-        }
-        else {
+        } else {
             res.redirect('defendants-service-address')
+        }
+    });
+
+    app.get('*/prototype-feb-2018/defendant-rep-search', function (req, res) {
+        req.session.data['service'] = 'digital';
+        res.render('prototype-feb-2018/defendant-rep-search');
+    });
+
+    app.post('*/prototype-feb-2018/defendant-rep-search', function (req, res) {
+
+        if (req.body.rep_company) {
+            req.session.data['defendant_rep_company_name'] = req.body.rep_company;
+            res.redirect('confirm-rep');
+        } else if (req.body.defendant_rep_company_name) {
+            req.session.data['defendant_rep_company_name'] = req.body.defendant_rep_company_name;
+            req.session.data['defendant_rep_company'] = req.body.defendant_rep_company_name;
+            res.redirect('defendant-reps-address');
+        } else {
+            res.render('prototype-feb-2018/defendant-rep-search');
         }
     });
 
