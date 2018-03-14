@@ -48,3 +48,18 @@
 
 
 {% endblock %}
+
+
+
+{% block page_scripts %}
+
+
+<form method="get" action="#" class="form" >
+  <select id="service" name="service" onchange="this.form.submit()">
+    <option  value="sol" {% if data['service'] != 'digital'  %}selected{% endif %}>Solicitor service</option>
+    <option value="digital" {% if data['service'] == 'digital' %}selected{% endif %}>Digital service</option>
+  </select>
+</form>
+
+
+{% endblock %}

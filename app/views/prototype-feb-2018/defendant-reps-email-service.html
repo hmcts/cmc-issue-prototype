@@ -1,0 +1,24 @@
+{% extends "prototype-july2-2017/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Do you have permission to serve to the defendant's representative by email?</h1>
+<form action="defendant-reps-email-service" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Do you have permission to serve to the defendant by email?</legend>
+
+    <div class="multiple-choice">
+      <input id="email-service-yes" name="defendant_email_service" type="radio" value="yes" {{ checked('defendant_email_service','yes') }}>
+      <label for="email-service-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="email-service-no" name="defendant_email_service" type="radio" value="no" {{ checked('defendant_email_service','no') }}>
+      <label for="email-service-no">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

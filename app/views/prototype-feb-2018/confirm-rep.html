@@ -1,0 +1,46 @@
+{% extends "prototype-feb-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <form method="post" action="confirm-rep" class="form">
+
+    <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['name'] or data['claimant_name'] }}{% endif %}</span>
+    </span>
+      Confirm legal representative details 
+    </h1>
+
+    <p>
+      We have the following details for {{ data['defendant_rep_company_name'] }}:
+    </p>
+    <p>
+      {{ data['defendant_rep_company_name'] }}<br />
+      2 The Parklands<br />
+      Bolton<br />
+      BL6 4SE
+    </p>
+    <p>Email: service@123law.co.uk</p>
+    <p>Fax: 01204 677111</p>
+    <p>DX: 723540 Bolton (Lostock)</p>
+
+    <div class="form-group">
+    <p>Do you wish to use these details?</p>
+
+      <div class="form-group inline">
+        <div class="multiple-choice">
+          <input id="defendant_rep_details-yes" name="defendant_rep_details" type="radio" value="yes">
+          <label for="defendant_rep_details-yes">Yes</label>
+        </div>
+
+        <div class="multiple-choice" data-target="response">
+          <input id="defendant_rep_details-no" name="defendant_rep_details" type="radio" value="no">
+          <label for="defendant_rep_details-no">No</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Save and continue">
+    </div>
+
+  </form>
+
+
+{% endblock %}

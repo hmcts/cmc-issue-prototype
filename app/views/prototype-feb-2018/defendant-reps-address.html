@@ -6,6 +6,9 @@
 </h1>
 <form action="defendant-reps-address" method="post">
 
+{% if data['service'] == 'digital' %}
+  <p>This firm is not yet registered for our defendants' service, so you will need to serve the claim yourself.</p>
+{% endif %}
 
   <fieldset class="form-group">
     {{ address.lookup('defendant_service') }}
