@@ -332,7 +332,7 @@ module.exports = function(app){
 
             res.redirect('defendant-type')
         } else {
-            res.redirect('type-of-claim');
+            res.redirect('personal-injury');
         }
 
     });
