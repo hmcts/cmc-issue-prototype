@@ -1,0 +1,157 @@
+{% extends "prototype-nov-2017/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<a href="#" class="button secondary-button" style="margin-top: 65px; float:right;" onclick="window.print(); return false;">Print</a>
+
+<h1 class="heading-large" style="margin-top: 20px;">
+  Confirmation of service
+</h1>
+
+<h3 class="heading-medium">Deemed date of service</h3>
+<p>{{ now | date("subtract", 1, "days") | date( "DD" ) }}-{{ now | date( "D MMMM YYYY" ) }}</p>
+
+  <form method="post" action="submitted" class="form">
+
+
+    <table class="check-your-answers">
+
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Documents
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Documents served
+          </td>
+          <td>
+            <ul>
+              {% for document in documents %}
+              <li>{{ document }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Documents uploaded
+          </td>
+          <td>
+            <ul>
+              {% for file in files %}
+              <li><a href="#">{{ file }}</a></li>
+              {% endfor %}
+            </ul></td>
+        </tr>
+      </tbody>
+    <table>
+
+    {% for defendant in defendants %}
+    {% if defendant.howServed %}
+    <table class="check-your-answers">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Defendant {{ defendant.defendantNo }}
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {% if defendant.defendantType == 'company' %}Organisation name{% else %}Name{% endif %}
+          </td>
+          <td>{{ defendant.defendantName }}</td>
+          </td>
+        </tr>
+
+        {% if defendant.addressedTo %}
+        <tr>
+          <td>
+            Person you addressed documents to
+          </td>
+          <td>{{ defendant.addressedTo }}{% if defendant.addressedRole %}, {{defendant.addressedRole}}{% endif %}</td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td>How you served </td>
+          <td>
+            {{ defendant.howServed }}</td>
+        </tr>
+        <tr>
+          <td>Where you served</td>
+          <td>
+            {% if defendant.serviceEmail %}
+              {{ defendant.serviceEmail }}
+            {% elseif (defendant.serviceFax) and (defendant.howServed == 'Fax') %}
+              Fax number: {{ defendant.serviceFax }} <br />
+            {% elseif (defendant.serviceDX) and (defendant.howServed == 'Document Exchange')  %}
+              {{ defendant.serviceDX }} <br />
+            {% else %}
+
+              {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
+              {% for line in defendant.serviceAddress.split( '\n' ) %}
+              {{line}}<br />
+              {% endfor %}<br />
+
+            {% endif %}
+
+            {% if not defendant.serviceEmail %}
+            Defendant's{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {% endif %}
+
+            {% if (defendant.leftWith) and ( defendant.howServed == 'Personally handed to or left with with recipient') %}
+            <br />Left with {{defendant.leftWith}}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>When you
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}posted the documents
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the documents
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the documents
+          {% elseif defendant.howServed == 'Fax' %}faxed the documents
+          {% elseif defendant.howServed == 'Email' %}emailed the documents
+          {% else %}sent the documents
+          {% endif %}
+          </td>
+          <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.amPm }}{% endif %}</td>
+        </tr>
+        <tr>
+          <td>Deemed date of service </td>
+          <td>{{ defendant.serveDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
+
+</table>
+
+
+<div class="form-group column-two-thirds" style="padding-left: 0">
+
+  <h2 class="heading-medium">Statement of truth</h2>
+
+  <p>I believe that the facts stated in this certificate are true.</p>
+  
+  <p>
+    <span class="">Robert Johnson</span><br />
+    Solicitor, Smith &amp; Law Co LLP
+  </p>
+  <p>{{ now | date( "D MMMM YYYY" ) }}</p>
+</div>
+
+
+  {% endblock %}

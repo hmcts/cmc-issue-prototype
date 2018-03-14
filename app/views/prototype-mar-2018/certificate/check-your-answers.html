@@ -1,0 +1,257 @@
+{% extends "prototype-mar-2018/index-full-width.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">
+  Check your answers
+</h1>
+
+
+  <form method="post" action="submitted" class="form">
+
+
+    {% if documents == 'Certificate of suitability' %}
+
+    <table class="check-your-answers">
+
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Litigation friend
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Defendant
+          </td>
+          <td>
+              {{ defendant.defendantNameMinor }}
+          </td>
+          <td class="change-answer">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Litigation friend
+          </td>
+          <td>
+           {{ defendant.friendName }}
+          </td>
+          <td class="change-answer">
+           <a href="#">
+            Change
+          </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Litigation friend address
+          </td>
+          <td>
+           {{ defendant.defendantAddress }}
+          </td>
+          <td class="change-answer">
+           <a href="#">
+            Change
+          </a>
+          </td>
+        </tr>
+      </tbody>
+    <table>
+
+
+
+    {% endif %}
+
+    <table class="check-your-answers">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+              Documents
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Documents served
+          </td>
+          <td>
+            <ul>
+              {% if defendants.length > 1 %}
+              {% for document in documents %}
+              <li>{{ document }}</li>
+              {% endfor %}
+              {% else %}
+                <li>Certificate of suitability</li>
+              {% endif %}
+            </ul>
+          </td>
+          <td class="change-answer">
+         <a href="../certificate">
+          Change
+        </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Documents uploaded
+          </td>
+          <td>
+            <ul>
+              {% if defendants.length > 1 %}
+              {% for file in files %}
+              <li><a href="#">{{ file }}</a></li>
+              {% endfor %}
+              {% else %}
+              <li><a href="#">Certificate of suitability.pdf</a></li>
+              {% endif %}
+            </ul></td>
+          <td class="change-answer">
+         <a href="upload">
+          Change
+        </a>
+          </td>
+        </tr>
+      </tbody>
+    <table>
+
+    {% for defendant in defendants %}
+    {% if defendant.howServed %}
+
+    <table class="check-your-answers">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium" id="name">
+            {% if defendant.defendantType == 'friend' %}
+              Litigation friend for Michael Jones
+              {% set doc = "certificate of suitability" %}
+              {% set person = "Litigation friend" %}
+            {% elseif defendant.defendantType == 'authority' %}
+              Certificate of suitability recipient
+              {% set doc = "certificate of suitability" %}
+              {% set person = "Recipient" %}
+            {% else %}
+              Defendant {{ defendant.defendantNo }}
+              {% set doc = "documents" %}
+              {% set person = "Defendant" %}
+            {% endif %}
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {% if defendant.defendantType == 'company' %}Organisation name{% else %}Name{% endif %}
+          </td>
+          <td>{{ defendant.defendantName }}</td>
+          <td class="change-answer">
+          </td>
+        </tr>
+
+        {% if defendant.addressedTo %}
+        <tr>
+          <td>
+            Person you addressed documents to
+          </td>
+          <td>{{ defendant.addressedTo }}{% if defendant.addressedRole %}, {{defendant.addressedRole}}{% endif %}</td>
+          <td class="change-answer"><a href="who">Change</a></td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td>How you served </td>
+          <td>
+            {{ defendant.howServed }}</td>
+          <td class="change-answer"><a href="how">Change</a></td>
+        </tr>
+        <tr>
+          <td>Where you served</td>
+          <td>
+            {% if defendant.serviceEmail %}
+              {{ defendant.serviceEmail }}
+            {% elseif (defendant.serviceFax) and (defendant.howServed == 'Fax') %}
+              Fax number: {{ defendant.serviceFax }} <br />
+            {% elseif (defendant.serviceDX) and (defendant.howServed == 'Document Exchange')  %}
+              {{ defendant.serviceDX }} <br />
+            {% else %}
+
+              {% if defendant.solicitor != '-' %}{{ defendant.solicitor.toUpperCase() }}<br />{% endif %}
+              {% for line in defendant.serviceAddress.split( '\n' ) %}
+              {{line}}<br />
+              {% endfor %}<br />
+
+            {% endif %}
+
+            {% if not defendant.serviceEmail %}
+            {{person}}'s{% if defendant.solicitor != '-' %} solicitor's{% endif %} {{ defendant.destination }}
+            {% endif %}
+
+            {% if (defendant.leftWith) and ( defendant.howServed == 'Personally handed to or left with with recipient') %}
+            <br />Left with {{defendant.leftWith}}
+            {% endif %}
+          </td>
+          <td class="change-answer"><a href="where">Change</a></td>
+        </tr>
+        <tr>
+          <td>When you
+
+          {% if ( defendant.howServed == 'First class post' ) or ( defendant.howServed == 'Other next-day delivery service' ) %}posted the {{doc}}
+          {% elseif defendant.howServed == 'Delivered or left at a permitted place' %}delivered the {{doc}}
+          {% elseif defendant.howServed == 'Personally handed to or left with recipient' %}left the {{doc}}
+          {% elseif defendant.howServed == 'Fax' %}faxed the {{doc}}
+          {% elseif defendant.howServed == 'Email' %}emailed the {{doc}}
+          {% else %}sent the {{doc}}
+          {% endif %}
+          </td>
+          <td>{{ defendant.serveDay }} {{ defendant.serveMonthWord }} {{ defendant.serveYear }} {% if defendant.serveHour %} {{ defendant.serveHour }}:{{ defendant.serveMinutes }} {{ defendant.amPm }}{% endif %}</td>
+          <td class="change-answer"><a href="when">Change</a></td>
+        </tr>
+        <tr>
+          <td>Deemed date of service </td>
+          <td>{{ defendant.serveDate }}</td>
+          <td class="change-answer"> </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
+
+</table>
+
+
+<div class="form-group column-two-thirds" style="padding-left: 0">
+
+  <h2 class="heading-medium">Statement of truth</h2>
+
+    <div class="form-group">
+      <label>I believe that the facts stated in this certificate are true.</label>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signer_name">Name</label>
+      <input type="text" class="form-control" id="signer_name" name="signer_name" value=""></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signer-role">Your role</label>
+      <input class="form-control" id="signer-role" name="signer-role" type="text"value="" >
+    </div>
+
+      <button id="submit" class="button">Confirm service</button>
+    </form>
+  </form>
+
+
+  {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %}
+{% import "prototype-sept2-2017/address.html" as address%}
+{% block main_content %}
+<h1 class="heading-large"><span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %} representative</span>
+  <a href="defendant-reps-address" class="secret-link">Address for service</a>
+</h1>
+<form action="defendant-reps-address" method="post">
+
+{% if data['service'] == 'digital' %}
+  <p>This firm is not yet registered for our defendants' service, so you will need to serve the claim yourself.</p>
+{% endif %}
+
+  <fieldset class="form-group">
+    {{ address.lookup('defendant_service') }}
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" id="continue-button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

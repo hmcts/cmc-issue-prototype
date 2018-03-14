@@ -1,0 +1,21 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+<h1 class="heading-large">Choose court location</h1>
+
+<p>This should be your preferred County Court hearing centre.</p>
+
+<form action="claimant-name" method="post">
+  <div class="form-group">
+    <label for="county_court" class="form-label"><span class="form-hint">Optional</span></label>
+    <input id="county_court" name="county_court" type="text" class="form-control" value="{{ data['county_court'] }}">
+  </div>
+
+  <div class="form-group">
+      <a target="_blank" href="https://courttribunalfinder.service.gov.uk/search/postcode?aol=Money+claims&spoe=nearest">Find a hearing centre</a> (this will open in a new window)
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

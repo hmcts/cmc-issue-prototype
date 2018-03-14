@@ -1,0 +1,24 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">Are you sure you want to delete this defendant?</h1>
+<form action="defendant-add" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+    <legend class="visually-hidden">Do you want to delete this defendant?</legend>
+
+    <div class="multiple-choice" data-target="delete-defendant-yes">
+      <input id="delete-yes" name="deleteDefendant" type="radio" value="yes" {{ checked('deleteDefendant','yes') }}>
+      <label for="delete-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice">
+      <input id="delete-no" name="deleteDefendant" type="radio" value="no" {{ checked('deleteDefendant','no') }}>
+      <label for="delete-no">No</label>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+{% endblock %}

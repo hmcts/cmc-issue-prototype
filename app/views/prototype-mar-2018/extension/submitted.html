@@ -1,0 +1,18 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<div class="govuk-box-highlight">
+  <h1 class="bold-large">You've asked for more time</h1>
+  <br>
+  <h2 class="bold-medium form-group">Claim number: 000LR095 </h2>
+  <p class="form-group-compound">Proposed new deadline: {{ now | date("add", 32, "days" ) | date( "D MMMM YYYY" ) }}</p>
+  <p class="form-group-compound">Requested on: {{ now | date( "D MMMM YYYY" ) }}</p>
+</div>
+
+<p>We'll email you to tell you whether the claimant accepts or rejects your request.</p>
+
+<p><a class="button" href="../respondent/claim-details?claim-status=1.2" role="button">View this claim</a></p>
+
+<style type="text/css">
+	.link-back{display: none}
+</style>
+{% endblock %}

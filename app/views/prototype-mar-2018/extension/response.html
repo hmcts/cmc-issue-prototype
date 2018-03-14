@@ -1,0 +1,17 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <form method="post" action="response" class="form">
+
+    <h1 class="heading-large">Add an optional response</h1>
+
+    <div class="form-group">
+      <textarea class="form-control form-control-medium" id="extension-notes" rows="3" name="extension-notes" type="text" style="height: 6em;"></textarea>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Continue">
+    </div>
+
+  </form>
+
+{% endblock %}

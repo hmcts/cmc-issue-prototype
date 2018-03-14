@@ -1,0 +1,35 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+  <form method="post" action="respond" class="form">
+
+    <h1 class="heading-large">Respond to request for more time</h1>
+
+    <h3 class="heading-medium">Proposed date</h3>
+    <p>{{ now | date( "add", 32, "days" ) | date("D MMMM YYYY") }}</p>
+
+    <h3 class="heading-medium">Defendant's notes</h3>
+    <p>"Awaiting medical reports. Should be ready by end of month"</p>
+
+    <div class="form-group">
+
+      <p class="heading-medium">Do you agree to extend the response deadline to {{ now | date( "add", 32, "days" ) | date("D MMMM YYYY") }}?</p>
+      <div class="form-group inline">
+        <div class="multiple-choice">
+          <input id="extension-yes" name="extension" type="radio" value="yes">
+          <label for="extension-yes">Yes</label>
+        </div>
+
+        <div class="multiple-choice">
+          <input id="extension-no" name="extension" type="radio" value="no">
+          <label for="extension-no">No</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <input type="submit" class="button" value="Continue">
+    </div>
+
+  </form>
+
+{% endblock %}

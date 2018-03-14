@@ -1,0 +1,40 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">Defendant 2: {{ data['claimant_title'] }} {{ data['claimant_name'] }}{% endif %}</span>
+  Do you agree 'Jan Clarke' is the defendant's correct and full name?
+</h1>
+
+<form action="name" id="form" method="post" class="form-group">
+  <fieldset class="form-group inline">
+
+    <div class="multiple-choice">
+      <input id="correct-name-yes" name="correct-name" type="radio" value="yes" {{ checked('correct-name','yes') }}>
+      <label for="correct-name-yes">Yes</label>
+    </div>
+
+    <div class="multiple-choice" data-target="actual-name">
+      <input id="correct-name-no" name="correct-name" type="radio" value="no" {{ checked('correct-name','no') }}>
+      <label for="correct-name-no">No</label>
+    </div>
+
+    <div id="actual-name" class="panel panel-border-narrow js-hidden" aria-hidden="true">
+      <div class="form-group">
+      	<p>
+		    <label for="name" class="form-label">Correct defendant name</label>
+		    <input id="name" name="name" type="text" class="name" value="{{ data['name'] or 'Jan Clarke' }}">
+		</p>
+        <p>
+        	This will tell the claimant that the defendant's name is incorrect on the claim form.<br />
+        	It's up to the claimant to make an application to correct it.
+        </p>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Save and continue">
+  </div>
+</form>
+
+{% endblock %}

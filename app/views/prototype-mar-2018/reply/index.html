@@ -1,0 +1,45 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+    <form method="post" action="reply/submitted" class="form">
+
+      <h1 class="heading-large">
+        <span id="sub"><a href="reply/submitted" class="secret-link">Upload your reply</a></span>
+      </h1>
+
+      <div id="uploads">
+
+        <p>You must include a statement of truth in the document you upload.</p>
+
+        <p class="form-hint">We accept files sized no larger than 10MB in these formats: pdf, doc, docx, jpg, jpeg, xls, xlsx, png.</p>
+
+        <div id="defence">
+          <ol class="list uploaded-files" style="margin-bottom: 15px;">
+          </ol>
+
+          <div class="form-group" style="display: block">
+            <p>
+              <input type="file" />
+            </p>
+            <p>
+              <a href="#" class="button" value="Upload file" onclick="return upload('defence');">Upload file</a>
+            </p>
+            <p>
+              <a href="#" style="display: none" onclick="return hideForm('defence');">Cancel file upload</a>
+            </p>
+          </div>
+
+          <a href="#" class="secondary-button" onclick="return showForm('defence');" style="display:none">Add file</a>
+        </div>
+
+      </div>
+
+      <div class="form-group" >
+        <input type="submit" class="button upload" value="Submit your reply" id="submit">
+      </div>
+
+
+
+    </form>
+
+
+    {% endblock %}

@@ -1,0 +1,23 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %}
+{% import "prototype-sept2-2017/address.html" as address%}
+{% block main_content %}
+
+<h1 class="heading-large">
+  <span class="form-hint">Defendant {% if defendants.length > 0 %} {{ defendants.length + 1 }} {% endif %}: {% if data['defendant_name'] %} {{ data['defendant_title'] }} {{ data['defendant_name'] }} {% else %} {{ data['defendant_company_name'] }} {% endif %}</span>
+  Address
+</h1>
+
+<form action="defendant-represented" method="post">
+
+
+  <fieldset class="form-group">
+    {{ address.lookup('defendant') }}
+  </fieldset>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" id="continue-button" value="Save and continue">
+  </div>
+</form>
+
+ {% endblock %}

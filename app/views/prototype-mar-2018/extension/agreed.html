@@ -1,0 +1,31 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} Claim Issue {% endblock %} {% block main_content %}
+
+<form method="post" action="agreed" class="form">
+
+	<h1 class="heading-large">
+		Have you already agreed the deadline with the claimant?
+	</h1>
+
+	<p>If not, you can ask them using this service.</p>
+
+  <div class="form-group">
+    <div class="form-group inline">
+      <div class="multiple-choice">
+        <input id="agreed-yes" name="agreed" type="radio" value="yes">
+        <label for="agreed-yes">Yes</label>
+      </div>
+
+      <div class="multiple-choice">
+        <input id="agreed-no" name="agreed" type="radio" value="no">
+        <label for="agreed-no">No</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Continue">
+  </div>
+
+</form>
+
+{% endblock %}

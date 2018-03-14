@@ -1,0 +1,21 @@
+{% extends "prototype-mar-2018/index.html" %} {% block page_title %} CMC Issue Prototype {% endblock %}
+{% import "prototype-sept2-2017/address.html" as address%}
+{% block main_content %}
+
+  <h1 class="heading-large">{% if data['claimant_name'] %}<span class="form-hint">{{ person }}: {{ data['claimant_title'] }} {{ data['name'] or data['claimant_name'] }}{% endif %}</span>
+      Litigation friend's address
+  </h1>
+
+<form method="post" action="{{action}}" class="form">
+
+  <fieldset class="form-group">
+    {{ address.lookup('friend') }}
+  </fieldset>
+
+  <div class="form-group">
+    <input type="submit" class="button" id="continue-button" value="Save and continue">
+  </div>
+
+</form>
+
+{% endblock %}
