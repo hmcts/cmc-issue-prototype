@@ -591,10 +591,11 @@ module.exports = function(app){
 
         var objDueDate = moment().add('4', 'months');
         if ( req.session.data.jursidiction ) {
-            var objDueDate = moment().add('2', 'months');
+            var objDueDate = moment().add('6', 'months');
         }
 
-        var objConfirmDueDate = moment().add('21', 'days');
+
+        var objConfirmDueDate = objDueDate.clone().add('21', 'days');
 
         var blnNeedsLitigationFriend = false;
 
