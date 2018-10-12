@@ -707,10 +707,11 @@ module.exports = function(app){
 
     app.get('*/prototype-mar-2018/certificate/upload-js', function(req, res){
         var defendant = req.session.defendant || getDummyDefendant();
+        var defendants = req.session.defendants || getDummyDefendants();
         req.session.documents = req.body.documents || getDummyDocuments();
         documents = req.session.documents;
 
-        res.render('prototype-mar-2018/certificate/upload-js', { defendant: defendant, documents: documents, uploads: req.session.uploads });
+        res.render('prototype-mar-2018/certificate/upload-js', { defendant: defendant, defendants: defendants, documents: documents, uploads: req.session.uploads });
 
     });
 
