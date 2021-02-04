@@ -42,7 +42,7 @@
     "readdir": "0.0.6",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.2.2",
-    "serve-favicon": "2.3.0",
+    "serve-favicon": "2.5.0",
     "standard": "^8.6.0",
     "supertest": "^2.0.0",
     "sync-request": "^3.0.1"
