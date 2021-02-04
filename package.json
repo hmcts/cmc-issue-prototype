@@ -32,7 +32,7 @@
     "gulp-sass": "3.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "marked": "^0.3.6",
+    "marked": "^0.8.2",
     "minimist": "0.0.8",
     "moment": "^2.18.1",
     "notifications-node-client": "^3.0.0",
